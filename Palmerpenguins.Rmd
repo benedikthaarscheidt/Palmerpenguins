@@ -109,9 +109,9 @@ stripchart(adelieset$bill_depth_mm~adelieset$sex, main="Massdistribution between
 
 ```{r}
 
-# Increase bottom margin to make space for text
+# Increase margins to make space for text and adjust plot layout
 old_par <- par()  # Save current settings to restore later
-par(mar = c(5, 4, 4, 2) + 0.1)  # Default is c(5, 4, 4, 2)
+par(mar = c(5, 4, 4, 4) + 0.1)  # Increase right margin for text
 
 # Summary statistics
 xy <- summary(adeliemale$body_mass_g)
@@ -122,7 +122,8 @@ hist(adeliemale$body_mass_g,
      xlab = "Body Mass Distribution",
      ylab = "Density",
      col = "lightblue",
-     freq = FALSE) # Using density instead of frequency
+     freq = FALSE, # Using density instead of frequency
+     xlim = range(adeliemale$body_mass_g, na.rm = TRUE)) # Set x-axis limits
 
 # Add density line, mean, and median lines
 lines(density(adeliemale$body_mass_g, na.rm = TRUE), col = "blue", lwd = 2)
@@ -131,8 +132,9 @@ abline(v = medianbodymassadeliemale, col = "red", lwd = 2, lty = 2)
 abline(v = meanbodymassadeliefemale, col = "black", lwd = 2, lty = 1)
 abline(v = medianbodymassadeliefemale, col = "red", lwd = 2, lty = 1)
 
-# Add legend
-legend("topright", legend = c("Density", "Mean male", "Median male", "Mean female", "Median female"), 
+# Adjust legend position
+legend("topright", inset = c(0, -0.1), # Shift legend up
+       legend = c("Density", "Mean male", "Median male", "Mean female", "Median female"), 
        col = c("blue", "black", "red", "black", "red"), lty = c(1, 2, 2, 1, 1), lwd = 2)
 
 # Prepare a text to display
@@ -143,8 +145,8 @@ summary_text <- paste("Min:", xy["Min."], "\n",
                       "3rd Qu.:", xy["3rd Qu."], "\n",
                       "Max:", xy["Max."], "\n")
 
-# Place the summary text at the top of the plot
-mtext(summary_text, side = 3, line = -2, cex = 0.8, adj = 0)
+# Place the summary text in the right margin
+mtext(summary_text, side = 4, line = 1, cex = 0.8, adj = 0)
 
 # Restore original par settings
 par(old_par)
