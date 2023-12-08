@@ -144,7 +144,7 @@ To satisfy a normal distribution, 1 outline in each data set bill_depth_adelie_m
 
 to check if there is a statistical significant sexual dimorphism, the t-test was used.
 
-```{r label=t-test, echo=FALSE}
+```{r label=t-test, echo=FALSE,result='hide'}
 t.test(c_bill_length_female_fit,chinstrapmale$bill_length_mm)
 t.test(chinstrapfemale$bill_depth_mm,chinstrapmale$bill_depth_mm)
 t.test(chinstrapfemale$flipper_length_mm,chinstrapmale$flipper_length_mm)
