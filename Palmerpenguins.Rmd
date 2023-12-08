@@ -105,7 +105,6 @@ medianbodymassadeliefemale=median(adeliefemale$body_mass_g, na.rm=TRUE)
 summaryadeliefemale=summary(adeliefemale[,3:6])
 summaryadeliemale=summary(adeliemale[,3:6])
 
-
 ```
 
 numerical data summary chinstrap bodymass
@@ -132,7 +131,7 @@ summarychinstrapfemale=summary(chinstrapfemale[,3:6])
 summarychinstrapmale=summary(chinstrapmale[,3:6])
 ```
 
-numerical data summary billdepth 
+Numerical data summary bill depth 
 ```{r}
 meanbilldepthchinstrap=mean(chinstrapset$bill_depth_mm, na.rm=TRUE)
 meanbilldepthchinstrapmale=mean(chinstrapmale$bill_depth_mm, na.rm=TRUE)
@@ -144,7 +143,8 @@ summarychinstrapfemale=summary(chinstrapfemale[,3:6])
 summarychinstrapmale=summary(chinstrapmale[,3:6])
 ```
 
-numerical data summary flipperlength 
+numerical data summary flipperlength
+
 ```{r}
 meanflipperlengthchinstrap=mean(chinstrapset$flipper_length_mm, na.rm=TRUE)
 meanflipperlengthchinstrapmale=mean(chinstrapmale$flipper_length_mm, na.rm=TRUE)
@@ -359,7 +359,13 @@ legend("topright", legend = c("Density", "Mean female", "Median female", "Mean m
 
 ```
 
+<<<<<<< HEAD
+
+### Histogramm Bill length Chinstrap
+
+=======
 ## Bodymass Chinstrap
+>>>>>>> c45013042169c612d17762b8d446fcb4f45e1c96
 
 ```{r echo=FALSE}
 ## Summary statistics
@@ -732,6 +738,8 @@ hist(chinstrapfemale$bill_depth_mm,
      ylim= c(0.0, 0.6),
      freq = FALSE)
 
+<<<<<<< HEAD
+=======
 # Add density line for female
 lines(density(chinstrapfemale$bill_depth_mm, na.rm = TRUE), col = "black", lwd = 2)
 
@@ -884,6 +892,7 @@ par(mfrow=c(1, 1), mar = c(5, 4, 4, 2) + 0.1, oma = c(2, 1, 2, 1))
 ```
 
 
+>>>>>>> c45013042169c612d17762b8d446fcb4f45e1c96
 # chinstrap
 
 ## Datasummary numerical
@@ -899,3 +908,16 @@ summaryadeliemale=summary(adeliemale[,3:6])
 
 ```
 
+
+## The variable categorical weight of the Chinstrap:
+
+```{r}
+cWeight = cut(chinstrapset$body_mass_g,breaks=quantile(chinstrapset$body_mass_g,c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
+
+levels(cWeight) = c("light", "medium", "heavy")
+table(cWeight,chinstrapset$sex)
+```
+
+```{r}
+knitr::kable(table(cWeight,chinstrapset$sex))
+```
