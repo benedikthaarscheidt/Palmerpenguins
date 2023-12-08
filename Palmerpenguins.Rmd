@@ -16,7 +16,7 @@ output:
 library(palmerpenguins)
 library(datasets)
 library(MASS)
-
+library(effsize)
 library(DAAG)
 library(palmerpenguins)
 ```
@@ -242,6 +242,25 @@ t.test(chinstrapfemale$body_mass_g,chinstrapmale$body_mass_g)
   
 
 
+## Effecsize by cohens d
+The function calculates the mean of body_mass_g for males and females separately.
+It then calculates the difference between these two means.
+Finally, it standardizes this difference by dividing it by the pooled standard deviation of the two groups.
+
+Output Interpretation:
+The resulting Cohen's d value tells you how many standard deviations the means of the two groups (male and female) differ.
+It's a measure of the effect size of the sex difference on body mass. 
+```{r}
+
+cohen.d(chinstrapset$body_mass_g, chinstrapset$sex)
+cohen.d(chinstrapset$bill_length_mm, chinstrapset$sex)
+cohen.d(chinstrapset$bill_depth_mm, chinstrapset$sex)
+cohen.d(chinstrapset$flipper_length_mm, chinstrapset$sex)
+```
+
+```{r}
+cohen.w()
+```
 
 
 
@@ -262,6 +281,7 @@ stripchart(adelieset$flipper_length_mm~adelieset$sex, main="Massdistribution bet
 stripchart(adelieset$bill_depth_mm~adelieset$sex, main="Massdistribution between the biological sexes",method="stack", col=c(2,4))
 
 ```
+
 
 ### Stripcharts for Chinstrap
 
@@ -414,6 +434,57 @@ legend("topright", legend = c("Density", "Mean female", "Median female", "Mean m
 ```
 
 
+```{r echo=FALSE, fig.align='center'}
+# Set up the plotting area to have 1 row and 2 columns
+par(mfrow=c(1, 2), mar = c(5, 4, 4, 2) + 0.1, oma = c(2, 1, 2, 1))
+
+## Summary statistics for male
+yx_male <- summary(chinstrapmale$body_mass_g)
+
+# Histogram for male chinstrap penguins
+hist(chinstrapmale$body_mass_g,
+     main = "",
+     xlab = "Body Mass (g)",
+     ylab = "Density",
+     col = "cyan1",
+     xlim = c(2500, 5000),
+     freq = FALSE)
+
+# Add density line for male
+lines(density(chinstrapmale$body_mass_g, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines for male
+abline(v = meanbodymasschinstrapmale, col = "black", lwd = 2, lty = 2)
+abline(v = medianbodymasschinstrapmale, col = "blue", lwd = 2, lty = 2)
+
+## Summary statistics for female
+yx_female <- summary(chinstrapfemale$body_mass_g)
+
+# Histogram for female chinstrap penguins
+hist(chinstrapfemale$body_mass_g,
+     main = "",
+     xlab = "Body Mass (g)",
+     ylab = "",
+     col = "lightpink",
+     xlim = c(2500, 5000),
+     freq = FALSE)
+
+# Add density line for female
+lines(density(chinstrapfemale$body_mass_g, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines for female
+abline(v = meanbodymasschinstrapfemale, col = "black", lwd = 2, lty = 2)
+abline(v = medianbodymasschinstrapfemale, col = "blue", lwd = 2, lty = 2)
+# Add a common main title and a legend
+mtext("Bill Length of Male and Female Chinstrap Penguins", side = 3, line = 2, outer = TRUE)
+legend("topright", inset=c(-0.1, 0), 
+       legend = c("Density", "Mean", "Median"), 
+       col = c("black", "black", "blue"), lty = c(1, 2, 2), lwd = 2, cex=0.75, bty="n", xpd=TRUE)
+
+# Reset par to default
+par(mfrow=c(1, 1), mar = c(5, 4, 4, 2) + 0.1, oma = c(2, 1, 2, 1))
+
+# Since we cannot have two legends for the shared elements, we mention these in the caption.
 
 
 
@@ -422,6 +493,14 @@ legend("topright", legend = c("Density", "Mean female", "Median female", "Mean m
 
 
 ### Histogramm Bill length Chinstrap
+
+```
+
+
+
+
+
+
 
 
 ```{r echo=FALSE}
@@ -497,10 +576,61 @@ legend("topright", legend = c("Density", "Mean female", "Median female", "Mean m
 
 ```
 
+```{r echo=FALSE, fig.align='center'}
+# Set up the plotting area to have 1 row and 2 columns
+par(mfrow=c(1, 2), mar = c(4, 4, 2, 1), oma = c(2, 2, 2, 1))
+
+# Histogram for male chinstrap penguins' bill length
+hist(chinstrapmale$bill_length_mm,
+     main = "",
+     xlab = "Bill Length (mm)",
+     ylab = "Density",
+     col = "cyan1",
+     xlim = c(40, 60),
+     ylim = c(0.0, 0.3),
+     freq = FALSE)
+
+# Add density line for male
+lines(density(chinstrapmale$bill_length_mm, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines for male
+abline(v = meanbilllengthchinstrapmale, col = "black", lwd = 2, lty = 2)
+abline(v = medianbilllengthchinstrapmale, col = "blue", lwd = 2, lty = 2)
+
+# Histogram for female chinstrap penguins' bill length
+hist(chinstrapfemale$bill_length_mm,
+     main = "",
+     xlab = "Bill Length (mm)",
+     ylab = "",
+     col = "lightpink",
+     xlim = c(40, 60),
+     ylim = c(0.0, 0.3),
+     freq = FALSE)
+
+# Add density line for female
+lines(density(chinstrapfemale$bill_length_mm, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines for female
+abline(v = meanbilllengthchinstrapfemale, col = "black", lwd = 2, lty = 2)
+abline(v = medianbilllengthchinstrapfemale, col = "blue", lwd = 2, lty = 2)
+
+# Add a common main title and a legend
+mtext("Bill Length of Male and Female Chinstrap Penguins", side = 3, line = 2, outer = TRUE)
+legend("topright", inset=c(-0.1, 0), 
+       legend = c("Density", "Mean", "Median"), 
+       col = c("black", "black", "blue"), lty = c(1, 2, 2), lwd = 2, cex=0.75, bty="n", xpd=TRUE)
+
+
+# Reset par to default for further plots
+par(mfrow=c(1, 1), mar = c(5, 4, 4, 2) + 0.1, oma = c(2, 1, 2, 1))
+
+
+
+
+```
+
+
 ### Histogram bill depth 
-
-
-
 ```{r echo=FALSE}
 
 
@@ -573,9 +703,64 @@ legend("topright", legend = c("Density", "Mean female", "Median female", "Mean m
        col = c("black", "black", "blue", "black", "blue"), lty = c(1, 2, 2, 1, 1), lwd = 2,cex=0.75)
 
 ```
+```{r echo=FALSE, fig.align='center'}
+# Set up the plotting area to have 1 row and 2 columns
+par(mfrow=c(1, 2), mar = c(4, 4, 2, 1), oma = c(2, 2, 2, 1))
+
+# Histogram for male chinstrap penguins' bill depth
+hist(chinstrapmale$bill_depth_mm,
+     main = "",
+     xlab = "Bill Depth (mm)",
+     ylab = "Density",
+     col = "cyan1",
+     xlim = c(15, 22),
+     ylim= c(0.0, 0.6),
+     freq = FALSE)
+
+# Add density line for male
+lines(density(chinstrapmale$bill_depth_mm, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines for male
+abline(v = meanbilldepthchinstrapmale, col = "black", lwd = 2, lty = 2)
+abline(v = medianbilldepthchinstrapmale, col = "blue", lwd = 2, lty = 2)
+
+# Histogram for female chinstrap penguins' bill depth
+hist(chinstrapfemale$bill_depth_mm,
+     main = "",
+     xlab = "Bill Depth (mm)",
+     ylab = "",
+     col = "lightpink",
+     xlim = c(15, 22),
+     ylim= c(0.0, 0.6),
+     freq = FALSE)
+
+# Add density line for female
+lines(density(chinstrapfemale$bill_depth_mm, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines for female
+abline(v = meanbilldepthchinstrapfemale, col = "black", lwd = 2, lty = 2)
+abline(v = medianbilldepthchinstrapfemale, col = "blue", lwd = 2, lty = 2)
+
+# Add a common main title above the plots
+mtext("Bill Depth of Male and Female Chinstrap Penguins", side = 3, line = 1, outer = TRUE)
+
+# Since we have a shared title, we remove the individual main titles by setting `main = ""` in the `hist` functions.
+
+# Add a shared legend below the plots
+# Add legend
+legend("topright", inset=c(-0.1, 0), 
+       legend = c("Density", "Mean", "Median"), 
+       col = c("black", "black", "blue"), lty = c(1, 2, 2), lwd = 2, cex=0.75, bty="n", xpd=TRUE)
+
+
+# Reset par to default for further plots
+par(mfrow=c(1, 1), mar = c(5, 4, 4, 2) + 0.1, oma = c(2, 1, 2, 1))
+
+
+```
+
 
 ## Histogram flipperlength
-
 ```{r echo=FALSE}
 
 
@@ -650,9 +835,55 @@ legend("topright", legend = c("Density", "Mean female", "Median female", "Mean m
 ```
 
 
+```{r echo=FALSE, fig.align='center'}
+# Set up the plotting area to have 1 row and 2 columns
+par(mfrow=c(1, 2), mar = c(5, 4, 4, 2) + 0.1, oma = c(0, 0, 2, 0))
+
+# Histogram for male chinstrap penguins' flipper length
+hist(chinstrapmale$flipper_length_mm,
+     main = "",
+     xlab = "Flipper Length (mm)",
+     ylab = "Density",
+     col = "cyan1",
+     xlim = c(170, 220),
+     ylim= c(0, 0.08),
+     freq = FALSE)
+
+# Add density line for male
+lines(density(chinstrapmale$flipper_length_mm, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines for male
+abline(v = meanflipperlengthchinstrapmale, col = "black", lwd = 2, lty = 2)
+abline(v = medianflipperlengthchinstrapmale, col = "blue", lwd = 2, lty = 2)
+
+# Histogram for female chinstrap penguins' flipper length
+hist(chinstrapfemale$flipper_length_mm,
+     main = "",
+     xlab = "Flipper Length (mm)",
+     ylab = "",
+     col = "lightpink",
+     xlim = c(170, 220),
+     ylim= c(0, 0.08),
+     freq = FALSE)
+
+# Add density line for female
+lines(density(chinstrapfemale$flipper_length_mm, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines for female
+abline(v = meanflipperlengthchinstrapfemale, col = "black", lwd = 2, lty = 2)
+abline(v = medianflipperlengthchinstrapfemale, col = "blue", lwd = 2, lty = 2)
+
+# Add a common main title and a legend
+mtext("Histogram of Flipper Length of Chinstrap Penguins", side = 3, line = 1, outer = TRUE)
+legend("topright", inset=c(-0.1, 0), 
+       legend = c("Density", "Mean", "Median"), 
+       col = c("black", "black", "blue"), lty = c(1, 2, 2), lwd = 2, cex=0.75, bty="n", xpd=TRUE)
+
+# Reset par to default for further plots
+par(mfrow=c(1, 1), mar = c(5, 4, 4, 2) + 0.1, oma = c(2, 1, 2, 1))
 
 
-
+```
 
 
 # chinstrap
