@@ -258,9 +258,7 @@ cohen.d(chinstrapset$bill_depth_mm, chinstrapset$sex)
 cohen.d(chinstrapset$flipper_length_mm, chinstrapset$sex)
 ```
 
-```{r}
-cohen.w()
-```
+
 
 
 
@@ -275,10 +273,10 @@ cohen.w()
 Stripcharts for all the attributes
 
 ```{r}
-stripchart(adelieset$body_mass_g~adelieset$sex, main="Massdistribution between the biological sexes",method="stack", col=c(2,4))
-stripchart(adelieset$bill_length_mm~adelieset$sex, main="Massdistribution between the biological sexes",method="stack", col=c(2,4))
-stripchart(adelieset$flipper_length_mm~adelieset$sex, main="Massdistribution between the biological sexes",method="stack", col=c(2,4))
-stripchart(adelieset$bill_depth_mm~adelieset$sex, main="Massdistribution between the biological sexes",method="stack", col=c(2,4))
+stripchart(chinstrapset$body_mass_g~chinstrapset$sex, main="Massdistribution between the biological sexes",method="stack", col=c(2,4))
+stripchart(chinstrapset$bill_length_mm~chinstrapset$sex, main="Massdistribution between the biological sexes",method="stack", col=c(2,4))
+stripchart(chinstrapset$flipper_length_mm~chinstrapset$sex, main="Massdistribution between the biological sexes",method="stack", col=c(2,4))
+stripchart(chinstrapset$bill_depth_mm~chinstrapset$sex, main="Massdistribution between the biological sexes",method="stack", col=c(2,4))
 
 ```
 
