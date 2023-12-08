@@ -13,7 +13,7 @@
 
 <meta name="date" content="2023-12-08" />
 
-<title>R Cheatsheet</title>
+<title>Sexual dimorphism in Chinstrap penguins”</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1479,7 +1479,8 @@ border-radius: 0px;
 
 
 
-<h1 class="title toc-ignore">R Cheatsheet</h1>
+<h1 class="title toc-ignore">Sexual dimorphism in Chinstrap
+penguins”</h1>
 <h4 class="author">Benedikt Haarscheidt, Jaesub Kim, Ahmed Tijani
 Akinfalabi</h4>
 <h4 class="date">2023-12-08</h4>
@@ -1487,7 +1488,7 @@ Akinfalabi</h4>
 </div>
 
 
-<p>This is the mammals dataset containing body and brain weigth of 62
+<p>This is the mammals datasets containing body and brain weight of 62
 land species</p>
 <pre class="r"><code>data(mammals)
 head(mammals)</code></pre>
@@ -1498,8 +1499,8 @@ head(mammals)</code></pre>
 ## Cow             465.000 423.0
 ## Grey wolf        36.330 119.5
 ## Goat             27.660 115.0</code></pre>
-<p>This is the possum datase containing measurments of possums in
-australia</p>
+<p>This is the possum database containing measurements of possums in
+Australia.</p>
 <pre class="r"><code>data(possum)
 head(possum)</code></pre>
 <pre><code>##     case site Pop sex age hdlngth skullw totlngth taill footlgth earconch  eye
@@ -1562,6 +1563,26 @@ medianbodymassadeliefemale=median(adeliefemale$body_mass_g, na.rm=TRUE)
 
 summaryadeliefemale=summary(adeliefemale[,3:6])
 summaryadeliemale=summary(adeliemale[,3:6])</code></pre>
+<p>check if the data sets of the penguins satisfy the normal
+distribution, to use subsequent t-test</p>
+<pre><code>##      a_bill_length_female a_bill_length_male a_bill_depth_female
+## [1,]                 TRUE               TRUE                TRUE
+##      a_bill_depth_male a_flipper_length_female a_flipper_length_male
+## [1,]             FALSE                    TRUE                  TRUE
+##      a_body_mass_female a_body_mass_male
+## [1,]               TRUE             TRUE</code></pre>
+<pre><code>##      c_bill_length_female c_bill_length_male c_bill_depth_female
+## [1,]                FALSE               TRUE                TRUE
+##      c_bill_depth_male c_flipper_length_female c_flipper_length_male
+## [1,]              TRUE                    TRUE                  TRUE
+##      c_body_mass_female c_body_mass_male
+## [1,]               TRUE             TRUE</code></pre>
+<pre><code>##      g_bill_length_female g_bill_length_male g_bill_depth_female
+## [1,]                 TRUE              FALSE                TRUE
+##      g_bill_depth_male g_flipper_length_female g_flipper_length_male
+## [1,]              TRUE                    TRUE                  TRUE
+##      g_body_mass_female g_body_mass_male
+## [1,]               TRUE             TRUE</code></pre>
 </div>
 <div id="plots" class="section level2">
 <h2>Plots:</h2>

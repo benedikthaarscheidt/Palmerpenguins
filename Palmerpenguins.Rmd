@@ -11,29 +11,25 @@ output:
     toc: yes
     toc_depth: '5'
 ---
+
 ```{r echo=FALSE, include=FALSE}
 
 library(palmerpenguins)
 library(datasets)
 library(MASS)
-<<<<<<< HEAD
-
-
-=======
-install.packages("DAAG")
->>>>>>> 707ca5be030565a773842d27215f796368ddcb83
 library(DAAG)
 library(palmerpenguins)
 ```
 
-This is the mammals dataset containing body and brain weigth of 62 land species
+This is the mammals datasets containing body and brain weight of 62 land species
+
 ```{r}
 data(mammals)
 head(mammals)
-
-
 ```
-This is the possum datase containing measurments of possums in australia 
+
+This is the possum database containing measurements of possums in Australia.
+
 ```{r}
 data(possum)
 head(possum)
@@ -69,10 +65,10 @@ chinstrapsex=sextable[,2]
 ```
 
 
-
-
 ## Data analysis
-numerical data summary adelie:
+
+Numerical data summary adelie:
+
 ```{r}
 meanbodymassadelie=mean(adelieset$body_mass_g, na.rm=TRUE)
 meanbodymassadeliemale=mean(adeliemale$body_mass_g, na.rm=TRUE)
@@ -86,8 +82,7 @@ summaryadeliemale=summary(adeliemale[,3:6])
 
 ```
 
-check if the data sets of the penguins satisfy the normal distribution, to use 
-subsequent t-test 
+Check if the data sets of the penguins satisfy the normal distribution, to use subsequent t-test 
 
 ```{r label = shapiro-wilke-test, echo=FALSE}
 a_bill_length_female = shapiro.test(adeliefemale$bill_length_mm)$p.value
@@ -105,7 +100,7 @@ a_body_mass_male = shapiro.test(adeliemale$body_mass_g)$p.value
 
 adelishapiro = data.frame(a_bill_length_female,a_bill_length_male,a_bill_depth_female,a_bill_depth_male, a_flipper_length_female,a_flipper_length_male,a_body_mass_female,a_body_mass_male)
 
-adelishapiro>0.05
+adelishapiro > 0.05
 
 
 c_bill_length_female = shapiro.test(chinstrapfemale$bill_length_mm)$p.value
@@ -144,14 +139,9 @@ gentooshapiro>0.05
 ```
 
 
-
-
-
-
 ```{r}
 
 ```
-
 
 ## Plots:
 
@@ -207,6 +197,4 @@ mtext(summary_text, side = 4, line = 1, cex = 0.8, adj = 0)
 
 # Restore original par settings
 par(old_par)
-
-
-
+```
