@@ -16,29 +16,11 @@ output:
 library(palmerpenguins)
 library(datasets)
 library(MASS)
-<<<<<<< HEAD
 
-
-=======
-install.packages("DAAG")
->>>>>>> 707ca5be030565a773842d27215f796368ddcb83
 library(DAAG)
 library(palmerpenguins)
 ```
-```{r label = prepare the penguins data, echo=FALSE, results="hide"}
 
-penguins=palmerpenguins::penguins
-chinstrap = data.frame(bill_length_mm = penguins$bill_length_mm[penguins$species=='Chinstrap'],
-                       bill_depth_mm = penguins$bill_depth_mm[penguins$species=='Chinstrap'],
-                       flipper_length_mm = penguins$flipper_length_mm[penguins$species=='Chinstrap'],
-                       body_mass_g = penguins$body_mass_g[penguins$species=='Chinstrap'],
-                       sex = penguins$sex[penguins$species=='Chinstrap']) 
-
-fchinstrap = subset(chinstrap, sex =="female")
-mchinstrap = subset(chinstrap, sex =="male")
-
-
-```
 
 
 This is the mammals dataset containing body and brain weigth of 62 land species
@@ -85,10 +67,11 @@ chinstrapsex=sextable[,2]
 
 
 
-
+# Adelie
 ## Data analysis
 numerical data summary adelie:
 ```{r}
+#Important to take arithmetic mean 
 meanbodymassadelie=mean(adelieset$body_mass_g, na.rm=TRUE)
 meanbodymassadeliemale=mean(adeliemale$body_mass_g, na.rm=TRUE)
 meanbodymassadeliefemale=mean(adeliefemale$body_mass_g, na.rm=TRUE)
@@ -100,18 +83,6 @@ summaryadeliemale=summary(adeliemale[,3:6])
 
 
 ```
-
-
-
-
-
-
-
-
-```{r}
-
-```
-
 
 ## Plots:
 
@@ -126,47 +97,70 @@ stripchart(adelieset$bill_depth_mm~adelieset$sex, main="Massdistribution between
 
 ```{r}
 
-# Increase margins to make space for text and adjust plot layout
-old_par <- par()  # Save current settings to restore later
-par(mar = c(5, 4, 4, 4) + 0.1)  # Increase right margin for text
-
-# Summary statistics
+## Summary statistics
 xy <- summary(adeliemale$body_mass_g)
+
+
 
 # Create a histogram
 hist(adeliemale$body_mass_g,
      main = "Histogram of Body Mass of Male Adelie Penguins",
-     xlab = "Body Mass Distribution",
+     xlab = "Body Mass Distribution in gram",
      ylab = "Density",
      col = "lightblue",
+     mar = c(2, 1, 2, 1),
+     oma = c(2, 1, 2, 1),
+   
      freq = FALSE, # Using density instead of frequency
-     xlim = range(adeliemale$body_mass_g, na.rm = TRUE)) # Set x-axis limits
+      # Set x-axis limits to cover full data range
+     )     # Do not plot x-axis yet
 
-# Add density line, mean, and median lines
+
+# Add density line
 lines(density(adeliemale$body_mass_g, na.rm = TRUE), col = "blue", lwd = 2)
+
+# Add mean and median lines
 abline(v = meanbodymassadeliemale, col = "black", lwd = 2, lty = 2)
 abline(v = medianbodymassadeliemale, col = "red", lwd = 2, lty = 2)
 abline(v = meanbodymassadeliefemale, col = "black", lwd = 2, lty = 1)
 abline(v = medianbodymassadeliefemale, col = "red", lwd = 2, lty = 1)
 
-# Adjust legend position
-legend("topright", inset = c(0, -0.1), # Shift legend up
-       legend = c("Density", "Mean male", "Median male", "Mean female", "Median female"), 
-       col = c("blue", "black", "red", "black", "red"), lty = c(1, 2, 2, 1, 1), lwd = 2)
-
-# Prepare a text to display
-summary_text <- paste("Min:", xy["Min."], "\n",
-                      "1st Qu.:", xy["1st Qu."], "\n",
-                      "Median:", xy["Median"], "\n",
-                      "Mean:", xy["Mean"], "\n",
-                      "3rd Qu.:", xy["3rd Qu."], "\n",
-                      "Max:", xy["Max."], "\n")
-
-# Place the summary text in the right margin
-mtext(summary_text, side = 4, line = 1, cex = 0.8, adj = 0)
-
-# Restore original par settings
-par(old_par)
+# Add legend
+legend("topright", legend = c("Density", "Mean male", "Median male", "Mean female", "Median female"), 
+       col = c("blue", "black", "red", "black", "red"), lty = c(1, 2, 2, 1, 1), lwd = 2,cex=0.8)
 
 
+```
+
+```{r}
+hist(adeliemale$body_mass_g,
+     main="Histogram of Body Mass of Male Adelie Penguins",
+     )
+```
+
+
+
+
+
+
+
+
+
+
+
+
+# chinstrap
+
+## Datasummary numerical
+```{r}
+meanbodychinstrapmale=mean(adelieset$body_mass_g, na.rm=TRUE)
+meanbodychinstrapfemale=mean(adeliemale$body_mass_g, na.rm=TRUE)
+meanbodymassadeliefemale=mean(adeliefemale$body_mass_g, na.rm=TRUE)
+medianbodymassadeliemale=median(adeliemale$body_mass_g, na.rm=TRUE)
+medianbodymassadeliefemale=median(adeliefemale$body_mass_g, na.rm=TRUE)
+
+summaryadeliefemale=summary(adeliefemale[,3:6])
+summaryadeliemale=summary(adeliemale[,3:6])
+
+```
 
