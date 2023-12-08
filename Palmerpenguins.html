@@ -1535,13 +1535,65 @@ head(possum)</code></pre>
 adelieset &lt;- df[df$species == &quot;Adelie&quot;, ]
 adeliemale =adelieset[adelieset$sex == &quot;male&quot;,]
 adeliefemale = adelieset[adelieset$sex ==&quot;female&quot;,]
+
 gentooset=df[df$species ==&quot;Gentoo&quot;,]
 gentoomale = gentooset[gentooset$sex ==&quot;male&quot;,]
 gentoofemale = gentooset[gentooset$sex ==&quot;female&quot;,]
 
 chinstrapset=df[df$species ==&quot;Chinstrap&quot;,]
 chinstrapmale=chinstrapset[chinstrapset$sex ==&quot;male&quot;,]
-chinstrapfemale=chinstrapset[chinstrapset$sex ==&quot;female&quot;,]</code></pre>
+chinstrapfemale=chinstrapset[chinstrapset$sex ==&quot;female&quot;,]
+
+head(chinstrapmale)</code></pre>
+<pre><code>## # A tibble: 6 × 8
+##   species   island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+## 1 Chinstrap Dream            50            19.5               196        3900
+## 2 Chinstrap Dream            51.3          19.2               193        3650
+## 3 Chinstrap Dream            52.7          19.8               197        3725
+## 4 Chinstrap Dream            51.3          18.2               197        3750
+## 5 Chinstrap Dream            51.3          19.9               198        3700
+## 6 Chinstrap Dream            51.7          20.3               194        3775
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<pre class="r"><code>head(chinstrapfemale)</code></pre>
+<pre><code>## # A tibble: 6 × 8
+##   species   island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+## 1 Chinstrap Dream            46.5          17.9               192        3500
+## 2 Chinstrap Dream            45.4          18.7               188        3525
+## 3 Chinstrap Dream            45.2          17.8               198        3950
+## 4 Chinstrap Dream            46.1          18.2               178        3250
+## 5 Chinstrap Dream            46            18.9               195        4150
+## 6 Chinstrap Dream            46.6          17.8               193        3800
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<pre class="r"><code># Standard deviation of Chinstrap Male
+
+male_std_dev_bill_Length &lt;- sd(chinstrapmale$bill_length_mm)
+male_std_dev_bill_Length</code></pre>
+<pre><code>## [1] 1.564558</code></pre>
+<pre class="r"><code>male_std_dev_bill_depth &lt;- sd(chinstrapmale$bill_depth_mm)
+male_std_dev_bill_depth</code></pre>
+<pre><code>## [1] 0.761273</code></pre>
+<pre class="r"><code>male_std_dev_flipper_Length &lt;- sd(chinstrapmale$flipper_length_mm)
+male_std_dev_flipper_Length</code></pre>
+<pre><code>## [1] 5.976558</code></pre>
+<pre class="r"><code>male_std_dev_body_mass &lt;- sd(chinstrapmale$body_mass_g)
+male_std_dev_body_mass</code></pre>
+<pre><code>## [1] 362.1376</code></pre>
+<pre class="r"><code># Standard deviation of Chinstrap Female
+
+female_std_dev_bill_Length &lt;- sd(chinstrapmale$bill_length_mm)
+female_std_dev_bill_Length</code></pre>
+<pre><code>## [1] 1.564558</code></pre>
+<pre class="r"><code>female_std_dev_bill_depth &lt;- sd(chinstrapmale$bill_depth_mm)
+female_std_dev_bill_depth</code></pre>
+<pre><code>## [1] 0.761273</code></pre>
+<pre class="r"><code>female_std_dev_flipper_Length &lt;- sd(chinstrapmale$flipper_length_mm)
+female_std_dev_flipper_Length</code></pre>
+<pre><code>## [1] 5.976558</code></pre>
+<pre class="r"><code>female_std_dev_body_mass &lt;- sd(chinstrapmale$body_mass_g)
+female_std_dev_body_mass</code></pre>
+<pre><code>## [1] 362.1376</code></pre>
 <pre class="r"><code>sextable=table(penguins$sex,penguins$species)
 sextable</code></pre>
 <pre><code>##         
@@ -1554,7 +1606,7 @@ chinstrapsex=sextable[,2]</code></pre>
 </div>
 <div id="data-analysis" class="section level2">
 <h2>Data analysis</h2>
-<p>numerical data summary adelie:</p>
+<p>Numerical data summary adelie:</p>
 <pre class="r"><code>meanbodymassadelie=mean(adelieset$body_mass_g, na.rm=TRUE)
 meanbodymassadeliemale=mean(adeliemale$body_mass_g, na.rm=TRUE)
 meanbodymassadeliefemale=mean(adeliefemale$body_mass_g, na.rm=TRUE)
@@ -1563,26 +1615,29 @@ medianbodymassadeliefemale=median(adeliefemale$body_mass_g, na.rm=TRUE)
 
 summaryadeliefemale=summary(adeliefemale[,3:6])
 summaryadeliemale=summary(adeliemale[,3:6])</code></pre>
-<p>check if the data sets of the penguins satisfy the normal
+<p>Check if the data sets of the penguins satisfy the normal
 distribution, to use subsequent t-test</p>
 <pre><code>##      a_bill_length_female a_bill_length_male a_bill_depth_female
 ## [1,]                 TRUE               TRUE                TRUE
 ##      a_bill_depth_male a_flipper_length_female a_flipper_length_male
-## [1,]             FALSE                    TRUE                  TRUE
+## [1,]              TRUE                    TRUE                  TRUE
 ##      a_body_mass_female a_body_mass_male
 ## [1,]               TRUE             TRUE</code></pre>
 <pre><code>##      c_bill_length_female c_bill_length_male c_bill_depth_female
-## [1,]                FALSE               TRUE                TRUE
+## [1,]                 TRUE               TRUE                TRUE
 ##      c_bill_depth_male c_flipper_length_female c_flipper_length_male
 ## [1,]              TRUE                    TRUE                  TRUE
 ##      c_body_mass_female c_body_mass_male
 ## [1,]               TRUE             TRUE</code></pre>
 <pre><code>##      g_bill_length_female g_bill_length_male g_bill_depth_female
-## [1,]                 TRUE              FALSE                TRUE
+## [1,]                 TRUE               TRUE                TRUE
 ##      g_bill_depth_male g_flipper_length_female g_flipper_length_male
 ## [1,]              TRUE                    TRUE                  TRUE
 ##      g_body_mass_female g_body_mass_male
 ## [1,]               TRUE             TRUE</code></pre>
+<p>To satisfy a normal distribution, 1 outline in each data set
+bill_depth_adelie_male, bill_length_chinstrap_female and
+bill_length_gentoo_male were removed.</p>
 </div>
 <div id="plots" class="section level2">
 <h2>Plots:</h2>

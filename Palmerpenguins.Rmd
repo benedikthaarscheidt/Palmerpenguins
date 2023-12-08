@@ -44,6 +44,7 @@ df=penguins
 adelieset <- df[df$species == "Adelie", ]
 adeliemale =adelieset[adelieset$sex == "male",]
 adeliefemale = adelieset[adelieset$sex =="female",]
+
 gentooset=df[df$species =="Gentoo",]
 gentoomale = gentooset[gentooset$sex =="male",]
 gentoofemale = gentooset[gentooset$sex =="female",]
@@ -51,6 +52,32 @@ gentoofemale = gentooset[gentooset$sex =="female",]
 chinstrapset=df[df$species =="Chinstrap",]
 chinstrapmale=chinstrapset[chinstrapset$sex =="male",]
 chinstrapfemale=chinstrapset[chinstrapset$sex =="female",]
+
+head(chinstrapmale)
+head(chinstrapfemale)
+
+
+# Standard deviation of Chinstrap Male
+
+male_std_dev_bill_Length <- sd(chinstrapmale$bill_length_mm)
+male_std_dev_bill_Length
+male_std_dev_bill_depth <- sd(chinstrapmale$bill_depth_mm)
+male_std_dev_bill_depth
+male_std_dev_flipper_Length <- sd(chinstrapmale$flipper_length_mm)
+male_std_dev_flipper_Length
+male_std_dev_body_mass <- sd(chinstrapmale$body_mass_g)
+male_std_dev_body_mass
+
+# Standard deviation of Chinstrap Female
+
+female_std_dev_bill_Length <- sd(chinstrapmale$bill_length_mm)
+female_std_dev_bill_Length
+female_std_dev_bill_depth <- sd(chinstrapmale$bill_depth_mm)
+female_std_dev_bill_depth
+female_std_dev_flipper_Length <- sd(chinstrapmale$flipper_length_mm)
+female_std_dev_flipper_Length
+female_std_dev_body_mass <- sd(chinstrapmale$body_mass_g)
+female_std_dev_body_mass
 
 ```
 
@@ -149,6 +176,7 @@ To satisfy a normal distribution, 1 outline in each data set bill_depth_adelie_m
 ## Plots:
 
 Stripcharts for all the attributes
+
 ```{r}
 stripchart(adelieset$body_mass_g~adelieset$sex, main="Massdistribution between the biological sexes",method="stack", col=c(2,4))
 stripchart(adelieset$bill_length_mm~adelieset$sex, main="Massdistribution between the biological sexes",method="stack", col=c(2,4))
