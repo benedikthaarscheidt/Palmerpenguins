@@ -87,13 +87,46 @@ summaryadeliemale=summary(adeliemale[,3:6])
 
 ```
 
-numerical data summary chinstrap
+numerical data summary chinstrap bodymass
 ```{r}
 meanbodymasschinstrap=mean(chinstrapset$body_mass_g, na.rm=TRUE)
 meanbodymasschinstrapmale=mean(chinstrapmale$body_mass_g, na.rm=TRUE)
 meanbodymasschinstrapfemale=mean(chinstrapfemale$body_mass_g, na.rm=TRUE)
 medianbodymasschinstrapmale=median(chinstrapmale$body_mass_g, na.rm=TRUE)
 medianbodymasschinstrapfemale=median(chinstrapfemale$body_mass_g, na.rm=TRUE)
+
+summarychinstrapfemale=summary(chinstrapfemale[,3:6])
+summarychinstrapmale=summary(chinstrapmale[,3:6])
+```
+numerical data summary chinstrap billlength 
+```{r}
+meanbilllengthchinstrap=mean(chinstrapset$bill_length_mm, na.rm=TRUE)
+meanbilllengthchinstrapmale=mean(chinstrapmale$bill_length_mm, na.rm=TRUE)
+meanbilllengthchinstrapfemale=mean(chinstrapfemale$bill_length_mm, na.rm=TRUE)
+medianbilllengthchinstrapmale=median(chinstrapmale$bill_length_mm, na.rm=TRUE)
+medianbilllengthchinstrapfemale=median(chinstrapfemale$bill_length_mm, na.rm=TRUE)
+
+summarychinstrapfemale=summary(chinstrapfemale[,3:6])
+summarychinstrapmale=summary(chinstrapmale[,3:6])
+```
+numerical data summary billdepth 
+```{r}
+meanbilldepthchinstrap=mean(chinstrapset$bill_depth_mm, na.rm=TRUE)
+meanbilldepthchinstrapmale=mean(chinstrapmale$bill_depth_mm, na.rm=TRUE)
+meanbilldepthchinstrapfemale=mean(chinstrapfemale$bill_depth_mm, na.rm=TRUE)
+medianbilldepthchinstrapmale=median(chinstrapmale$bill_depth_mm, na.rm=TRUE)
+medianbilldepthchinstrapfemale=median(chinstrapfemale$bill_depth_mm, na.rm=TRUE)
+
+summarychinstrapfemale=summary(chinstrapfemale[,3:6])
+summarychinstrapmale=summary(chinstrapmale[,3:6])
+```
+numerical data summary flipperlength 
+```{r}
+meanflipperlengthchinstrap=mean(chinstrapset$flipper_length_mm, na.rm=TRUE)
+meanflipperlengthchinstrapmale=mean(chinstrapmale$flipper_length_mm, na.rm=TRUE)
+meanflipperlengthchinstrapfemale=mean(chinstrapfemale$flipper_length_mm, na.rm=TRUE)
+medianflipperlengthchinstrapmale=median(chinstrapmale$flipper_length_mm, na.rm=TRUE)
+medianflipperlengthchinstrapfemale=median(chinstrapfemale$flipper_length_mm, na.rm=TRUE)
 
 summarychinstrapfemale=summary(chinstrapfemale[,3:6])
 summarychinstrapmale=summary(chinstrapmale[,3:6])
@@ -257,16 +290,16 @@ legend("topright", legend = c("Density", "Mean female", "Median female", "Mean m
 
 ```
 
-### Histogramm Bodyweight Chinstrap
+### Histogramm Bill length Chinstrap
 
 
 ```{r}
-xy <- summary(chinstrapmale$body_mass_g)
+xy <- summary(chinstrapmale$bill_length_mm)
 
 
 
 # Create a histogram
-hist(chinstrapmale$body_mass_g,
+hist(chinstrapmale$bill_length_mm,
      main = "Histogram of Body Mass of Male Chinstrap Penguins",
      xlab = "Body Mass Distribution in gram",
      ylab = "Density",
