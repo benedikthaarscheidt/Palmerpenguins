@@ -1,0 +1,36 @@
+---
+title: Sexual dimorphism in Chinstrap penguins"
+author: "Benedikt Haarscheidt, Jaesub Kim, Ahmed Tijani Akinfalabi "
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 5
+    toc_float: yes
+  pdf_document:
+    toc: yes
+    toc_depth: '5'
+---
+
+REPORT OUTLINE
+
+title
+
+authors
+
+abstract (short summary)
+
+
+introduction (with hypothesis boys heavier than girls)
+
+Sexual dimorphism, the distinct difference in size or appearance between the sexes of an animal species, is a fascinating phenomenon observed across various taxa. In Chinstrap penguins (Pygoscelis antarcticus), one of the most recognizable and widely studied penguin species, sexual dimorphism manifests notably in aspects such as body mass, flipper length, and bill size. This report aims to explore and quantify the differences between male and female Chinstrap penguins, shedding light on how these disparities play a crucial role in their breeding behavior, survival strategies, and overall ecology.
+
+Chinstrap penguins, known for their distinctive black band under their heads, inhabit several islands and shores in the Southern Pacific and the Antarctic Ocean. These regions' harsh and competitive environments necessitate various adaptations, potentially influencing the development of sexual dimorphism. Previous studies have indicated that differences in body size and features between males and females could be attributed to factors like mating competition, foraging efficiency, and parental roles in nurturing the young. Our analysis focuses on comparing key physical attributes - namely, body mass, flipper length, and bill measurements - to provide insights into the extent and implications of sexual dimorphism in this species.
+
+Through statistical analysis of data collected from field studies, we aim to determine the significance and effect size of the differences between male and female Chinstrap penguins. Such an understanding not only contributes to our knowledge of penguin biology but also aids in conservation efforts, ensuring the continued survival and health of these remarkable birds in their rapidly changing habitats.
+
+data (describe the data)
+statistical analyis (which software, R, which packages, which tests)
+results
+discussion (body sizes in birds in general, what is special with penguins)
+references (literature)

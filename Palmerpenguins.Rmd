@@ -954,4 +954,8 @@ tab[3,1]*tab[2,4]/tab[3,4] # this is the expected value for the number of male p
 tab[3,2]*tab[2,4]/tab[3,4] # this is the expected value for the number of male persons in the medium category 
 tab[3,3]*tab[2,4]/tab[3,4] # this is the expected value for the number of male persons in the heavy category 
 ```
+```{r}
+prop.test(table(cWeight,chinstrapset$sex))
+prop.table(table(chinstrapset$sex,cWeight))
+```
 

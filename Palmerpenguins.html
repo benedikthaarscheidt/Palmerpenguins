@@ -1935,6 +1935,21 @@ return(sqrt(chisq.test(tab,correct=correct)$statistic/
 <pre><code>## [1] 11</code></pre>
 <pre class="r"><code>tab[3,3]*tab[2,4]/tab[3,4] # this is the expected value for the number of male persons in the heavy category </code></pre>
 <pre><code>## [1] 11.5</code></pre>
+<pre class="r"><code>prop.test(table(cWeight,chinstrapset$sex))</code></pre>
+<pre><code>## 
+##  3-sample test for equality of proportions without continuity correction
+## 
+## data:  table(cWeight, chinstrapset$sex)
+## X-squared = 17.312, df = 2, p-value = 0.0001741
+## alternative hypothesis: two.sided
+## sample estimates:
+##    prop 1    prop 2    prop 3 
+## 0.7826087 0.5454545 0.1739130</code></pre>
+<pre class="r"><code>prop.table(table(chinstrapset$sex,cWeight))</code></pre>
+<pre><code>##         cWeight
+##               light     medium      heavy
+##   female 0.26470588 0.17647059 0.05882353
+##   male   0.07352941 0.14705882 0.27941176</code></pre>
 </div>
 </div>
 
