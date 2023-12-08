@@ -215,6 +215,7 @@ gentooshapiro>0.05
 ```
 To satisfy a normal distribution, 1 outline in each data set bill_depth_adelie_male, bill_length_chinstrap_female and bill_length_gentoo_male were removed.
 
+### T-test
 
 to check if there is a statistical significant sexual dimorphism, the t-test was used.
 
@@ -224,7 +225,7 @@ t.test(chinstrapfemale$bill_depth_mm,chinstrapmale$bill_depth_mm)
 t.test(chinstrapfemale$flipper_length_mm,chinstrapmale$flipper_length_mm)
 t.test(chinstrapfemale$body_mass_g,chinstrapmale$body_mass_g)
 ```
-### T-test
+
 |categories|female|male|p-value|significant difference|
 |--|--:|--:|--:|:---:|
 |bill length in mm|46.23|51.09|1e-13|yes|
