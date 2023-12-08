@@ -16,15 +16,10 @@ output:
 library(palmerpenguins)
 library(datasets)
 library(MASS)
-
+library(effsize)
 library(DAAG)
 library(palmerpenguins)
 ```
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 70d8008c88ee23f3744a13be020f12c19e1733de
 
 This is the mammals dataset containing body and brain weigth of 62 land species
 ```{r}
@@ -97,7 +92,6 @@ chinstrapsex=sextable[,2]
 
 
 
-# Adelie
 ## Data analysis
 numerical data summary adelie:
 ```{r}
@@ -161,80 +155,123 @@ medianflipperlengthchinstrapfemale=median(chinstrapfemale$flipper_length_mm, na.
 summarychinstrapfemale=summary(chinstrapfemale[,3:6])
 summarychinstrapmale=summary(chinstrapmale[,3:6])
 ```
-
-<<<<<<< HEAD
-=======
+### Shapiro-wilke test
 check if the data sets of the penguins satisfy the normal distribution, to use 
 subsequent t-test 
 
 ```{r label = shapiro-wilke-test, echo=FALSE}
-a_bill_length_female = shapiro.test(adeliefemale$bill_length_mm)$p.value
-a_bill_length_male = shapiro.test(adeliemale$bill_length_mm)$p.value
+a_bill_length_female = shapiro.test(na.omit(adeliefemale$bill_length_mm))$p.value
+a_bill_length_male = shapiro.test(na.omit(adeliemale$bill_length_mm))$p.value
 
-a_bill_depth_female = shapiro.test(adeliefemale$bill_depth_mm)$p.value
-a_bill_depth_male = shapiro.test(adeliemale$bill_depth_mm)$p.value
+a_bill_depth_female = shapiro.test(na.omit(adeliefemale$bill_depth_mm))$p.value
+a_bill_depth_male_fit = adeliemale$bill_depth_mm[adeliemale$bill_depth_mm<21.2]
+a_bill_depth_male = shapiro.test(na.omit(a_bill_depth_male_fit))$p.value
 
-a_flipper_length_female = shapiro.test(adeliefemale$flipper_length_mm)$p.value
+a_flipper_length_female = shapiro.test(na.omit(adeliefemale$flipper_length_mm))$p.value
 a_flipper_length_male = shapiro.test(adeliemale$flipper_length_mm)$p.value
 
-a_body_mass_female = shapiro.test(adeliefemale$body_mass_g)$p.value
-a_body_mass_male = shapiro.test(adeliemale$body_mass_g)$p.value
+a_body_mass_female = shapiro.test(na.omit(adeliefemale$body_mass_g))$p.value
+a_body_mass_male = shapiro.test(na.omit(adeliemale$body_mass_g))$p.value
 
 
 adelishapiro = data.frame(a_bill_length_female,a_bill_length_male,a_bill_depth_female,a_bill_depth_male, a_flipper_length_female,a_flipper_length_male,a_body_mass_female,a_body_mass_male)
 
 adelishapiro>0.05
 
+c_bill_length_female_fit = chinstrapfemale$bill_length_mm[chinstrapfemale$bill_length_mm<58]
+c_bill_length_female = shapiro.test(na.omit(c_bill_length_female_fit))$p.value
+c_bill_length_male = shapiro.test(na.omit(chinstrapmale$bill_length_mm))$p.value
 
-c_bill_length_female = shapiro.test(chinstrapfemale$bill_length_mm)$p.value
-c_bill_length_male = shapiro.test(chinstrapmale$bill_length_mm)$p.value
+c_bill_depth_female = shapiro.test(na.omit(chinstrapfemale$bill_depth_mm))$p.value
+c_bill_depth_male = shapiro.test(na.omit(chinstrapmale$bill_depth_mm))$p.value
 
-c_bill_depth_female = shapiro.test(chinstrapfemale$bill_depth_mm)$p.value
-c_bill_depth_male = shapiro.test(chinstrapmale$bill_depth_mm)$p.value
+c_flipper_length_female = shapiro.test(na.omit(chinstrapfemale$flipper_length_mm))$p.value
+c_flipper_length_male = shapiro.test(na.omit(chinstrapmale$flipper_length_mm))$p.value
 
-c_flipper_length_female = shapiro.test(chinstrapfemale$flipper_length_mm)$p.value
-c_flipper_length_male = shapiro.test(chinstrapmale$flipper_length_mm)$p.value
-
-c_body_mass_female = shapiro.test(chinstrapfemale$body_mass_g)$p.value
-c_body_mass_male = shapiro.test(chinstrapmale$body_mass_g)$p.value
+c_body_mass_female = shapiro.test(na.omit(chinstrapfemale$body_mass_g))$p.value
+c_body_mass_male = shapiro.test(na.omit(chinstrapmale$body_mass_g))$p.value
 
 
 chinshapiro = data.frame(c_bill_length_female,c_bill_length_male,c_bill_depth_female,c_bill_depth_male, c_flipper_length_female,c_flipper_length_male,c_body_mass_female,c_body_mass_male)
 
 chinshapiro>0.05
 
-g_bill_length_female = shapiro.test(gentoofemale$bill_length_mm)$p.value
-g_bill_length_male = shapiro.test(gentoomale$bill_length_mm)$p.value
+g_bill_length_female = shapiro.test(na.omit(gentoofemale$bill_length_mm))$p.value
+g_bill_length_male_fit = gentoomale$bill_length_mm[gentoomale$bill_length_mm<59]
+g_bill_length_male = shapiro.test(na.omit(g_bill_length_male_fit))$p.value
 
-g_bill_depth_female = shapiro.test(gentoofemale$bill_depth_mm)$p.value
-g_bill_depth_male = shapiro.test(gentoomale$bill_depth_mm)$p.value
+g_bill_depth_female = shapiro.test(na.omit(gentoofemale$bill_depth_mm))$p.value
+g_bill_depth_male = shapiro.test(na.omit(gentoomale$bill_depth_mm))$p.value
 
-g_flipper_length_female = shapiro.test(gentoofemale$flipper_length_mm)$p.value
-g_flipper_length_male = shapiro.test(gentoomale$flipper_length_mm)$p.value
+g_flipper_length_female = shapiro.test(na.omit(gentoofemale$flipper_length_mm))$p.value
+g_flipper_length_male = shapiro.test(na.omit(gentoomale$flipper_length_mm))$p.value
 
-g_body_mass_female = shapiro.test(gentoofemale$body_mass_g)$p.value
-g_body_mass_male = shapiro.test(gentoomale$body_mass_g)$p.value
+g_body_mass_female = shapiro.test(na.omit(gentoofemale$body_mass_g))$p.value
+g_body_mass_male = shapiro.test(na.omit(gentoomale$body_mass_g))$p.value
 
 
 gentooshapiro = data.frame(g_bill_length_female,g_bill_length_male,g_bill_depth_female,g_bill_depth_male, g_flipper_length_female,g_flipper_length_male,g_body_mass_female,g_body_mass_male)
 
 gentooshapiro>0.05
 ```
+To satisfy a normal distribution, 1 outline in each data set bill_depth_adelie_male, bill_length_chinstrap_female and bill_length_gentoo_male were removed.
 
+### T-test
 
+to check if there is a statistical significant sexual dimorphism, the t-test was used.
 
+<<<<<<< HEAD
 
-
-
-```{r}
-
-```
 
 
 >>>>>>> 70d8008c88ee23f3744a13be020f12c19e1733de
+=======
+```{r label=t-test, echo=FALSE,results='hide'}
+t.test(c_bill_length_female_fit,chinstrapmale$bill_length_mm)
+t.test(chinstrapfemale$bill_depth_mm,chinstrapmale$bill_depth_mm)
+t.test(chinstrapfemale$flipper_length_mm,chinstrapmale$flipper_length_mm)
+t.test(chinstrapfemale$body_mass_g,chinstrapmale$body_mass_g)
+```
+
+|categories|female|male|p-value|significant difference|
+|--|--:|--:|--:|:---:|
+|bill length in mm|46.23|51.09|1e-13|yes|
+|bill depth in mm|17.59|19.25|7e-13|yes|
+|flipper length in mm|191.7|199.9|3e-07|yes|
+|body mass in g|3527|3939|3e-07|yes|
+  
+
+
+## Effecsize by cohens d
+The function calculates the mean of body_mass_g for males and females separately.
+It then calculates the difference between these two means.
+Finally, it standardizes this difference by dividing it by the pooled standard deviation of the two groups.
+
+Output Interpretation:
+The resulting Cohen's d value tells you how many standard deviations the means of the two groups (male and female) differ.
+It's a measure of the effect size of the sex difference on body mass. 
+```{r}
+
+cohen.d(chinstrapset$body_mass_g, chinstrapset$sex)
+cohen.d(chinstrapset$bill_length_mm, chinstrapset$sex)
+cohen.d(chinstrapset$bill_depth_mm, chinstrapset$sex)
+cohen.d(chinstrapset$flipper_length_mm, chinstrapset$sex)
+```
+
+```{r}
+cohen.w()
+```
+
+
+
+
+
+>>>>>>> 4151dfb0f4bd5f0036c90e8bf9773b5841e2da9d
 
 ## Plots:
+
 ### Stripcharts for Adelie 
+
 Stripcharts for all the attributes
 
 ```{r}
@@ -244,10 +281,13 @@ stripchart(adelieset$flipper_length_mm~adelieset$sex, main="Massdistribution bet
 stripchart(adelieset$bill_depth_mm~adelieset$sex, main="Massdistribution between the biological sexes",method="stack", col=c(2,4))
 
 ```
+
+
 ### Stripcharts for Chinstrap
+
 ### Histograms bodyweight
 
-```{r}
+```{r echo=FALSE}
 
 ## Summary statistics
 xy <- summary(adeliemale$body_mass_g)
@@ -286,7 +326,7 @@ legend("topright", legend = c("Density", "Mean male", "Median male", "Mean femal
 
 
 
-```{r}
+```{r echo=FALSE}
 ## Summary statistics
 yx <- summary(adeliefemale$body_mass_g)
 
@@ -321,24 +361,29 @@ legend("topright", legend = c("Density", "Mean female", "Median female", "Mean m
 
 ```
 
+<<<<<<< HEAD
 
 ### Histogramm Bill length Chinstrap
 
+=======
+## Bodymass Chinstrap
+>>>>>>> c45013042169c612d17762b8d446fcb4f45e1c96
 
-```{r}
-xy <- summary(chinstrapmale$bill_length_mm)
+```{r echo=FALSE}
+## Summary statistics
+yx <- summary(chinstrapmale$body_mass_g)
 
 
 
 # Create a histogram
-hist(chinstrapmale$bill_length_mm,
+hist(chinstrapmale$body_mass_g,
      main = "Histogram of Body Mass of Male Chinstrap Penguins",
      xlab = "Body Mass Distribution in gram",
      ylab = "Density",
      col = "cyan1",
      mar = c(2, 1, 2, 1),
      oma = c(2, 1, 2, 1),
-     xlim=c(3000,5000),
+     xlim = c(2500,5000),
      freq = FALSE, # Using density instead of frequency
       # Set x-axis limits to cover full data range
      )     # Do not plot x-axis yet
@@ -354,15 +399,12 @@ abline(v = meanbodymasschinstrapfemale, col = "black", lwd = 2, lty = 1)
 abline(v = medianbodymasschinstrapfemale, col = "blue", lwd = 2, lty = 1)
 
 # Add legend
-legend("topright", legend = c("Density", "Mean male", "Median male", "Mean female", "Median female"), 
-       col = c("black", "black", "blue", "black", "blue"), lty = c(1, 2, 2, 1, 1), lwd = 2,cex=0.8)
-
+legend("topright", legend = c("Density", "Mean male", "Median male","Mean female", "Median female" ), 
+       col = c("black", "black", "blue", "black", "blue"), lty = c(1, 2, 2, 1, 1), lwd = 2,cex=0.75)
 
 ```
 
-
-
-```{r}
+```{r echo=FALSE}
 ## Summary statistics
 yx <- summary(chinstrapfemale$body_mass_g)
 
@@ -376,7 +418,7 @@ hist(chinstrapfemale$body_mass_g,
      col = "lightpink",
      mar = c(2, 1, 2, 1),
      oma = c(2, 1, 2, 1),
-     xlim = c(2500,4500),
+     xlim = c(2500,5000),
      freq = FALSE, # Using density instead of frequency
       # Set x-axis limits to cover full data range
      )     # Do not plot x-axis yet
@@ -397,9 +439,462 @@ legend("topright", legend = c("Density", "Mean female", "Median female", "Mean m
 
 ```
 
-### 
+
+```{r echo=FALSE, fig.align='center'}
+# Set up the plotting area to have 1 row and 2 columns
+par(mfrow=c(1, 2), mar = c(5, 4, 4, 2) + 0.1, oma = c(2, 1, 2, 1))
+
+## Summary statistics for male
+yx_male <- summary(chinstrapmale$body_mass_g)
+
+# Histogram for male chinstrap penguins
+hist(chinstrapmale$body_mass_g,
+     main = "",
+     xlab = "Body Mass (g)",
+     ylab = "Density",
+     col = "cyan1",
+     xlim = c(2500, 5000),
+     freq = FALSE)
+
+# Add density line for male
+lines(density(chinstrapmale$body_mass_g, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines for male
+abline(v = meanbodymasschinstrapmale, col = "black", lwd = 2, lty = 2)
+abline(v = medianbodymasschinstrapmale, col = "blue", lwd = 2, lty = 2)
+
+## Summary statistics for female
+yx_female <- summary(chinstrapfemale$body_mass_g)
+
+# Histogram for female chinstrap penguins
+hist(chinstrapfemale$body_mass_g,
+     main = "",
+     xlab = "Body Mass (g)",
+     ylab = "",
+     col = "lightpink",
+     xlim = c(2500, 5000),
+     freq = FALSE)
+
+# Add density line for female
+lines(density(chinstrapfemale$body_mass_g, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines for female
+abline(v = meanbodymasschinstrapfemale, col = "black", lwd = 2, lty = 2)
+abline(v = medianbodymasschinstrapfemale, col = "blue", lwd = 2, lty = 2)
+# Add a common main title and a legend
+mtext("Bill Length of Male and Female Chinstrap Penguins", side = 3, line = 2, outer = TRUE)
+legend("topright", inset=c(-0.1, 0), 
+       legend = c("Density", "Mean", "Median"), 
+       col = c("black", "black", "blue"), lty = c(1, 2, 2), lwd = 2, cex=0.75, bty="n", xpd=TRUE)
+
+# Reset par to default
+par(mfrow=c(1, 1), mar = c(5, 4, 4, 2) + 0.1, oma = c(2, 1, 2, 1))
+
+# Since we cannot have two legends for the shared elements, we mention these in the caption.
 
 
+
+
+
+
+
+### Histogramm Bill length Chinstrap
+
+```
+
+
+
+
+
+
+
+
+```{r echo=FALSE}
+
+
+
+
+# Create a histogram
+hist(chinstrapmale$bill_length_mm,
+ 
+     main = "Histogram of Bill Length of Male Chinstrap Penguins",
+     xlab = "Bill length Distribution in mm",
+     ylab = "Density",
+     col = "cyan1",
+     mar = c(2, 1,2, 1),
+     oma = c(2, 1, 2, 1),
+     xlim=c(40,60),
+     
+     freq = FALSE, # Using density instead of frequency
+      # Set x-axis limits to cover full data range
+     )     # Do not plot x-axis yet
+
+
+# Add density line
+lines(density(chinstrapmale$bill_length_mm, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines
+abline(v = meanbilllengthchinstrapmale, col = "black", lwd = 2, lty = 2)
+abline(v = medianbilllengthchinstrapmale, col = "blue", lwd = 2, lty = 2)
+abline(v = meanbilllengthchinstrapfemale, col = "black", lwd = 2, lty = 1)
+abline(v = medianbilllengthchinstrapfemale, col = "blue", lwd = 2, lty = 1)
+
+# Add legend
+legend("topright", legend = c("Density", "Mean male", "Median male", "Mean female", "Median female"), 
+       col = c("black", "black", "blue", "black", "blue"), lty = c(1, 2, 2, 1, 1), lwd = 2,cex=0.8)
+
+
+```
+
+
+```{r echo=FALSE}
+
+
+
+
+# Create a histogram
+hist(chinstrapfemale$bill_length_mm,
+     main = "Histogram of Bill Length of Female Chinstrap Penguins",
+     xlab = "Bill length Distribution in mm",
+     ylab = "Density",
+     col = "lightpink",
+     mar = c(2, 1, 2, 1),
+     oma = c(2, 1, 2, 1),
+     xlim = c(40,60),
+     ylim= c(0.0,0.3),
+     freq = FALSE, # Using density instead of frequency
+      # Set x-axis limits to cover full data range
+     )     # Do not plot x-axis yet
+
+
+# Add density line
+lines(density(chinstrapfemale$bill_length_mm, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines
+abline(v = meanbilllengthchinstrapfemale, col = "black", lwd = 2, lty = 2)
+abline(v = medianbilllengthchinstrapmale, col = "blue", lwd = 2, lty = 2)
+abline(v = meanbilllengthchinstrapmale, col = "black", lwd = 2, lty = 1)
+abline(v = medianbilllengthchinstrapmale, col = "blue", lwd = 2, lty = 1)
+
+# Add legend
+legend("topright", legend = c("Density", "Mean female", "Median female", "Mean male", "Median male"), 
+       col = c("black", "black", "blue", "black", "blue"), lty = c(1, 2, 2, 1, 1), lwd = 2,cex=0.75)
+
+```
+
+```{r echo=FALSE, fig.align='center'}
+# Set up the plotting area to have 1 row and 2 columns
+par(mfrow=c(1, 2), mar = c(4, 4, 2, 1), oma = c(2, 2, 2, 1))
+
+# Histogram for male chinstrap penguins' bill length
+hist(chinstrapmale$bill_length_mm,
+     main = "",
+     xlab = "Bill Length (mm)",
+     ylab = "Density",
+     col = "cyan1",
+     xlim = c(40, 60),
+     ylim = c(0.0, 0.3),
+     freq = FALSE)
+
+# Add density line for male
+lines(density(chinstrapmale$bill_length_mm, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines for male
+abline(v = meanbilllengthchinstrapmale, col = "black", lwd = 2, lty = 2)
+abline(v = medianbilllengthchinstrapmale, col = "blue", lwd = 2, lty = 2)
+
+# Histogram for female chinstrap penguins' bill length
+hist(chinstrapfemale$bill_length_mm,
+     main = "",
+     xlab = "Bill Length (mm)",
+     ylab = "",
+     col = "lightpink",
+     xlim = c(40, 60),
+     ylim = c(0.0, 0.3),
+     freq = FALSE)
+
+# Add density line for female
+lines(density(chinstrapfemale$bill_length_mm, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines for female
+abline(v = meanbilllengthchinstrapfemale, col = "black", lwd = 2, lty = 2)
+abline(v = medianbilllengthchinstrapfemale, col = "blue", lwd = 2, lty = 2)
+
+# Add a common main title and a legend
+mtext("Bill Length of Male and Female Chinstrap Penguins", side = 3, line = 2, outer = TRUE)
+legend("topright", inset=c(-0.1, 0), 
+       legend = c("Density", "Mean", "Median"), 
+       col = c("black", "black", "blue"), lty = c(1, 2, 2), lwd = 2, cex=0.75, bty="n", xpd=TRUE)
+
+
+# Reset par to default for further plots
+par(mfrow=c(1, 1), mar = c(5, 4, 4, 2) + 0.1, oma = c(2, 1, 2, 1))
+
+
+
+
+```
+
+
+### Histogram bill depth 
+```{r echo=FALSE}
+
+
+
+
+# Create a histogram
+hist(chinstrapmale$bill_depth_mm,
+   
+     main = "Histogram of Bill Depth of Male Chinstrap Penguins",
+     xlab = "Bill depth Distribution in mm",
+     ylab = "Density",
+     col = "cyan1",
+     mar = c(2, 1,2, 1),
+     oma = c(2, 1, 2, 1),
+     xlim=c(15,22),
+     
+     freq = FALSE, # Using density instead of frequency
+      # Set x-axis limits to cover full data range
+     )     # Do not plot x-axis yet
+
+
+# Add density line
+lines(density(chinstrapmale$bill_depth_mm, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines
+abline(v = meanbilldepthchinstrapmale, col = "black", lwd = 2, lty = 2)
+abline(v = medianbilldepthchinstrapmale, col = "blue", lwd = 2, lty = 2)
+abline(v = meanbilldepthchinstrapfemale, col = "black", lwd = 2, lty = 1)
+abline(v = medianbilldepthchinstrapfemale, col = "blue", lwd = 2, lty = 1)
+
+# Add legend
+legend("topright", legend = c("Density", "Mean male", "Median male", "Mean female", "Median female"), 
+       col = c("black", "black", "blue", "black", "blue"), lty = c(1, 2, 2, 1, 1), lwd = 2,cex=0.8)
+
+
+```
+
+
+```{r echo=FALSE}
+
+
+
+
+# Create a histogram
+hist(chinstrapfemale$bill_depth_mm,
+     main = "Histogram of Bill depth of Female Chinstrap Penguins",
+     xlab = "Bill depth Distribution in mm",
+     ylab = "Density",
+     col = "lightpink",
+     mar = c(2, 1, 2, 1),
+     oma = c(2, 1, 2, 1),
+     xlim = c(15,22),
+     ylim= c(0.0,0.6),
+     freq = FALSE, # Using density instead of frequency
+      # Set x-axis limits to cover full data range
+     )     # Do not plot x-axis yet
+
+
+# Add density line
+lines(density(chinstrapfemale$bill_depth_mm, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines
+abline(v = meanbilldepthchinstrapfemale, col = "black", lwd = 2, lty = 2)
+abline(v = medianbilldepthchinstrapmale, col = "blue", lwd = 2, lty = 2)
+abline(v = meanbilldepthchinstrapmale, col = "black", lwd = 2, lty = 1)
+abline(v = medianbilldepthchinstrapmale, col = "blue", lwd = 2, lty = 1)
+
+# Add legend
+legend("topright", legend = c("Density", "Mean female", "Median female", "Mean male", "Median male"), 
+       col = c("black", "black", "blue", "black", "blue"), lty = c(1, 2, 2, 1, 1), lwd = 2,cex=0.75)
+
+```
+```{r echo=FALSE, fig.align='center'}
+# Set up the plotting area to have 1 row and 2 columns
+par(mfrow=c(1, 2), mar = c(4, 4, 2, 1), oma = c(2, 2, 2, 1))
+
+# Histogram for male chinstrap penguins' bill depth
+hist(chinstrapmale$bill_depth_mm,
+     main = "",
+     xlab = "Bill Depth (mm)",
+     ylab = "Density",
+     col = "cyan1",
+     xlim = c(15, 22),
+     ylim= c(0.0, 0.6),
+     freq = FALSE)
+
+# Add density line for male
+lines(density(chinstrapmale$bill_depth_mm, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines for male
+abline(v = meanbilldepthchinstrapmale, col = "black", lwd = 2, lty = 2)
+abline(v = medianbilldepthchinstrapmale, col = "blue", lwd = 2, lty = 2)
+
+# Histogram for female chinstrap penguins' bill depth
+hist(chinstrapfemale$bill_depth_mm,
+     main = "",
+     xlab = "Bill Depth (mm)",
+     ylab = "",
+     col = "lightpink",
+     xlim = c(15, 22),
+     ylim= c(0.0, 0.6),
+     freq = FALSE)
+
+<<<<<<< HEAD
+=======
+# Add density line for female
+lines(density(chinstrapfemale$bill_depth_mm, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines for female
+abline(v = meanbilldepthchinstrapfemale, col = "black", lwd = 2, lty = 2)
+abline(v = medianbilldepthchinstrapfemale, col = "blue", lwd = 2, lty = 2)
+
+# Add a common main title above the plots
+mtext("Bill Depth of Male and Female Chinstrap Penguins", side = 3, line = 1, outer = TRUE)
+
+# Since we have a shared title, we remove the individual main titles by setting `main = ""` in the `hist` functions.
+
+# Add a shared legend below the plots
+# Add legend
+legend("topright", inset=c(-0.1, 0), 
+       legend = c("Density", "Mean", "Median"), 
+       col = c("black", "black", "blue"), lty = c(1, 2, 2), lwd = 2, cex=0.75, bty="n", xpd=TRUE)
+
+
+# Reset par to default for further plots
+par(mfrow=c(1, 1), mar = c(5, 4, 4, 2) + 0.1, oma = c(2, 1, 2, 1))
+
+
+```
+
+
+## Histogram flipperlength
+```{r echo=FALSE}
+
+
+
+
+# Create a histogram
+hist(chinstrapmale$flipper_length_mm,
+   
+     main = "Histogram of Flipper Length of Male Chinstrap Penguins",
+     xlab = "Flipper Length Distribution in mm",
+     ylab = "Density",
+     col = "cyan1",
+     mar = c(2, 1,2, 1),
+     oma = c(2, 1, 2, 1),
+     xlim=c(170,220),
+     
+     freq = FALSE, # Using density instead of frequency
+      # Set x-axis limits to cover full data range
+     )     # Do not plot x-axis yet
+
+
+# Add density line
+lines(density(chinstrapmale$flipper_length_mm, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines
+abline(v = meanflipperlengthchinstrapmale, col = "black", lwd = 2, lty = 2)
+abline(v = medianflipperlengthchinstrapmale, col = "blue", lwd = 2, lty = 2)
+abline(v = meanflipperlengthchinstrapfemale, col = "black", lwd = 2, lty = 1)
+abline(v = medianflipperlengthchinstrapfemale, col = "blue", lwd = 2, lty = 1)
+
+# Add legend
+legend("topright", legend = c("Density", "Mean male", "Median male", "Mean female", "Median female"), 
+       col = c("black", "black", "blue", "black", "blue"), lty = c(1, 2, 2, 1, 1), lwd = 2,cex=0.8)
+
+
+```
+
+
+```{r echo=FALSE}
+
+
+
+
+# Create a histogram
+hist(chinstrapfemale$flipper_length_mm,
+     main = "Histogram of Flipper length of Female Chinstrap Penguins",
+     xlab = "Flipper Length Distribution in mm",
+     ylab = "Density",
+     col = "lightpink",
+     mar = c(2, 1, 2, 1),
+     oma = c(2, 1, 2, 1),
+     xlim = c(170,220),
+     #ylim= c(0.0,0.6),
+     freq = FALSE, # Using density instead of frequency
+      # Set x-axis limits to cover full data range
+     )     # Do not plot x-axis yet
+
+
+# Add density line
+lines(density(chinstrapfemale$flipper_length_mm, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines
+abline(v = meanflipperlengthchinstrapfemale, col = "black", lwd = 2, lty = 2)
+abline(v = medianflipperlengthchinstrapmale, col = "blue", lwd = 2, lty = 2)
+abline(v = meanflipperlengthchinstrapmale, col = "black", lwd = 2, lty = 1)
+abline(v = medianflipperlengthchinstrapmale, col = "blue", lwd = 2, lty = 1)
+
+# Add legend
+legend("topright", legend = c("Density", "Mean female", "Median female", "Mean male", "Median male"), 
+       col = c("black", "black", "blue", "black", "blue"), lty = c(1, 2, 2, 1, 1), lwd = 2,cex=0.75)
+
+```
+
+
+```{r echo=FALSE, fig.align='center'}
+# Set up the plotting area to have 1 row and 2 columns
+par(mfrow=c(1, 2), mar = c(5, 4, 4, 2) + 0.1, oma = c(0, 0, 2, 0))
+
+# Histogram for male chinstrap penguins' flipper length
+hist(chinstrapmale$flipper_length_mm,
+     main = "",
+     xlab = "Flipper Length (mm)",
+     ylab = "Density",
+     col = "cyan1",
+     xlim = c(170, 220),
+     ylim= c(0, 0.08),
+     freq = FALSE)
+
+# Add density line for male
+lines(density(chinstrapmale$flipper_length_mm, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines for male
+abline(v = meanflipperlengthchinstrapmale, col = "black", lwd = 2, lty = 2)
+abline(v = medianflipperlengthchinstrapmale, col = "blue", lwd = 2, lty = 2)
+
+# Histogram for female chinstrap penguins' flipper length
+hist(chinstrapfemale$flipper_length_mm,
+     main = "",
+     xlab = "Flipper Length (mm)",
+     ylab = "",
+     col = "lightpink",
+     xlim = c(170, 220),
+     ylim= c(0, 0.08),
+     freq = FALSE)
+
+# Add density line for female
+lines(density(chinstrapfemale$flipper_length_mm, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines for female
+abline(v = meanflipperlengthchinstrapfemale, col = "black", lwd = 2, lty = 2)
+abline(v = medianflipperlengthchinstrapfemale, col = "blue", lwd = 2, lty = 2)
+
+# Add a common main title and a legend
+mtext("Histogram of Flipper Length of Chinstrap Penguins", side = 3, line = 1, outer = TRUE)
+legend("topright", inset=c(-0.1, 0), 
+       legend = c("Density", "Mean", "Median"), 
+       col = c("black", "black", "blue"), lty = c(1, 2, 2), lwd = 2, cex=0.75, bty="n", xpd=TRUE)
+
+# Reset par to default for further plots
+par(mfrow=c(1, 1), mar = c(5, 4, 4, 2) + 0.1, oma = c(2, 1, 2, 1))
+
+
+```
+
+
+>>>>>>> c45013042169c612d17762b8d446fcb4f45e1c96
 # chinstrap
 
 ## Datasummary numerical
