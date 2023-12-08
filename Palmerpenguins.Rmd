@@ -11,25 +11,29 @@ output:
     toc: yes
     toc_depth: '5'
 ---
-
 ```{r echo=FALSE, include=FALSE}
 
 library(palmerpenguins)
 library(datasets)
 library(MASS)
+
 library(DAAG)
 library(palmerpenguins)
 ```
+<<<<<<< HEAD
 
-This is the mammals datasets containing body and brain weight of 62 land species
 
+=======
+>>>>>>> 70d8008c88ee23f3744a13be020f12c19e1733de
+
+This is the mammals dataset containing body and brain weigth of 62 land species
 ```{r}
 data(mammals)
 head(mammals)
+
+
 ```
-
-This is the possum database containing measurements of possums in Australia.
-
+This is the possum datase containing measurments of possums in australia 
 ```{r}
 data(possum)
 head(possum)
@@ -92,11 +96,12 @@ chinstrapsex=sextable[,2]
 ```
 
 
+
+# Adelie
 ## Data analysis
-
-Numerical data summary adelie:
-
+numerical data summary adelie:
 ```{r}
+#Important to take arithmetic mean 
 meanbodymassadelie=mean(adelieset$body_mass_g, na.rm=TRUE)
 meanbodymassadeliemale=mean(adeliemale$body_mass_g, na.rm=TRUE)
 meanbodymassadeliefemale=mean(adeliefemale$body_mass_g, na.rm=TRUE)
@@ -109,72 +114,127 @@ summaryadeliemale=summary(adeliemale[,3:6])
 
 ```
 
-Check if the data sets of the penguins satisfy the normal distribution, to use subsequent t-test 
+numerical data summary chinstrap bodymass
+```{r}
+meanbodymasschinstrap=mean(chinstrapset$body_mass_g, na.rm=TRUE)
+meanbodymasschinstrapmale=mean(chinstrapmale$body_mass_g, na.rm=TRUE)
+meanbodymasschinstrapfemale=mean(chinstrapfemale$body_mass_g, na.rm=TRUE)
+medianbodymasschinstrapmale=median(chinstrapmale$body_mass_g, na.rm=TRUE)
+medianbodymasschinstrapfemale=median(chinstrapfemale$body_mass_g, na.rm=TRUE)
+
+summarychinstrapfemale=summary(chinstrapfemale[,3:6])
+summarychinstrapmale=summary(chinstrapmale[,3:6])
+```
+
+numerical data summary chinstrap billlength 
+```{r}
+meanbilllengthchinstrap=mean(chinstrapset$bill_length_mm, na.rm=TRUE)
+meanbilllengthchinstrapmale=mean(chinstrapmale$bill_length_mm, na.rm=TRUE)
+meanbilllengthchinstrapfemale=mean(chinstrapfemale$bill_length_mm, na.rm=TRUE)
+medianbilllengthchinstrapmale=median(chinstrapmale$bill_length_mm, na.rm=TRUE)
+medianbilllengthchinstrapfemale=median(chinstrapfemale$bill_length_mm, na.rm=TRUE)
+
+summarychinstrapfemale=summary(chinstrapfemale[,3:6])
+summarychinstrapmale=summary(chinstrapmale[,3:6])
+```
+
+numerical data summary billdepth 
+```{r}
+meanbilldepthchinstrap=mean(chinstrapset$bill_depth_mm, na.rm=TRUE)
+meanbilldepthchinstrapmale=mean(chinstrapmale$bill_depth_mm, na.rm=TRUE)
+meanbilldepthchinstrapfemale=mean(chinstrapfemale$bill_depth_mm, na.rm=TRUE)
+medianbilldepthchinstrapmale=median(chinstrapmale$bill_depth_mm, na.rm=TRUE)
+medianbilldepthchinstrapfemale=median(chinstrapfemale$bill_depth_mm, na.rm=TRUE)
+
+summarychinstrapfemale=summary(chinstrapfemale[,3:6])
+summarychinstrapmale=summary(chinstrapmale[,3:6])
+```
+
+numerical data summary flipperlength 
+```{r}
+meanflipperlengthchinstrap=mean(chinstrapset$flipper_length_mm, na.rm=TRUE)
+meanflipperlengthchinstrapmale=mean(chinstrapmale$flipper_length_mm, na.rm=TRUE)
+meanflipperlengthchinstrapfemale=mean(chinstrapfemale$flipper_length_mm, na.rm=TRUE)
+medianflipperlengthchinstrapmale=median(chinstrapmale$flipper_length_mm, na.rm=TRUE)
+medianflipperlengthchinstrapfemale=median(chinstrapfemale$flipper_length_mm, na.rm=TRUE)
+
+summarychinstrapfemale=summary(chinstrapfemale[,3:6])
+summarychinstrapmale=summary(chinstrapmale[,3:6])
+```
+
+<<<<<<< HEAD
+=======
+check if the data sets of the penguins satisfy the normal distribution, to use 
+subsequent t-test 
 
 ```{r label = shapiro-wilke-test, echo=FALSE}
-a_bill_length_female = shapiro.test(na.omit(adeliefemale$bill_length_mm))$p.value
-a_bill_length_male = shapiro.test(na.omit(adeliemale$bill_length_mm))$p.value
+a_bill_length_female = shapiro.test(adeliefemale$bill_length_mm)$p.value
+a_bill_length_male = shapiro.test(adeliemale$bill_length_mm)$p.value
 
-a_bill_depth_female = shapiro.test(na.omit(adeliefemale$bill_depth_mm))$p.value
-a_bill_depth_male_fit = adeliemale$bill_depth_mm[adeliemale$bill_depth_mm<21.2]
-a_bill_depth_male = shapiro.test(na.omit(a_bill_depth_male_fit))$p.value
+a_bill_depth_female = shapiro.test(adeliefemale$bill_depth_mm)$p.value
+a_bill_depth_male = shapiro.test(adeliemale$bill_depth_mm)$p.value
 
-a_flipper_length_female = shapiro.test(na.omit(adeliefemale$flipper_length_mm))$p.value
+a_flipper_length_female = shapiro.test(adeliefemale$flipper_length_mm)$p.value
 a_flipper_length_male = shapiro.test(adeliemale$flipper_length_mm)$p.value
 
-a_body_mass_female = shapiro.test(na.omit(adeliefemale$body_mass_g))$p.value
-a_body_mass_male = shapiro.test(na.omit(adeliemale$body_mass_g))$p.value
+a_body_mass_female = shapiro.test(adeliefemale$body_mass_g)$p.value
+a_body_mass_male = shapiro.test(adeliemale$body_mass_g)$p.value
 
 
 adelishapiro = data.frame(a_bill_length_female,a_bill_length_male,a_bill_depth_female,a_bill_depth_male, a_flipper_length_female,a_flipper_length_male,a_body_mass_female,a_body_mass_male)
 
-adelishapiro > 0.05
+adelishapiro>0.05
 
-c_bill_length_female_fit = chinstrapfemale$bill_length_mm[chinstrapfemale$bill_length_mm<58]
-c_bill_length_female = shapiro.test(na.omit(c_bill_length_female_fit))$p.value
-c_bill_length_male = shapiro.test(na.omit(chinstrapmale$bill_length_mm))$p.value
 
-c_bill_depth_female = shapiro.test(na.omit(chinstrapfemale$bill_depth_mm))$p.value
-c_bill_depth_male = shapiro.test(na.omit(chinstrapmale$bill_depth_mm))$p.value
+c_bill_length_female = shapiro.test(chinstrapfemale$bill_length_mm)$p.value
+c_bill_length_male = shapiro.test(chinstrapmale$bill_length_mm)$p.value
 
-c_flipper_length_female = shapiro.test(na.omit(chinstrapfemale$flipper_length_mm))$p.value
-c_flipper_length_male = shapiro.test(na.omit(chinstrapmale$flipper_length_mm))$p.value
+c_bill_depth_female = shapiro.test(chinstrapfemale$bill_depth_mm)$p.value
+c_bill_depth_male = shapiro.test(chinstrapmale$bill_depth_mm)$p.value
 
-c_body_mass_female = shapiro.test(na.omit(chinstrapfemale$body_mass_g))$p.value
-c_body_mass_male = shapiro.test(na.omit(chinstrapmale$body_mass_g))$p.value
+c_flipper_length_female = shapiro.test(chinstrapfemale$flipper_length_mm)$p.value
+c_flipper_length_male = shapiro.test(chinstrapmale$flipper_length_mm)$p.value
+
+c_body_mass_female = shapiro.test(chinstrapfemale$body_mass_g)$p.value
+c_body_mass_male = shapiro.test(chinstrapmale$body_mass_g)$p.value
 
 
 chinshapiro = data.frame(c_bill_length_female,c_bill_length_male,c_bill_depth_female,c_bill_depth_male, c_flipper_length_female,c_flipper_length_male,c_body_mass_female,c_body_mass_male)
 
 chinshapiro>0.05
 
-g_bill_length_female = shapiro.test(na.omit(gentoofemale$bill_length_mm))$p.value
-g_bill_length_male_fit = gentoomale$bill_length_mm[gentoomale$bill_length_mm<59]
-g_bill_length_male = shapiro.test(na.omit(g_bill_length_male_fit))$p.value
+g_bill_length_female = shapiro.test(gentoofemale$bill_length_mm)$p.value
+g_bill_length_male = shapiro.test(gentoomale$bill_length_mm)$p.value
 
-g_bill_depth_female = shapiro.test(na.omit(gentoofemale$bill_depth_mm))$p.value
-g_bill_depth_male = shapiro.test(na.omit(gentoomale$bill_depth_mm))$p.value
+g_bill_depth_female = shapiro.test(gentoofemale$bill_depth_mm)$p.value
+g_bill_depth_male = shapiro.test(gentoomale$bill_depth_mm)$p.value
 
-g_flipper_length_female = shapiro.test(na.omit(gentoofemale$flipper_length_mm))$p.value
-g_flipper_length_male = shapiro.test(na.omit(gentoomale$flipper_length_mm))$p.value
+g_flipper_length_female = shapiro.test(gentoofemale$flipper_length_mm)$p.value
+g_flipper_length_male = shapiro.test(gentoomale$flipper_length_mm)$p.value
 
-g_body_mass_female = shapiro.test(na.omit(gentoofemale$body_mass_g))$p.value
-g_body_mass_male = shapiro.test(na.omit(gentoomale$body_mass_g))$p.value
+g_body_mass_female = shapiro.test(gentoofemale$body_mass_g)$p.value
+g_body_mass_male = shapiro.test(gentoomale$body_mass_g)$p.value
 
 
 gentooshapiro = data.frame(g_bill_length_female,g_bill_length_male,g_bill_depth_female,g_bill_depth_male, g_flipper_length_female,g_flipper_length_male,g_body_mass_female,g_body_mass_male)
 
 gentooshapiro>0.05
 ```
-To satisfy a normal distribution, 1 outline in each data set bill_depth_adelie_male, bill_length_chinstrap_female and bill_length_gentoo_male were removed.
+
+
+
+
 
 
 ```{r}
 
 ```
 
-## Plots:
 
+>>>>>>> 70d8008c88ee23f3744a13be020f12c19e1733de
+
+## Plots:
+### Stripcharts for Adelie 
 Stripcharts for all the attributes
 
 ```{r}
@@ -184,48 +244,181 @@ stripchart(adelieset$flipper_length_mm~adelieset$sex, main="Massdistribution bet
 stripchart(adelieset$bill_depth_mm~adelieset$sex, main="Massdistribution between the biological sexes",method="stack", col=c(2,4))
 
 ```
+### Stripcharts for Chinstrap
+### Histograms bodyweight
 
 ```{r}
 
-# Increase margins to make space for text and adjust plot layout
-old_par <- par()  # Save current settings to restore later
-par(mar = c(5, 4, 4, 4) + 0.1)  # Increase right margin for text
-
-# Summary statistics
+## Summary statistics
 xy <- summary(adeliemale$body_mass_g)
+
+
 
 # Create a histogram
 hist(adeliemale$body_mass_g,
      main = "Histogram of Body Mass of Male Adelie Penguins",
-     xlab = "Body Mass Distribution",
+     xlab = "Body Mass Distribution in gram",
      ylab = "Density",
-     col = "lightblue",
+     col = "cyan1",
+     mar = c(2, 1, 2, 1),
+     oma = c(2, 1, 2, 1),
+     xlim=c(3000,5000),
      freq = FALSE, # Using density instead of frequency
-     xlim = range(adeliemale$body_mass_g, na.rm = TRUE)) # Set x-axis limits
+      # Set x-axis limits to cover full data range
+     )     # Do not plot x-axis yet
 
-# Add density line, mean, and median lines
-lines(density(adeliemale$body_mass_g, na.rm = TRUE), col = "blue", lwd = 2)
+
+# Add density line
+lines(density(adeliemale$body_mass_g, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines
 abline(v = meanbodymassadeliemale, col = "black", lwd = 2, lty = 2)
-abline(v = medianbodymassadeliemale, col = "red", lwd = 2, lty = 2)
+abline(v = medianbodymassadeliemale, col = "blue", lwd = 2, lty = 2)
 abline(v = meanbodymassadeliefemale, col = "black", lwd = 2, lty = 1)
-abline(v = medianbodymassadeliefemale, col = "red", lwd = 2, lty = 1)
+abline(v = medianbodymassadeliefemale, col = "blue", lwd = 2, lty = 1)
 
-# Adjust legend position
-legend("topright", inset = c(0, -0.1), # Shift legend up
-       legend = c("Density", "Mean male", "Median male", "Mean female", "Median female"), 
-       col = c("blue", "black", "red", "black", "red"), lty = c(1, 2, 2, 1, 1), lwd = 2)
+# Add legend
+legend("topright", legend = c("Density", "Mean male", "Median male", "Mean female", "Median female"), 
+       col = c("black", "black", "blue", "black", "blue"), lty = c(1, 2, 2, 1, 1), lwd = 2,cex=0.8)
 
-# Prepare a text to display
-summary_text <- paste("Min:", xy["Min."], "\n",
-                      "1st Qu.:", xy["1st Qu."], "\n",
-                      "Median:", xy["Median"], "\n",
-                      "Mean:", xy["Mean"], "\n",
-                      "3rd Qu.:", xy["3rd Qu."], "\n",
-                      "Max:", xy["Max."], "\n")
 
-# Place the summary text in the right margin
-mtext(summary_text, side = 4, line = 1, cex = 0.8, adj = 0)
-
-# Restore original par settings
-par(old_par)
 ```
+
+
+
+```{r}
+## Summary statistics
+yx <- summary(adeliefemale$body_mass_g)
+
+
+
+# Create a histogram
+hist(adeliefemale$body_mass_g,
+     main = "Histogram of Body Mass of Female Adelie Penguins",
+     xlab = "Body Mass Distribution in gram",
+     ylab = "Density",
+     col = "lightpink",
+     mar = c(2, 1, 2, 1),
+     oma = c(2, 1, 2, 1),
+     xlim = c(2500,4500),
+     freq = FALSE, # Using density instead of frequency
+      # Set x-axis limits to cover full data range
+     )     # Do not plot x-axis yet
+
+
+# Add density line
+lines(density(adeliefemale$body_mass_g, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines
+abline(v = meanbodymassadeliefemale, col = "black", lwd = 2, lty = 2)
+abline(v = medianbodymassadeliefemale, col = "blue", lwd = 2, lty = 2)
+abline(v = meanbodymassadeliemale, col = "black", lwd = 2, lty = 1)
+abline(v = medianbodymassadeliemale, col = "blue", lwd = 2, lty = 1)
+
+# Add legend
+legend("topright", legend = c("Density", "Mean female", "Median female", "Mean male", "Median male"), 
+       col = c("black", "black", "blue", "black", "blue"), lty = c(1, 2, 2, 1, 1), lwd = 2,cex=0.75)
+
+```
+
+### Histogramm Bill length Chinstrap
+
+
+```{r}
+xy <- summary(chinstrapmale$bill_length_mm)
+
+
+
+# Create a histogram
+hist(chinstrapmale$bill_length_mm,
+     main = "Histogram of Body Mass of Male Chinstrap Penguins",
+     xlab = "Body Mass Distribution in gram",
+     ylab = "Density",
+     col = "cyan1",
+     mar = c(2, 1, 2, 1),
+     oma = c(2, 1, 2, 1),
+     xlim=c(3000,5000),
+     freq = FALSE, # Using density instead of frequency
+      # Set x-axis limits to cover full data range
+     )     # Do not plot x-axis yet
+
+
+# Add density line
+lines(density(chinstrapmale$body_mass_g, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines
+abline(v = meanbodymasschinstrapmale, col = "black", lwd = 2, lty = 2)
+abline(v = medianbodymasschinstrapmale, col = "blue", lwd = 2, lty = 2)
+abline(v = meanbodymasschinstrapfemale, col = "black", lwd = 2, lty = 1)
+abline(v = medianbodymasschinstrapfemale, col = "blue", lwd = 2, lty = 1)
+
+# Add legend
+legend("topright", legend = c("Density", "Mean male", "Median male", "Mean female", "Median female"), 
+       col = c("black", "black", "blue", "black", "blue"), lty = c(1, 2, 2, 1, 1), lwd = 2,cex=0.8)
+
+
+```
+
+
+
+```{r}
+## Summary statistics
+yx <- summary(chinstrapfemale$body_mass_g)
+
+
+
+# Create a histogram
+hist(chinstrapfemale$body_mass_g,
+     main = "Histogram of Body Mass of Female Chinstrap Penguins",
+     xlab = "Body Mass Distribution in gram",
+     ylab = "Density",
+     col = "lightpink",
+     mar = c(2, 1, 2, 1),
+     oma = c(2, 1, 2, 1),
+     xlim = c(2500,4500),
+     freq = FALSE, # Using density instead of frequency
+      # Set x-axis limits to cover full data range
+     )     # Do not plot x-axis yet
+
+
+# Add density line
+lines(density(chinstrapfemale$body_mass_g, na.rm = TRUE), col = "black", lwd = 2)
+
+# Add mean and median lines
+abline(v = meanbodymasschinstrapfemale, col = "black", lwd = 2, lty = 2)
+abline(v = medianbodymasschinstrapmale, col = "blue", lwd = 2, lty = 2)
+abline(v = meanbodymasschinstrapmale, col = "black", lwd = 2, lty = 1)
+abline(v = medianbodymasschinstrapmale, col = "blue", lwd = 2, lty = 1)
+
+# Add legend
+legend("topright", legend = c("Density", "Mean female", "Median female", "Mean male", "Median male"), 
+       col = c("black", "black", "blue", "black", "blue"), lty = c(1, 2, 2, 1, 1), lwd = 2,cex=0.75)
+
+```
+
+### 
+
+
+
+
+
+
+
+
+
+
+# chinstrap
+
+## Datasummary numerical
+```{r}
+meanbodychinstrapmale=mean(adelieset$body_mass_g, na.rm=TRUE)
+meanbodychinstrapfemale=mean(adeliemale$body_mass_g, na.rm=TRUE)
+meanbodymassadeliefemale=mean(adeliefemale$body_mass_g, na.rm=TRUE)
+medianbodymassadeliemale=median(adeliemale$body_mass_g, na.rm=TRUE)
+medianbodymassadeliefemale=median(adeliefemale$body_mass_g, na.rm=TRUE)
+
+summaryadeliefemale=summary(adeliefemale[,3:6])
+summaryadeliemale=summary(adeliemale[,3:6])
+
+```
+
