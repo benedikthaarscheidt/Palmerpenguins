@@ -20,11 +20,6 @@ library(MASS)
 library(DAAG)
 library(palmerpenguins)
 ```
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 70d8008c88ee23f3744a13be020f12c19e1733de
 
 This is the mammals dataset containing body and brain weigth of 62 land species
 ```{r}
@@ -161,9 +156,7 @@ medianflipperlengthchinstrapfemale=median(chinstrapfemale$flipper_length_mm, na.
 summarychinstrapfemale=summary(chinstrapfemale[,3:6])
 summarychinstrapmale=summary(chinstrapmale[,3:6])
 ```
-
-<<<<<<< HEAD
-=======
+### Shapiro-wilke test
 check if the data sets of the penguins satisfy the normal distribution, to use 
 subsequent t-test 
 
@@ -220,18 +213,32 @@ gentooshapiro = data.frame(g_bill_length_female,g_bill_length_male,g_bill_depth_
 
 gentooshapiro>0.05
 ```
+To satisfy a normal distribution, 1 outline in each data set bill_depth_adelie_male, bill_length_chinstrap_female and bill_length_gentoo_male were removed.
 
 
+to check if there is a statistical significant sexual dimorphism, the t-test was used.
 
-
-
-
-```{r}
-
+```{r label=t-test, echo=FALSE,results='hide'}
+t.test(c_bill_length_female_fit,chinstrapmale$bill_length_mm)
+t.test(chinstrapfemale$bill_depth_mm,chinstrapmale$bill_depth_mm)
+t.test(chinstrapfemale$flipper_length_mm,chinstrapmale$flipper_length_mm)
+t.test(chinstrapfemale$body_mass_g,chinstrapmale$body_mass_g)
 ```
+### T-test
+|categories|female|male|p-value|significant difference|
+|--|--:|--:|--:|:---:|
+|bill length in mm|46.23|51.09|1e-13|yes|
+|bill depth in mm|17.59|19.25|7e-13|yes|
+|flipper length in mm|191.7|199.9|3e-07|yes|
+|body mass in g|3527|3939|3e-07|yes|
+  
 
 
->>>>>>> 70d8008c88ee23f3744a13be020f12c19e1733de
+
+
+
+
+
 
 ## Plots:
 ### Stripcharts for Adelie 
