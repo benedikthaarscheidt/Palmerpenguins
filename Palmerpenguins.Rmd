@@ -1,5 +1,5 @@
 ---
-title: "R Cheatsheet"
+title: Sexual dimorphism in Chinstrap penguins"
 author: "Benedikt Haarscheidt, Jaesub Kim, Ahmed Tijani Akinfalabi "
 date: "`r Sys.Date()`"
 output:
@@ -16,9 +16,26 @@ output:
 library(palmerpenguins)
 library(datasets)
 library(MASS)
+<<<<<<< HEAD
 
 
+=======
+install.packages("DAAG")
+>>>>>>> 707ca5be030565a773842d27215f796368ddcb83
 library(DAAG)
+library(palmerpenguins)
+```
+```{r label = prepare the penguins data, echo=FALSE, results="hide"}
+
+penguins=palmerpenguins::penguins
+chinstrap = data.frame(bill_length_mm = penguins$bill_length_mm[penguins$species=='Chinstrap'],
+                       bill_depth_mm = penguins$bill_depth_mm[penguins$species=='Chinstrap'],
+                       flipper_length_mm = penguins$flipper_length_mm[penguins$species=='Chinstrap'],
+                       body_mass_g = penguins$body_mass_g[penguins$species=='Chinstrap'],
+                       sex = penguins$sex[penguins$species=='Chinstrap']) 
+
+fchinstrap = subset(chinstrap, sex =="female")
+mchinstrap = subset(chinstrap, sex =="male")
 
 
 ```
