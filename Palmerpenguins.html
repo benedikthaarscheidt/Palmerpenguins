@@ -1488,9 +1488,6 @@ Akinfalabi</h4>
 </div>
 
 
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<p>======= &gt;&gt;&gt;&gt;&gt;&gt;&gt;
-70d8008c88ee23f3744a13be020f12c19e1733de</p>
 <p>This is the mammals dataset containing body and brain weigth of 62
 land species</p>
 <pre class="r"><code>data(mammals)
@@ -1538,13 +1535,65 @@ head(possum)</code></pre>
 adelieset &lt;- df[df$species == &quot;Adelie&quot;, ]
 adeliemale =adelieset[adelieset$sex == &quot;male&quot;,]
 adeliefemale = adelieset[adelieset$sex ==&quot;female&quot;,]
+
 gentooset=df[df$species ==&quot;Gentoo&quot;,]
 gentoomale = gentooset[gentooset$sex ==&quot;male&quot;,]
 gentoofemale = gentooset[gentooset$sex ==&quot;female&quot;,]
 
 chinstrapset=df[df$species ==&quot;Chinstrap&quot;,]
 chinstrapmale=chinstrapset[chinstrapset$sex ==&quot;male&quot;,]
-chinstrapfemale=chinstrapset[chinstrapset$sex ==&quot;female&quot;,]</code></pre>
+chinstrapfemale=chinstrapset[chinstrapset$sex ==&quot;female&quot;,]
+
+head(chinstrapmale)</code></pre>
+<pre><code>## # A tibble: 6 × 8
+##   species   island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+## 1 Chinstrap Dream            50            19.5               196        3900
+## 2 Chinstrap Dream            51.3          19.2               193        3650
+## 3 Chinstrap Dream            52.7          19.8               197        3725
+## 4 Chinstrap Dream            51.3          18.2               197        3750
+## 5 Chinstrap Dream            51.3          19.9               198        3700
+## 6 Chinstrap Dream            51.7          20.3               194        3775
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<pre class="r"><code>head(chinstrapfemale)</code></pre>
+<pre><code>## # A tibble: 6 × 8
+##   species   island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+## 1 Chinstrap Dream            46.5          17.9               192        3500
+## 2 Chinstrap Dream            45.4          18.7               188        3525
+## 3 Chinstrap Dream            45.2          17.8               198        3950
+## 4 Chinstrap Dream            46.1          18.2               178        3250
+## 5 Chinstrap Dream            46            18.9               195        4150
+## 6 Chinstrap Dream            46.6          17.8               193        3800
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<pre class="r"><code># Standard deviation of Chinstrap Male
+
+male_std_dev_bill_Length &lt;- sd(chinstrapmale$bill_length_mm)
+male_std_dev_bill_Length</code></pre>
+<pre><code>## [1] 1.564558</code></pre>
+<pre class="r"><code>male_std_dev_bill_depth &lt;- sd(chinstrapmale$bill_depth_mm)
+male_std_dev_bill_depth</code></pre>
+<pre><code>## [1] 0.761273</code></pre>
+<pre class="r"><code>male_std_dev_flipper_Length &lt;- sd(chinstrapmale$flipper_length_mm)
+male_std_dev_flipper_Length</code></pre>
+<pre><code>## [1] 5.976558</code></pre>
+<pre class="r"><code>male_std_dev_body_mass &lt;- sd(chinstrapmale$body_mass_g)
+male_std_dev_body_mass</code></pre>
+<pre><code>## [1] 362.1376</code></pre>
+<pre class="r"><code># Standard deviation of Chinstrap Female
+
+female_std_dev_bill_Length &lt;- sd(chinstrapmale$bill_length_mm)
+female_std_dev_bill_Length</code></pre>
+<pre><code>## [1] 1.564558</code></pre>
+<pre class="r"><code>female_std_dev_bill_depth &lt;- sd(chinstrapmale$bill_depth_mm)
+female_std_dev_bill_depth</code></pre>
+<pre><code>## [1] 0.761273</code></pre>
+<pre class="r"><code>female_std_dev_flipper_Length &lt;- sd(chinstrapmale$flipper_length_mm)
+female_std_dev_flipper_Length</code></pre>
+<pre><code>## [1] 5.976558</code></pre>
+<pre class="r"><code>female_std_dev_body_mass &lt;- sd(chinstrapmale$body_mass_g)
+female_std_dev_body_mass</code></pre>
+<pre><code>## [1] 362.1376</code></pre>
 <pre class="r"><code>sextable=table(penguins$sex,penguins$species)
 sextable</code></pre>
 <pre><code>##         
@@ -1603,29 +1652,83 @@ medianflipperlengthchinstrapfemale=median(chinstrapfemale$flipper_length_mm, na.
 
 summarychinstrapfemale=summary(chinstrapfemale[,3:6])
 summarychinstrapmale=summary(chinstrapmale[,3:6])</code></pre>
-</div>
-<div id="head" class="section level1">
-<h1>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</h1>
+<div id="shapiro-wilke-test" class="section level3">
+<h3>Shapiro-wilke test</h3>
 <p>check if the data sets of the penguins satisfy the normal
 distribution, to use subsequent t-test</p>
 <pre><code>##      a_bill_length_female a_bill_length_male a_bill_depth_female
 ## [1,]                 TRUE               TRUE                TRUE
 ##      a_bill_depth_male a_flipper_length_female a_flipper_length_male
-## [1,]             FALSE                    TRUE                  TRUE
+## [1,]              TRUE                    TRUE                  TRUE
 ##      a_body_mass_female a_body_mass_male
 ## [1,]               TRUE             TRUE</code></pre>
 <pre><code>##      c_bill_length_female c_bill_length_male c_bill_depth_female
-## [1,]                FALSE               TRUE                TRUE
+## [1,]                 TRUE               TRUE                TRUE
 ##      c_bill_depth_male c_flipper_length_female c_flipper_length_male
 ## [1,]              TRUE                    TRUE                  TRUE
 ##      c_body_mass_female c_body_mass_male
 ## [1,]               TRUE             TRUE</code></pre>
 <pre><code>##      g_bill_length_female g_bill_length_male g_bill_depth_female
-## [1,]                 TRUE              FALSE                TRUE
+## [1,]                 TRUE               TRUE                TRUE
 ##      g_bill_depth_male g_flipper_length_female g_flipper_length_male
 ## [1,]              TRUE                    TRUE                  TRUE
 ##      g_body_mass_female g_body_mass_male
 ## [1,]               TRUE             TRUE</code></pre>
+<p>To satisfy a normal distribution, 1 outline in each data set
+bill_depth_adelie_male, bill_length_chinstrap_female and
+bill_length_gentoo_male were removed.</p>
+</div>
+<div id="t-test" class="section level3">
+<h3>T-test</h3>
+<p>to check if there is a statistical significant sexual dimorphism, the
+t-test was used.</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
+</div>
+</div>
+<div id="d8008c88ee23f3744a13be020f12c19e1733de" class="section level1">
+<h1>&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+70d8008c88ee23f3744a13be020f12c19e1733de</h1>
+<table>
+<thead>
+<tr class="header">
+<th>categories</th>
+<th align="right">female</th>
+<th align="right">male</th>
+<th align="right">p-value</th>
+<th align="center">significant difference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>bill length in mm</td>
+<td align="right">46.23</td>
+<td align="right">51.09</td>
+<td align="right">1e-13</td>
+<td align="center">yes</td>
+</tr>
+<tr class="even">
+<td>bill depth in mm</td>
+<td align="right">17.59</td>
+<td align="right">19.25</td>
+<td align="right">7e-13</td>
+<td align="center">yes</td>
+</tr>
+<tr class="odd">
+<td>flipper length in mm</td>
+<td align="right">191.7</td>
+<td align="right">199.9</td>
+<td align="right">3e-07</td>
+<td align="center">yes</td>
+</tr>
+<tr class="even">
+<td>body mass in g</td>
+<td align="right">3527</td>
+<td align="right">3939</td>
+<td align="right">3e-07</td>
+<td align="center">yes</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
 <blockquote>
 <blockquote>
@@ -1633,7 +1736,7 @@ distribution, to use subsequent t-test</p>
 <blockquote>
 <blockquote>
 <blockquote>
-<p>70d8008c88ee23f3744a13be020f12c19e1733de</p>
+<p>4151dfb0f4bd5f0036c90e8bf9773b5841e2da9d</p>
 </blockquote>
 </blockquote>
 </blockquote>
