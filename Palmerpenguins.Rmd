@@ -12,10 +12,11 @@ output:
     toc_depth: '5'
 ---
 ```{r echo=FALSE, include=FALSE}
-options(repos = c(CRAN = "https://cran.rstudio.com/"))
-install.packages("MASS")
+
+library(palmerpenguins)
+library(datasets)
 library(MASS)
-install.packages("DAAG")
+
 
 library(DAAG)
 
@@ -35,6 +36,118 @@ This is the possum datase containing measurments of possums in australia
 data(possum)
 head(possum)
 ```
+
+## Data preparation
+
+Subsetting the penguin species 
+```{r}
+head(penguins)
+df=penguins
+adelieset <- df[df$species == "Adelie", ]
+adeliemale =adelieset[adelieset$sex == "male",]
+adeliefemale = adelieset[adelieset$sex =="female",]
+gentooset=df[df$species =="Gentoo",]
+gentoomale = gentooset[gentooset$sex =="male",]
+gentoofemale = gentooset[gentooset$sex =="female",]
+
+chinstrapset=df[df$species =="Chinstrap",]
+chinstrapmale=chinstrapset[chinstrapset$sex =="male",]
+chinstrapfemale=chinstrapset[chinstrapset$sex =="female",]
+
+```
+
+
+```{r}
+sextable=table(penguins$sex,penguins$species)
+sextable
+adeliesex=sextable[,1]
+gentoosex=sextable[,3]
+chinstrapsex=sextable[,2]
+
+```
+
+
+
+
+## Data analysis
+numerical data summary adelie:
+```{r}
+meanbodymassadelie=mean(adelieset$body_mass_g, na.rm=TRUE)
+meanbodymassadeliemale=mean(adeliemale$body_mass_g, na.rm=TRUE)
+meanbodymassadeliefemale=mean(adeliefemale$body_mass_g, na.rm=TRUE)
+medianbodymassadeliemale=median(adeliemale$body_mass_g, na.rm=TRUE)
+medianbodymassadeliefemale=median(adeliefemale$body_mass_g, na.rm=TRUE)
+
+summaryadeliefemale=summary(adeliefemale[,3:6])
+summaryadeliemale=summary(adeliemale[,3:6])
+
+
+```
+
+
+
+
+
+
+
+
+```{r}
+
+```
+
+
+## Plots:
+
+Stripcharts for all the attributes
+```{r}
+stripchart(adelieset$body_mass_g~adelieset$sex, main="Massdistribution between the biological sexes",method="stack", col=c(2,4))
+stripchart(adelieset$bill_length_mm~adelieset$sex, main="Massdistribution between the biological sexes",method="stack", col=c(2,4))
+stripchart(adelieset$flipper_length_mm~adelieset$sex, main="Massdistribution between the biological sexes",method="stack", col=c(2,4))
+stripchart(adelieset$bill_depth_mm~adelieset$sex, main="Massdistribution between the biological sexes",method="stack", col=c(2,4))
+
+```
+
+```{r}
+
+# Increase bottom margin to make space for text
+old_par <- par()  # Save current settings to restore later
+par(mar = c(5, 4, 4, 2) + 0.1)  # Default is c(5, 4, 4, 2)
+
+# Summary statistics
+xy <- summary(adeliemale$body_mass_g)
+
+# Create a histogram
+hist(adeliemale$body_mass_g,
+     main = "Histogram of Body Mass of Male Adelie Penguins",
+     xlab = "Body Mass Distribution",
+     ylab = "Density",
+     col = "lightblue",
+     freq = FALSE) # Using density instead of frequency
+
+# Add density line, mean, and median lines
+lines(density(adeliemale$body_mass_g, na.rm = TRUE), col = "blue", lwd = 2)
+abline(v = meanbodymassadeliemale, col = "black", lwd = 2, lty = 2)
+abline(v = medianbodymassadeliemale, col = "red", lwd = 2, lty = 2)
+abline(v = meanbodymassadeliefemale, col = "black", lwd = 2, lty = 1)
+abline(v = medianbodymassadeliefemale, col = "red", lwd = 2, lty = 1)
+
+# Add legend
+legend("topright", legend = c("Density", "Mean male", "Median male", "Mean female", "Median female"), 
+       col = c("blue", "black", "red", "black", "red"), lty = c(1, 2, 2, 1, 1), lwd = 2)
+
+# Prepare a text to display
+summary_text <- paste("Min:", xy["Min."], "\n",
+                      "1st Qu.:", xy["1st Qu."], "\n",
+                      "Median:", xy["Median"], "\n",
+                      "Mean:", xy["Mean"], "\n",
+                      "3rd Qu.:", xy["3rd Qu."], "\n",
+                      "Max:", xy["Max."], "\n")
+
+# Place the summary text at the top of the plot
+mtext(summary_text, side = 3, line = -2, cex = 0.8, adj = 0)
+
+# Restore original par settings
+par(old_par)
 
 
 
