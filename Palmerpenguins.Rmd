@@ -98,6 +98,7 @@ medianbodymasschinstrapfemale=median(chinstrapfemale$body_mass_g, na.rm=TRUE)
 summarychinstrapfemale=summary(chinstrapfemale[,3:6])
 summarychinstrapmale=summary(chinstrapmale[,3:6])
 ```
+
 numerical data summary chinstrap billlength 
 ```{r}
 meanbilllengthchinstrap=mean(chinstrapset$bill_length_mm, na.rm=TRUE)
@@ -109,6 +110,7 @@ medianbilllengthchinstrapfemale=median(chinstrapfemale$bill_length_mm, na.rm=TRU
 summarychinstrapfemale=summary(chinstrapfemale[,3:6])
 summarychinstrapmale=summary(chinstrapmale[,3:6])
 ```
+
 numerical data summary billdepth 
 ```{r}
 meanbilldepthchinstrap=mean(chinstrapset$bill_depth_mm, na.rm=TRUE)
@@ -120,6 +122,7 @@ medianbilldepthchinstrapfemale=median(chinstrapfemale$bill_depth_mm, na.rm=TRUE)
 summarychinstrapfemale=summary(chinstrapfemale[,3:6])
 summarychinstrapmale=summary(chinstrapmale[,3:6])
 ```
+
 numerical data summary flipperlength 
 ```{r}
 meanflipperlengthchinstrap=mean(chinstrapset$flipper_length_mm, na.rm=TRUE)
