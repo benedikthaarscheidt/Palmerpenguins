@@ -161,52 +161,54 @@ check if the data sets of the penguins satisfy the normal distribution, to use
 subsequent t-test 
 
 ```{r label = shapiro-wilke-test, echo=FALSE}
-a_bill_length_female = shapiro.test(adeliefemale$bill_length_mm)$p.value
-a_bill_length_male = shapiro.test(adeliemale$bill_length_mm)$p.value
+a_bill_length_female = shapiro.test(na.omit(adeliefemale$bill_length_mm))$p.value
+a_bill_length_male = shapiro.test(na.omit(adeliemale$bill_length_mm))$p.value
 
-a_bill_depth_female = shapiro.test(adeliefemale$bill_depth_mm)$p.value
-a_bill_depth_male = shapiro.test(adeliemale$bill_depth_mm)$p.value
+a_bill_depth_female = shapiro.test(na.omit(adeliefemale$bill_depth_mm))$p.value
+a_bill_depth_male_fit = adeliemale$bill_depth_mm[adeliemale$bill_depth_mm<21.2]
+a_bill_depth_male = shapiro.test(na.omit(a_bill_depth_male_fit))$p.value
 
-a_flipper_length_female = shapiro.test(adeliefemale$flipper_length_mm)$p.value
+a_flipper_length_female = shapiro.test(na.omit(adeliefemale$flipper_length_mm))$p.value
 a_flipper_length_male = shapiro.test(adeliemale$flipper_length_mm)$p.value
 
-a_body_mass_female = shapiro.test(adeliefemale$body_mass_g)$p.value
-a_body_mass_male = shapiro.test(adeliemale$body_mass_g)$p.value
+a_body_mass_female = shapiro.test(na.omit(adeliefemale$body_mass_g))$p.value
+a_body_mass_male = shapiro.test(na.omit(adeliemale$body_mass_g))$p.value
 
 
 adelishapiro = data.frame(a_bill_length_female,a_bill_length_male,a_bill_depth_female,a_bill_depth_male, a_flipper_length_female,a_flipper_length_male,a_body_mass_female,a_body_mass_male)
 
 adelishapiro>0.05
 
+c_bill_length_female_fit = chinstrapfemale$bill_length_mm[chinstrapfemale$bill_length_mm<58]
+c_bill_length_female = shapiro.test(na.omit(c_bill_length_female_fit))$p.value
+c_bill_length_male = shapiro.test(na.omit(chinstrapmale$bill_length_mm))$p.value
 
-c_bill_length_female = shapiro.test(chinstrapfemale$bill_length_mm)$p.value
-c_bill_length_male = shapiro.test(chinstrapmale$bill_length_mm)$p.value
+c_bill_depth_female = shapiro.test(na.omit(chinstrapfemale$bill_depth_mm))$p.value
+c_bill_depth_male = shapiro.test(na.omit(chinstrapmale$bill_depth_mm))$p.value
 
-c_bill_depth_female = shapiro.test(chinstrapfemale$bill_depth_mm)$p.value
-c_bill_depth_male = shapiro.test(chinstrapmale$bill_depth_mm)$p.value
+c_flipper_length_female = shapiro.test(na.omit(chinstrapfemale$flipper_length_mm))$p.value
+c_flipper_length_male = shapiro.test(na.omit(chinstrapmale$flipper_length_mm))$p.value
 
-c_flipper_length_female = shapiro.test(chinstrapfemale$flipper_length_mm)$p.value
-c_flipper_length_male = shapiro.test(chinstrapmale$flipper_length_mm)$p.value
-
-c_body_mass_female = shapiro.test(chinstrapfemale$body_mass_g)$p.value
-c_body_mass_male = shapiro.test(chinstrapmale$body_mass_g)$p.value
+c_body_mass_female = shapiro.test(na.omit(chinstrapfemale$body_mass_g))$p.value
+c_body_mass_male = shapiro.test(na.omit(chinstrapmale$body_mass_g))$p.value
 
 
 chinshapiro = data.frame(c_bill_length_female,c_bill_length_male,c_bill_depth_female,c_bill_depth_male, c_flipper_length_female,c_flipper_length_male,c_body_mass_female,c_body_mass_male)
 
 chinshapiro>0.05
 
-g_bill_length_female = shapiro.test(gentoofemale$bill_length_mm)$p.value
-g_bill_length_male = shapiro.test(gentoomale$bill_length_mm)$p.value
+g_bill_length_female = shapiro.test(na.omit(gentoofemale$bill_length_mm))$p.value
+g_bill_length_male_fit = gentoomale$bill_length_mm[gentoomale$bill_length_mm<59]
+g_bill_length_male = shapiro.test(na.omit(g_bill_length_male_fit))$p.value
 
-g_bill_depth_female = shapiro.test(gentoofemale$bill_depth_mm)$p.value
-g_bill_depth_male = shapiro.test(gentoomale$bill_depth_mm)$p.value
+g_bill_depth_female = shapiro.test(na.omit(gentoofemale$bill_depth_mm))$p.value
+g_bill_depth_male = shapiro.test(na.omit(gentoomale$bill_depth_mm))$p.value
 
-g_flipper_length_female = shapiro.test(gentoofemale$flipper_length_mm)$p.value
-g_flipper_length_male = shapiro.test(gentoomale$flipper_length_mm)$p.value
+g_flipper_length_female = shapiro.test(na.omit(gentoofemale$flipper_length_mm))$p.value
+g_flipper_length_male = shapiro.test(na.omit(gentoomale$flipper_length_mm))$p.value
 
-g_body_mass_female = shapiro.test(gentoofemale$body_mass_g)$p.value
-g_body_mass_male = shapiro.test(gentoomale$body_mass_g)$p.value
+g_body_mass_female = shapiro.test(na.omit(gentoofemale$body_mass_g))$p.value
+g_body_mass_male = shapiro.test(na.omit(gentoomale$body_mass_g))$p.value
 
 
 gentooshapiro = data.frame(g_bill_length_female,g_bill_length_male,g_bill_depth_female,g_bill_depth_male, g_flipper_length_female,g_flipper_length_male,g_body_mass_female,g_body_mass_male)
