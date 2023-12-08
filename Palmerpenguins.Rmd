@@ -11,3 +11,30 @@ output:
     toc: yes
     toc_depth: '5'
 ---
+```{r echo=FALSE, include=FALSE}
+options(repos = c(CRAN = "https://cran.rstudio.com/"))
+install.packages("MASS")
+library(MASS)
+install.packages("DAAG")
+
+library(DAAG)
+
+
+```
+
+
+This is the mammals dataset containing body and brain weigth of 62 land species
+```{r}
+data(mammals)
+head(mammals)
+
+
+```
+This is the possum datase containing measurments of possums in australia 
+```{r}
+data(possum)
+head(possum)
+```
+
+
+
