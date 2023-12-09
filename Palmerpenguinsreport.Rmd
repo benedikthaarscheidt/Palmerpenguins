@@ -21,7 +21,7 @@ authors
 abstract (short summary)
 
 
-introduction (with hypothesis boys heavier than girls)
+# Introduction
 
 
 In the quest to comprehend the intricate web of gender inequality, an exploration of sexual dimorphism becomes essential. Our focus on the charming world of penguins, emblematic of various avian species, serves as a unique prism through which we examine the prevalence of sexual dimorphism across the animal kingdom. By delving into the distinctive traits between male and female penguins, this study aims to unravel the biological roots that may have historically influenced societal structures and contributed to the nuanced issue of gender inequality.
@@ -29,8 +29,6 @@ In the quest to comprehend the intricate web of gender inequality, an exploratio
 Sexual dimorphism, a widespread biological phenomenon, manifests as differences in size, coloration, behavior, or reproductive anatomy between the sexes of a species. Evolving through natural selection, these differences are intricately tied to optimizing reproductive success. It is crucial to note that while we acknowledge the biological relevance of sexual dimorphism, we must distinguish these biological aspects from the sociocultural constructs that have historically perpetuated gender-based inequalities.
 
 Throughout history, the misuse of physical differences, such as strength, has been implicated in the subjugation of one gender by another, contributing to the establishment of patriarchal societies. Our examination of penguins allows us to draw parallels between the biological underpinnings of sexual dimorphism and potential implications for social structures.
-
-Transition to Chinstrap Penguins and Specific Exploration:
 
 By zooming in on penguins and drawing comparisons with other animal species, we seek to illustrate the diverse manifestations of sexual dimorphism. Penguins, with their unique characteristics, offer a captivating case study to understand how biological differences may contribute to specific roles within a species. Importantly, our goal is to emphasize that while biological differences exist, they should never justify societal inequalities or discriminatory practices.
 
@@ -40,14 +38,13 @@ Chinstrap penguins, known for their distinctive black band under their heads, in
 
 Our analysis focuses on comparing key physical attributes - namely, body mass, flipper length, and bill measurements - to provide insights into the extent and implications of sexual dimorphism in this species. Through statistical analysis of data collected from field studies, we aim to determine the significance and effect size of the differences between male and female Chinstrap penguins. Such an understanding not only contributes to our knowledge of penguin biology but also aids in conservation efforts, ensuring the continued survival and health of these remarkable birds in their rapidly changing habitats.
 
+<br>
 
+![Chinstrap Penguin](Chinstrap-penguin.jpg.webp){width=35%}
 
-
-
-
-
-
-
+# Data
+The data used to prove the prevouisly stated hypothesis was taken form the Palmerpenguins package of the CRAN R library.
+The palmerpenguins package in R encapsulates a comprehensive dataset comprising size measurements, clutch observations, and blood isotope ratios for adult Adélie, Chinstrap, and Gentoo penguins in the Palmer Archipelago near Palmer Station, Antarctica. This dataset, curated and shared by Dr. Kristen Gorman and the Palmer Station Long Term Ecological Research (LTER) Program, is a testament to collaborative scientific efforts. With records for 344 penguins spanning three distinct species, the data originated from three islands within the Palmer Archipelago, offering geographical diversity. Crucially, the dataset features morphological measurements, specifically culmen (bill) length and depth, renamed as bill_length_mm and bill_depth_mm for clarity. These measurements contribute to a nuanced understanding of penguin ecology. In addition to morphological data, the dataset includes clutch observations, shedding light on the reproductive behavior of the penguins, and blood isotope ratios that offer insights into their dietary habits and foraging strategies. Beyond its scientific merit, the palmerpenguins dataset underscores the collaborative spirit within ecological research and provides a valuable resource for investigating various facets of penguin biology, behavior, and ecological dynamics in the unique Antarctic environment.
 
 data (describe the data)
 statistical analyis (which software, R, which packages, which tests)

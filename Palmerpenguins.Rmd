@@ -34,6 +34,14 @@ data(possum)
 head(possum)
 ```
 
+
+
+```{r}
+data(penguins_raw)
+head(penguins_raw)
+```
+
+
 ## Data preparation
 
 Subsetting the penguin species 
