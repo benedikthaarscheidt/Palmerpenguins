@@ -13,7 +13,7 @@
 
 <meta name="date" content="2023-12-09" />
 
-<title>Sexual dimorphism in Chinstrap penguins”</title>
+<title>Sexual dimorphism in Chinstrap penguins</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1480,7 +1480,7 @@ border-radius: 0px;
 
 
 <h1 class="title toc-ignore">Sexual dimorphism in Chinstrap
-penguins”</h1>
+penguins</h1>
 <h4 class="author">Benedikt Haarscheidt, Jaesub Kim, Ahmed Tijani
 Akinfalabi</h4>
 <h4 class="date">2023-12-09</h4>
@@ -1488,10 +1488,9 @@ Akinfalabi</h4>
 </div>
 
 
-<p>REPORT OUTLINE</p>
-<p>title</p>
-<p>authors</p>
-<p>abstract (short summary)</p>
+<div id="abstract-short-summary" class="section level1">
+<h1>abstract (short summary)</h1>
+</div>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>In the quest to comprehend the intricate web of gender inequality, an
@@ -1556,31 +1555,206 @@ these remarkable birds in their rapidly changing habitats.</p>
 </div>
 <div id="data" class="section level1">
 <h1>Data</h1>
-<p>The data used to prove the prevouisly stated hypothesis was taken
-form the Palmerpenguins package of the CRAN R library. The
-palmerpenguins package in R encapsulates a comprehensive dataset
-comprising size measurements, clutch observations, and blood isotope
-ratios for adult Adélie, Chinstrap, and Gentoo penguins in the Palmer
-Archipelago near Palmer Station, Antarctica. This dataset, curated and
-shared by Dr. Kristen Gorman and the Palmer Station Long Term Ecological
-Research (LTER) Program, is a testament to collaborative scientific
-efforts. With records for 344 penguins spanning three distinct species,
-the data originated from three islands within the Palmer Archipelago,
-offering geographical diversity. Crucially, the dataset features
-morphological measurements, specifically culmen (bill) length and depth,
-renamed as bill_length_mm and bill_depth_mm for clarity. These
-measurements contribute to a nuanced understanding of penguin ecology.
-In addition to morphological data, the dataset includes clutch
-observations, shedding light on the reproductive behavior of the
-penguins, and blood isotope ratios that offer insights into their
-dietary habits and foraging strategies. Beyond its scientific merit, the
-palmerpenguins dataset underscores the collaborative spirit within
-ecological research and provides a valuable resource for investigating
-various facets of penguin biology, behavior, and ecological dynamics in
-the unique Antarctic environment.</p>
-<p>data (describe the data) statistical analyis (which software, R,
-which packages, which tests) results discussion (body sizes in birds in
-general, what is special with penguins) references (literature)</p>
+<p>The data employed to substantiate the previously posited hypothesis
+was sourced from the Palmerpenguins package of the CRAN R library. This
+package encapsulates an extensive dataset named penguins_raw featuring
+dimensions such as body mass, size measurements, clutch observations,
+and blood isotope ratios for adult Adélie, Chinstrap, and Gentoo
+penguins in the Palmer Archipelago near Palmer Station, Antarctica.
+Dr. Kristen Gorman and the Palmer Station Long Term Ecological Research
+(LTER) Program curated and generously shared this dataset, showcasing
+the collaborative nature of scientific endeavors. Spanning 344 penguins
+across three distinct species (Adélie, Chinstrap, and Gentoo ), the
+dataset originates from three islands within the Palmer Archipelago,
+providing a rich tapestry of geographical diversity. Notably, the
+dataset includes morphological measurements, with culmen (bill) length
+and depth thoughtfully renamed as bill_length_mm and bill_depth_mm for
+clarity, contributing to a nuanced comprehension of penguin ecology.
+Complementing the morphological data are clutch observations shedding
+light on the reproductive behavior of the penguins and blood isotope
+ratios offering insights into their dietary habits and foraging
+strategies. Furthermore the dataset extends to other sample information
+such as individual ID of the observed penguin, the sample number, the
+study name and some comments. Since were interested in performing a
+descriptive analysis and use the information to abstract and generalize,
+we simply ignore those datapoints and focus on the described relevant
+ones.</p>
+<p>In the pursuit of substantiating the stated hypothesis, our focus is
+on comparing key characteristics such as bill/culmen length and depth,
+body mass, delta 13C, delta 15N, and flipper size between male and
+female penguins. The objective is to discern potential sexual dimorphism
+and its implications in the context of the penguin species under study.
+Moreover, we intend to extend our analysis by comparing the obtained
+results with a dataset concerning possums in Australia and potentially
+other species. This comparative approach aims to abstract the underlying
+hypothesis and draw inferences that transcend the confines of the
+penguin dataset, contributing to a broader understanding of sexual
+dimorphism and ecological dynamics across diverse species. In our
+exploration of the palmerpenguins dataset, we focused on pertinent
+dimensions to substantiate our hypothesis, selectively disregarding
+columns not integral to our investigation. Below one can see the head of
+the penguins_raw dataframe.</p>
+<table>
+<colgroup>
+<col width="3%" />
+<col width="4%" />
+<col width="12%" />
+<col width="2%" />
+<col width="3%" />
+<col width="6%" />
+<col width="4%" />
+<col width="6%" />
+<col width="3%" />
+<col width="6%" />
+<col width="6%" />
+<col width="7%" />
+<col width="4%" />
+<col width="2%" />
+<col width="6%" />
+<col width="6%" />
+<col width="10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">studyName</th>
+<th align="right">Sample Number</th>
+<th align="left">Species</th>
+<th align="left">Region</th>
+<th align="left">Island</th>
+<th align="left">Stage</th>
+<th align="left">Individual ID</th>
+<th align="left">Clutch Completion</th>
+<th align="left">Date Egg</th>
+<th align="right">Culmen Length (mm)</th>
+<th align="right">Culmen Depth (mm)</th>
+<th align="right">Flipper Length (mm)</th>
+<th align="right">Body Mass (g)</th>
+<th align="left">Sex</th>
+<th align="right">Delta 15 N (o/oo)</th>
+<th align="right">Delta 13 C (o/oo)</th>
+<th align="left">Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">PAL0708</td>
+<td align="right">1</td>
+<td align="left">Adelie Penguin (Pygoscelis adeliae)</td>
+<td align="left">Anvers</td>
+<td align="left">Torgersen</td>
+<td align="left">Adult, 1 Egg Stage</td>
+<td align="left">N1A1</td>
+<td align="left">Yes</td>
+<td align="left">2007-11-11</td>
+<td align="right">39.1</td>
+<td align="right">18.7</td>
+<td align="right">181</td>
+<td align="right">3750</td>
+<td align="left">MALE</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">Not enough blood for isotopes.</td>
+</tr>
+<tr class="even">
+<td align="left">PAL0708</td>
+<td align="right">2</td>
+<td align="left">Adelie Penguin (Pygoscelis adeliae)</td>
+<td align="left">Anvers</td>
+<td align="left">Torgersen</td>
+<td align="left">Adult, 1 Egg Stage</td>
+<td align="left">N1A2</td>
+<td align="left">Yes</td>
+<td align="left">2007-11-11</td>
+<td align="right">39.5</td>
+<td align="right">17.4</td>
+<td align="right">186</td>
+<td align="right">3800</td>
+<td align="left">FEMALE</td>
+<td align="right">8.94956</td>
+<td align="right">-24.69454</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">PAL0708</td>
+<td align="right">3</td>
+<td align="left">Adelie Penguin (Pygoscelis adeliae)</td>
+<td align="left">Anvers</td>
+<td align="left">Torgersen</td>
+<td align="left">Adult, 1 Egg Stage</td>
+<td align="left">N2A1</td>
+<td align="left">Yes</td>
+<td align="left">2007-11-16</td>
+<td align="right">40.3</td>
+<td align="right">18.0</td>
+<td align="right">195</td>
+<td align="right">3250</td>
+<td align="left">FEMALE</td>
+<td align="right">8.36821</td>
+<td align="right">-25.33302</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">PAL0708</td>
+<td align="right">4</td>
+<td align="left">Adelie Penguin (Pygoscelis adeliae)</td>
+<td align="left">Anvers</td>
+<td align="left">Torgersen</td>
+<td align="left">Adult, 1 Egg Stage</td>
+<td align="left">N2A2</td>
+<td align="left">Yes</td>
+<td align="left">2007-11-16</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">Adult not sampled.</td>
+</tr>
+<tr class="odd">
+<td align="left">PAL0708</td>
+<td align="right">5</td>
+<td align="left">Adelie Penguin (Pygoscelis adeliae)</td>
+<td align="left">Anvers</td>
+<td align="left">Torgersen</td>
+<td align="left">Adult, 1 Egg Stage</td>
+<td align="left">N3A1</td>
+<td align="left">Yes</td>
+<td align="left">2007-11-16</td>
+<td align="right">36.7</td>
+<td align="right">19.3</td>
+<td align="right">193</td>
+<td align="right">3450</td>
+<td align="left">FEMALE</td>
+<td align="right">8.76651</td>
+<td align="right">-25.32426</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">PAL0708</td>
+<td align="right">6</td>
+<td align="left">Adelie Penguin (Pygoscelis adeliae)</td>
+<td align="left">Anvers</td>
+<td align="left">Torgersen</td>
+<td align="left">Adult, 1 Egg Stage</td>
+<td align="left">N3A2</td>
+<td align="left">Yes</td>
+<td align="left">2007-11-16</td>
+<td align="right">39.3</td>
+<td align="right">20.6</td>
+<td align="right">190</td>
+<td align="right">3650</td>
+<td align="left">MALE</td>
+<td align="right">8.66496</td>
+<td align="right">-25.29805</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+<p>statistical analyis (which software, R, which packages, which tests)
+results discussion (body sizes in birds in general, what is special with
+penguins) references (literature)</p>
 </div>
 
 

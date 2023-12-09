@@ -1,5 +1,5 @@
 ---
-title: Sexual dimorphism in Chinstrap penguins"
+title: "Sexual dimorphism in Chinstrap penguins"
 author: "Benedikt Haarscheidt, Jaesub Kim, Ahmed Tijani Akinfalabi "
 date: "`r Sys.Date()`"
 output:
@@ -11,14 +11,133 @@ output:
     toc: yes
     toc_depth: '5'
 ---
+```{r echo=FALSE, include=FALSE}
+library(palmerpenguins)
+df=penguins_raw
+df
 
-REPORT OUTLINE
+```
 
-title
 
-authors
 
-abstract (short summary)
+```{r echo=FALSE, include=FALSE}
+#Subsetting the penguin Species 
+head(penguins)
+df=penguins_raw
+adelieset <- df[df$Species == "Adelie Penguin (Pygoscelis adeliae)", ]
+adeliemale =adelieset[adelieset$Sex == "MALE",]
+adeliefemale = adelieset[adelieset$Sex =="FEMALE",]
+
+gentooset=df[df$Species =="Gentoo penguin (Pygoscelis papua)",]
+gentoomale = gentooset[gentooset$Sex =="MALE",]
+gentoofemale = gentooset[gentooset$Sex =="FEMALE",]
+
+chinstrapset=df[df$Species =="Chinstrap penguin (Pygoscelis antarctica)",]
+chinstrapmale=chinstrapset[chinstrapset$Sex =="MALE",]
+chinstrapfemale=chinstrapset[chinstrapset$Sex =="FEMALE",]
+
+head(chinstrapmale)
+head(chinstrapfemale)
+
+
+# Standard deviation of Chinstrap Male
+
+male_std_dev_bill_Length <- sd(chinstrapmale$"Culmen Length (mm)")
+male_std_dev_bill_Length
+male_std_dev_bill_depth <- sd(chinstrapmale$"Culmen Depth (mm)")
+male_std_dev_bill_depth
+male_std_dev_flipper_Length <- sd(chinstrapmale$"Flipper Length (mm)")
+male_std_dev_flipper_Length
+male_std_dev_body_mass <- sd(chinstrapmale$"Body Mass (g)")
+male_std_dev_body_mass
+
+# Standard deviation of Chinstrap Female
+
+female_std_dev_bill_Length <- sd(chinstrapmale$"Culmen Length (mm)")
+female_std_dev_bill_Length
+female_std_dev_bill_depth <- sd(chinstrapmale$"Culmen Depth (mm)")
+female_std_dev_bill_depth
+female_std_dev_flipper_Length <- sd(chinstrapmale$"Flipper Length (mm)")
+female_std_dev_flipper_Length
+female_std_dev_body_mass <- sd(chinstrapmale$"Body Mass (g)")
+female_std_dev_body_mass
+
+
+Sextable=table(df$Sex,df$Species)
+Sextable
+adelieSex=Sextable[,1]
+gentooSex=Sextable[,3]
+chinstrapSex=Sextable[,2]
+
+
+
+
+## Data analysis
+#numerical data summary adelie:
+
+#Important to take arithmetic mean 
+meanbodymassadelie=mean(adelieset$"Body Mass (g)", na.rm=TRUE)
+meanbodymassadeliemale=mean(adeliemale$"Body Mass (g)", na.rm=TRUE)
+meanbodymassadeliefemale=mean(adeliefemale$"Body Mass (g)", na.rm=TRUE)
+medianbodymassadeliemale=median(adeliemale$"Body Mass (g)", na.rm=TRUE)
+medianbodymassadeliefemale=median(adeliefemale$"Body Mass (g)", na.rm=TRUE)
+
+summaryadeliefemale=summary(adeliefemale[,3:6])
+summaryadeliemale=summary(adeliemale[,3:6])
+
+
+
+#numerical data summary chinstrap bodymass
+
+meanbodymasschinstrap=mean(chinstrapset$"Body Mass (g)", na.rm=TRUE)
+meanbodymasschinstrapmale=mean(chinstrapmale$"Body Mass (g)", na.rm=TRUE)
+meanbodymasschinstrapfemale=mean(chinstrapfemale$"Body Mass (g)", na.rm=TRUE)
+medianbodymasschinstrapmale=median(chinstrapmale$"Body Mass (g)", na.rm=TRUE)
+medianbodymasschinstrapfemale=median(chinstrapfemale$"Body Mass (g)", na.rm=TRUE)
+
+summarychinstrapfemale=summary(chinstrapfemale[,3:6])
+summarychinstrapmale=summary(chinstrapmale[,3:6])
+
+
+#numerical data summary chinstrap billlength 
+
+meanbilllengthchinstrap=mean(chinstrapset$"Culmen Length (mm)", na.rm=TRUE)
+meanbilllengthchinstrapmale=mean(chinstrapmale$"Culmen Length (mm)", na.rm=TRUE)
+meanbilllengthchinstrapfemale=mean(chinstrapfemale$"Culmen Length (mm)", na.rm=TRUE)
+medianbilllengthchinstrapmale=median(chinstrapmale$"Culmen Length (mm)", na.rm=TRUE)
+medianbilllengthchinstrapfemale=median(chinstrapfemale$"Culmen Length (mm)", na.rm=TRUE)
+
+summarychinstrapfemale=summary(chinstrapfemale[,3:6])
+summarychinstrapmale=summary(chinstrapmale[,3:6])
+
+
+#Numerical data summary bill depth 
+
+meanbilldepthchinstrap=mean(chinstrapset$"Culmen Depth (mm)", na.rm=TRUE)
+meanbilldepthchinstrapmale=mean(chinstrapmale$"Culmen Depth (mm)", na.rm=TRUE)
+meanbilldepthchinstrapfemale=mean(chinstrapfemale$"Culmen Depth (mm)", na.rm=TRUE)
+medianbilldepthchinstrapmale=median(chinstrapmale$"Culmen Depth (mm)", na.rm=TRUE)
+medianbilldepthchinstrapfemale=median(chinstrapfemale$"Culmen Depth (mm)", na.rm=TRUE)
+
+summarychinstrapfemale=summary(chinstrapfemale[,3:6])
+summarychinstrapmale=summary(chinstrapmale[,3:6])
+
+
+#numerical data summary flipperlength
+
+
+meanflipperlengthchinstrap=mean(chinstrapset$"Flipper Length (mm)", na.rm=TRUE)
+meanflipperlengthchinstrapmale=mean(chinstrapmale$"Flipper Length (mm)", na.rm=TRUE)
+meanflipperlengthchinstrapfemale=mean(chinstrapfemale$"Flipper Length (mm)", na.rm=TRUE)
+medianflipperlengthchinstrapmale=median(chinstrapmale$"Flipper Length (mm)", na.rm=TRUE)
+medianflipperlengthchinstrapfemale=median(chinstrapfemale$"Flipper Length (mm)", na.rm=TRUE)
+
+summarychinstrapfemale=summary(chinstrapfemale[,3:6])
+summarychinstrapmale=summary(chinstrapmale[,3:6])
+```
+
+
+# abstract (short summary)
 
 
 # Introduction
@@ -43,10 +162,15 @@ Our analysis focuses on comparing key physical attributes - namely, body mass, f
 ![Chinstrap Penguin](Chinstrap-penguin.jpg.webp){width=35%}
 
 # Data
-The data used to prove the prevouisly stated hypothesis was taken form the Palmerpenguins package of the CRAN R library.
-The palmerpenguins package in R encapsulates a comprehensive dataset comprising size measurements, clutch observations, and blood isotope ratios for adult Adélie, Chinstrap, and Gentoo penguins in the Palmer Archipelago near Palmer Station, Antarctica. This dataset, curated and shared by Dr. Kristen Gorman and the Palmer Station Long Term Ecological Research (LTER) Program, is a testament to collaborative scientific efforts. With records for 344 penguins spanning three distinct species, the data originated from three islands within the Palmer Archipelago, offering geographical diversity. Crucially, the dataset features morphological measurements, specifically culmen (bill) length and depth, renamed as bill_length_mm and bill_depth_mm for clarity. These measurements contribute to a nuanced understanding of penguin ecology. In addition to morphological data, the dataset includes clutch observations, shedding light on the reproductive behavior of the penguins, and blood isotope ratios that offer insights into their dietary habits and foraging strategies. Beyond its scientific merit, the palmerpenguins dataset underscores the collaborative spirit within ecological research and provides a valuable resource for investigating various facets of penguin biology, behavior, and ecological dynamics in the unique Antarctic environment.
+The data employed to substantiate the previously posited hypothesis was sourced from the Palmerpenguins package of the CRAN R library. This package encapsulates an extensive dataset named penguins_raw featuring dimensions such as body mass, size measurements, clutch observations, and blood isotope ratios for adult Adélie, Chinstrap, and Gentoo penguins in the Palmer Archipelago near Palmer Station, Antarctica. Dr. Kristen Gorman and the Palmer Station Long Term Ecological Research (LTER) Program curated and generously shared this dataset, showcasing the collaborative nature of scientific endeavors. Spanning 344 penguins across three distinct species (Adélie, Chinstrap, and Gentoo ), the dataset originates from three islands within the Palmer Archipelago, providing a rich tapestry of geographical diversity. Notably, the dataset includes morphological measurements, with culmen (bill) length and depth thoughtfully renamed as bill_length_mm and bill_depth_mm for clarity, contributing to a nuanced comprehension of penguin ecology. Complementing the morphological data are clutch observations shedding light on the reproductive behavior of the penguins and blood isotope ratios offering insights into their dietary habits and foraging strategies. Furthermore the dataset extends to other sample information such as individual ID of the observed penguin, the sample number, the study name and some comments. Since were interested in performing a descriptive analysis and use the information to abstract and generalize, we simply ignore those datapoints and focus on the described relevant ones.
 
-data (describe the data)
+In the pursuit of substantiating the stated hypothesis, our focus is on comparing key characteristics such as bill/culmen length and depth, body mass, delta 13C, delta 15N, and flipper size between male and female penguins. The objective is to discern potential sexual dimorphism and its implications in the context of the penguin species under study. Moreover, we intend to extend our analysis by comparing the obtained results with a dataset concerning possums in Australia and potentially other species. This comparative approach aims to abstract the underlying hypothesis and draw inferences that transcend the confines of the penguin dataset, contributing to a broader understanding of sexual dimorphism and ecological dynamics across diverse species. In our exploration of the palmerpenguins dataset, we focused on pertinent dimensions to substantiate our hypothesis, selectively disregarding columns not integral to our investigation. 
+Below one can see the head of the penguins_raw dataframe.
+```{r echo=FALSE}
+pengraw=head(df)
+knitr::kable(pengraw)
+```
+
 statistical analyis (which software, R, which packages, which tests)
 results
 discussion (body sizes in birds in general, what is special with penguins)
