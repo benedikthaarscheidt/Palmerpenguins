@@ -259,18 +259,6 @@ cohen.d(chinstrapset$"Culmen Depth (mm)", chinstrapset$Sex)
 cohen.d(chinstrapset$"Flipper Length (mm)", chinstrapset$Sex)
 ```
 
-### Datasummary numerical
-```{r}
-meanbodychinstrapmale=mean(adelieset$"Body Mass (g)", na.rm=TRUE)
-meanbodychinstrapfemale=mean(adeliemale$"Body Mass (g)", na.rm=TRUE)
-meanbodymassadeliefemale=mean(adeliefemale$"Body Mass (g)", na.rm=TRUE)
-medianbodymassadeliemale=median(adeliemale$"Body Mass (g)", na.rm=TRUE)
-medianbodymassadeliefemale=median(adeliefemale$"Body Mass (g)", na.rm=TRUE)
-
-summaryadeliefemale=summary(adeliefemale[,3:6])
-summaryadeliemale=summary(adeliemale[,3:6])
-
-```
 
 
 ### The variable categorical weight of the Chinstrap:
@@ -483,13 +471,13 @@ legend("topright", legend = c("Density", "Mean female", "Median female", "Mean m
 
 ```
 
-<<<<<<< HEAD
+
 
 ### Histogramm Bill length Chinstrap
 
-=======
+
 ## Bodymass Chinstrap
->>>>>>> c45013042169c612d17762b8d446fcb4f45e1c96
+
 
 ```{r echo=FALSE}
 ## Summary statistics
