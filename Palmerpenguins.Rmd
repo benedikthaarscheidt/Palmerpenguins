@@ -227,12 +227,6 @@ To satisfy a normal distribution, 1 outline in each data set bill_depth_adelie_m
 
 to check if there is a statistical significant Sexual dimorphism, the t-test was used.
 
-<<<<<<< HEAD
-
-
-
->>>>>>> 70d8008c88ee23f3744a13be020f12c19e1733de
-=======
 ```{r label=t-test, echo=FALSE,results='hide'}
 t.test(c_bill_length_female_fit,chinstrapmale$"Culmen Length (mm)")
 t.test(chinstrapfemale$"Culmen Depth (mm)",chinstrapmale$"Culmen Depth (mm)")
@@ -247,7 +241,7 @@ t.test(chinstrapfemale$"Body Mass (g)",chinstrapmale$"Body Mass (g)")
 |flipper length in mm|191.7|199.9|3e-07|yes|
 |body mass in g|3527|3939|3e-07|yes|
   
-
+According to the t test, there is a difference in the average body size and body mass between the female and male chinstrap groups.
 
 ## Effecsize by cohens d
 The function calculates the mean of "Body Mass (g)" for males and females separately.
@@ -264,14 +258,6 @@ cohen.d(chinstrapset$"Culmen Length (mm)", chinstrapset$Sex)
 cohen.d(chinstrapset$"Culmen Depth (mm)", chinstrapset$Sex)
 cohen.d(chinstrapset$"Flipper Length (mm)", chinstrapset$Sex)
 ```
-
-
-
-
-
-
-
->>>>>>> 4151dfb0f4bd5f0036c90e8bf9773b5841e2da9d
 
 ## Plots:
 
@@ -899,7 +885,7 @@ par(mfrow=c(1, 1), mar = c(5, 4, 4, 2) + 0.1, oma = c(2, 1, 2, 1))
 ```
 
 
->>>>>>> c45013042169c612d17762b8d446fcb4f45e1c96
+
 # chinstrap
 
 ## Datasummary numerical
@@ -927,6 +913,30 @@ tab=addmargins(table(chinstrapset$Sex,cWeight),# specifiy the table
            FUN = sum # can also use all the other functions of Data Summary
            ) 
 tab
+```
+```{r label = bill.length}
+cblen = cut(chinstrapset$"Culmen Depth (mm)",breaks=quantile(chinstrapset$"Culmen Depth (mm)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
+
+levels(cblen) = c("short", "medium", "long")
+
+tab.blen=addmargins(table(chinstrapset$Sex,cblen),FUN = sum) 
+tab.blen
+```
+```{r label = bill.depth}
+cbdep = cut(chinstrapset$"Culmen Depth (mm)",breaks=quantile(chinstrapset$"Culmen Depth (mm)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
+
+levels(cbdep) = c("deep", "medium", "shallow")
+
+tab.bdep=addmargins(table(chinstrapset$Sex,cbdep),FUN = sum) 
+tab.bdep
+```
+```{r label = flipper.length}
+cflen = cut(chinstrapset$"Flipper Length (mm)",breaks=quantile(chinstrapset$"Flipper Length (mm)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
+
+levels(cflen) = c("short", "medium", "long")
+
+tab.flen=addmargins(table(chinstrapset$Sex,cflen),FUN = sum) 
+tab.flen
 ```
 
 
@@ -966,5 +976,37 @@ tab[3,3]*tab[2,4]/tab[3,4] # this is the expected value for the number of male p
 ```{r}
 prop.test(table(cWeight,chinstrapset$Sex))
 prop.table(table(chinstrapset$Sex,cWeight))
+```
+## chisq-test 
+we can see if the sex of chinstrap is actually related to the body mass of penguins.
+### data preperation
+
+```{r label = chi.bodymass}
+
+cat.f.bodymass = c(18,12,4)
+cat.m.bodymass = c(5,10,19)
+chi.dat.bodymass = data.frame(cat.f.bodymass,cat.m.bodymass)
+pval.chi.bodymass = chisq.test(chi.dat.bodymass)$p.value
+```
+```{r label = chi.bill.length}
+
+cat.f.blen = c(25,8,1)
+cat.m.blen = c(1,14,19)
+chi.dat.blen = data.frame(cat.f.blen,cat.m.blen)
+pval.chi.blen = chisq.test(chi.dat.blen)$p.value
+```
+```{r label = chi.bill.depth}
+
+cat.f.bdep = c(25,8,1)
+cat.m.bdep = c(1,14,19)
+chi.dat.bdep = data.frame(cat.f.bdep,cat.m.bdep)
+pval.chi.bdep = chisq.test(chi.dat.bdep)$p.value
+```
+```{r label = chi.flipper.length}
+
+cat.f.flen = c(20,10,4)
+cat.m.flen = c(5,11,18)
+chi.dat.flen = data.frame(cat.f.bflen,cat.m.flen)
+pval.chi.flen = chisq.test(chi.dat.bflen)$p.value
 ```
 
