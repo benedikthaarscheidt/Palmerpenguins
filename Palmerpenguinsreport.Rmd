@@ -19,7 +19,6 @@ df
 ```
 
 
-
 ```{r echo=FALSE, include=FALSE}
 #Subsetting the penguin Species 
 head(penguins)
@@ -32,13 +31,66 @@ gentooset=df[df$Species =="Gentoo penguin (Pygoscelis papua)",]
 gentoomale = gentooset[gentooset$Sex =="MALE",]
 gentoofemale = gentooset[gentooset$Sex =="FEMALE",]
 
+#Important to take arithmetic mean 
+meanbodymassadelie=mean(adelieset$"Body Mass (g)", na.rm=TRUE)
+meanbodymassadeliemale=mean(adeliemale$"Body Mass (g)", na.rm=TRUE)
+meanbodymassadeliefemale=mean(adeliefemale$"Body Mass (g)", na.rm=TRUE)
+medianbodymassadeliemale=median(adeliemale$"Body Mass (g)", na.rm=TRUE)
+medianbodymassadeliefemale=median(adeliefemale$"Body Mass (g)", na.rm=TRUE)
+
+summaryadeliefemale=summary(adeliefemale[,3:6])
+summaryadeliemale=summary(adeliemale[,3:6])
+
+```
+
+
+# abstract (short summary)
+
+
+# Introduction
+
+**Jaesub ver)** In the intricate web of the natural world, the phenomenon of sexual dimorphism stands out as a captivating manifestation of evolutionary diversity. Just like in the species homo sapiens, the animal kingdom showcases a myriad of fascinating adaptations that highlight the distinct physical and behavioral differences between males and females of the same species. Sexual dimorphism, rooted in the forces of natural selection and reproductive strategies, offers a window into the adaptive mechanisms that have shaped countless species over millennia.  
+
+From the majestic mane of a male lion to the vibrant plumage of a male peacock, sexual dimorphism is often prominently displayed in the external characteristics of animals. This manifests as differences in size, coloration, behavior, or reproductive anatomy between the sexes of a species. Beyond mere aesthetics, these differences often serve crucial roles in the survival and reproductive success of individuals within a species. A fundamental understanding of the various forms of sexual dimorphism in a variety of species will be an important step toward understanding the evolutionary pressures that have shaped these unique traits and behaviors.
+
+This report is dedicated to the comprehensive examination of sexual dimorphism in the context of penguins, and highlight the ecological and reproductive significance of these differences. By undertaking this investigation, we endeavor to acquire a deeper understanding of the intricate dynamics between males and females within various species, elucidating how evolutionary pressures have contributed to the development of these distinctive relationships.
+
+In Chinstrap penguins (Pygoscelis antarcticus), one of the most recognizable and widely studied penguin species, sexual dimorphism manifests notably in aspects such as body mass, flipper length, and bill size. This report aims to explore and quantify the differences between male and female Chinstrap penguins, shedding light on how these disparities play a crucial role in their breeding behavior, survival strategies, and overall ecology.
+
+Chinstrap penguins, known for their distinctive black band under their heads, inhabit several islands and shores in the Southern Pacific and the Antarctic Ocean. These regions' harsh and competitive environments necessitate various adaptations, potentially influencing the development of sexual dimorphism. Previous studies have indicated that differences in body size and features between males and females could be attributed to factors like mating competition, foraging efficiency, and parental roles in nurturing the young. 
+
+
+<br>
+
+![Chinstrap Penguin](Chinstrap-penguin.jpg.webp){width=35%}
+
+# Data
+The data employed to substantiate the previously posited hypothesis was sourced from the Palmerpenguins package of the CRAN R library. This package encapsulates an extensive dataset named penguins_raw featuring dimensions such as body mass, size measurements, clutch observations, and blood isotope ratios for adult Adélie, Chinstrap, and Gentoo penguins in the Palmer Archipelago near Palmer Station, Antarctica. Dr. Kristen Gorman and the Palmer Station Long Term Ecological Research (LTER) Program curated and generously shared this dataset, showcasing the collaborative nature of scientific endeavors. Spanning 344 penguins across three distinct species (Adélie, Chinstrap, and Gentoo ), the dataset originates from three islands within the Palmer Archipelago, providing a rich tapestry of geographical diversity. Notably, the dataset includes morphological measurements, with culmen (bill) length and depth thoughtfully renamed as bill_length_mm and bill_depth_mm for clarity, contributing to a nuanced comprehension of penguin ecology. Complementing the morphological data are clutch observations shedding light on the reproductive behavior of the penguins and blood isotope ratios offering insights into their dietary habits and foraging strategies. Furthermore the dataset extends to other sample information such as individual ID of the observed penguin, the sample number, the study name and some comments. Since were interested in performing a descriptive analysis and use the information to abstract and generalize, we simply ignore those datapoints and focus on the described relevant ones.
+
+In the pursuit of substantiating the stated hypothesis, our focus is on comparing key characteristics such as bill/culmen length and depth, body mass, delta 13C, delta 15N, and flipper size between male and female penguins. The objective is to discern potential sexual dimorphism and its implications in the context of the penguin species under study. Moreover, we intend to extend our analysis by comparing the obtained results with a dataset concerning possums in Australia and potentially other species. This comparative approach aims to abstract the underlying hypothesis and draw inferences that transcend the confines of the penguin dataset, contributing to a broader understanding of sexual dimorphism and ecological dynamics across diverse species. In our exploration of the palmerpenguins dataset, we focused on pertinent dimensions to substantiate our hypothesis, selectively disregarding columns not integral to our investigation. 
+Below one can see the head of the penguins_raw dataframe.
+```{r echo=FALSE}
+pengraw=head(df)
+knitr::kable(pengraw)
+```
+
+# Statistical analysis
+
+To extract crucial insights from the penguins dataset and pursue our primary objective, which is to emphasize our hypothesis that there are distinctive physical characteristics between male and female penguins, we employ built-in R utilities and leverage specific functionalities offered by the "effsize" package accessible through the CRAN repository. All computations and tests are executed within the R Markdown environment. This approach allows us to thoroughly analyze the dataset, assess sex-based variations, and validate our underlying hypothesis with a comprehensive set of statistical tools.
+
+In order to achieve all this some crucial measures have to be taken:
+The dataset has to be prepared ergo split into the two sexes in order to be able to make comparisons individually. 
+
+```{r}
 chinstrapset=df[df$Species =="Chinstrap penguin (Pygoscelis antarctica)",]
 chinstrapmale=chinstrapset[chinstrapset$Sex =="MALE",]
 chinstrapfemale=chinstrapset[chinstrapset$Sex =="FEMALE",]
+```
 
-head(chinstrapmale)
-head(chinstrapfemale)
+Furthermore without relying on specific statistical test like the Kolmogorov Smirnov test or the like, basic statistical parameters were calculated which will be interpreted in the results section. Those are the standard deviation of bill length and depth, the bodymass and the flipper size, the mean of all those physical traits, the median of those traits, as well as a concluding summary of those traits:
 
+
+```{r}
 
 # Standard deviation of Chinstrap Male
 
@@ -75,15 +127,7 @@ chinstrapSex=Sextable[,2]
 ## Data analysis
 #numerical data summary adelie:
 
-#Important to take arithmetic mean 
-meanbodymassadelie=mean(adelieset$"Body Mass (g)", na.rm=TRUE)
-meanbodymassadeliemale=mean(adeliemale$"Body Mass (g)", na.rm=TRUE)
-meanbodymassadeliefemale=mean(adeliefemale$"Body Mass (g)", na.rm=TRUE)
-medianbodymassadeliemale=median(adeliemale$"Body Mass (g)", na.rm=TRUE)
-medianbodymassadeliefemale=median(adeliefemale$"Body Mass (g)", na.rm=TRUE)
 
-summaryadeliefemale=summary(adeliefemale[,3:6])
-summaryadeliemale=summary(adeliemale[,3:6])
 
 
 
@@ -134,47 +178,6 @@ medianflipperlengthchinstrapfemale=median(chinstrapfemale$"Flipper Length (mm)",
 
 summarychinstrapfemale=summary(chinstrapfemale[,3:6])
 summarychinstrapmale=summary(chinstrapmale[,3:6])
-```
-
-
-# abstract (short summary)
-
-
-# Introduction
-
-
-**Bene ver)** In the quest to comprehend the intricate web of gender inequality, an exploration of sexual dimorphism becomes essential. Our focus on the charming world of penguins, emblematic of various avian species, serves as a unique prism through which we examine the prevalence of sexual dimorphism across the animal kingdom. By delving into the distinctive traits between male and female penguins, this study aims to unravel the biological roots that may have historically influenced societal structures and contributed to the nuanced issue of gender inequality. **<span style="color:red">I do not believe that the purpose of our report is to understand human social and cultural gender inequality.</span>**
-
-**Jaesub ver)** In the intricate web of the natural world, the phenomenon of sexual dimorphism stands out as a captivating manifestation of evolutionary diversity. Just like Human, the animal kingdom showcases a myriad of fascinating adaptations that highlight the distinct physical and behavioral differences between males and females of the same species. Sexual dimorphism, rooted in the forces of natural selection and reproductive strategies, offers a window into the adaptive mechanisms that have shaped countless species over millennia.
-
-**Bene ver)** Sexual dimorphism, a widespread biological phenomenon, manifests as differences in size, coloration, behavior, or reproductive anatomy between the sexes of a species. Evolving through natural selection, these differences are intricately tied to optimizing reproductive success. **<span style="color:red">that's good though</span>** It is crucial to note that while we acknowledge the biological relevance of sexual dimorphism, we must distinguish these biological aspects from the sociocultural constructs that have historically perpetuated gender-based inequalities. 
-
-~~Throughout history, the misuse of physical differences, such as strength, has been implicated in the subjugation of one gender by another, contributing to the establishment of patriarchal societies. Our examination of penguins allows us to draw parallels between the biological underpinnings of sexual dimorphism and potential implications for social structures.~~
-
-**Jaesub ver)** From the majestic mane of a male lion to the vibrant plumage of a male peacock, sexual dimorphism is often prominently displayed in the external characteristics of animals. This manifests as differences in size, coloration, behavior, or reproductive anatomy between the sexes of a species. Beyond mere aesthetics, these differences often serve crucial roles in the survival and reproductive success of individuals within a species. A fundamental understanding of the various forms of sexual dimorphism in a variety of species will be an important step toward understanding the evolutionary pressures that have shaped these unique traits and behaviors.
-
-By zooming in on penguins and drawing comparisons with other animal species, we seek to illustrate the diverse manifestations of sexual dimorphism. Penguins, with their unique characteristics, offer a captivating case study to understand how biological differences may contribute to specific roles within a species.  **<span style="color:red">good!</span>** Importantly, our goal is to emphasize that while biological differences exist, they should never justify societal inequalities or discriminatory practices. **<span style="color:red">what???</span>**
-
-**Jaesub ver)** This report is dedicated to the comprehensive examination of sexual dimorphism in the context of penguins, and highlight the ecological and reproductive significance of these differences. By undertaking this investigation, we endeavor to acquire a deeper understanding of the intricate dynamics between males and females within various species, elucidating how evolutionary pressures have contributed to the development of these distinctive relationships.
-
-**Bene ver)** In Chinstrap penguins (Pygoscelis antarcticus)~~, one of the most recognizable and widely studied penguin species,~~ sexual dimorphism manifests notably in aspects such as body mass, flipper length, and bill size. This report aims to explore and quantify the differences between male and female Chinstrap penguins, shedding light on how these disparities play a crucial role in their breeding behavior, survival strategies, and overall ecology.
-
-Chinstrap penguins, known for their distinctive black band under their heads, inhabit several islands and shores in the Southern Pacific and the Antarctic Ocean. These regions' harsh and competitive environments necessitate various adaptations, potentially influencing the development of sexual dimorphism. Previous studies have indicated that differences in body size and features between males and females could be attributed to factors like mating competition, foraging efficiency, and parental roles in nurturing the young. 
-
-**Jaesub attached** _This report focuses on the examination of sexual dimorphism in chinstrap penguins, with particular attention to the Palmer Archipelago population._ Our analysis focuses on comparing key physical attributes - namely, body mass, flipper length, and bill measurements - to provide insights into the extent and implications of sexual dimorphism in this species. Through statistical analysis of data collected from field studies, we aim to determine the significance and effect size of the differences between male and female Chinstrap penguins. Such an understanding not only contributes to our knowledge of penguin biology but also aids in conservation efforts, ensuring the continued survival and health of these remarkable birds in their rapidly changing habitats.
-
-<br>
-
-![Chinstrap Penguin](Chinstrap-penguin.jpg.webp){width=35%}
-
-# Data
-The data employed to substantiate the previously posited hypothesis was sourced from the Palmerpenguins package of the CRAN R library. This package encapsulates an extensive dataset named penguins_raw featuring dimensions such as body mass, size measurements, clutch observations, and blood isotope ratios for adult Adélie, Chinstrap, and Gentoo penguins in the Palmer Archipelago near Palmer Station, Antarctica. Dr. Kristen Gorman and the Palmer Station Long Term Ecological Research (LTER) Program curated and generously shared this dataset, showcasing the collaborative nature of scientific endeavors. Spanning 344 penguins across three distinct species (Adélie, Chinstrap, and Gentoo ), the dataset originates from three islands within the Palmer Archipelago, providing a rich tapestry of geographical diversity. Notably, the dataset includes morphological measurements, with culmen (bill) length and depth thoughtfully renamed as bill_length_mm and bill_depth_mm for clarity, contributing to a nuanced comprehension of penguin ecology. Complementing the morphological data are clutch observations shedding light on the reproductive behavior of the penguins and blood isotope ratios offering insights into their dietary habits and foraging strategies. Furthermore the dataset extends to other sample information such as individual ID of the observed penguin, the sample number, the study name and some comments. Since were interested in performing a descriptive analysis and use the information to abstract and generalize, we simply ignore those datapoints and focus on the described relevant ones.
-
-In the pursuit of substantiating the stated hypothesis, our focus is on comparing key characteristics such as bill/culmen length and depth, body mass, delta 13C, delta 15N, and flipper size between male and female penguins. The objective is to discern potential sexual dimorphism and its implications in the context of the penguin species under study. Moreover, we intend to extend our analysis by comparing the obtained results with a dataset concerning possums in Australia and potentially other species. This comparative approach aims to abstract the underlying hypothesis and draw inferences that transcend the confines of the penguin dataset, contributing to a broader understanding of sexual dimorphism and ecological dynamics across diverse species. In our exploration of the palmerpenguins dataset, we focused on pertinent dimensions to substantiate our hypothesis, selectively disregarding columns not integral to our investigation. 
-Below one can see the head of the penguins_raw dataframe.
-```{r echo=FALSE}
-pengraw=head(df)
-knitr::kable(pengraw)
 ```
 
 statistical analyis (which software, R, which packages, which tests)
