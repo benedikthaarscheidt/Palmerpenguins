@@ -1006,7 +1006,14 @@ pval.chi.bdep = chisq.test(chi.dat.bdep)$p.value
 
 cat.f.flen = c(20,10,4)
 cat.m.flen = c(5,11,18)
-chi.dat.flen = data.frame(cat.f.bflen,cat.m.flen)
-pval.chi.flen = chisq.test(chi.dat.bflen)$p.value
+chi.dat.flen = data.frame(cat.f.flen,cat.m.flen)
+pval.chi.flen = chisq.test(chi.dat.flen)$p.value
 ```
 
+We categoriz chinstrap penguins data, which are bill length, bill depth, flipper length, and body mass into three part based on their size. Through a chi-square independence test, we confirm that sex is associated with bodysize and body mass in the chinstrap penguin population.
+```{r}
+p.values = c(pval.chi.blen,pval.chi.bdep,pval.chi.flen,pval.chi.bodymass)
+significant = c('yes','yes','yes','yes')
+chi.result = data.frame(p.values,significant)
+chi.result
+```
