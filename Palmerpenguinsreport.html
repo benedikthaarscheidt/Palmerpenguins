@@ -1754,157 +1754,164 @@ a comprehensive set of statistical tools.</p>
 <p>In order to achieve all this some crucial measures have to be taken:
 The dataset has to be prepared ergo split into the two sexes in order to
 be able to make comparisons individually.</p>
-<pre class="r"><code>chinstrapset=df[df$Species ==&quot;Chinstrap penguin (Pygoscelis antarctica)&quot;,]
-chinstrapmale=chinstrapset[chinstrapset$Sex ==&quot;MALE&quot;,]
+<p>Distribution of the sexes within the data set:</p>
+<pre class="r"><code>knitr::kable(table(df$Sex,df$Species))</code></pre>
+<table>
+<colgroup>
+<col width="5%" />
+<col width="30%" />
+<col width="35%" />
+<col width="28%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Adelie Penguin (Pygoscelis adeliae)</th>
+<th align="right">Chinstrap penguin (Pygoscelis antarctica)</th>
+<th align="right">Gentoo penguin (Pygoscelis papua)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">FEMALE</td>
+<td align="right">73</td>
+<td align="right">34</td>
+<td align="right">58</td>
+</tr>
+<tr class="even">
+<td align="left">MALE</td>
+<td align="right">73</td>
+<td align="right">34</td>
+<td align="right">61</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>chinstrapset=df[df$Species ==&quot;Chinstrap penguin (Pygoscelis antarctica)&quot;,]</code></pre>
+<div id="mean-chinstrap-population" class="section level2">
+<h2>Mean Chinstrap population</h2>
+<pre class="r"><code>meanbodymasschinstrap=mean(chinstrapset$&quot;Body Mass (g)&quot;, na.rm=TRUE)
+meanbilllengthchinstrap=mean(chinstrapset$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
+meanbilldepthchinstrap=mean(chinstrapset$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
+meanflipperlengthchinstrap=mean(chinstrapset$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)</code></pre>
+</div>
+<div id="median-chinstrap-population" class="section level2">
+<h2>Median Chinstrap population</h2>
+<pre class="r"><code>medianbodymasschinstrap=median(chinstrapset$&quot;Body Mass (g)&quot;, na.rm=TRUE)
+medianbilllengthchinstrap=median(chinstrapset$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
+medianbilldepthchinstrap=median(chinstrapset$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
+medianflipperlengthchinstrap=median(chinstrapset$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)</code></pre>
+</div>
+<div id="subsetting-chinstrap-penguin-set-by-sexes" class="section level2">
+<h2>Subsetting Chinstrap penguin set by sexes</h2>
+<pre class="r"><code>chinstrapmale=chinstrapset[chinstrapset$Sex ==&quot;MALE&quot;,]
 chinstrapfemale=chinstrapset[chinstrapset$Sex ==&quot;FEMALE&quot;,]
-head(chinstrapmale)</code></pre>
-<pre><code>## # A tibble: 6 × 17
-##   studyName `Sample Number` Species          Region Island Stage `Individual ID`
-##   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;          
-## 1 PAL0708                 2 Chinstrap pengu… Anvers Dream  Adul… N61A2          
-## 2 PAL0708                 3 Chinstrap pengu… Anvers Dream  Adul… N62A1          
-## 3 PAL0708                 5 Chinstrap pengu… Anvers Dream  Adul… N64A1          
-## 4 PAL0708                 8 Chinstrap pengu… Anvers Dream  Adul… N66A2          
-## 5 PAL0708                10 Chinstrap pengu… Anvers Dream  Adul… N67A2          
-## 6 PAL0708                12 Chinstrap pengu… Anvers Dream  Adul… N68A2          
-## # ℹ 10 more variables: `Clutch Completion` &lt;chr&gt;, `Date Egg` &lt;date&gt;,
-## #   `Culmen Length (mm)` &lt;dbl&gt;, `Culmen Depth (mm)` &lt;dbl&gt;,
-## #   `Flipper Length (mm)` &lt;dbl&gt;, `Body Mass (g)` &lt;dbl&gt;, Sex &lt;chr&gt;,
-## #   `Delta 15 N (o/oo)` &lt;dbl&gt;, `Delta 13 C (o/oo)` &lt;dbl&gt;, Comments &lt;chr&gt;</code></pre>
-<pre class="r"><code>head(chinstrapfemale)</code></pre>
-<pre><code>## # A tibble: 6 × 17
-##   studyName `Sample Number` Species          Region Island Stage `Individual ID`
-##   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;          
-## 1 PAL0708                 1 Chinstrap pengu… Anvers Dream  Adul… N61A1          
-## 2 PAL0708                 4 Chinstrap pengu… Anvers Dream  Adul… N62A2          
-## 3 PAL0708                 6 Chinstrap pengu… Anvers Dream  Adul… N64A2          
-## 4 PAL0708                 7 Chinstrap pengu… Anvers Dream  Adul… N66A1          
-## 5 PAL0708                 9 Chinstrap pengu… Anvers Dream  Adul… N67A1          
-## 6 PAL0708                11 Chinstrap pengu… Anvers Dream  Adul… N68A1          
-## # ℹ 10 more variables: `Clutch Completion` &lt;chr&gt;, `Date Egg` &lt;date&gt;,
-## #   `Culmen Length (mm)` &lt;dbl&gt;, `Culmen Depth (mm)` &lt;dbl&gt;,
-## #   `Flipper Length (mm)` &lt;dbl&gt;, `Body Mass (g)` &lt;dbl&gt;, Sex &lt;chr&gt;,
-## #   `Delta 15 N (o/oo)` &lt;dbl&gt;, `Delta 13 C (o/oo)` &lt;dbl&gt;, Comments &lt;chr&gt;</code></pre>
+
+#Summary of all the columns of the individual subsets 
+summarychinstrapfemale=summary(chinstrapfemale[,3:6])
+summarychinstrapmale=summary(chinstrapmale[,3:6])
+
+meanbodymasschinstrap=mean(chinstrapset$&quot;Body Mass (g)&quot;, na.rm=TRUE)
+meanbilllengthchinstrap=mean(chinstrapset$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
+meanbilldepthchinstrap=mean(chinstrapset$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
+meanflipperlengthchinstrap=mean(chinstrapset$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)</code></pre>
 <p>Furthermore without relying on specific statistical test like the
 Kolmogorov Smirnov test or the like, basic statistical parameters were
 calculated which will be interpreted in the results section. Those are
 the standard deviation of bill length and depth, the bodymass and the
-flipper size, the mean of all those physical traits, the median of those
-traits, as well as a concluding summary of those traits:</p>
-<pre class="r"><code># Standard deviation of Chinstrap Male
-
+flipper length, the mean of all those physical traits, the median of
+those traits, as well as a concluding summary of those traits:</p>
+</div>
+<div id="male" class="section level2">
+<h2>Male</h2>
+<div id="standard-deviation" class="section level3">
+<h3>Standard deviation</h3>
+<pre class="r"><code>#bill length
 male_std_dev_bill_Length &lt;- sd(chinstrapmale$&quot;Culmen Length (mm)&quot;)
 male_std_dev_bill_Length</code></pre>
 <pre><code>## [1] 1.564558</code></pre>
-<pre class="r"><code>male_std_dev_bill_depth &lt;- sd(chinstrapmale$&quot;Culmen Depth (mm)&quot;)
+<pre class="r"><code>#bill depth 
+male_std_dev_bill_depth &lt;- sd(chinstrapmale$&quot;Culmen Depth (mm)&quot;)
 male_std_dev_bill_depth</code></pre>
 <pre><code>## [1] 0.761273</code></pre>
-<pre class="r"><code>male_std_dev_flipper_Length &lt;- sd(chinstrapmale$&quot;Flipper Length (mm)&quot;)
+<pre class="r"><code>#flipper length
+male_std_dev_flipper_Length &lt;- sd(chinstrapmale$&quot;Flipper Length (mm)&quot;)
 male_std_dev_flipper_Length</code></pre>
 <pre><code>## [1] 5.976558</code></pre>
-<pre class="r"><code>male_std_dev_body_mass &lt;- sd(chinstrapmale$&quot;Body Mass (g)&quot;)
+<pre class="r"><code>#bodymass
+male_std_dev_body_mass &lt;- sd(chinstrapmale$&quot;Body Mass (g)&quot;)
 male_std_dev_body_mass</code></pre>
 <pre><code>## [1] 362.1376</code></pre>
-<pre class="r"><code># Standard deviation of Chinstrap Female
-
+</div>
+<div id="mean" class="section level3">
+<h3>Mean</h3>
+<pre class="r"><code>#body mass
+meanbodymasschinstrapmale=mean(chinstrapmale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
+#bill lenght
+meanbilllengthchinstrapmale=mean(chinstrapmale$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
+#bill depth 
+meanbilldepthchinstrapmale=mean(chinstrapmale$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
+#flipper length 
+meanflipperlengthchinstrapmale=mean(chinstrapmale$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)</code></pre>
+</div>
+<div id="median" class="section level3">
+<h3>Median</h3>
+<pre class="r"><code>#body mass
+medianbodymasschinstrapmale=median(chinstrapmale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
+#bill length 
+medianbilllengthchinstrapmale=median(chinstrapmale$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
+#bill depth
+medianbilldepthchinstrapmale=median(chinstrapmale$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
+#flipper length 
+medianflipperlengthchinstrapmale=median(chinstrapmale$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)</code></pre>
+</div>
+</div>
+<div id="female" class="section level2">
+<h2>Female</h2>
+<div id="standard-deviation-1" class="section level3">
+<h3>Standard deviation</h3>
+<pre class="r"><code>#bill length
 female_std_dev_bill_Length &lt;- sd(chinstrapmale$&quot;Culmen Length (mm)&quot;)
 female_std_dev_bill_Length</code></pre>
 <pre><code>## [1] 1.564558</code></pre>
-<pre class="r"><code>female_std_dev_bill_depth &lt;- sd(chinstrapmale$&quot;Culmen Depth (mm)&quot;)
+<pre class="r"><code>#bill depth
+female_std_dev_bill_depth &lt;- sd(chinstrapmale$&quot;Culmen Depth (mm)&quot;)
 female_std_dev_bill_depth</code></pre>
 <pre><code>## [1] 0.761273</code></pre>
-<pre class="r"><code>female_std_dev_flipper_Length &lt;- sd(chinstrapmale$&quot;Flipper Length (mm)&quot;)
+<pre class="r"><code>#flipper length
+female_std_dev_flipper_Length &lt;- sd(chinstrapmale$&quot;Flipper Length (mm)&quot;)
 female_std_dev_flipper_Length</code></pre>
 <pre><code>## [1] 5.976558</code></pre>
-<pre class="r"><code>female_std_dev_body_mass &lt;- sd(chinstrapmale$&quot;Body Mass (g)&quot;)
+<pre class="r"><code>#body mass
+female_std_dev_body_mass &lt;- sd(chinstrapmale$&quot;Body Mass (g)&quot;)
 female_std_dev_body_mass</code></pre>
 <pre><code>## [1] 362.1376</code></pre>
-<pre class="r"><code>Sextable=table(df$Sex,df$Species)
-Sextable</code></pre>
-<pre><code>##         
-##          Adelie Penguin (Pygoscelis adeliae)
-##   FEMALE                                  73
-##   MALE                                    73
-##         
-##          Chinstrap penguin (Pygoscelis antarctica)
-##   FEMALE                                        34
-##   MALE                                          34
-##         
-##          Gentoo penguin (Pygoscelis papua)
-##   FEMALE                                58
-##   MALE                                  61</code></pre>
-<pre class="r"><code>adelieSex=Sextable[,1]
-gentooSex=Sextable[,3]
-chinstrapSex=Sextable[,2]
-
-
-
-
-## Data analysis
-#numerical data summary adelie:
-
-#Important to take arithmetic mean 
-meanbodymassadelie=mean(adelieset$&quot;Body Mass (g)&quot;, na.rm=TRUE)
-meanbodymassadeliemale=mean(adeliemale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
-meanbodymassadeliefemale=mean(adeliefemale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
-medianbodymassadeliemale=median(adeliemale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
-medianbodymassadeliefemale=median(adeliefemale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
-
-summaryadeliefemale=summary(adeliefemale[,3:6])
-summaryadeliemale=summary(adeliemale[,3:6])
-
-
-
-#numerical data summary chinstrap bodymass
-
-meanbodymasschinstrap=mean(chinstrapset$&quot;Body Mass (g)&quot;, na.rm=TRUE)
-meanbodymasschinstrapmale=mean(chinstrapmale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
+</div>
+<div id="mean-1" class="section level3">
+<h3>Mean</h3>
+<pre class="r"><code>#body mass
 meanbodymasschinstrapfemale=mean(chinstrapfemale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
-medianbodymasschinstrapmale=median(chinstrapmale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
-medianbodymasschinstrapfemale=median(chinstrapfemale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
-
-summarychinstrapfemale=summary(chinstrapfemale[,3:6])
-summarychinstrapmale=summary(chinstrapmale[,3:6])
-
-
-#numerical data summary chinstrap billlength 
-
-meanbilllengthchinstrap=mean(chinstrapset$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
-meanbilllengthchinstrapmale=mean(chinstrapmale$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
+#bill length 
 meanbilllengthchinstrapfemale=mean(chinstrapfemale$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
-medianbilllengthchinstrapmale=median(chinstrapmale$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
-medianbilllengthchinstrapfemale=median(chinstrapfemale$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
-
-summarychinstrapfemale=summary(chinstrapfemale[,3:6])
-summarychinstrapmale=summary(chinstrapmale[,3:6])
-
-
-#Numerical data summary bill depth 
-
-meanbilldepthchinstrap=mean(chinstrapset$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
-meanbilldepthchinstrapmale=mean(chinstrapmale$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
+#bill depth 
 meanbilldepthchinstrapfemale=mean(chinstrapfemale$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
-medianbilldepthchinstrapmale=median(chinstrapmale$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
+#flipper length 
+meanflipperlengthchinstrapfemale=mean(chinstrapfemale$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)</code></pre>
+</div>
+<div id="median-1" class="section level3">
+<h3>Median</h3>
+<pre class="r"><code>#body mass
+medianbodymasschinstrapfemale=median(chinstrapfemale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
+#bill length 
+medianbilllengthchinstrapfemale=median(chinstrapfemale$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
+#billl depth 
 medianbilldepthchinstrapfemale=median(chinstrapfemale$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
-
-summarychinstrapfemale=summary(chinstrapfemale[,3:6])
-summarychinstrapmale=summary(chinstrapmale[,3:6])
-
-
-#numerical data summary flipperlength
-
-
-meanflipperlengthchinstrap=mean(chinstrapset$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)
-meanflipperlengthchinstrapmale=mean(chinstrapmale$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)
-meanflipperlengthchinstrapfemale=mean(chinstrapfemale$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)
-medianflipperlengthchinstrapmale=median(chinstrapmale$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)
-medianflipperlengthchinstrapfemale=median(chinstrapfemale$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)
-
-summarychinstrapfemale=summary(chinstrapfemale[,3:6])
-summarychinstrapmale=summary(chinstrapmale[,3:6])</code></pre>
+#flipper length 
+medianflipperlengthchinstrapfemale=median(chinstrapfemale$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)</code></pre>
 <p>statistical analyis (which software, R, which packages, which tests)
 results discussion (body sizes in birds in general, what is special with
 penguins) references (literature)</p>
+</div>
+</div>
 </div>
 
 

@@ -78,106 +78,135 @@ knitr::kable(pengraw)
 
 To extract crucial insights from the penguins dataset and pursue our primary objective, which is to emphasize our hypothesis that there are distinctive physical characteristics between male and female penguins, we employ built-in R utilities and leverage specific functionalities offered by the "effsize" package accessible through the CRAN repository. All computations and tests are executed within the R Markdown environment. This approach allows us to thoroughly analyze the dataset, assess sex-based variations, and validate our underlying hypothesis with a comprehensive set of statistical tools.
 
-In order to achieve all this some crucial measures have to be taken:
-The dataset has to be prepared ergo split into the two sexes in order to be able to make comparisons individually. 
+To accomplish this, certain key steps must be taken:
+The dataset needs preparation, requiring a split into the two sexes to facilitate individual comparisons.
 
+Distribution of sexes within the dataset:
 ```{r}
+knitr::kable(table(df$Sex,df$Species))
 chinstrapset=df[df$Species =="Chinstrap penguin (Pygoscelis antarctica)",]
-chinstrapmale=chinstrapset[chinstrapset$Sex =="MALE",]
-chinstrapfemale=chinstrapset[chinstrapset$Sex =="FEMALE",]
 ```
 
-Furthermore without relying on specific statistical test like the Kolmogorov Smirnov test or the like, basic statistical parameters were calculated which will be interpreted in the results section. Those are the standard deviation of bill length and depth, the bodymass and the flipper size, the mean of all those physical traits, the median of those traits, as well as a concluding summary of those traits:
 
+Next, we calculate various statistical parameters without relying on specific tests like the Kolmogorov-Smirnov test. These parameters, including the standard deviation of bill length and depth, body mass, and flipper length, along with the mean, median, and a comprehensive summary, will be interpreted in the results section:
 
+## Mean Chinstrap population
+```{r}
+meanbodymasschinstrap=mean(chinstrapset$"Body Mass (g)", na.rm=TRUE)
+meanbilllengthchinstrap=mean(chinstrapset$"Culmen Length (mm)", na.rm=TRUE)
+meanbilldepthchinstrap=mean(chinstrapset$"Culmen Depth (mm)", na.rm=TRUE)
+meanflipperlengthchinstrap=mean(chinstrapset$"Flipper Length (mm)", na.rm=TRUE)
+```
+
+## Median Chinstrap population
+```{r}
+medianbodymasschinstrap=median(chinstrapset$"Body Mass (g)", na.rm=TRUE)
+medianbilllengthchinstrap=median(chinstrapset$"Culmen Length (mm)", na.rm=TRUE)
+medianbilldepthchinstrap=median(chinstrapset$"Culmen Depth (mm)", na.rm=TRUE)
+medianflipperlengthchinstrap=median(chinstrapset$"Flipper Length (mm)", na.rm=TRUE)
+```
+
+## Subsetting Chinstrap penguin set by sexes
 ```{r}
 
-# Standard deviation of Chinstrap Male
+chinstrapmale=chinstrapset[chinstrapset$Sex =="MALE",]
+chinstrapfemale=chinstrapset[chinstrapset$Sex =="FEMALE",]
 
+#Summary of all the columns of the individual subsets 
+summarychinstrapfemale=summary(chinstrapfemale[,3:6])
+summarychinstrapmale=summary(chinstrapmale[,3:6])
+
+meanbodymasschinstrap=mean(chinstrapset$"Body Mass (g)", na.rm=TRUE)
+meanbilllengthchinstrap=mean(chinstrapset$"Culmen Length (mm)", na.rm=TRUE)
+meanbilldepthchinstrap=mean(chinstrapset$"Culmen Depth (mm)", na.rm=TRUE)
+meanflipperlengthchinstrap=mean(chinstrapset$"Flipper Length (mm)", na.rm=TRUE)
+```
+
+
+Furthermore without relying on specific statistical test like the Kolmogorov Smirnov test or the like, basic statistical parameters were calculated which will be interpreted in the results section. Those are the standard deviation of bill length and depth, the bodymass and the flipper length, the mean of all those physical traits, the median of those traits, as well as a concluding summary of those traits:
+
+## Male
+
+### Standard deviation
+```{r}
+#bill length
 male_std_dev_bill_Length <- sd(chinstrapmale$"Culmen Length (mm)")
 male_std_dev_bill_Length
+#bill depth 
 male_std_dev_bill_depth <- sd(chinstrapmale$"Culmen Depth (mm)")
 male_std_dev_bill_depth
+#flipper length
 male_std_dev_flipper_Length <- sd(chinstrapmale$"Flipper Length (mm)")
 male_std_dev_flipper_Length
+#bodymass
 male_std_dev_body_mass <- sd(chinstrapmale$"Body Mass (g)")
 male_std_dev_body_mass
+```
+### Mean
+```{r}
+#body mass
+meanbodymasschinstrapmale=mean(chinstrapmale$"Body Mass (g)", na.rm=TRUE)
+#bill lenght
+meanbilllengthchinstrapmale=mean(chinstrapmale$"Culmen Length (mm)", na.rm=TRUE)
+#bill depth 
+meanbilldepthchinstrapmale=mean(chinstrapmale$"Culmen Depth (mm)", na.rm=TRUE)
+#flipper length 
+meanflipperlengthchinstrapmale=mean(chinstrapmale$"Flipper Length (mm)", na.rm=TRUE)
+```
+### Median
+```{r}
+#body mass
+medianbodymasschinstrapmale=median(chinstrapmale$"Body Mass (g)", na.rm=TRUE)
+#bill length 
+medianbilllengthchinstrapmale=median(chinstrapmale$"Culmen Length (mm)", na.rm=TRUE)
+#bill depth
+medianbilldepthchinstrapmale=median(chinstrapmale$"Culmen Depth (mm)", na.rm=TRUE)
+#flipper length 
+medianflipperlengthchinstrapmale=median(chinstrapmale$"Flipper Length (mm)", na.rm=TRUE)
+```
 
-# Standard deviation of Chinstrap Female
+## Female
 
+### Standard deviation
+```{r}
+#bill length
 female_std_dev_bill_Length <- sd(chinstrapmale$"Culmen Length (mm)")
 female_std_dev_bill_Length
+#bill depth
 female_std_dev_bill_depth <- sd(chinstrapmale$"Culmen Depth (mm)")
 female_std_dev_bill_depth
+#flipper length
 female_std_dev_flipper_Length <- sd(chinstrapmale$"Flipper Length (mm)")
 female_std_dev_flipper_Length
+#body mass
 female_std_dev_body_mass <- sd(chinstrapmale$"Body Mass (g)")
 female_std_dev_body_mass
 
+```
 
-Sextable=table(df$Sex,df$Species)
-Sextable
-adelieSex=Sextable[,1]
-gentooSex=Sextable[,3]
-chinstrapSex=Sextable[,2]
-
-
-
-
-## Data analysis
-#numerical data summary adelie:
-
-
-
-
-
-#numerical data summary chinstrap bodymass
-
-meanbodymasschinstrap=mean(chinstrapset$"Body Mass (g)", na.rm=TRUE)
-meanbodymasschinstrapmale=mean(chinstrapmale$"Body Mass (g)", na.rm=TRUE)
+### Mean 
+```{r}
+#body mass
 meanbodymasschinstrapfemale=mean(chinstrapfemale$"Body Mass (g)", na.rm=TRUE)
-medianbodymasschinstrapmale=median(chinstrapmale$"Body Mass (g)", na.rm=TRUE)
-medianbodymasschinstrapfemale=median(chinstrapfemale$"Body Mass (g)", na.rm=TRUE)
-
-summarychinstrapfemale=summary(chinstrapfemale[,3:6])
-summarychinstrapmale=summary(chinstrapmale[,3:6])
-
-
-#numerical data summary chinstrap billlength 
-
-meanbilllengthchinstrap=mean(chinstrapset$"Culmen Length (mm)", na.rm=TRUE)
-meanbilllengthchinstrapmale=mean(chinstrapmale$"Culmen Length (mm)", na.rm=TRUE)
+#bill length 
 meanbilllengthchinstrapfemale=mean(chinstrapfemale$"Culmen Length (mm)", na.rm=TRUE)
-medianbilllengthchinstrapmale=median(chinstrapmale$"Culmen Length (mm)", na.rm=TRUE)
-medianbilllengthchinstrapfemale=median(chinstrapfemale$"Culmen Length (mm)", na.rm=TRUE)
-
-summarychinstrapfemale=summary(chinstrapfemale[,3:6])
-summarychinstrapmale=summary(chinstrapmale[,3:6])
-
-
-#Numerical data summary bill depth 
-
-meanbilldepthchinstrap=mean(chinstrapset$"Culmen Depth (mm)", na.rm=TRUE)
-meanbilldepthchinstrapmale=mean(chinstrapmale$"Culmen Depth (mm)", na.rm=TRUE)
+#bill depth 
 meanbilldepthchinstrapfemale=mean(chinstrapfemale$"Culmen Depth (mm)", na.rm=TRUE)
-medianbilldepthchinstrapmale=median(chinstrapmale$"Culmen Depth (mm)", na.rm=TRUE)
-medianbilldepthchinstrapfemale=median(chinstrapfemale$"Culmen Depth (mm)", na.rm=TRUE)
-
-summarychinstrapfemale=summary(chinstrapfemale[,3:6])
-summarychinstrapmale=summary(chinstrapmale[,3:6])
-
-
-#numerical data summary flipperlength
-
-
-meanflipperlengthchinstrap=mean(chinstrapset$"Flipper Length (mm)", na.rm=TRUE)
-meanflipperlengthchinstrapmale=mean(chinstrapmale$"Flipper Length (mm)", na.rm=TRUE)
+#flipper length 
 meanflipperlengthchinstrapfemale=mean(chinstrapfemale$"Flipper Length (mm)", na.rm=TRUE)
-medianflipperlengthchinstrapmale=median(chinstrapmale$"Flipper Length (mm)", na.rm=TRUE)
-medianflipperlengthchinstrapfemale=median(chinstrapfemale$"Flipper Length (mm)", na.rm=TRUE)
+```
 
-summarychinstrapfemale=summary(chinstrapfemale[,3:6])
-summarychinstrapmale=summary(chinstrapmale[,3:6])
+
+### Median
+```{r}
+#body mass
+medianbodymasschinstrapfemale=median(chinstrapfemale$"Body Mass (g)", na.rm=TRUE)
+#bill length 
+medianbilllengthchinstrapfemale=median(chinstrapfemale$"Culmen Length (mm)", na.rm=TRUE)
+#billl depth 
+medianbilldepthchinstrapfemale=median(chinstrapfemale$"Culmen Depth (mm)", na.rm=TRUE)
+#flipper length 
+medianflipperlengthchinstrapfemale=median(chinstrapfemale$"Flipper Length (mm)", na.rm=TRUE)
 ```
 
 statistical analyis (which software, R, which packages, which tests)
