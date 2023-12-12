@@ -166,7 +166,6 @@ summarychinstrapmale=summary(chinstrapmale[,3:6])
 ### Shapiro-wilke test
 check if the data sets of the penguins satisfy the normal distribution, to use 
 subsequent t-test 
-
 ```{r label = shapiro-wilke-test, echo=FALSE}
 a_bill_length_female = shapiro.test(na.omit(adeliefemale$"Culmen Length (mm)"))$p.value
 a_bill_length_male = shapiro.test(na.omit(adeliemale$"Culmen Length (mm)"))$p.value
@@ -929,6 +928,8 @@ tab=addmargins(table(chinstrapset$Sex,cWeight),# specifiy the table
            ) 
 tab
 ```
+
+
 
 ```{r}
 cohensH = function (tab) {pt=prop.test(tab)
