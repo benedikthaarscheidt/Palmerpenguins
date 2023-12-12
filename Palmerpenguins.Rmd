@@ -258,6 +258,138 @@ cohen.d(chinstrapset$"Culmen Length (mm)", chinstrapset$Sex)
 cohen.d(chinstrapset$"Culmen Depth (mm)", chinstrapset$Sex)
 cohen.d(chinstrapset$"Flipper Length (mm)", chinstrapset$Sex)
 ```
+# chinstrap
+
+## Datasummary numerical
+```{r}
+meanbodychinstrapmale=mean(adelieset$"Body Mass (g)", na.rm=TRUE)
+meanbodychinstrapfemale=mean(adeliemale$"Body Mass (g)", na.rm=TRUE)
+meanbodymassadeliefemale=mean(adeliefemale$"Body Mass (g)", na.rm=TRUE)
+medianbodymassadeliemale=median(adeliemale$"Body Mass (g)", na.rm=TRUE)
+medianbodymassadeliefemale=median(adeliefemale$"Body Mass (g)", na.rm=TRUE)
+
+summaryadeliefemale=summary(adeliefemale[,3:6])
+summaryadeliemale=summary(adeliemale[,3:6])
+
+```
+
+
+## The variable categorical weight of the Chinstrap:
+
+```{r}
+cWeight = cut(chinstrapset$"Body Mass (g)",breaks=quantile(chinstrapset$"Body Mass (g)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
+
+levels(cWeight) = c("light", "medium", "heavy")
+
+tab=addmargins(table(chinstrapset$Sex,cWeight),# specifiy the table
+           FUN = sum # can also use all the other functions of Data Summary
+           ) 
+tab
+```
+```{r label = bill.length}
+cblen = cut(chinstrapset$"Culmen Depth (mm)",breaks=quantile(chinstrapset$"Culmen Depth (mm)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
+
+levels(cblen) = c("short", "medium", "long")
+
+tab.blen=addmargins(table(chinstrapset$Sex,cblen),FUN = sum) 
+tab.blen
+```
+```{r label = bill.depth}
+cbdep = cut(chinstrapset$"Culmen Depth (mm)",breaks=quantile(chinstrapset$"Culmen Depth (mm)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
+
+levels(cbdep) = c("deep", "medium", "shallow")
+
+tab.bdep=addmargins(table(chinstrapset$Sex,cbdep),FUN = sum) 
+tab.bdep
+```
+```{r label = flipper.length}
+cflen = cut(chinstrapset$"Flipper Length (mm)",breaks=quantile(chinstrapset$"Flipper Length (mm)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
+
+levels(cflen) = c("short", "medium", "long")
+
+tab.flen=addmargins(table(chinstrapset$Sex,cflen),FUN = sum) 
+tab.flen
+```
+
+
+
+```{r}
+cohensH = function (tab) {pt=prop.test(tab)
+h=2*abs(asin(sqrt(pt$estimate[1]))-
+asin(sqrt(pt$estimate[2]))) 
+return(h[[1]]) }
+```
+
+```{r}
+dg.cramersV = function (tab,correct=TRUE) {t=min(dim(tab)) 
+return(sqrt(chisq.test(tab,correct=correct)$statistic/
+              (sum(tab)*(t-1)))[[1]])}
+```
+
+
+```{r}
+dg.cramersV(tab)
+
+knitr::kable(tab)
+```
+
+
+```{r}
+tab[3,1]*tab[1,4]/tab[3,4] # this is the expected value for the number of female persons in the light category 
+tab[3,2]*tab[1,4]/tab[3,4] # this is the expected value for the number of female persons in the medium category 
+tab[3,3]*tab[1,4]/tab[3,4] # this is the expected value for the number of female persons in the heavy category 
+```
+
+```{r}
+tab[3,1]*tab[2,4]/tab[3,4] # this is the expected value for the number of male persons in the light category 
+tab[3,2]*tab[2,4]/tab[3,4] # this is the expected value for the number of male persons in the medium category 
+tab[3,3]*tab[2,4]/tab[3,4] # this is the expected value for the number of male persons in the heavy category 
+```
+```{r}
+prop.test(table(cWeight,chinstrapset$Sex))
+prop.table(table(chinstrapset$Sex,cWeight))
+```
+## chisq-test 
+we can see if the sex of chinstrap is actually related to the body mass of penguins.
+### data preperation
+
+```{r label = chi.bodymass}
+
+cat.f.bodymass = c(18,12,4)
+cat.m.bodymass = c(5,10,19)
+chi.dat.bodymass = data.frame(cat.f.bodymass,cat.m.bodymass)
+pval.chi.bodymass = chisq.test(chi.dat.bodymass)$p.value
+```
+```{r label = chi.bill.length}
+
+cat.f.blen = c(25,8,1)
+cat.m.blen = c(1,14,19)
+chi.dat.blen = data.frame(cat.f.blen,cat.m.blen)
+pval.chi.blen = chisq.test(chi.dat.blen)$p.value
+```
+```{r label = chi.bill.depth}
+
+cat.f.bdep = c(25,8,1)
+cat.m.bdep = c(1,14,19)
+chi.dat.bdep = data.frame(cat.f.bdep,cat.m.bdep)
+pval.chi.bdep = chisq.test(chi.dat.bdep)$p.value
+```
+```{r label = chi.flipper.length}
+
+cat.f.flen = c(20,10,4)
+cat.m.flen = c(5,11,18)
+chi.dat.flen = data.frame(cat.f.flen,cat.m.flen)
+pval.chi.flen = chisq.test(chi.dat.flen)$p.value
+```
+
+We categoriz chinstrap penguins data, which are bill length, bill depth, flipper length, and body mass into three part based on their size. Through a chi-square independence test, we confirm that sex is associated with bodysize and body mass in the chinstrap penguin population.
+```{r}
+p.values = c(pval.chi.blen,pval.chi.bdep,pval.chi.flen,pval.chi.bodymass)
+significant = c('yes','yes','yes','yes')
+chi.result = data.frame(p.values,significant)
+chi.result
+```
+
 
 ## Plots:
 
@@ -886,134 +1018,4 @@ par(mfrow=c(1, 1), mar = c(5, 4, 4, 2) + 0.1, oma = c(2, 1, 2, 1))
 
 
 
-# chinstrap
 
-## Datasummary numerical
-```{r}
-meanbodychinstrapmale=mean(adelieset$"Body Mass (g)", na.rm=TRUE)
-meanbodychinstrapfemale=mean(adeliemale$"Body Mass (g)", na.rm=TRUE)
-meanbodymassadeliefemale=mean(adeliefemale$"Body Mass (g)", na.rm=TRUE)
-medianbodymassadeliemale=median(adeliemale$"Body Mass (g)", na.rm=TRUE)
-medianbodymassadeliefemale=median(adeliefemale$"Body Mass (g)", na.rm=TRUE)
-
-summaryadeliefemale=summary(adeliefemale[,3:6])
-summaryadeliemale=summary(adeliemale[,3:6])
-
-```
-
-
-## The variable categorical weight of the Chinstrap:
-
-```{r}
-cWeight = cut(chinstrapset$"Body Mass (g)",breaks=quantile(chinstrapset$"Body Mass (g)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
-
-levels(cWeight) = c("light", "medium", "heavy")
-
-tab=addmargins(table(chinstrapset$Sex,cWeight),# specifiy the table
-           FUN = sum # can also use all the other functions of Data Summary
-           ) 
-tab
-```
-```{r label = bill.length}
-cblen = cut(chinstrapset$"Culmen Depth (mm)",breaks=quantile(chinstrapset$"Culmen Depth (mm)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
-
-levels(cblen) = c("short", "medium", "long")
-
-tab.blen=addmargins(table(chinstrapset$Sex,cblen),FUN = sum) 
-tab.blen
-```
-```{r label = bill.depth}
-cbdep = cut(chinstrapset$"Culmen Depth (mm)",breaks=quantile(chinstrapset$"Culmen Depth (mm)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
-
-levels(cbdep) = c("deep", "medium", "shallow")
-
-tab.bdep=addmargins(table(chinstrapset$Sex,cbdep),FUN = sum) 
-tab.bdep
-```
-```{r label = flipper.length}
-cflen = cut(chinstrapset$"Flipper Length (mm)",breaks=quantile(chinstrapset$"Flipper Length (mm)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
-
-levels(cflen) = c("short", "medium", "long")
-
-tab.flen=addmargins(table(chinstrapset$Sex,cflen),FUN = sum) 
-tab.flen
-```
-
-
-
-```{r}
-cohensH = function (tab) {pt=prop.test(tab)
-h=2*abs(asin(sqrt(pt$estimate[1]))-
-asin(sqrt(pt$estimate[2]))) 
-return(h[[1]]) }
-```
-
-```{r}
-dg.cramersV = function (tab,correct=TRUE) {t=min(dim(tab)) 
-return(sqrt(chisq.test(tab,correct=correct)$statistic/
-              (sum(tab)*(t-1)))[[1]])}
-```
-
-
-```{r}
-dg.cramersV(tab)
-
-knitr::kable(tab)
-```
-
-
-```{r}
-tab[3,1]*tab[1,4]/tab[3,4] # this is the expected value for the number of female persons in the light category 
-tab[3,2]*tab[1,4]/tab[3,4] # this is the expected value for the number of female persons in the medium category 
-tab[3,3]*tab[1,4]/tab[3,4] # this is the expected value for the number of female persons in the heavy category 
-```
-
-```{r}
-tab[3,1]*tab[2,4]/tab[3,4] # this is the expected value for the number of male persons in the light category 
-tab[3,2]*tab[2,4]/tab[3,4] # this is the expected value for the number of male persons in the medium category 
-tab[3,3]*tab[2,4]/tab[3,4] # this is the expected value for the number of male persons in the heavy category 
-```
-```{r}
-prop.test(table(cWeight,chinstrapset$Sex))
-prop.table(table(chinstrapset$Sex,cWeight))
-```
-## chisq-test 
-we can see if the sex of chinstrap is actually related to the body mass of penguins.
-### data preperation
-
-```{r label = chi.bodymass}
-
-cat.f.bodymass = c(18,12,4)
-cat.m.bodymass = c(5,10,19)
-chi.dat.bodymass = data.frame(cat.f.bodymass,cat.m.bodymass)
-pval.chi.bodymass = chisq.test(chi.dat.bodymass)$p.value
-```
-```{r label = chi.bill.length}
-
-cat.f.blen = c(25,8,1)
-cat.m.blen = c(1,14,19)
-chi.dat.blen = data.frame(cat.f.blen,cat.m.blen)
-pval.chi.blen = chisq.test(chi.dat.blen)$p.value
-```
-```{r label = chi.bill.depth}
-
-cat.f.bdep = c(25,8,1)
-cat.m.bdep = c(1,14,19)
-chi.dat.bdep = data.frame(cat.f.bdep,cat.m.bdep)
-pval.chi.bdep = chisq.test(chi.dat.bdep)$p.value
-```
-```{r label = chi.flipper.length}
-
-cat.f.flen = c(20,10,4)
-cat.m.flen = c(5,11,18)
-chi.dat.flen = data.frame(cat.f.flen,cat.m.flen)
-pval.chi.flen = chisq.test(chi.dat.flen)$p.value
-```
-
-We categoriz chinstrap penguins data, which are bill length, bill depth, flipper length, and body mass into three part based on their size. Through a chi-square independence test, we confirm that sex is associated with bodysize and body mass in the chinstrap penguin population.
-```{r}
-p.values = c(pval.chi.blen,pval.chi.bdep,pval.chi.flen,pval.chi.bodymass)
-significant = c('yes','yes','yes','yes')
-chi.result = data.frame(p.values,significant)
-chi.result
-```
