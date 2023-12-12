@@ -243,7 +243,7 @@ t.test(chinstrapfemale$"Body Mass (g)",chinstrapmale$"Body Mass (g)")
   
 According to the t test, there is a difference in the average body size and body mass between the female and male chinstrap groups.
 
-## Effecsize by cohens d
+### Effecsize by cohens d
 The function calculates the mean of "Body Mass (g)" for males and females separately.
 It then calculates the difference between these two means.
 Finally, it standardizes this difference by dividing it by the pooled standard deviation of the two groups.
@@ -258,9 +258,8 @@ cohen.d(chinstrapset$"Culmen Length (mm)", chinstrapset$Sex)
 cohen.d(chinstrapset$"Culmen Depth (mm)", chinstrapset$Sex)
 cohen.d(chinstrapset$"Flipper Length (mm)", chinstrapset$Sex)
 ```
-# chinstrap
 
-## Datasummary numerical
+### Datasummary numerical
 ```{r}
 meanbodychinstrapmale=mean(adelieset$"Body Mass (g)", na.rm=TRUE)
 meanbodychinstrapfemale=mean(adeliemale$"Body Mass (g)", na.rm=TRUE)
@@ -274,7 +273,7 @@ summaryadeliemale=summary(adeliemale[,3:6])
 ```
 
 
-## The variable categorical weight of the Chinstrap:
+### The variable categorical weight of the Chinstrap:
 
 ```{r}
 cWeight = cut(chinstrapset$"Body Mass (g)",breaks=quantile(chinstrapset$"Body Mass (g)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
@@ -349,7 +348,7 @@ tab[3,3]*tab[2,4]/tab[3,4] # this is the expected value for the number of male p
 prop.test(table(cWeight,chinstrapset$Sex))
 prop.table(table(chinstrapset$Sex,cWeight))
 ```
-## chisq-test 
+### chisq-test 
 we can see if the sex of chinstrap is actually related to the body mass of penguins.
 ### data preperation
 
