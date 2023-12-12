@@ -19,6 +19,7 @@ library(MASS)
 library(effsize)
 library(DAAG)
 library(palmerpenguins)
+library(knitr)
 ```
 
 This is the mammals dataset containing body and brain weigth of 62 land Species
@@ -337,7 +338,9 @@ prop.test(table(cWeight,chinstrapset$Sex))
 prop.table(table(chinstrapset$Sex,cWeight))
 ```
 ### chisq-test 
+
 we can see if the sex of chinstrap is actually related to the body mass of penguins.
+
 ### data preperation
 
 ```{r label = chi.bodymass}
@@ -376,6 +379,70 @@ significant = c('yes','yes','yes','yes')
 chi.result = data.frame(p.values,significant)
 chi.result
 ```
+
+### Calculating SDI 
+
+Calculating SDI of measurements of penguin species.
+
+Morphological measurements taken for all penguin individuals included culmen length (mm), culmen depth (mm), flipper length (mm) and body mass (g).
+
+To estimate overall SSD, a sexual dimorphism index (SDI) was first calculated for each of the seven morphological measurements taken. The SDI was calculated as: [(larger sex/smaller sex) − 1], arbitrarily set to positive when males are larger and negative when females are larger (Lovich & Gibbons, 1992). SSD was then calculated for all male-female.
+
+
+```{r label = calculate.SDI.chinstrap}
+sdi.chinstrap.blen = meanbilllengthchinstrapmale / meanbilllengthchinstrapfemale - 1
+sdi.chinstrap.bdep = meanbilldepthchinstrapmale / meanbilldepthchinstrapfemale - 1
+sdi.chinstrap.flen = meanflipperlengthchinstrapmale / meanflipperlengthchinstrapfemale - 1
+sdi.chinstrap.bmass = meanbodymasschinstrapmale / meanbodymasschinstrapfemale - 1
+```
+```{r label = calculate.SDI.adelie}
+sdi.adeli.blen = meanbilllengthadeliemale / meanbilllengthadeliefemale - 1
+sdi.adeli.bdep = meanbilldepthadeliemale / meanbilldepthadeliefemale - 1
+sdi.adeli.flen = meanflipperlengthadeliemale / meanflipperlengthadeliefemale -1
+sdi.adeli.bmass = meanbodymassadeliemale / meanbodymassadeliefemale-1
+```
+```{r label = calculate.SDI.gentoo}
+sdi.gentoo.blen = meanbilllengthgentoomale / meanbilllengthgentoofemale - 1
+sdi.gentoo.bdep = meanbilldepthgentoomale / meanbilldepthgentoofemale - 1
+sdi.gentoo.flen = meanflipperlengthgentoomale / meanflipperlengthgentoofemale - 1
+sdi.gentoo.bmass = meanbodymassgentoomale / meanbodymassgentoofemale - 1
+```
+
+```{r label = preparing.SDI.table}
+spc=c("Chinstrap", "Adelie", "Gentoo")
+bmass.f = c(meanbodymasschinstrapfemale,meanbodymassadeliefemale,meanbodymassgentoofemale)
+bmass.m = c(meanbodymasschinstrapmale,meanbodymassadeliemale,meanbodymassgentoomale)
+bmass.sdi = c(sdi.chinstrap.bmass,sdi.adeli.bmass,sdi.gentoo.bmass)
+
+blen.f = c(meanbilllengthchinstrapfemale,meanbilllengthadeliefemale,meanbilllengthgentoofemale)
+blen.m = c(meanbilllengthchinstrapmale,meanbilllengthadeliemale,meanbilllengthgentoomale)
+blen.sdi = c(sdi.chinstrap.blen,sdi.adeli.blen,sdi.gentoo.blen)
+
+bdep.f = c(meanbilldepthchinstrapfemale,meanbilldepthadeliefemale,meanbilllengthgentoofemale)
+bdep.m = c(meanbilldepthchinstrapmale,meanbilldepthadeliemale,meanbilldepthgentoomale)
+bdep.sdi = c(sdi.chinstrap.bdep,sdi.adeli.bdep,sdi.gentoo.bdep)
+
+flen.f = c(meanflipperlengthchinstrapfemale,meanflipperlengthadeliefemale,meanflipperlengthgentoofemale)
+flen.m = c(meanflipperlengthchinstrapmale,meanflipperlengthadeliemale,meanflipperlengthgentoomale)
+flen.sdi = c(sdi.chinstrap.flen,sdi.adeli.flen,sdi.gentoo.flen)
+sdi.table = data.frame(spc,bmass.f, bmass.m, bmass.sdi, blen.f, blen.m, blen.sdi, bdep.f, bdep.m, bdep.sdi, flen.f, flen.m, flen.sdi)
+sdi.table
+```
+
+### expression with table
+
+```{r, result="asis"}
+kable(sdi.table, col.names=c('Species',"BM F","BM M","BM SDI","BL F","BL M","BL SDI", "BD F","BD M", "BD SDI", "FL F","FL M","FL SDI"),
+      digits = 3,valign='t',
+      caption="Table of measurements and SDI value of penguin species")
+```
+
+BM, BL, BD and FL stand for body mass, bill length, bill depth and filpper length respectively.
+
+### Comparison with other bird species
+
+The data for different avian species were sourced from the database provided by Valcu, M., Valcu, C., & Kempenaers, B. (2023). This dataset encompasses information on body mass, wing length, and Sexual Dimorphism Index (SDI) categorized by male and female specimens for various avian species.
+Given that the database includes statistical values for wing length and body mass, we can compare these metrics with the corresponding flipper length and body mass of the penguins in our dataset. This enables a meaningful assessment of the morphological sexual dimorphism of penguins in relation to the broader avian species data provided.
 
 
 ## Plots:
