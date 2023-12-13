@@ -10,6 +10,7 @@ output:
   pdf_document:
     toc: yes
     toc_depth: '5'
+bibliography: references.bib
 ---
 ```{r echo=FALSE, include=FALSE}
 library(palmerpenguins)
@@ -1312,9 +1313,17 @@ Then we need to advance to the results of the datanalysis of the other species -
 In the discussion we need to drive the colclusions and find the right words for proving our hypothesis. 
 Here include the comparison with the literture data of other birds.
 
+## Comparison of sexual dimorphism within gentoo penguin genera
 
+The investigation into sexual dimorphism among _Pygoscelis_ species (_antarctica, adeliae, papua_), which inhabit the Palmer Archipelago, reveals a predominantly male-biased sexual dimorphism, as observed in many bird species. Comparative analysis of the absolute values of SDI (Standardized Difference Index) for body mass and flipper length with those of prey birds and songbirds indicates relatively higher sexual dimorphism in penguin species. When comparing the three penguin species, Chinstrap penguins exhibit higher sexual dimorphism in culmen length, culmen depth, and flipper length compared to the other two species, while Adelie and Gentoo penguins display high overall sexual dimorphism, primarily attributed to their body mass. 
 
+This observed high sexual dimorphism in Adelie and Gentoo penguins may be influenced by environmental differences or the distribution of gender roles within mating pairs. However, given the close and similar environments in which these penguin species live, the hypothesis that differences in sexual dimorphism are due to environmental differences cannot be easily accepted. For instance, in Chinstrap penguins, sexual dimorphism in body parts other than body mass may be driven by the participation ratio of females and males in hunting activities, rather than intraspecific competition among males. If sexual dimorphism were solely due to competition among conspecific males, Chinstrap penguins would also exhibit significant sexual dimorphism in body mass. This concept is supported by the hypothesis that sexual segregation is driven by dominant, larger conspecific individuals, as suggested by the ecological significance of behavioral dominance by Gauthreaux. @bateson_ecological_1978
 
+## Inverse sexual dimorphism in prey birds
+
+In contrast to the sexual dimorphism observed in the three penguin species, as well as in most songbirds compared, it is noteworthy that the majority of prey bird species used in the comparison exhibit female-biased sexual dimorphism, as depicted in the table. Various intriguing hypotheses have been proposed to explain this phenomenon. Some literature suggests that females, primarily responsible for incubating eggs and defending nests, exhibit female-biased sexual dimorphism. However, this hypothesis lacks generalizability, as it fails to explain cases observed in other bird species. Additionally, the hypothesis that prey birds introduce sexual dimorphism to broaden their prey spectrum has been postulated. Dekker (2009) propose that smaller and faster males primarily hunt smaller prey, while larger females, due to their greater size, focus on larger prey, explaining reverse-size sexual dimorphism. @dekker2009hunting (Dekker et al. 2009)
+
+Another perspective argues that the smaller size of males contributes to their success in hunting situations that demand complex maneuvers in mid-air. This is particularly relevant in species where the strength of sexual dimorphism is more pronounced. For instance, a study on owls suggests that larger, more agile prey is hunted by females with strong sexual dimorphism, implying that natural selection pressures have driven an increase in sexual dimorphism in such species @kruger_evolution_2005.
 
 
 
