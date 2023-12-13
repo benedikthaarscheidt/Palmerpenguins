@@ -98,7 +98,230 @@ gentooSex=Sextable[,3]
 chinstrapSex=Sextable[,2]
 
 ```
+```{r label = bird.data.preperation, echo=FALSE}
+pspc = c("Aegolius funereus"
+        ,"Circus pygargus"
+        ,"Aquila heliaca"
+        ,"Buteo galapagoensis"
+        ,"Buteo ridgwayi"
+        ,"Haliaeetus albicilla"
+        ,"Falco columbarius"
+        ,"Falco naumanni"
+        ,"Falco sparverius"
+        ,"Falco tinnunculus"
+        ,"Accipiter cooperii"
+        ,"Accipiter nisus"
+        ,"Athene cunicularia"
+        ,"Tyto alba"
+        ,"Gyps fulvus")
+# C bmm D bmf E wlm F wlf J wlsdi K bmsdi
+pbmm = c(119.2051282
+        ,261
+        ,2585
+        ,914.03
+        ,315
+        ,4014
+        ,163
+        ,141
+        ,106.1520325
+        ,167
+        ,353.4528302
+        ,150
+        ,151.1702128
+        ,362.0529197
+        ,8132
+        
+)
+pbmf = c(137.5798319
+        ,370
+        ,3845
+        ,1332.940299
+        ,414
+        ,5572
+        ,218
+        ,164
+        ,120.4013158
+        ,201
+        ,558.0681818
+        ,325
+        ,162.75
+        ,418.5202614
+        ,8525
+)
+pbmsdi = c(-0.06225983542
+          ,-0.1515612167
+          ,-0.1724357967
+          ,-0.1638502479
+          ,-0.1186897873
+          ,-0.1424337396
+          ,-0.1262688892
+          ,-0.06562473539
+          ,-0.05470291895
+          ,-0.08047958627
+          ,-0.1983557985
+          ,-0.3357921019
+          ,-0.03205477291
+          ,-0.06294443382
+          ,-0.0204970177
+)
 
+pwlm = c(167.58
+        ,360
+        ,566.13
+        ,393.427
+        ,228.1
+        ,612.6
+        ,197.99
+        ,235.8
+        ,179.95
+        ,237.41
+        ,232.6
+        ,206.16
+        ,171.9
+        ,301.24
+        ,721.88
+)
+pwlf = c(176.28
+        ,367.23
+        ,614.2
+        ,433.966
+        ,244.9
+        ,667.67
+        ,219.36
+        ,237.33
+        ,188.03
+        ,249.13
+        ,258
+        ,243.24
+        ,171.4
+        ,303.01
+        ,728.5
+)
+
+pwlsdi = c(-0.02198085575
+          ,-0.008635651888
+          ,-0.03539364276
+          ,-0.04259154386
+          ,-0.03086349985
+          ,-0.03738487032
+          ,-0.0445141818
+          ,-0.002808838474
+          ,-0.01907529506
+          ,-0.02092702
+          ,-0.04500999557
+          ,-0.0718305892
+          ,0.0012650591
+          ,-0.002544322488
+          ,-0.003964546444
+)
+preybird = data.frame(pspc, pbmf,pbmm,pbmsdi,pwlf,pwlm,pwlsdi)
+
+sspc = c("Malurus amabilis"
+         ,"Malurus cyaneus"
+         ,"Phainopepla nitens"
+         ,"Hylocichla mustelina"
+         ,"Cinclus cinclus"
+         ,"Cercomacra tyrannina"
+         ,"Empidonax minimus"
+         ,"Erithacus rubecula"
+         ,"Ficedula hypoleuca"
+         ,"Oenanthe oenanthe"
+         ,"Phoenicurus ochruros"
+         ,"Sialia mexicana"
+         ,"Sitta europaea")
+
+sbmm = c(9.1
+         ,11.3
+         ,20.7
+         ,47.8
+         ,70.86623911
+         ,17.5
+         ,11.1
+         ,16.4
+         ,12.48447205
+         ,23.4411215
+         ,15.1
+         ,25.8
+         ,19.23307692
+  
+)
+sbmf = c(8.2
+         ,10.5
+         ,21
+         ,52.5
+         ,59.56839218
+         ,16.6
+         ,10.2
+         ,17.1
+         ,14.22006289
+         ,22.71935484
+         ,16.4
+         ,27.1
+         ,18.42967033
+  
+)
+swlm = c(51.3
+         ,52.74
+         ,92.9256
+         ,108.5
+         ,90.46
+         ,62.45
+         ,64
+         ,72.42
+         ,78.55
+         ,99.02
+         ,83.26
+         ,104.5
+         ,84.31
+  
+)
+swlf = c(49.73
+         ,51.17
+         ,90.4146
+         ,104.8
+         ,85.2
+         ,60.3
+         ,61
+         ,70.75
+         ,77.5
+         ,95.01
+         ,80.87
+         ,100.5
+         ,82.38
+  
+)
+swlsdi = c(0.01349890588
+           ,0.01312470849
+           ,0.01189680863
+           ,0.01506845554
+           ,0.02601698864
+           ,0.01521513057
+           ,0.02085013897
+           ,0.01013207628
+           ,0.00584448687
+           ,0.0179536039
+           ,0.01264896344
+           ,0.01695022869
+           ,0.01005730168
+  
+)
+sbmsdi = c(0.04522753994
+           ,0.03188914441
+           ,-0.006248949277
+           ,-0.04073140679
+           ,0.07542350713
+           ,0.02292996065
+           ,0.03672280702
+           ,-0.01815226234
+           ,-0.05653133571
+           ,0.01358239127
+           ,-0.03586690075
+           ,-0.02134958491
+           ,0.01853120196
+)
+songbird = data.frame(sspc,sbmf,sbmm,sbmsdi,swlf,swlm,swlsdi)
+
+```
 
 
 ## Data analysis
@@ -431,6 +654,24 @@ sdi.table
 
 ### expression with table
 
+```{r}
+penspc = c("Pygoscelis antarctica", "Pygoscelis adeliae", "Pygoscelis papua")
+bspc = c(penspc,pspc,sspc)
+bmf = c(bmass.f,pbmf,sbmf)
+bmm = c(bmass.m,pbmm,sbmm)
+bmsdi = c(bmass.sdi,pbmsdi,sbmsdi)
+wlf = c(flen.f,pwlf,swlf)
+wlm = c(flen.m,pwlm,swlm)
+wlsdi = c(flen.sdi,pwlsdi,swlsdi)
+bias = c("Male biased","Male biased","Male biased","Female biased","Female biased",
+         "Female biased","Female biased","Female biased","Female biased","Female biased",
+         "Female biased","Female biased","Female biased","Female biased","Female biased",
+         "Male biased","Female biased","Female biased","Male biased","Male biased",
+         "Male biased","Male biased","Male biased","Male biased","Male biased","Male biased",
+         "Male biased","Male biased","Male biased","Male biased","Male biased")
+bird = data.frame(bspc,bmf,bmm,bmsdi,wlf,wlm,wlsdi,bias)
+```
+
 ```{r, result="asis"}
 kable(sdi.table, col.names=c('Species',"BM F","BM M","BM SDI","BL F","BL M","BL SDI", "BD F","BD M", "BD SDI", "FL F","FL M","FL SDI"),
       digits = 3,valign='t',
@@ -443,6 +684,11 @@ BM, BL, BD and FL stand for body mass, bill length, bill depth and filpper lengt
 
 The data for different avian species were sourced from the database provided by Valcu, M., Valcu, C., & Kempenaers, B. (2023). This dataset encompasses information on body mass, wing length, and Sexual Dimorphism Index (SDI) categorized by male and female specimens for various avian species.
 Given that the database includes statistical values for wing length and body mass, we can compare these metrics with the corresponding flipper length and body mass of the penguins in our dataset. This enables a meaningful assessment of the morphological sexual dimorphism of penguins in relation to the broader avian species data provided.
+
+```{r label=comparison.bird.sdi,results='asis'}
+kable(bird, col.names = c('Species','BM F', 'BM M', 'BM SDI', 'WL or FL F','WL or FL M','WL or FL SDI','Bias'),
+      digits = 3, valign='t')
+```
 
 
 ## Plots:
