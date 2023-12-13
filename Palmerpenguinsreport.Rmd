@@ -223,99 +223,6 @@ medianflipperlengthchinstrapfemale=median(chinstrapfemale$"Flipper Length (mm)",
 ```
 
 
-### SDI - Sexual Dimorphism Index
-
-To quantify the sexual dimorphism of each penguin species, a Sexual Dimorphism Index (SDI) was calculated for seven morphological measurements. The SDI is a widely utilized parameter across ecological and morphological studies to describe sexual dimorphism in species (Lovich & Gibbons, 1992).
-
-The SDI for each measurement was computed using the formula:
-
-$$ SDI = \left( \frac{{\text{larger sex}}}{{\text{smaller sex}}} - 1 \right) $$
-
-The index was arbitrarily set to be positive when males were larger and negative when females were larger, following the convention established by Lovich and Gibbons (1992).
-
-Subsequently, the Sexual Size Dimorphism (SSD) was estimated by calculating the SDI for all male-female pairs within each penguin species. This step allowed for the comprehensive assessment of sexual dimorphism across the entire dataset.
-
-The SDI methodology provides a robust framework for quantifying and comparing sexual dimorphism in penguin species and offers insights into the morphological variations between male and female individuals. The results contribute to our understanding of the ecological and evolutionary dynamics shaping the observed sexual dimorphism in these avian species. Furthermore we are going to compare the SDI of the penguin species in the dataset to other preybird and songbird species in the discussion section. 
-
-The data for different avian species were sourced from the database provided by Valcu, M., Valcu, C., & Kempenaers, B. (2023). This dataset encompasses information on body mass, wing length, and Sexual Dimorphism Index (SDI) categorized by male and female specimens for various avian species.
-Given that the database includes statistical values for wing length and body mass, we can compare these metrics with the corresponding flipper length and body mass of the penguins in our dataset. This enables a meaningful assessment of the morphological sexual dimorphism of penguins in relation to the broader avian species data provided.
-
-
-
-```{r label = calculate.SDI.chinstrap}
-sdi.chinstrap.blen = meanbilllengthchinstrapmale / meanbilllengthchinstrapfemale - 1
-sdi.chinstrap.bdep = meanbilldepthchinstrapmale / meanbilldepthchinstrapfemale - 1
-sdi.chinstrap.flen = meanflipperlengthchinstrapmale / meanflipperlengthchinstrapfemale - 1
-sdi.chinstrap.bmass = meanbodymasschinstrapmale / meanbodymasschinstrapfemale - 1
-```
-```{r label = calculate.SDI.adelie}
-sdi.adeli.blen = meanbilllengthadeliemale / meanbilllengthadeliefemale - 1
-sdi.adeli.bdep = meanbilldepthadeliemale / meanbilldepthadeliefemale - 1
-sdi.adeli.flen = meanflipperlengthadeliemale / meanflipperlengthadeliefemale -1
-sdi.adeli.bmass = meanbodymassadeliemale / meanbodymassadeliefemale-1
-```
-```{r label = calculate.SDI.gentoo}
-sdi.gentoo.blen = meanbilllengthgentoomale / meanbilllengthgentoofemale - 1
-sdi.gentoo.bdep = meanbilldepthgentoomale / meanbilldepthgentoofemale - 1
-sdi.gentoo.flen = meanflipperlengthgentoomale / meanflipperlengthgentoofemale - 1
-sdi.gentoo.bmass = meanbodymassgentoomale / meanbodymassgentoofemale - 1
-```
-
-```{r label = preparing.SDI.table}
-spc=c("Chinstrap", "Adelie", "Gentoo")
-bmass.f = c(meanbodymasschinstrapfemale,meanbodymassadeliefemale,meanbodymassgentoofemale)
-bmass.m = c(meanbodymasschinstrapmale,meanbodymassadeliemale,meanbodymassgentoomale)
-bmass.sdi = c(sdi.chinstrap.bmass,sdi.adeli.bmass,sdi.gentoo.bmass)
-
-blen.f = c(meanbilllengthchinstrapfemale,meanbilllengthadeliefemale,meanbilllengthgentoofemale)
-blen.m = c(meanbilllengthchinstrapmale,meanbilllengthadeliemale,meanbilllengthgentoomale)
-blen.sdi = c(sdi.chinstrap.blen,sdi.adeli.blen,sdi.gentoo.blen)
-
-bdep.f = c(meanbilldepthchinstrapfemale,meanbilldepthadeliefemale,meanbilllengthgentoofemale)
-bdep.m = c(meanbilldepthchinstrapmale,meanbilldepthadeliemale,meanbilldepthgentoomale)
-bdep.sdi = c(sdi.chinstrap.bdep,sdi.adeli.bdep,sdi.gentoo.bdep)
-
-flen.f = c(meanflipperlengthchinstrapfemale,meanflipperlengthadeliefemale,meanflipperlengthgentoofemale)
-flen.m = c(meanflipperlengthchinstrapmale,meanflipperlengthadeliemale,meanflipperlengthgentoomale)
-flen.sdi = c(sdi.chinstrap.flen,sdi.adeli.flen,sdi.gentoo.flen)
-sdi.table = data.frame(spc,bmass.f, bmass.m, bmass.sdi, blen.f, blen.m, blen.sdi, bdep.f, bdep.m, bdep.sdi, flen.f, flen.m, flen.sdi)
-sdi.table
-```
-
-
-```{r}
-penspc = c("Pygoscelis antarctica", "Pygoscelis adeliae", "Pygoscelis papua")
-bspc = c(penspc,pspc,sspc)
-bmf = c(bmass.f,pbmf,sbmf)
-bmm = c(bmass.m,pbmm,sbmm)
-bmsdi = c(bmass.sdi,pbmsdi,sbmsdi)
-wlf = c(flen.f,pwlf,swlf)
-wlm = c(flen.m,pwlm,swlm)
-wlsdi = c(flen.sdi,pwlsdi,swlsdi)
-bias = c("Male biased","Male biased","Male biased","Female biased","Female biased",
-         "Female biased","Female biased","Female biased","Female biased","Female biased",
-         "Female biased","Female biased","Female biased","Female biased","Female biased",
-         "Male biased","Female biased","Female biased","Male biased","Male biased",
-         "Male biased","Male biased","Male biased","Male biased","Male biased","Male biased",
-         "Male biased","Male biased","Male biased","Male biased","Male biased")
-bird = data.frame(bspc,bmf,bmm,bmsdi,wlf,wlm,wlsdi,bias)
-```
-
-```{r, result="asis"}
-kable(sdi.table, col.names=c('Species',"BM F","BM M","BM SDI","BL F","BL M","BL SDI", "BD F","BD M", "BD SDI", "FL F","FL M","FL SDI"),
-      digits = 3,valign='t',
-      caption="Table of measurements and SDI value of penguin species")
-```
-
-BM, BL, BD and FL stand for body mass, bill length, bill depth and filpper length respectively.
-
-
-```{r label=comparison.bird.sdi,results='asis'}
-kable(bird, col.names = c('Species','BM F', 'BM M', 'BM SDI', 'WL or FL F','WL or FL M','WL or FL SDI','Bias'),
-      digits = 3, valign='t')
-```
-
-
 ## Statistical tests
 
 ### Shapiro-wilke test
@@ -776,6 +683,99 @@ songbird = data.frame(sspc,sbmf,sbmm,sbmsdi,swlf,swlm,swlsdi)
 
 
 
+
+
+### SDI - Sexual Dimorphism Index
+
+To quantify the sexual dimorphism of each penguin species, a Sexual Dimorphism Index (SDI) was calculated for seven morphological measurements. The SDI is a widely utilized parameter across ecological and morphological studies to describe sexual dimorphism in species (Lovich & Gibbons, 1992).
+
+The SDI for each measurement was computed using the formula:
+
+$$ SDI = \left( \frac{{\text{larger sex}}}{{\text{smaller sex}}} - 1 \right) $$
+
+The index was arbitrarily set to be positive when males were larger and negative when females were larger, following the convention established by Lovich and Gibbons (1992).
+
+Subsequently, the Sexual Size Dimorphism (SSD) was estimated by calculating the SDI for all male-female pairs within each penguin species. This step allowed for the comprehensive assessment of sexual dimorphism across the entire dataset.
+
+The SDI methodology provides a robust framework for quantifying and comparing sexual dimorphism in penguin species and offers insights into the morphological variations between male and female individuals. The results contribute to our understanding of the ecological and evolutionary dynamics shaping the observed sexual dimorphism in these avian species. Furthermore we are going to compare the SDI of the penguin species in the dataset to other preybird and songbird species in the discussion section. 
+
+The data for different avian species were sourced from the database provided by Valcu, M., Valcu, C., & Kempenaers, B. (2023). This dataset encompasses information on body mass, wing length, and Sexual Dimorphism Index (SDI) categorized by male and female specimens for various avian species.
+Given that the database includes statistical values for wing length and body mass, we can compare these metrics with the corresponding flipper length and body mass of the penguins in our dataset. This enables a meaningful assessment of the morphological sexual dimorphism of penguins in relation to the broader avian species data provided.
+
+
+
+```{r label = calculate.SDI.chinstrap}
+sdi.chinstrap.blen = meanbilllengthchinstrapmale / meanbilllengthchinstrapfemale - 1
+sdi.chinstrap.bdep = meanbilldepthchinstrapmale / meanbilldepthchinstrapfemale - 1
+sdi.chinstrap.flen = meanflipperlengthchinstrapmale / meanflipperlengthchinstrapfemale - 1
+sdi.chinstrap.bmass = meanbodymasschinstrapmale / meanbodymasschinstrapfemale - 1
+```
+```{r label = calculate.SDI.adelie}
+sdi.adeli.blen = meanbilllengthadeliemale / meanbilllengthadeliefemale - 1
+sdi.adeli.bdep = meanbilldepthadeliemale / meanbilldepthadeliefemale - 1
+sdi.adeli.flen = meanflipperlengthadeliemale / meanflipperlengthadeliefemale -1
+sdi.adeli.bmass = meanbodymassadeliemale / meanbodymassadeliefemale-1
+```
+```{r label = calculate.SDI.gentoo}
+sdi.gentoo.blen = meanbilllengthgentoomale / meanbilllengthgentoofemale - 1
+sdi.gentoo.bdep = meanbilldepthgentoomale / meanbilldepthgentoofemale - 1
+sdi.gentoo.flen = meanflipperlengthgentoomale / meanflipperlengthgentoofemale - 1
+sdi.gentoo.bmass = meanbodymassgentoomale / meanbodymassgentoofemale - 1
+```
+
+```{r label = preparing.SDI.table}
+spc=c("Chinstrap", "Adelie", "Gentoo")
+bmass.f = c(meanbodymasschinstrapfemale,meanbodymassadeliefemale,meanbodymassgentoofemale)
+bmass.m = c(meanbodymasschinstrapmale,meanbodymassadeliemale,meanbodymassgentoomale)
+bmass.sdi = c(sdi.chinstrap.bmass,sdi.adeli.bmass,sdi.gentoo.bmass)
+
+blen.f = c(meanbilllengthchinstrapfemale,meanbilllengthadeliefemale,meanbilllengthgentoofemale)
+blen.m = c(meanbilllengthchinstrapmale,meanbilllengthadeliemale,meanbilllengthgentoomale)
+blen.sdi = c(sdi.chinstrap.blen,sdi.adeli.blen,sdi.gentoo.blen)
+
+bdep.f = c(meanbilldepthchinstrapfemale,meanbilldepthadeliefemale,meanbilllengthgentoofemale)
+bdep.m = c(meanbilldepthchinstrapmale,meanbilldepthadeliemale,meanbilldepthgentoomale)
+bdep.sdi = c(sdi.chinstrap.bdep,sdi.adeli.bdep,sdi.gentoo.bdep)
+
+flen.f = c(meanflipperlengthchinstrapfemale,meanflipperlengthadeliefemale,meanflipperlengthgentoofemale)
+flen.m = c(meanflipperlengthchinstrapmale,meanflipperlengthadeliemale,meanflipperlengthgentoomale)
+flen.sdi = c(sdi.chinstrap.flen,sdi.adeli.flen,sdi.gentoo.flen)
+sdi.table = data.frame(spc,bmass.f, bmass.m, bmass.sdi, blen.f, blen.m, blen.sdi, bdep.f, bdep.m, bdep.sdi, flen.f, flen.m, flen.sdi)
+sdi.table
+```
+
+
+```{r}
+penspc = c("Pygoscelis antarctica", "Pygoscelis adeliae", "Pygoscelis papua")
+bspc = c(penspc,pspc,sspc)
+bmf = c(bmass.f,pbmf,sbmf)
+bmm = c(bmass.m,pbmm,sbmm)
+bmsdi = c(bmass.sdi,pbmsdi,sbmsdi)
+wlf = c(flen.f,pwlf,swlf)
+wlm = c(flen.m,pwlm,swlm)
+wlsdi = c(flen.sdi,pwlsdi,swlsdi)
+bias = c("Male biased","Male biased","Male biased","Female biased","Female biased",
+         "Female biased","Female biased","Female biased","Female biased","Female biased",
+         "Female biased","Female biased","Female biased","Female biased","Female biased",
+         "Male biased","Female biased","Female biased","Male biased","Male biased",
+         "Male biased","Male biased","Male biased","Male biased","Male biased","Male biased",
+         "Male biased","Male biased","Male biased","Male biased","Male biased")
+bird = data.frame(bspc,bmf,bmm,bmsdi,wlf,wlm,wlsdi,bias)
+```
+
+```{r, result="asis"}
+knitr::kable(sdi.table, col.names=c('Species',"BM F","BM M","BM SDI","BL F","BL M","BL SDI", "BD F","BD M", "BD SDI", "FL F","FL M","FL SDI"),
+      digits = 3,valign='t',
+      caption="Table of measurements and SDI value of penguin species")
+```
+
+BM, BL, BD and FL stand for body mass, bill length, bill depth and filpper length respectively.
+
+
+```{r label=comparison.bird.sdi,results='asis'}
+knitr::kable(bird, col.names = c('Species','BM F', 'BM M', 'BM SDI', 'WL or FL F','WL or FL M','WL or FL SDI','Bias'),
+      digits = 3, valign='t')
+```
 
 
 
