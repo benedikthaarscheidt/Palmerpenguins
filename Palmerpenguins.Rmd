@@ -19,6 +19,7 @@ library(MASS)
 library(effsize)
 library(DAAG)
 library(palmerpenguins)
+library(knitr)
 ```
 
 This is the mammals dataset containing body and brain weigth of 62 land Species
@@ -100,6 +101,232 @@ chinstrapSex=Sextable[,2]
 
 
 
+```{r label = bird.data.preperation, echo=FALSE}
+pspc = c("Aegolius funereus"
+        ,"Circus pygargus"
+        ,"Aquila heliaca"
+        ,"Buteo galapagoensis"
+        ,"Buteo ridgwayi"
+        ,"Haliaeetus albicilla"
+        ,"Falco columbarius"
+        ,"Falco naumanni"
+        ,"Falco sparverius"
+        ,"Falco tinnunculus"
+        ,"Accipiter cooperii"
+        ,"Accipiter nisus"
+        ,"Athene cunicularia"
+        ,"Tyto alba"
+        ,"Gyps fulvus")
+# C bmm D bmf E wlm F wlf J wlsdi K bmsdi
+pbmm = c(119.2051282
+        ,261
+        ,2585
+        ,914.03
+        ,315
+        ,4014
+        ,163
+        ,141
+        ,106.1520325
+        ,167
+        ,353.4528302
+        ,150
+        ,151.1702128
+        ,362.0529197
+        ,8132
+        
+)
+pbmf = c(137.5798319
+        ,370
+        ,3845
+        ,1332.940299
+        ,414
+        ,5572
+        ,218
+        ,164
+        ,120.4013158
+        ,201
+        ,558.0681818
+        ,325
+        ,162.75
+        ,418.5202614
+        ,8525
+)
+pbmsdi = c(-0.06225983542
+          ,-0.1515612167
+          ,-0.1724357967
+          ,-0.1638502479
+          ,-0.1186897873
+          ,-0.1424337396
+          ,-0.1262688892
+          ,-0.06562473539
+          ,-0.05470291895
+          ,-0.08047958627
+          ,-0.1983557985
+          ,-0.3357921019
+          ,-0.03205477291
+          ,-0.06294443382
+          ,-0.0204970177
+)
+
+pwlm = c(167.58
+        ,360
+        ,566.13
+        ,393.427
+        ,228.1
+        ,612.6
+        ,197.99
+        ,235.8
+        ,179.95
+        ,237.41
+        ,232.6
+        ,206.16
+        ,171.9
+        ,301.24
+        ,721.88
+)
+pwlf = c(176.28
+        ,367.23
+        ,614.2
+        ,433.966
+        ,244.9
+        ,667.67
+        ,219.36
+        ,237.33
+        ,188.03
+        ,249.13
+        ,258
+        ,243.24
+        ,171.4
+        ,303.01
+        ,728.5
+)
+
+pwlsdi = c(-0.02198085575
+          ,-0.008635651888
+          ,-0.03539364276
+          ,-0.04259154386
+          ,-0.03086349985
+          ,-0.03738487032
+          ,-0.0445141818
+          ,-0.002808838474
+          ,-0.01907529506
+          ,-0.02092702
+          ,-0.04500999557
+          ,-0.0718305892
+          ,0.0012650591
+          ,-0.002544322488
+          ,-0.003964546444
+)
+preybird = data.frame(pspc, pbmf,pbmm,pbmsdi,pwlf,pwlm,pwlsdi)
+
+sspc = c("Malurus amabilis"
+         ,"Malurus cyaneus"
+         ,"Phainopepla nitens"
+         ,"Hylocichla mustelina"
+         ,"Cinclus cinclus"
+         ,"Cercomacra tyrannina"
+         ,"Empidonax minimus"
+         ,"Erithacus rubecula"
+         ,"Ficedula hypoleuca"
+         ,"Oenanthe oenanthe"
+         ,"Phoenicurus ochruros"
+         ,"Sialia mexicana"
+         ,"Sitta europaea")
+
+sbmm = c(9.1
+         ,11.3
+         ,20.7
+         ,47.8
+         ,70.86623911
+         ,17.5
+         ,11.1
+         ,16.4
+         ,12.48447205
+         ,23.4411215
+         ,15.1
+         ,25.8
+         ,19.23307692
+  
+)
+sbmf = c(8.2
+         ,10.5
+         ,21
+         ,52.5
+         ,59.56839218
+         ,16.6
+         ,10.2
+         ,17.1
+         ,14.22006289
+         ,22.71935484
+         ,16.4
+         ,27.1
+         ,18.42967033
+  
+)
+swlm = c(51.3
+         ,52.74
+         ,92.9256
+         ,108.5
+         ,90.46
+         ,62.45
+         ,64
+         ,72.42
+         ,78.55
+         ,99.02
+         ,83.26
+         ,104.5
+         ,84.31
+  
+)
+swlf = c(49.73
+         ,51.17
+         ,90.4146
+         ,104.8
+         ,85.2
+         ,60.3
+         ,61
+         ,70.75
+         ,77.5
+         ,95.01
+         ,80.87
+         ,100.5
+         ,82.38
+  
+)
+swlsdi = c(0.01349890588
+           ,0.01312470849
+           ,0.01189680863
+           ,0.01506845554
+           ,0.02601698864
+           ,0.01521513057
+           ,0.02085013897
+           ,0.01013207628
+           ,0.00584448687
+           ,0.0179536039
+           ,0.01264896344
+           ,0.01695022869
+           ,0.01005730168
+  
+)
+sbmsdi = c(0.04522753994
+           ,0.03188914441
+           ,-0.006248949277
+           ,-0.04073140679
+           ,0.07542350713
+           ,0.02292996065
+           ,0.03672280702
+           ,-0.01815226234
+           ,-0.05653133571
+           ,0.01358239127
+           ,-0.03586690075
+           ,-0.02134958491
+           ,0.01853120196
+)
+songbird = data.frame(sspc,sbmf,sbmm,sbmsdi,swlf,swlm,swlsdi)
+
+```
+
+
 ## Data analysis
 numerical data summary adelie:
 ```{r}
@@ -113,6 +340,25 @@ medianbodymassadeliefemale=median(adeliefemale$"Body Mass (g)", na.rm=TRUE)
 summaryadeliefemale=summary(adeliefemale[,3:6])
 summaryadeliemale=summary(adeliemale[,3:6])
 
+meanbilllengthadeliemale=mean(adeliemale$"Culmen Length (mm)", na.rm=TRUE)
+meanbilllengthadeliefemale=mean(adeliefemale$"Culmen Length (mm)", na.rm=TRUE)
+meanbilldepthadeliemale=mean(adeliemale$"Culmen Depth (mm)", na.rm=TRUE)
+meanbilldepthadeliefemale=mean(adeliefemale$"Culmen Depth (mm)", na.rm=TRUE)
+meanflipperlengthadeliemale=mean(adeliemale$"Flipper Length (mm)", na.rm=TRUE)
+meanflipperlengthadeliefemale=mean(adeliefemale$"Flipper Length (mm)", na.rm=TRUE)
+
+```
+
+numerical data summary gentoo:
+```{r}
+meanbilllengthgentoomale = mean(gentoomale$"Culmen Length (mm)", na.rm=TRUE)
+meanbilllengthgentoofemale = mean(gentoofemale$"Culmen Length (mm)", na.rm=TRUE)
+meanbilldepthgentoomale = mean(gentoomale$"Culmen Depth (mm)", na.rm=TRUE)
+meanbilldepthgentoofemale = mean(gentoofemale$"Culmen Depth (mm)", na.rm=TRUE)
+meanflipperlengthgentoomale = mean(gentoomale$"Flipper Length (mm)", na.rm=TRUE)
+meanflipperlengthgentoofemale = mean(gentoofemale$"Flipper Length (mm)", na.rm=TRUE)
+meanbodymassgentoomale=mean(gentoomale$"Body Mass (g)", na.rm=TRUE)
+meanbodymassgentoofemale=mean(gentoofemale$"Body Mass (g)", na.rm=TRUE)
 ```
 
 numerical data summary chinstrap bodymass
@@ -163,10 +409,10 @@ medianflipperlengthchinstrapfemale=median(chinstrapfemale$"Flipper Length (mm)",
 summarychinstrapfemale=summary(chinstrapfemale[,3:6])
 summarychinstrapmale=summary(chinstrapmale[,3:6])
 ```
+
 ### Shapiro-wilke test
 check if the data sets of the penguins satisfy the normal distribution, to use 
 subsequent t-test 
-
 ```{r label = shapiro-wilke-test, echo=FALSE}
 a_bill_length_female = shapiro.test(na.omit(adeliefemale$"Culmen Length (mm)"))$p.value
 a_bill_length_male = shapiro.test(na.omit(adeliemale$"Culmen Length (mm)"))$p.value
@@ -228,12 +474,6 @@ To satisfy a normal distribution, 1 outline in each data set bill_depth_adelie_m
 
 to check if there is a statistical significant Sexual dimorphism, the t-test was used.
 
-<<<<<<< HEAD
-
-
-
->>>>>>> 70d8008c88ee23f3744a13be020f12c19e1733de
-=======
 ```{r label=t-test, echo=FALSE,results='hide'}
 t.test(c_bill_length_female_fit,chinstrapmale$"Culmen Length (mm)")
 t.test(chinstrapfemale$"Culmen Depth (mm)",chinstrapmale$"Culmen Depth (mm)")
@@ -248,9 +488,9 @@ t.test(chinstrapfemale$"Body Mass (g)",chinstrapmale$"Body Mass (g)")
 |flipper length in mm|191.7|199.9|3e-07|yes|
 |body mass in g|3527|3939|3e-07|yes|
   
+According to the t test, there is a difference in the average body size and body mass between the female and male chinstrap groups.
 
-
-## Effecsize by cohens d
+### Effecsize by cohens d
 The function calculates the mean of "Body Mass (g)" for males and females separately.
 It then calculates the difference between these two means.
 Finally, it standardizes this difference by dividing it by the pooled standard deviation of the two groups.
@@ -268,11 +508,211 @@ cohen.d(chinstrapset$"Flipper Length (mm)", chinstrapset$Sex)
 
 
 
+### The variable categorical weight of the Chinstrap:
+
+```{r}
+cWeight = cut(chinstrapset$"Body Mass (g)",breaks=quantile(chinstrapset$"Body Mass (g)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
+
+levels(cWeight) = c("light", "medium", "heavy")
+
+tab=addmargins(table(chinstrapset$Sex,cWeight),# specifiy the table
+           FUN = sum # can also use all the other functions of Data Summary
+           ) 
+tab
+```
+```{r label = bill.length}
+cblen = cut(chinstrapset$"Culmen Depth (mm)",breaks=quantile(chinstrapset$"Culmen Depth (mm)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
+
+levels(cblen) = c("short", "medium", "long")
+
+tab.blen=addmargins(table(chinstrapset$Sex,cblen),FUN = sum) 
+tab.blen
+```
+```{r label = bill.depth}
+cbdep = cut(chinstrapset$"Culmen Depth (mm)",breaks=quantile(chinstrapset$"Culmen Depth (mm)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
+
+levels(cbdep) = c("deep", "medium", "shallow")
+
+tab.bdep=addmargins(table(chinstrapset$Sex,cbdep),FUN = sum) 
+tab.bdep
+```
+```{r label = flipper.length}
+cflen = cut(chinstrapset$"Flipper Length (mm)",breaks=quantile(chinstrapset$"Flipper Length (mm)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
+
+levels(cflen) = c("short", "medium", "long")
+
+tab.flen=addmargins(table(chinstrapset$Sex,cflen),FUN = sum) 
+tab.flen
+```
 
 
 
+```{r}
+cohensH = function (tab) {pt=prop.test(tab)
+h=2*abs(asin(sqrt(pt$estimate[1]))-
+asin(sqrt(pt$estimate[2]))) 
+return(h[[1]]) }
+```
 
->>>>>>> 4151dfb0f4bd5f0036c90e8bf9773b5841e2da9d
+```{r}
+dg.cramersV = function (tab,correct=TRUE) {t=min(dim(tab)) 
+return(sqrt(chisq.test(tab,correct=correct)$statistic/
+              (sum(tab)*(t-1)))[[1]])}
+```
+
+
+```{r}
+dg.cramersV(tab)
+
+knitr::kable(tab)
+```
+
+
+```{r}
+tab[3,1]*tab[1,4]/tab[3,4] # this is the expected value for the number of female persons in the light category 
+tab[3,2]*tab[1,4]/tab[3,4] # this is the expected value for the number of female persons in the medium category 
+tab[3,3]*tab[1,4]/tab[3,4] # this is the expected value for the number of female persons in the heavy category 
+```
+
+```{r}
+tab[3,1]*tab[2,4]/tab[3,4] # this is the expected value for the number of male persons in the light category 
+tab[3,2]*tab[2,4]/tab[3,4] # this is the expected value for the number of male persons in the medium category 
+tab[3,3]*tab[2,4]/tab[3,4] # this is the expected value for the number of male persons in the heavy category 
+```
+```{r}
+prop.test(table(cWeight,chinstrapset$Sex))
+prop.table(table(chinstrapset$Sex,cWeight))
+```
+### chisq-test 
+
+we can see if the sex of chinstrap is actually related to the body mass of penguins.
+
+### data preperation
+
+```{r label = chi.bodymass}
+
+cat.f.bodymass = c(18,12,4)
+cat.m.bodymass = c(5,10,19)
+chi.dat.bodymass = data.frame(cat.f.bodymass,cat.m.bodymass)
+pval.chi.bodymass = chisq.test(chi.dat.bodymass)$p.value
+```
+```{r label = chi.bill.length}
+
+cat.f.blen = c(25,8,1)
+cat.m.blen = c(1,14,19)
+chi.dat.blen = data.frame(cat.f.blen,cat.m.blen)
+pval.chi.blen = chisq.test(chi.dat.blen)$p.value
+```
+```{r label = chi.bill.depth}
+
+cat.f.bdep = c(25,8,1)
+cat.m.bdep = c(1,14,19)
+chi.dat.bdep = data.frame(cat.f.bdep,cat.m.bdep)
+pval.chi.bdep = chisq.test(chi.dat.bdep)$p.value
+```
+```{r label = chi.flipper.length}
+
+cat.f.flen = c(20,10,4)
+cat.m.flen = c(5,11,18)
+chi.dat.flen = data.frame(cat.f.flen,cat.m.flen)
+pval.chi.flen = chisq.test(chi.dat.flen)$p.value
+```
+
+We categoriz chinstrap penguins data, which are bill length, bill depth, flipper length, and body mass into three part based on their size. Through a chi-square independence test, we confirm that sex is associated with bodysize and body mass in the chinstrap penguin population.
+```{r}
+p.values = c(pval.chi.blen,pval.chi.bdep,pval.chi.flen,pval.chi.bodymass)
+significant = c('yes','yes','yes','yes')
+chi.result = data.frame(p.values,significant)
+chi.result
+```
+
+### Calculating SDI 
+
+Calculating SDI of measurements of penguin species.
+
+Morphological measurements taken for all penguin individuals included culmen length (mm), culmen depth (mm), flipper length (mm) and body mass (g).
+
+To estimate overall SSD, a sexual dimorphism index (SDI) was first calculated for each of the seven morphological measurements taken. The SDI was calculated as: [(larger sex/smaller sex) − 1], arbitrarily set to positive when males are larger and negative when females are larger (Lovich & Gibbons, 1992). SSD was then calculated for all male-female.
+
+
+```{r label = calculate.SDI.chinstrap}
+sdi.chinstrap.blen = meanbilllengthchinstrapmale / meanbilllengthchinstrapfemale - 1
+sdi.chinstrap.bdep = meanbilldepthchinstrapmale / meanbilldepthchinstrapfemale - 1
+sdi.chinstrap.flen = meanflipperlengthchinstrapmale / meanflipperlengthchinstrapfemale - 1
+sdi.chinstrap.bmass = meanbodymasschinstrapmale / meanbodymasschinstrapfemale - 1
+```
+```{r label = calculate.SDI.adelie}
+sdi.adeli.blen = meanbilllengthadeliemale / meanbilllengthadeliefemale - 1
+sdi.adeli.bdep = meanbilldepthadeliemale / meanbilldepthadeliefemale - 1
+sdi.adeli.flen = meanflipperlengthadeliemale / meanflipperlengthadeliefemale -1
+sdi.adeli.bmass = meanbodymassadeliemale / meanbodymassadeliefemale-1
+```
+```{r label = calculate.SDI.gentoo}
+sdi.gentoo.blen = meanbilllengthgentoomale / meanbilllengthgentoofemale - 1
+sdi.gentoo.bdep = meanbilldepthgentoomale / meanbilldepthgentoofemale - 1
+sdi.gentoo.flen = meanflipperlengthgentoomale / meanflipperlengthgentoofemale - 1
+sdi.gentoo.bmass = meanbodymassgentoomale / meanbodymassgentoofemale - 1
+```
+
+```{r label = preparing.SDI.table}
+spc=c("Chinstrap", "Adelie", "Gentoo")
+bmass.f = c(meanbodymasschinstrapfemale,meanbodymassadeliefemale,meanbodymassgentoofemale)
+bmass.m = c(meanbodymasschinstrapmale,meanbodymassadeliemale,meanbodymassgentoomale)
+bmass.sdi = c(sdi.chinstrap.bmass,sdi.adeli.bmass,sdi.gentoo.bmass)
+
+blen.f = c(meanbilllengthchinstrapfemale,meanbilllengthadeliefemale,meanbilllengthgentoofemale)
+blen.m = c(meanbilllengthchinstrapmale,meanbilllengthadeliemale,meanbilllengthgentoomale)
+blen.sdi = c(sdi.chinstrap.blen,sdi.adeli.blen,sdi.gentoo.blen)
+
+bdep.f = c(meanbilldepthchinstrapfemale,meanbilldepthadeliefemale,meanbilllengthgentoofemale)
+bdep.m = c(meanbilldepthchinstrapmale,meanbilldepthadeliemale,meanbilldepthgentoomale)
+bdep.sdi = c(sdi.chinstrap.bdep,sdi.adeli.bdep,sdi.gentoo.bdep)
+
+flen.f = c(meanflipperlengthchinstrapfemale,meanflipperlengthadeliefemale,meanflipperlengthgentoofemale)
+flen.m = c(meanflipperlengthchinstrapmale,meanflipperlengthadeliemale,meanflipperlengthgentoomale)
+flen.sdi = c(sdi.chinstrap.flen,sdi.adeli.flen,sdi.gentoo.flen)
+sdi.table = data.frame(spc,bmass.f, bmass.m, bmass.sdi, blen.f, blen.m, blen.sdi, bdep.f, bdep.m, bdep.sdi, flen.f, flen.m, flen.sdi)
+sdi.table
+```
+
+### expression with table
+
+```{r}
+penspc = c("Pygoscelis antarctica", "Pygoscelis adeliae", "Pygoscelis papua")
+bspc = c(penspc,pspc,sspc)
+bmf = c(bmass.f,pbmf,sbmf)
+bmm = c(bmass.m,pbmm,sbmm)
+bmsdi = c(bmass.sdi,pbmsdi,sbmsdi)
+wlf = c(flen.f,pwlf,swlf)
+wlm = c(flen.m,pwlm,swlm)
+wlsdi = c(flen.sdi,pwlsdi,swlsdi)
+bias = c("Male biased","Male biased","Male biased","Female biased","Female biased",
+         "Female biased","Female biased","Female biased","Female biased","Female biased",
+         "Female biased","Female biased","Female biased","Female biased","Female biased",
+         "Male biased","Female biased","Female biased","Male biased","Male biased",
+         "Male biased","Male biased","Male biased","Male biased","Male biased","Male biased",
+         "Male biased","Male biased","Male biased","Male biased","Male biased")
+bird = data.frame(bspc,bmf,bmm,bmsdi,wlf,wlm,wlsdi,bias)
+```
+
+```{r, result="asis"}
+kable(sdi.table, col.names=c('Species',"BM F","BM M","BM SDI","BL F","BL M","BL SDI", "BD F","BD M", "BD SDI", "FL F","FL M","FL SDI"),
+      digits = 3,valign='t',
+      caption="Table of measurements and SDI value of penguin species")
+```
+
+BM, BL, BD and FL stand for body mass, bill length, bill depth and filpper length respectively.
+
+### Comparison with other bird species
+
+The data for different avian species were sourced from the database provided by Valcu, M., Valcu, C., & Kempenaers, B. (2023). This dataset encompasses information on body mass, wing length, and Sexual Dimorphism Index (SDI) categorized by male and female specimens for various avian species.
+Given that the database includes statistical values for wing length and body mass, we can compare these metrics with the corresponding flipper length and body mass of the penguins in our dataset. This enables a meaningful assessment of the morphological sexual dimorphism of penguins in relation to the broader avian species data provided.
+
+```{r label=comparison.bird.sdi,results='asis'}
+kable(bird, col.names = c('Species','BM F', 'BM M', 'BM SDI', 'WL or FL F','WL or FL M','WL or FL SDI','Bias'),
+      digits = 3, valign='t')
+```
+
 
 ## Plots:
 
@@ -367,13 +807,13 @@ legend("topright", legend = c("Density", "Mean female", "Median female", "Mean m
 
 ```
 
-<<<<<<< HEAD
+
 
 ### Histogramm Bill length Chinstrap
 
-=======
+
 ## Bodymass Chinstrap
->>>>>>> c45013042169c612d17762b8d446fcb4f45e1c96
+
 
 ```{r echo=FALSE}
 ## Summary statistics
@@ -900,72 +1340,7 @@ par(mfrow=c(1, 1), mar = c(5, 4, 4, 2) + 0.1, oma = c(2, 1, 2, 1))
 ```
 
 
->>>>>>> c45013042169c612d17762b8d446fcb4f45e1c96
-# chinstrap
 
-## Datasummary numerical
-```{r}
-meanbodychinstrapmale=mean(adelieset$"Body Mass (g)", na.rm=TRUE)
-meanbodychinstrapfemale=mean(adeliemale$"Body Mass (g)", na.rm=TRUE)
-meanbodymassadeliefemale=mean(adeliefemale$"Body Mass (g)", na.rm=TRUE)
-medianbodymassadeliemale=median(adeliemale$"Body Mass (g)", na.rm=TRUE)
-medianbodymassadeliefemale=median(adeliefemale$"Body Mass (g)", na.rm=TRUE)
-
-summaryadeliefemale=summary(adeliefemale[,3:6])
-summaryadeliemale=summary(adeliemale[,3:6])
-
-```
-
-
-## The variable categorical weight of the Chinstrap:
-
-```{r}
-cWeight = cut(chinstrapset$"Body Mass (g)",breaks=quantile(chinstrapset$"Body Mass (g)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
-
-levels(cWeight) = c("light", "medium", "heavy")
-
-tab=addmargins(table(chinstrapset$Sex,cWeight),# specifiy the table
-           FUN = sum # can also use all the other functions of Data Summary
-           ) 
-tab
-```
-
-```{r}
-cohensH = function (tab) {pt=prop.test(tab)
-h=2*abs(asin(sqrt(pt$estimate[1]))-
-asin(sqrt(pt$estimate[2]))) 
-return(h[[1]]) }
-```
-
-```{r}
-dg.cramersV = function (tab,correct=TRUE) {t=min(dim(tab)) 
-return(sqrt(chisq.test(tab,correct=correct)$statistic/
-              (sum(tab)*(t-1)))[[1]])}
-```
-
-
-```{r}
-dg.cramersV(tab)
-
-knitr::kable(tab)
-```
-
-
-```{r}
-tab[3,1]*tab[1,4]/tab[3,4] # this is the expected value for the number of female persons in the light category 
-tab[3,2]*tab[1,4]/tab[3,4] # this is the expected value for the number of female persons in the medium category 
-tab[3,3]*tab[1,4]/tab[3,4] # this is the expected value for the number of female persons in the heavy category 
-```
-
-```{r}
-tab[3,1]*tab[2,4]/tab[3,4] # this is the expected value for the number of male persons in the light category 
-tab[3,2]*tab[2,4]/tab[3,4] # this is the expected value for the number of male persons in the medium category 
-tab[3,3]*tab[2,4]/tab[3,4] # this is the expected value for the number of male persons in the heavy category 
-```
-```{r}
-prop.test(table(cWeight,chinstrapset$Sex))
-prop.table(table(chinstrapset$Sex,cWeight))
-```
 
 # Multivariate analysis using MANOVA
 

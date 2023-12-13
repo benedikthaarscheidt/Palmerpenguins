@@ -1740,8 +1740,8 @@ the penguins_raw dataframe.</p>
 </tbody>
 </table>
 </div>
-<div id="statistical-analysis" class="section level1">
-<h1>Statistical analysis</h1>
+<div id="data-preparation" class="section level1">
+<h1>Data preparation</h1>
 <p>To extract crucial insights from the penguins dataset and pursue our
 primary objective, which is to emphasize our hypothesis that there are
 distinctive physical characteristics between male and female penguins,
@@ -1751,46 +1751,166 @@ All computations and tests are executed within the R Markdown
 environment. This approach allows us to thoroughly analyze the dataset,
 assess sex-based variations, and validate our underlying hypothesis with
 a comprehensive set of statistical tools.</p>
-<p>In order to achieve all this some crucial measures have to be taken:
-The dataset has to be prepared ergo split into the two sexes in order to
-be able to make comparisons individually.</p>
+<p>To accomplish this, certain key steps must be taken: The dataset
+needs preparation, requiring a split into the two sexes to facilitate
+individual comparisons.</p>
+<p>Distribution of sexes within the dataset:</p>
+<pre class="r"><code>knitr::kable(table(df$Sex,df$Species))</code></pre>
+<table>
+<colgroup>
+<col width="5%" />
+<col width="30%" />
+<col width="35%" />
+<col width="28%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Adelie Penguin (Pygoscelis adeliae)</th>
+<th align="right">Chinstrap penguin (Pygoscelis antarctica)</th>
+<th align="right">Gentoo penguin (Pygoscelis papua)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">FEMALE</td>
+<td align="right">73</td>
+<td align="right">34</td>
+<td align="right">58</td>
+</tr>
+<tr class="even">
+<td align="left">MALE</td>
+<td align="right">73</td>
+<td align="right">34</td>
+<td align="right">61</td>
+</tr>
+</tbody>
+</table>
+<p>Given our specific focus on the Chinstrap species within the Palmer
+penguins package, it is imperative to create subsets corresponding to
+each penguin species within the general dataset. While we currently
+require this subset specifically for the Chinstrap species, anticipating
+potential use for the other subsets later in this report prompts us to
+perform this subsetting procedure for all penguin species at this stage.
+By doing so, we ensure that the necessary datasets are readily available
+for subsequent analyses and facilitate a smoother progression in the
+later stages of our report.</p>
 <pre class="r"><code>chinstrapset=df[df$Species ==&quot;Chinstrap penguin (Pygoscelis antarctica)&quot;,]
+<<<<<<< HEAD
 chinstrapmale=chinstrapset[chinstrapset$Sex ==&quot;MALE&quot;,]
 chinstrapfemale=chinstrapset[chinstrapset$Sex ==&quot;FEMALE&quot;,]</code></pre>
+=======
+adelieset = df[df$Species == &quot;Adelie Penguin (Pygoscelis adeliae)&quot;, ]
+gentooset=df[df$Species ==&quot;Gentoo penguin (Pygoscelis papua)&quot;,]</code></pre>
+<p>Subsetting Chinstrap penguin set by sexes</p>
+<pre class="r"><code>chinstrapmale=chinstrapset[chinstrapset$Sex ==&quot;MALE&quot;,]
+chinstrapfemale=chinstrapset[chinstrapset$Sex ==&quot;FEMALE&quot;,]
+
+#Summary of all the columns of the individual subsets 
+summarychinstrapfemale=summary(chinstrapfemale[,3:6])
+summarychinstrapmale=summary(chinstrapmale[,3:6])
+
+meanbodymasschinstrap=mean(chinstrapset$&quot;Body Mass (g)&quot;, na.rm=TRUE)
+meanbilllengthchinstrap=mean(chinstrapset$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
+meanbilldepthchinstrap=mean(chinstrapset$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
+meanflipperlengthchinstrap=mean(chinstrapset$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)</code></pre>
+</div>
+<div id="statistical-analysis" class="section level1">
+<h1>Statistical analysis</h1>
+<div id="numeric-parameters" class="section level2">
+<h2>Numeric parameters</h2>
+<p>In the following, we calculate various statistical parameters for the
+chinstrap subset, without relying on specific tests like the
+Kolmogorov-Smirnov test. These parameters, including the standard
+deviation of bill length and depth, body mass, and flipper length, along
+with the mean, median, and a comprehensive summary, will be interpreted
+in the results section:</p>
+<div id="mean-chinstrap-population" class="section level3">
+<h3>Mean Chinstrap population</h3>
+<pre class="r"><code>meanbodymasschinstrap=mean(chinstrapset$&quot;Body Mass (g)&quot;, na.rm=TRUE)
+meanbilllengthchinstrap=mean(chinstrapset$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
+meanbilldepthchinstrap=mean(chinstrapset$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
+meanflipperlengthchinstrap=mean(chinstrapset$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)</code></pre>
+</div>
+<div id="median-chinstrap-population" class="section level3">
+<h3>Median Chinstrap population</h3>
+<pre class="r"><code>medianbodymasschinstrap=median(chinstrapset$&quot;Body Mass (g)&quot;, na.rm=TRUE)
+medianbilllengthchinstrap=median(chinstrapset$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
+medianbilldepthchinstrap=median(chinstrapset$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
+medianflipperlengthchinstrap=median(chinstrapset$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)</code></pre>
+>>>>>>> 7d8b9efe0e22cf6edc34979e9f00f6ea396b68cf
 <p>Furthermore without relying on specific statistical test like the
 Kolmogorov Smirnov test or the like, basic statistical parameters were
 calculated which will be interpreted in the results section. Those are
 the standard deviation of bill length and depth, the bodymass and the
-flipper size, the mean of all those physical traits, the median of those
-traits, as well as a concluding summary of those traits:</p>
-<pre class="r"><code># Standard deviation of Chinstrap Male
-
+flipper length, the mean of all those physical traits, the median of
+those traits, as well as a concluding summary of those traits:</p>
+</div>
+<div id="male" class="section level3">
+<h3>Male</h3>
+<div id="standard-deviation" class="section level4">
+<h4>Standard deviation</h4>
+<pre class="r"><code>#bill length
 male_std_dev_bill_Length &lt;- sd(chinstrapmale$&quot;Culmen Length (mm)&quot;)
 male_std_dev_bill_Length</code></pre>
 <pre><code>## [1] 1.564558</code></pre>
-<pre class="r"><code>male_std_dev_bill_depth &lt;- sd(chinstrapmale$&quot;Culmen Depth (mm)&quot;)
+<pre class="r"><code>#bill depth 
+male_std_dev_bill_depth &lt;- sd(chinstrapmale$&quot;Culmen Depth (mm)&quot;)
 male_std_dev_bill_depth</code></pre>
 <pre><code>## [1] 0.761273</code></pre>
-<pre class="r"><code>male_std_dev_flipper_Length &lt;- sd(chinstrapmale$&quot;Flipper Length (mm)&quot;)
+<pre class="r"><code>#flipper length
+male_std_dev_flipper_Length &lt;- sd(chinstrapmale$&quot;Flipper Length (mm)&quot;)
 male_std_dev_flipper_Length</code></pre>
 <pre><code>## [1] 5.976558</code></pre>
-<pre class="r"><code>male_std_dev_body_mass &lt;- sd(chinstrapmale$&quot;Body Mass (g)&quot;)
+<pre class="r"><code>#bodymass
+male_std_dev_body_mass &lt;- sd(chinstrapmale$&quot;Body Mass (g)&quot;)
 male_std_dev_body_mass</code></pre>
 <pre><code>## [1] 362.1376</code></pre>
-<pre class="r"><code># Standard deviation of Chinstrap Female
-
+</div>
+<div id="mean" class="section level4">
+<h4>Mean</h4>
+<pre class="r"><code>#body mass
+meanbodymasschinstrapmale=mean(chinstrapmale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
+#bill lenght
+meanbilllengthchinstrapmale=mean(chinstrapmale$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
+#bill depth 
+meanbilldepthchinstrapmale=mean(chinstrapmale$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
+#flipper length 
+meanflipperlengthchinstrapmale=mean(chinstrapmale$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)</code></pre>
+</div>
+<div id="median" class="section level4">
+<h4>Median</h4>
+<pre class="r"><code>#body mass
+medianbodymasschinstrapmale=median(chinstrapmale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
+#bill length 
+medianbilllengthchinstrapmale=median(chinstrapmale$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
+#bill depth
+medianbilldepthchinstrapmale=median(chinstrapmale$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
+#flipper length 
+medianflipperlengthchinstrapmale=median(chinstrapmale$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)</code></pre>
+</div>
+</div>
+<div id="female" class="section level3">
+<h3>Female</h3>
+<div id="standard-deviation-1" class="section level4">
+<h4>Standard deviation</h4>
+<pre class="r"><code>#bill length
 female_std_dev_bill_Length &lt;- sd(chinstrapmale$&quot;Culmen Length (mm)&quot;)
 female_std_dev_bill_Length</code></pre>
 <pre><code>## [1] 1.564558</code></pre>
-<pre class="r"><code>female_std_dev_bill_depth &lt;- sd(chinstrapmale$&quot;Culmen Depth (mm)&quot;)
+<pre class="r"><code>#bill depth
+female_std_dev_bill_depth &lt;- sd(chinstrapmale$&quot;Culmen Depth (mm)&quot;)
 female_std_dev_bill_depth</code></pre>
 <pre><code>## [1] 0.761273</code></pre>
-<pre class="r"><code>female_std_dev_flipper_Length &lt;- sd(chinstrapmale$&quot;Flipper Length (mm)&quot;)
+<pre class="r"><code>#flipper length
+female_std_dev_flipper_Length &lt;- sd(chinstrapmale$&quot;Flipper Length (mm)&quot;)
 female_std_dev_flipper_Length</code></pre>
 <pre><code>## [1] 5.976558</code></pre>
-<pre class="r"><code>female_std_dev_body_mass &lt;- sd(chinstrapmale$&quot;Body Mass (g)&quot;)
+<pre class="r"><code>#body mass
+female_std_dev_body_mass &lt;- sd(chinstrapmale$&quot;Body Mass (g)&quot;)
 female_std_dev_body_mass</code></pre>
 <pre><code>## [1] 362.1376</code></pre>
+<<<<<<< HEAD
 <pre class="r"><code>Sextable=table(df$Sex,df$Species)
 Sextable</code></pre>
 <pre><code>##         
@@ -1906,6 +2026,419 @@ manova(cbind(BillLength, FlipperLength, BillDepth, bodyMass) ~ Sex, data = chins
 ## Estimated effects may be unbalanced</code></pre>
 <p>statistical analyis (which software, R, which packages, which tests)
 results discussion (body sizes in birds in general, what is special with
+=======
+</div>
+<div id="mean-1" class="section level4">
+<h4>Mean</h4>
+<pre class="r"><code>#body mass
+meanbodymasschinstrapfemale=mean(chinstrapfemale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
+#bill length 
+meanbilllengthchinstrapfemale=mean(chinstrapfemale$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
+#bill depth 
+meanbilldepthchinstrapfemale=mean(chinstrapfemale$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
+#flipper length 
+meanflipperlengthchinstrapfemale=mean(chinstrapfemale$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)</code></pre>
+</div>
+<div id="median-1" class="section level4">
+<h4>Median</h4>
+<pre class="r"><code>#body mass
+medianbodymasschinstrapfemale=median(chinstrapfemale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
+#bill length 
+medianbilllengthchinstrapfemale=median(chinstrapfemale$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
+#billl depth 
+medianbilldepthchinstrapfemale=median(chinstrapfemale$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
+#flipper length 
+medianflipperlengthchinstrapfemale=median(chinstrapfemale$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)</code></pre>
+</div>
+</div>
+</div>
+<div id="statistical-tests" class="section level2">
+<h2>Statistical tests</h2>
+<div id="shapiro-wilke-test" class="section level3">
+<h3>Shapiro-wilke test</h3>
+<p>To assess the normality of our datasets, we employed the Shapiro-Wilk
+test, a statistical method used to evaluate whether a given variable
+follows a normal distribution. This test is particularly sensitive to
+deviations from normality in small to moderately sized samples.</p>
+<p>For each relevant variable, we conducted a Shapiro-Wilk test, where
+the null hypothesis (H0) posits that the data is normally distributed.
+Conversely, the alternative hypothesis (H1) suggests that the data
+significantly deviates from a normal distribution.</p>
+<p>In the context of our analysis, meeting the assumption of normality
+is crucial, especially when considering subsequent two-sample
+t-tests.</p>
+<pre class="r"><code>a_bill_length_female = shapiro.test(na.omit(adeliefemale$&quot;Culmen Length (mm)&quot;))$p.value
+a_bill_length_male = shapiro.test(na.omit(adeliemale$&quot;Culmen Length (mm)&quot;))$p.value
+
+a_bill_depth_female = shapiro.test(na.omit(adeliefemale$&quot;Culmen Depth (mm)&quot;))$p.value
+a_bill_depth_male_fit = adeliemale$&quot;Culmen Depth (mm)&quot;[adeliemale$&quot;Culmen Depth (mm)&quot;&lt;21.2]
+a_bill_depth_male = shapiro.test(na.omit(a_bill_depth_male_fit))$p.value
+
+a_flipper_length_female = shapiro.test(na.omit(adeliefemale$&quot;Flipper Length (mm)&quot;))$p.value
+a_flipper_length_male = shapiro.test(adeliemale$&quot;Flipper Length (mm)&quot;)$p.value
+
+a_body_mass_female = shapiro.test(na.omit(adeliefemale$&quot;Body Mass (g)&quot;))$p.value
+a_body_mass_male = shapiro.test(na.omit(adeliemale$&quot;Body Mass (g)&quot;))$p.value
+
+
+adelishapiro = data.frame(a_bill_length_female,a_bill_length_male,a_bill_depth_female,a_bill_depth_male, a_flipper_length_female,a_flipper_length_male,a_body_mass_female,a_body_mass_male)
+
+adelishapiro&gt;0.05</code></pre>
+<pre><code>##      a_bill_length_female a_bill_length_male a_bill_depth_female
+## [1,]                 TRUE               TRUE                TRUE
+##      a_bill_depth_male a_flipper_length_female a_flipper_length_male
+## [1,]              TRUE                    TRUE                  TRUE
+##      a_body_mass_female a_body_mass_male
+## [1,]               TRUE             TRUE</code></pre>
+<pre class="r"><code>c_bill_length_female_fit = chinstrapfemale$&quot;Culmen Length (mm)&quot;[chinstrapfemale$&quot;Culmen Length (mm)&quot;&lt;58]
+c_bill_length_female = shapiro.test(na.omit(c_bill_length_female_fit))$p.value
+c_bill_length_male = shapiro.test(na.omit(chinstrapmale$&quot;Culmen Length (mm)&quot;))$p.value
+
+c_bill_depth_female = shapiro.test(na.omit(chinstrapfemale$&quot;Culmen Depth (mm)&quot;))$p.value
+c_bill_depth_male = shapiro.test(na.omit(chinstrapmale$&quot;Culmen Depth (mm)&quot;))$p.value
+
+c_flipper_length_female = shapiro.test(na.omit(chinstrapfemale$&quot;Flipper Length (mm)&quot;))$p.value
+c_flipper_length_male = shapiro.test(na.omit(chinstrapmale$&quot;Flipper Length (mm)&quot;))$p.value
+
+c_body_mass_female = shapiro.test(na.omit(chinstrapfemale$&quot;Body Mass (g)&quot;))$p.value
+c_body_mass_male = shapiro.test(na.omit(chinstrapmale$&quot;Body Mass (g)&quot;))$p.value
+
+
+chinshapiro = data.frame(c_bill_length_female,c_bill_length_male,c_bill_depth_female,c_bill_depth_male, c_flipper_length_female,c_flipper_length_male,c_body_mass_female,c_body_mass_male)
+
+chinshapiro&gt;0.05</code></pre>
+<pre><code>##      c_bill_length_female c_bill_length_male c_bill_depth_female
+## [1,]                 TRUE               TRUE                TRUE
+##      c_bill_depth_male c_flipper_length_female c_flipper_length_male
+## [1,]              TRUE                    TRUE                  TRUE
+##      c_body_mass_female c_body_mass_male
+## [1,]               TRUE             TRUE</code></pre>
+<pre class="r"><code>g_bill_length_female = shapiro.test(na.omit(gentoofemale$&quot;Culmen Length (mm)&quot;))$p.value
+g_bill_length_male_fit = gentoomale$&quot;Culmen Length (mm)&quot;[gentoomale$&quot;Culmen Length (mm)&quot;&lt;59]
+g_bill_length_male = shapiro.test(na.omit(g_bill_length_male_fit))$p.value
+
+g_bill_depth_female = shapiro.test(na.omit(gentoofemale$&quot;Culmen Depth (mm)&quot;))$p.value
+g_bill_depth_male = shapiro.test(na.omit(gentoomale$&quot;Culmen Depth (mm)&quot;))$p.value
+
+g_flipper_length_female = shapiro.test(na.omit(gentoofemale$&quot;Flipper Length (mm)&quot;))$p.value
+g_flipper_length_male = shapiro.test(na.omit(gentoomale$&quot;Flipper Length (mm)&quot;))$p.value
+
+g_body_mass_female = shapiro.test(na.omit(gentoofemale$&quot;Body Mass (g)&quot;))$p.value
+g_body_mass_male = shapiro.test(na.omit(gentoomale$&quot;Body Mass (g)&quot;))$p.value
+
+
+gentooshapiro = data.frame(g_bill_length_female,g_bill_length_male,g_bill_depth_female,g_bill_depth_male, g_flipper_length_female,g_flipper_length_male,g_body_mass_female,g_body_mass_male)
+
+gentooshapiro&gt;0.05</code></pre>
+<pre><code>##      g_bill_length_female g_bill_length_male g_bill_depth_female
+## [1,]                 TRUE               TRUE                TRUE
+##      g_bill_depth_male g_flipper_length_female g_flipper_length_male
+## [1,]              TRUE                    TRUE                  TRUE
+##      g_body_mass_female g_body_mass_male
+## [1,]               TRUE             TRUE</code></pre>
+<p>To meet the assumption of normal distribution, we identified and
+removed outliers from specific datasets. This step was taken to enhance
+the normality of the data and ensure the validity of subsequent
+statistical analyses.</p>
+</div>
+<div id="t-test" class="section level3">
+<h3>T-test</h3>
+<p>Having conducted the Shapiro-Wilk tests to assess the normality of
+our dataset variables, we now turn our attention to the subsequent
+two-sample t-tests. These tests will allow us to investigate potential
+differences in specific physical characteristics between different
+groups, such as male and female penguins within each species. Before
+delving into the t-test results, it’s imperative to consider the
+normality status of our variables, as the validity of t-tests relies on
+the assumption of normal distribution. The Shapiro-Wilk tests provided
+insights into the normality of our data, aiding in the informed
+selection of appropriate statistical analyses. With this foundation, we
+proceed to the t-tests, aiming to uncover nuanced distinctions in key
+attributes among penguin groups and species.</p>
+<pre class="r"><code>t.test(c_bill_length_female_fit,chinstrapmale$&quot;Culmen Length (mm)&quot;)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  c_bill_length_female_fit and chinstrapmale$&quot;Culmen Length (mm)&quot;
+## t = -9.8005, df = 54.796, p-value = 1.189e-13
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -5.862119 -3.871570
+## sample estimates:
+## mean of x mean of y 
+##  46.22727  51.09412</code></pre>
+<pre class="r"><code>t.test(chinstrapfemale$&quot;Culmen Depth (mm)&quot;,chinstrapmale$&quot;Culmen Depth (mm)&quot;)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  chinstrapfemale$&quot;Culmen Depth (mm)&quot; and chinstrapmale$&quot;Culmen Depth (mm)&quot;
+## t = -8.8994, df = 65.956, p-value = 6.6e-13
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -2.038186 -1.291226
+## sample estimates:
+## mean of x mean of y 
+##  17.58824  19.25294</code></pre>
+<pre class="r"><code>t.test(chinstrapfemale$&quot;Flipper Length (mm)&quot;,chinstrapmale$&quot;Flipper Length (mm)&quot;)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  chinstrapfemale$&quot;Flipper Length (mm)&quot; and chinstrapmale$&quot;Flipper Length (mm)&quot;
+## t = -5.7467, df = 65.905, p-value = 2.535e-07
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -11.017272  -5.335669
+## sample estimates:
+## mean of x mean of y 
+##  191.7353  199.9118</code></pre>
+<pre class="r"><code>t.test(chinstrapfemale$&quot;Body Mass (g)&quot;,chinstrapmale$&quot;Body Mass (g)&quot;)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  chinstrapfemale$&quot;Body Mass (g)&quot; and chinstrapmale$&quot;Body Mass (g)&quot;
+## t = -5.2077, df = 62.575, p-value = 2.264e-06
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -569.7903 -253.7391
+## sample estimates:
+## mean of x mean of y 
+##  3527.206  3938.971</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th>categories</th>
+<th align="right">female</th>
+<th align="right">male</th>
+<th align="right">p-value</th>
+<th align="center">significant difference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>bill length in mm</td>
+<td align="right">46.23</td>
+<td align="right">51.09</td>
+<td align="right">1e-13</td>
+<td align="center">yes</td>
+</tr>
+<tr class="even">
+<td>bill depth in mm</td>
+<td align="right">17.59</td>
+<td align="right">19.25</td>
+<td align="right">7e-13</td>
+<td align="center">yes</td>
+</tr>
+<tr class="odd">
+<td>flipper length in mm</td>
+<td align="right">191.7</td>
+<td align="right">199.9</td>
+<td align="right">3e-07</td>
+<td align="center">yes</td>
+</tr>
+<tr class="even">
+<td>body mass in g</td>
+<td align="right">3527</td>
+<td align="right">3939</td>
+<td align="right">3e-07</td>
+<td align="center">yes</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="effectsize-by-cohens-d" class="section level3">
+<h3>Effectsize by cohens d</h3>
+<p>To delve deeper into the observed differences in physical
+characteristics between male and female Chinstrap penguins, we employ
+Cohen’s d as a measure of effect size. Specifically, we calculate the
+mean values of “Body Mass (g),” “Culmen Length (mm),” “Culmen Depth
+(mm),” and “Flipper Length (mm)” for males and females separately.
+Subsequently, the difference between these means is standardized by
+dividing it by the pooled standard deviation of the two groups.</p>
+<pre class="r"><code>cohen.d(chinstrapset$&quot;Body Mass (g)&quot;, chinstrapset$Sex)</code></pre>
+<pre><code>## 
+## Cohen&#39;s d
+## 
+## d estimate: -1.263061 (large)
+## 95 percent confidence interval:
+##      lower      upper 
+## -1.7933879 -0.7327341</code></pre>
+<pre class="r"><code>cohen.d(chinstrapset$&quot;Culmen Length (mm)&quot;, chinstrapset$Sex)</code></pre>
+<pre><code>## 
+## Cohen&#39;s d
+## 
+## d estimate: -1.836995 (large)
+## 95 percent confidence interval:
+##     lower     upper 
+## -2.414401 -1.259589</code></pre>
+<pre class="r"><code>cohen.d(chinstrapset$&quot;Culmen Depth (mm)&quot;, chinstrapset$Sex)</code></pre>
+<pre><code>## 
+## Cohen&#39;s d
+## 
+## d estimate: -2.158412 (large)
+## 95 percent confidence interval:
+##     lower     upper 
+## -2.767541 -1.549283</code></pre>
+<pre class="r"><code>cohen.d(chinstrapset$&quot;Flipper Length (mm)&quot;, chinstrapset$Sex)</code></pre>
+<pre><code>## 
+## Cohen&#39;s d
+## 
+## d estimate: -1.393784 (large)
+## 95 percent confidence interval:
+##      lower      upper 
+## -1.9336236 -0.8539448</code></pre>
+<p>The resulting Cohen’s d values, computed using the cohen.d function
+from the effsize library, provide insights into the standardized
+differences between male and female Chinstrap penguins for each physical
+characteristic. This effect size analysis complements our inferential
+statistics and aids in interpreting the practical significance of
+observed disparities in the measured attributes.</p>
+<p>To conduct further analysis on the dataset, we segmented the subsets
+based on sex into distinct weight groups. This segmentation allowed for
+the application of tests such as Cramér’s V and Cohen’s H to shed light
+on the effect size of sex on specific physical characteristics.</p>
+<pre class="r"><code># Categorizing penguins based on weight groups
+cWeight = cut(chinstrapset$&quot;Body Mass (g)&quot;, breaks = quantile(chinstrapset$&quot;Body Mass (g)&quot;, c(0,1/3,2/3,1), na.rm = TRUE), include.lowest = TRUE)
+levels(cWeight) = c(&quot;light&quot;, &quot;medium&quot;, &quot;heavy&quot;)
+
+# Creating a contingency table
+tab = addmargins(table(chinstrapset$Sex, cWeight), FUN = sum)</code></pre>
+<pre><code>## Margins computed over dimensions
+## in the following order:
+## 1: 
+## 2: cWeight</code></pre>
+<pre class="r"><code># Displaying the contingency table
+tab</code></pre>
+<pre><code>##         cWeight
+##          light medium heavy sum
+##   FEMALE    18     12     4  34
+##   MALE       5     10    19  34
+##   sum       23     22    23  68</code></pre>
+</div>
+<div id="cramérs-v" class="section level3">
+<h3>Cramér’s V</h3>
+<p>To perform the Cramér’s V test, penguins of one sex were grouped
+based on their weight, as demonstrated above. Subsequently, the analysis
+using the Cramér’s V test aimed to determine the strength of association
+between the now categorical variables. Given the absence of a
+pre-existing function for Cramér’s V in R, we opted to implement our
+own, as shown in the following custom function:</p>
+<pre class="r"><code>dg.cramersV = function (tab,correct=TRUE) {t=min(dim(tab)) 
+return(sqrt(chisq.test(tab,correct=correct)$statistic/
+              (sum(tab)*(t-1)))[[1]])}</code></pre>
+<p>This function facilitates the calculation of Cramér’s V, providing a
+standardized measure of association that aids in interpreting the impact
+of sex on specific physical characteristics.</p>
+</div>
+<div id="cohens-h" class="section level3">
+<h3>Cohen’s H</h3>
+<p>Continuing our in-depth analysis, we proceeded to assess the impact
+size of sex on specific physical characteristics using Cohen’s H. To
+facilitate this examination, the subsets of penguins based on sex were
+initially divided into distinct weight groups, as illustrated in the
+preceding code snippet. The resulting weight groups were then subjected
+to the Cohens H test, which is adept at capturing the effect size of the
+sex variable. Unlike commonly implemented functions for Cohens H in R,
+we have chosen to implement our own for precise control over the
+computation. The custom function is presented below:</p>
+<pre class="r"><code># Custom implementation of Cohen&#39;s H
+cohensH = function(tab) {
+  pt = prop.test(tab)
+  h = 2 * abs(asin(sqrt(pt$estimate[1])) - asin(sqrt(pt$estimate[2])))
+  return(h[[1]])}</code></pre>
+<p>This function enables the calculation of Cohen’s H, a measure that
+gauges the strength of association between categorical variables. It
+offers insights into the practical significance of sex-related
+disparities in the measured physical attributes, complementing our
+statistical analyses for a comprehensive understanding of the
+dataset.</p>
+<p>##MAYBE ALSO INCLUDE CHISQ TEST?? ##WE ALSO STILL HAVE THE
+PROPORTIONS AND EXPECTED VALUES IN THE OTHER DOC –&gt; THINK HOW TO
+IMPLEMENT THIS HERE</p>
+<p>To derive meaningful insights from our analyzed data and validate our
+hypothesis, it is essential to broaden our comparisons by including
+other species. To achieve this, we have chosen to include the Adelie
+penguin species, for which data is available in the Palmer penguins
+package. Additionally, we aim to extend our investigation of sexual
+dimorphism by comparing it to other avian species. The detailed
+comparison, based on the values derived from existing datasets, will be
+presented in the results section. To further enrich the scope and draw
+broader conclusions across different species, we plan to incorporate a
+dataset concerning possums in Australia, available in the MASS package.
+This comprehensive approach allows us to contextualize our findings
+within a broader biological context.</p>
+</div>
+</div>
+<div id="interspecies-comparison" class="section level2">
+<h2>Interspecies comparison</h2>
+<div id="adelie-penguins" class="section level3">
+<h3>Adelie penguins</h3>
+</div>
+<div id="subsetting-of-adelie-penguins" class="section level3">
+<h3>Subsetting of Adelie penguins</h3>
+<pre class="r"><code>adelieset &lt;- df[df$Species == &quot;Adelie Penguin (Pygoscelis adeliae)&quot;, ]
+adeliemale =adelieset[adelieset$Sex == &quot;MALE&quot;,]
+adeliefemale = adelieset[adelieset$Sex ==&quot;FEMALE&quot;,]</code></pre>
+</div>
+<div id="numerical-data-summary-adelie" class="section level3">
+<h3>Numerical data summary Adelie</h3>
+<pre class="r"><code>#Important to take arithmetic mean 
+meanbodymassadelie=mean(adelieset$&quot;Body Mass (g)&quot;, na.rm=TRUE)
+meanbodymassadeliemale=mean(adeliemale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
+meanbodymassadeliefemale=mean(adeliefemale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
+medianbodymassadeliemale=median(adeliemale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
+medianbodymassadeliefemale=median(adeliefemale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
+
+summaryadeliefemale=summary(adeliefemale[,3:6])
+summaryadeliemale=summary(adeliemale[,3:6])</code></pre>
+</div>
+</div>
+<div id="jason-put-your-possum-bs-here" class="section level2">
+<h2>JASON PUT YOUR POSSUM BS HERE</h2>
+</div>
+</div>
+<div id="results" class="section level1">
+<h1>Results</h1>
+<p>This is just an outline idea we could follow, please include your own
+ideas and improvements</p>
+<div id="comparison-of-the-descriptive-parameters" class="section level2">
+<h2>comparison of the descriptive parameters</h2>
+<p>put mean for each category in a table for male and female to
+visualize the difference. Do the same for the median and the SD Briefly
+describe what can be observed</p>
+<p>Underline this with the stripcharts for every category in which we
+can see the distribution of the values of female directly compared to
+male.</p>
+<p>Underline this with the histograms for each category. Either use the
+two plots per category separately or the combined plot(Id(Bene)suggest
+we use the two separate plots since there is also information about the
+median and mean of the other sex)</p>
+<p>show that there is a dignficant difference between the means of the
+two groups by using the t test (give results of the t test here)–&gt;
+BUT t test is parametric test and assumes, that the categories are
+normally distributed –&gt; therefor we performed the Shapiro wilke test
+(so give results of this test first (idk how this is going to look like)
+and then the results of the t test in a table)</p>
+<p>then build the bridge to effect sizes (quantitative measure of the
+magnitude of an observed effect or the strength of a relationship) and
+then start with the results of the cohens d in a table</p>
+<p>In the next part we cut the weight into the groups in order to be
+able to perform more tests. Show a table with the proportions of the
+groups and include the expected values</p>
+<p>then give results of CramersV and Cohens H</p>
+<p>??Maybe also include ChiSQ??</p>
+<p>?? WHat about the p-value??</p>
+<p>Then we need to advance to the results of the datanalysis of the
+other species –&gt; this doesnt need to be very long I think –&gt; also
+no conclusions!</p>
+</div>
+</div>
+<div id="discussion" class="section level1">
+<h1>Discussion</h1>
+<p>In the discussion we need to drive the colclusions and find the right
+words for proving our hypothesis. Here include the comparison with the
+literture data of other birds.</p>
+<p>discussion (body sizes in birds in general, what is special with
+>>>>>>> 7d8b9efe0e22cf6edc34979e9f00f6ea396b68cf
 penguins) references (literature)</p>
 </div>
 
