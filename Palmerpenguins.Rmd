@@ -967,3 +967,15 @@ prop.test(table(cWeight,chinstrapset$Sex))
 prop.table(table(chinstrapset$Sex,cWeight))
 ```
 
+# Multivariate analysis using MANOVA
+
+```{r}
+head(chinstrapset)
+Sex = chinstrapset$Sex
+FlipperLength = chinstrapset$"Flipper Length (mm)"
+bodyMass = chinstrapset$"Body Mass (g)"
+BillDepth = chinstrapset$"Culmen Depth (mm)"
+BillLength = chinstrapset$"Culmen Length (mm)"
+
+manova(cbind(BillLength, FlipperLength, BillDepth, bodyMass) ~ Sex, data = chinstrapset)
+```

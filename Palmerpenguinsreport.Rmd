@@ -180,6 +180,21 @@ summarychinstrapfemale=summary(chinstrapfemale[,3:6])
 summarychinstrapmale=summary(chinstrapmale[,3:6])
 ```
 
+# Multivariate analysis using MANOVA
+
+```{r}
+head(chinstrapset)
+Sex = chinstrapset$Sex
+FlipperLength = chinstrapset$"Flipper Length (mm)"
+bodyMass = chinstrapset$"Body Mass (g)"
+BillDepth = chinstrapset$"Culmen Depth (mm)"
+BillLength = chinstrapset$"Culmen Length (mm)"
+
+manova(cbind(BillLength, FlipperLength, BillDepth, bodyMass) ~ Sex, data = chinstrapset)
+```
+
+
+
 statistical analyis (which software, R, which packages, which tests)
 results
 discussion (body sizes in birds in general, what is special with penguins)
