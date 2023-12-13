@@ -113,7 +113,7 @@ meanflipperlengthchinstrap=mean(chinstrapset$"Flipper Length (mm)", na.rm=TRUE)
 
 # Statistical analysis
 
-### Numeric parameters
+## Numeric parameters
 
 In the following section, a series of statistical analyses were undertaken to investigate sexual dimorphism in chinstrap penguins. These analyses encompassed the computation of various statistical parameters for bill length and depth, body mass, and flipper length. Parameters such as means, medians, and comprehensive summaries were derived, and these will be subsequently utilized in additional statistical analyses or tests. The interpretation of these parameters, along with measured values, will be presented in the results section, contributing to our understanding of sexual dimorphism in chinstrap penguins.
 
