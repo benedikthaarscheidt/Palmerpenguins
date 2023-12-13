@@ -337,6 +337,25 @@ medianbodymassadeliefemale=median(adeliefemale$"Body Mass (g)", na.rm=TRUE)
 summaryadeliefemale=summary(adeliefemale[,3:6])
 summaryadeliemale=summary(adeliemale[,3:6])
 
+meanbilllengthadeliemale=mean(adeliemale$"Culmen Length (mm)", na.rm=TRUE)
+meanbilllengthadeliefemale=mean(adeliefemale$"Culmen Length (mm)", na.rm=TRUE)
+meanbilldepthadeliemale=mean(adeliemale$"Culmen Depth (mm)", na.rm=TRUE)
+meanbilldepthadeliefemale=mean(adeliefemale$"Culmen Depth (mm)", na.rm=TRUE)
+meanflipperlengthadeliemale=mean(adeliemale$"Flipper Length (mm)", na.rm=TRUE)
+meanflipperlengthadeliefemale=mean(adeliefemale$"Flipper Length (mm)", na.rm=TRUE)
+
+```
+
+numerical data summary gentoo:
+```{r}
+meanbilllengthgentoomale = mean(gentoomale$"Culmen Length (mm)", na.rm=TRUE)
+meanbilllengthgentoofemale = mean(gentoofemale$"Culmen Length (mm)", na.rm=TRUE)
+meanbilldepthgentoomale = mean(gentoomale$"Culmen Depth (mm)", na.rm=TRUE)
+meanbilldepthgentoofemale = mean(gentoofemale$"Culmen Depth (mm)", na.rm=TRUE)
+meanflipperlengthgentoomale = mean(gentoomale$"Flipper Length (mm)", na.rm=TRUE)
+meanflipperlengthgentoofemale = mean(gentoofemale$"Flipper Length (mm)", na.rm=TRUE)
+meanbodymassgentoomale=mean(gentoomale$"Body Mass (g)", na.rm=TRUE)
+meanbodymassgentoofemale=mean(gentoofemale$"Body Mass (g)", na.rm=TRUE)
 ```
 
 numerical data summary chinstrap bodymass
@@ -387,6 +406,7 @@ medianflipperlengthchinstrapfemale=median(chinstrapfemale$"Flipper Length (mm)",
 summarychinstrapfemale=summary(chinstrapfemale[,3:6])
 summarychinstrapmale=summary(chinstrapmale[,3:6])
 ```
+
 ### Shapiro-wilke test
 check if the data sets of the penguins satisfy the normal distribution, to use 
 subsequent t-test 
