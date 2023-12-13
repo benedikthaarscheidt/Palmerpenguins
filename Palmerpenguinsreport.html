@@ -2251,8 +2251,10 @@ pval.chi.blen = chisq.test(chi.dat.blen)$p.value</code></pre>
 cat.m.bdep = c(1,14,19)
 chi.dat.bdep = data.frame(cat.f.bdep,cat.m.bdep)
 pval.chi.bdep = chisq.test(chi.dat.bdep)$p.value</code></pre>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD # Multivariate analysis using
-MANOVA</p>
+</div>
+</div>
+<div id="multivariate-analysis-using-manova" class="section level3">
+<h3>Multivariate analysis using MANOVA</h3>
 <pre class="r"><code>head(chinstrapset)</code></pre>
 <pre><code>## # A tibble: 6 × 17
 ##   studyName `Sample Number` Species          Region Island Stage `Individual ID`
@@ -2288,7 +2290,6 @@ manova(cbind(BillLength, FlipperLength, BillDepth, bodyMass) ~ Sex, data = chins
 ## 
 ## Residual standard errors: 2.46086 5.866382 0.7712642 326.0054
 ## Estimated effects may be unbalanced</code></pre>
-<pre class="r"><code>#### Flipper length </code></pre>
 <pre class="r"><code>cat.f.flen = c(20,10,4)
 cat.m.flen = c(5,11,18)
 chi.dat.flen = data.frame(cat.f.flen,cat.m.flen)
@@ -2322,7 +2323,6 @@ broader conclusions across different species, we plan to incorporate a
 dataset concerning possums in Australia, available in the MASS package.
 This comprehensive approach allows us to contextualize our findings
 within a broader biological context.</p>
-</div>
 </div>
 <div id="adelie-penguins" class="section level3">
 <h3>Adelie penguins</h3>
