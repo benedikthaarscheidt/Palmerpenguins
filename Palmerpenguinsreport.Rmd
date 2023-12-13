@@ -402,8 +402,9 @@ BillDepth = chinstrapset$"Culmen Depth (mm)"
 BillLength = chinstrapset$"Culmen Length (mm)"
 
 manova(cbind(BillLength, FlipperLength, BillDepth, bodyMass) ~ Sex, data = chinstrapset)
-=======
 #### Flipper length 
+```
+
 ```{r label = chi.flipper.length}
 
 cat.f.flen = c(20,10,4)
@@ -692,15 +693,14 @@ sbmsdi = c(0.04522753994
 )
 songbird = data.frame(sspc,sbmf,sbmm,sbmsdi,swlf,swlm,swlsdi)
 
->>>>>>> 7d8b9efe0e22cf6edc34979e9f00f6ea396b68cf
+
 ```
 
 
 
-<<<<<<< HEAD
 statistical analyis (which software, R, which packages, which tests)
 results
-=======
+
 
 
 ### SDI - Sexual Dimorphism Index

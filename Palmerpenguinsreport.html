@@ -1795,10 +1795,6 @@ By doing so, we ensure that the necessary datasets are readily available
 for subsequent analyses and facilitate a smoother progression in the
 later stages of our report.</p>
 <pre class="r"><code>chinstrapset=df[df$Species ==&quot;Chinstrap penguin (Pygoscelis antarctica)&quot;,]
-<<<<<<< HEAD
-chinstrapmale=chinstrapset[chinstrapset$Sex ==&quot;MALE&quot;,]
-chinstrapfemale=chinstrapset[chinstrapset$Sex ==&quot;FEMALE&quot;,]</code></pre>
-=======
 adelieset = df[df$Species == &quot;Adelie Penguin (Pygoscelis adeliae)&quot;, ]
 gentooset=df[df$Species ==&quot;Gentoo penguin (Pygoscelis papua)&quot;,]</code></pre>
 <p>Subsetting Chinstrap penguin set by sexes</p>
@@ -1837,7 +1833,6 @@ meanflipperlengthchinstrap=mean(chinstrapset$&quot;Flipper Length (mm)&quot;, na
 medianbilllengthchinstrap=median(chinstrapset$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
 medianbilldepthchinstrap=median(chinstrapset$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
 medianflipperlengthchinstrap=median(chinstrapset$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)</code></pre>
->>>>>>> 7d8b9efe0e22cf6edc34979e9f00f6ea396b68cf
 <p>Furthermore without relying on specific statistical test like the
 Kolmogorov Smirnov test or the like, basic statistical parameters were
 calculated which will be interpreted in the results section. Those are
@@ -1909,123 +1904,6 @@ female_std_dev_flipper_Length</code></pre>
 female_std_dev_body_mass &lt;- sd(chinstrapmale$&quot;Body Mass (g)&quot;)
 female_std_dev_body_mass</code></pre>
 <pre><code>## [1] 362.1376</code></pre>
-<<<<<<< HEAD
-<pre class="r"><code>Sextable=table(df$Sex,df$Species)
-Sextable</code></pre>
-<pre><code>##         
-##          Adelie Penguin (Pygoscelis adeliae)
-##   FEMALE                                  73
-##   MALE                                    73
-##         
-##          Chinstrap penguin (Pygoscelis antarctica)
-##   FEMALE                                        34
-##   MALE                                          34
-##         
-##          Gentoo penguin (Pygoscelis papua)
-##   FEMALE                                58
-##   MALE                                  61</code></pre>
-<pre class="r"><code>adelieSex=Sextable[,1]
-gentooSex=Sextable[,3]
-chinstrapSex=Sextable[,2]
-
-
-
-
-## Data analysis
-#numerical data summary adelie:
-
-
-
-
-
-#numerical data summary chinstrap bodymass
-
-meanbodymasschinstrap=mean(chinstrapset$&quot;Body Mass (g)&quot;, na.rm=TRUE)
-meanbodymasschinstrapmale=mean(chinstrapmale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
-meanbodymasschinstrapfemale=mean(chinstrapfemale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
-medianbodymasschinstrapmale=median(chinstrapmale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
-medianbodymasschinstrapfemale=median(chinstrapfemale$&quot;Body Mass (g)&quot;, na.rm=TRUE)
-
-summarychinstrapfemale=summary(chinstrapfemale[,3:6])
-summarychinstrapmale=summary(chinstrapmale[,3:6])
-
-
-#numerical data summary chinstrap billlength 
-
-meanbilllengthchinstrap=mean(chinstrapset$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
-meanbilllengthchinstrapmale=mean(chinstrapmale$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
-meanbilllengthchinstrapfemale=mean(chinstrapfemale$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
-medianbilllengthchinstrapmale=median(chinstrapmale$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
-medianbilllengthchinstrapfemale=median(chinstrapfemale$&quot;Culmen Length (mm)&quot;, na.rm=TRUE)
-
-summarychinstrapfemale=summary(chinstrapfemale[,3:6])
-summarychinstrapmale=summary(chinstrapmale[,3:6])
-
-
-#Numerical data summary bill depth 
-
-meanbilldepthchinstrap=mean(chinstrapset$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
-meanbilldepthchinstrapmale=mean(chinstrapmale$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
-meanbilldepthchinstrapfemale=mean(chinstrapfemale$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
-medianbilldepthchinstrapmale=median(chinstrapmale$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
-medianbilldepthchinstrapfemale=median(chinstrapfemale$&quot;Culmen Depth (mm)&quot;, na.rm=TRUE)
-
-summarychinstrapfemale=summary(chinstrapfemale[,3:6])
-summarychinstrapmale=summary(chinstrapmale[,3:6])
-
-
-#numerical data summary flipperlength
-
-
-meanflipperlengthchinstrap=mean(chinstrapset$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)
-meanflipperlengthchinstrapmale=mean(chinstrapmale$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)
-meanflipperlengthchinstrapfemale=mean(chinstrapfemale$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)
-medianflipperlengthchinstrapmale=median(chinstrapmale$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)
-medianflipperlengthchinstrapfemale=median(chinstrapfemale$&quot;Flipper Length (mm)&quot;, na.rm=TRUE)
-
-summarychinstrapfemale=summary(chinstrapfemale[,3:6])
-summarychinstrapmale=summary(chinstrapmale[,3:6])</code></pre>
-</div>
-<div id="multivariate-analysis-using-manova" class="section level1">
-<h1>Multivariate analysis using MANOVA</h1>
-<pre class="r"><code>head(chinstrapset)</code></pre>
-<pre><code>## # A tibble: 6 × 17
-##   studyName `Sample Number` Species          Region Island Stage `Individual ID`
-##   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;          
-## 1 PAL0708                 1 Chinstrap pengu… Anvers Dream  Adul… N61A1          
-## 2 PAL0708                 2 Chinstrap pengu… Anvers Dream  Adul… N61A2          
-## 3 PAL0708                 3 Chinstrap pengu… Anvers Dream  Adul… N62A1          
-## 4 PAL0708                 4 Chinstrap pengu… Anvers Dream  Adul… N62A2          
-## 5 PAL0708                 5 Chinstrap pengu… Anvers Dream  Adul… N64A1          
-## 6 PAL0708                 6 Chinstrap pengu… Anvers Dream  Adul… N64A2          
-## # ℹ 10 more variables: `Clutch Completion` &lt;chr&gt;, `Date Egg` &lt;date&gt;,
-## #   `Culmen Length (mm)` &lt;dbl&gt;, `Culmen Depth (mm)` &lt;dbl&gt;,
-## #   `Flipper Length (mm)` &lt;dbl&gt;, `Body Mass (g)` &lt;dbl&gt;, Sex &lt;chr&gt;,
-## #   `Delta 15 N (o/oo)` &lt;dbl&gt;, `Delta 13 C (o/oo)` &lt;dbl&gt;, Comments &lt;chr&gt;</code></pre>
-<pre class="r"><code>Sex = chinstrapset$Sex
-FlipperLength = chinstrapset$&quot;Flipper Length (mm)&quot;
-bodyMass = chinstrapset$&quot;Body Mass (g)&quot;
-BillDepth = chinstrapset$&quot;Culmen Depth (mm)&quot;
-BillLength = chinstrapset$&quot;Culmen Length (mm)&quot;
-
-manova(cbind(BillLength, FlipperLength, BillDepth, bodyMass) ~ Sex, data = chinstrapset)</code></pre>
-<pre><code>## Call:
-##    manova(cbind(BillLength, FlipperLength, BillDepth, bodyMass) ~ 
-##     Sex, data = chinstrapset)
-## 
-## Terms:
-##                     Sex Residuals
-## BillLength          347       400
-## FlipperLength      1137      2271
-## BillDepth            47        39
-## bodyMass        2882353   7014449
-## Deg. of Freedom       1        66
-## 
-## Residual standard errors: 2.46086 5.866382 0.7712642 326.0054
-## Estimated effects may be unbalanced</code></pre>
-<p>statistical analyis (which software, R, which packages, which tests)
-results discussion (body sizes in birds in general, what is special with
-=======
 </div>
 <div id="mean-1" class="section level4">
 <h4>Mean</h4>
@@ -2373,9 +2251,44 @@ pval.chi.blen = chisq.test(chi.dat.blen)$p.value</code></pre>
 cat.m.bdep = c(1,14,19)
 chi.dat.bdep = data.frame(cat.f.bdep,cat.m.bdep)
 pval.chi.bdep = chisq.test(chi.dat.bdep)$p.value</code></pre>
-</div>
-<div id="flipper-length" class="section level4">
-<h4>Flipper length</h4>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD # Multivariate analysis using
+MANOVA</p>
+<pre class="r"><code>head(chinstrapset)</code></pre>
+<pre><code>## # A tibble: 6 × 17
+##   studyName `Sample Number` Species          Region Island Stage `Individual ID`
+##   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;          
+## 1 PAL0708                 1 Chinstrap pengu… Anvers Dream  Adul… N61A1          
+## 2 PAL0708                 2 Chinstrap pengu… Anvers Dream  Adul… N61A2          
+## 3 PAL0708                 3 Chinstrap pengu… Anvers Dream  Adul… N62A1          
+## 4 PAL0708                 4 Chinstrap pengu… Anvers Dream  Adul… N62A2          
+## 5 PAL0708                 5 Chinstrap pengu… Anvers Dream  Adul… N64A1          
+## 6 PAL0708                 6 Chinstrap pengu… Anvers Dream  Adul… N64A2          
+## # ℹ 10 more variables: `Clutch Completion` &lt;chr&gt;, `Date Egg` &lt;date&gt;,
+## #   `Culmen Length (mm)` &lt;dbl&gt;, `Culmen Depth (mm)` &lt;dbl&gt;,
+## #   `Flipper Length (mm)` &lt;dbl&gt;, `Body Mass (g)` &lt;dbl&gt;, Sex &lt;chr&gt;,
+## #   `Delta 15 N (o/oo)` &lt;dbl&gt;, `Delta 13 C (o/oo)` &lt;dbl&gt;, Comments &lt;chr&gt;</code></pre>
+<pre class="r"><code>Sex = chinstrapset$Sex
+FlipperLength = chinstrapset$&quot;Flipper Length (mm)&quot;
+bodyMass = chinstrapset$&quot;Body Mass (g)&quot;
+BillDepth = chinstrapset$&quot;Culmen Depth (mm)&quot;
+BillLength = chinstrapset$&quot;Culmen Length (mm)&quot;
+
+manova(cbind(BillLength, FlipperLength, BillDepth, bodyMass) ~ Sex, data = chinstrapset)</code></pre>
+<pre><code>## Call:
+##    manova(cbind(BillLength, FlipperLength, BillDepth, bodyMass) ~ 
+##     Sex, data = chinstrapset)
+## 
+## Terms:
+##                     Sex Residuals
+## BillLength          347       400
+## FlipperLength      1137      2271
+## BillDepth            47        39
+## bodyMass        2882353   7014449
+## Deg. of Freedom       1        66
+## 
+## Residual standard errors: 2.46086 5.866382 0.7712642 326.0054
+## Estimated effects may be unbalanced</code></pre>
+<pre class="r"><code>#### Flipper length </code></pre>
 <pre class="r"><code>cat.f.flen = c(20,10,4)
 cat.m.flen = c(5,11,18)
 chi.dat.flen = data.frame(cat.f.flen,cat.m.flen)
@@ -2443,6 +2356,8 @@ meanbodymassgentoofemale=mean(gentoofemale$&quot;Body Mass (g)&quot;, na.rm=TRUE
 </div>
 <div id="preybirds-and-songbirds" class="section level3">
 <h3>Preybirds and Songbirds</h3>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD statistical analyis (which
+software, R, which packages, which tests) results =======</p>
 </div>
 <div id="sdi---sexual-dimorphism-index" class="section level3">
 <h3>SDI - Sexual Dimorphism Index</h3>
@@ -3002,9 +2917,23 @@ no conclusions!</p>
 <p>In the discussion we need to drive the colclusions and find the right
 words for proving our hypothesis. Here include the comparison with the
 literture data of other birds.</p>
-<p>discussion (body sizes in birds in general, what is special with
->>>>>>> 7d8b9efe0e22cf6edc34979e9f00f6ea396b68cf
-penguins) references (literature)</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>7d8b9efe0e22cf6edc34979e9f00f6ea396b68cf discussion (body sizes in
+birds in general, what is special with penguins) references
+(literature)</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
 </div>
 
 
