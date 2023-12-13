@@ -113,33 +113,32 @@ meanflipperlengthchinstrap=mean(chinstrapset$"Flipper Length (mm)", na.rm=TRUE)
 
 # Statistical analysis
 
-## Numeric parameters
+### Numeric parameters
 
-In the following, we calculate various statistical parameters for the chinstrap subset, without relying on specific tests like the Kolmogorov-Smirnov test. These parameters, including the standard deviation of bill length and depth, body mass, and flipper length, along with the mean, median, and a comprehensive summary, will be interpreted in the results section:
+In the following section, a series of statistical analyses were undertaken to investigate sexual dimorphism in chinstrap penguins. These analyses encompassed the computation of various statistical parameters for bill length and depth, body mass, and flipper length. Parameters such as means, medians, and comprehensive summaries were derived, and these will be subsequently utilized in additional statistical analyses or tests. The interpretation of these parameters, along with measured values, will be presented in the results section, contributing to our understanding of sexual dimorphism in chinstrap penguins.
 
+```{r label = calculating.mean.and.median, echo=FALSE,results='hide'}
 ### Mean Chinstrap population
-```{r}
+
 meanbodymasschinstrap=mean(chinstrapset$"Body Mass (g)", na.rm=TRUE)
 meanbilllengthchinstrap=mean(chinstrapset$"Culmen Length (mm)", na.rm=TRUE)
 meanbilldepthchinstrap=mean(chinstrapset$"Culmen Depth (mm)", na.rm=TRUE)
 meanflipperlengthchinstrap=mean(chinstrapset$"Flipper Length (mm)", na.rm=TRUE)
-```
+
 
 ### Median Chinstrap population
-```{r}
+
 medianbodymasschinstrap=median(chinstrapset$"Body Mass (g)", na.rm=TRUE)
 medianbilllengthchinstrap=median(chinstrapset$"Culmen Length (mm)", na.rm=TRUE)
 medianbilldepthchinstrap=median(chinstrapset$"Culmen Depth (mm)", na.rm=TRUE)
 medianflipperlengthchinstrap=median(chinstrapset$"Flipper Length (mm)", na.rm=TRUE)
-```
 
 
-Furthermore without relying on specific statistical test like the Kolmogorov Smirnov test or the like, basic statistical parameters were calculated which will be interpreted in the results section. Those are the standard deviation of bill length and depth, the bodymass and the flipper length, the mean of all those physical traits, the median of those traits, as well as a concluding summary of those traits:
 
 ### Male
 
 #### Standard deviation
-```{r}
+
 #bill length
 male_std_dev_bill_Length <- sd(chinstrapmale$"Culmen Length (mm)")
 male_std_dev_bill_Length
@@ -152,10 +151,10 @@ male_std_dev_flipper_Length
 #bodymass
 male_std_dev_body_mass <- sd(chinstrapmale$"Body Mass (g)")
 male_std_dev_body_mass
-```
+
 
 #### Mean
-```{r}
+
 #body mass
 meanbodymasschinstrapmale=mean(chinstrapmale$"Body Mass (g)", na.rm=TRUE)
 #bill lenght
@@ -164,10 +163,9 @@ meanbilllengthchinstrapmale=mean(chinstrapmale$"Culmen Length (mm)", na.rm=TRUE)
 meanbilldepthchinstrapmale=mean(chinstrapmale$"Culmen Depth (mm)", na.rm=TRUE)
 #flipper length 
 meanflipperlengthchinstrapmale=mean(chinstrapmale$"Flipper Length (mm)", na.rm=TRUE)
-```
 
 #### Median
-```{r}
+
 #body mass
 medianbodymasschinstrapmale=median(chinstrapmale$"Body Mass (g)", na.rm=TRUE)
 #bill length 
@@ -176,12 +174,12 @@ medianbilllengthchinstrapmale=median(chinstrapmale$"Culmen Length (mm)", na.rm=T
 medianbilldepthchinstrapmale=median(chinstrapmale$"Culmen Depth (mm)", na.rm=TRUE)
 #flipper length 
 medianflipperlengthchinstrapmale=median(chinstrapmale$"Flipper Length (mm)", na.rm=TRUE)
-```
+
 
 ### Female
 
 #### Standard deviation
-```{r}
+
 #bill length
 female_std_dev_bill_Length <- sd(chinstrapmale$"Culmen Length (mm)")
 female_std_dev_bill_Length
@@ -195,10 +193,10 @@ female_std_dev_flipper_Length
 female_std_dev_body_mass <- sd(chinstrapmale$"Body Mass (g)")
 female_std_dev_body_mass
 
-```
+
 
 #### Mean 
-```{r}
+
 #body mass
 meanbodymasschinstrapfemale=mean(chinstrapfemale$"Body Mass (g)", na.rm=TRUE)
 #bill length 
@@ -207,11 +205,11 @@ meanbilllengthchinstrapfemale=mean(chinstrapfemale$"Culmen Length (mm)", na.rm=T
 meanbilldepthchinstrapfemale=mean(chinstrapfemale$"Culmen Depth (mm)", na.rm=TRUE)
 #flipper length 
 meanflipperlengthchinstrapfemale=mean(chinstrapfemale$"Flipper Length (mm)", na.rm=TRUE)
-```
+
 
 
 #### Median
-```{r}
+
 #body mass
 medianbodymasschinstrapfemale=median(chinstrapfemale$"Body Mass (g)", na.rm=TRUE)
 #bill length 
@@ -232,9 +230,9 @@ To assess the normality of our datasets, we employed the Shapiro-Wilk test, a st
 
 For each relevant variable, we conducted a Shapiro-Wilk test, where the null hypothesis (H0) posits that the data is normally distributed. Conversely, the alternative hypothesis (H1) suggests that the data significantly deviates from a normal distribution.
 
-In the context of our analysis, meeting the assumption of normality is crucial, especially when considering subsequent two-sample t-tests. 
+In the context of our analysis, meeting the assumption of normality is crucial, especially when considering subsequent two-sample t-tests. Because we are focusing on sexual dimorphism in chinstrap penguins, this test and subsequent two-sample t-tests were applied only to the relevant variables in chinstrap.
 
-```{r label = shapiro-wilke-test}
+```{r label = shapiro-wilke-test,echo=FALSE,results='hide'}
 a_bill_length_female = shapiro.test(na.omit(adeliefemale$"Culmen Length (mm)"))$p.value
 a_bill_length_male = shapiro.test(na.omit(adeliemale$"Culmen Length (mm)"))$p.value
 
@@ -252,24 +250,6 @@ a_body_mass_male = shapiro.test(na.omit(adeliemale$"Body Mass (g)"))$p.value
 adelishapiro = data.frame(a_bill_length_female,a_bill_length_male,a_bill_depth_female,a_bill_depth_male, a_flipper_length_female,a_flipper_length_male,a_body_mass_female,a_body_mass_male)
 
 adelishapiro>0.05
-
-c_bill_length_female_fit = chinstrapfemale$"Culmen Length (mm)"[chinstrapfemale$"Culmen Length (mm)"<58]
-c_bill_length_female = shapiro.test(na.omit(c_bill_length_female_fit))$p.value
-c_bill_length_male = shapiro.test(na.omit(chinstrapmale$"Culmen Length (mm)"))$p.value
-
-c_bill_depth_female = shapiro.test(na.omit(chinstrapfemale$"Culmen Depth (mm)"))$p.value
-c_bill_depth_male = shapiro.test(na.omit(chinstrapmale$"Culmen Depth (mm)"))$p.value
-
-c_flipper_length_female = shapiro.test(na.omit(chinstrapfemale$"Flipper Length (mm)"))$p.value
-c_flipper_length_male = shapiro.test(na.omit(chinstrapmale$"Flipper Length (mm)"))$p.value
-
-c_body_mass_female = shapiro.test(na.omit(chinstrapfemale$"Body Mass (g)"))$p.value
-c_body_mass_male = shapiro.test(na.omit(chinstrapmale$"Body Mass (g)"))$p.value
-
-
-chinshapiro = data.frame(c_bill_length_female,c_bill_length_male,c_bill_depth_female,c_bill_depth_male, c_flipper_length_female,c_flipper_length_male,c_body_mass_female,c_body_mass_male)
-
-chinshapiro>0.05
 
 g_bill_length_female = shapiro.test(na.omit(gentoofemale$"Culmen Length (mm)"))$p.value
 g_bill_length_male_fit = gentoomale$"Culmen Length (mm)"[gentoomale$"Culmen Length (mm)"<59]
@@ -289,7 +269,27 @@ gentooshapiro = data.frame(g_bill_length_female,g_bill_length_male,g_bill_depth_
 
 gentooshapiro>0.05
 ```
-To meet the assumption of normal distribution, we identified and removed outliers from specific datasets. This step was taken to enhance the normality of the data and ensure the validity of subsequent statistical analyses.
+
+```{r label = chinstrap.shapiro, echo=FALSE}
+c_bill_length_female_fit = chinstrapfemale$"Culmen Length (mm)"[chinstrapfemale$"Culmen Length (mm)"<58]
+c_bill_length_female = shapiro.test(na.omit(c_bill_length_female_fit))$p.value
+c_bill_length_male = shapiro.test(na.omit(chinstrapmale$"Culmen Length (mm)"))$p.value
+
+c_bill_depth_female = shapiro.test(na.omit(chinstrapfemale$"Culmen Depth (mm)"))$p.value
+c_bill_depth_male = shapiro.test(na.omit(chinstrapmale$"Culmen Depth (mm)"))$p.value
+
+c_flipper_length_female = shapiro.test(na.omit(chinstrapfemale$"Flipper Length (mm)"))$p.value
+c_flipper_length_male = shapiro.test(na.omit(chinstrapmale$"Flipper Length (mm)"))$p.value
+
+c_body_mass_female = shapiro.test(na.omit(chinstrapfemale$"Body Mass (g)"))$p.value
+c_body_mass_male = shapiro.test(na.omit(chinstrapmale$"Body Mass (g)"))$p.value
+
+
+chinshapiro = data.frame(c_bill_length_female,c_bill_length_male,c_bill_depth_female,c_bill_depth_male, c_flipper_length_female,c_flipper_length_male,c_body_mass_female,c_body_mass_male)
+
+chinshapiro>0.05
+```
+To meet the assumption of normal distribution, we identified and removed a outlier from bill length of female chinstrap penguins dataset. This step was taken to enhance the normality of the data and ensure the validity of subsequent statistical analyses.
 
 ### T-test
 
@@ -845,6 +845,6 @@ Here include the comparison with the literture data of other birds.
 
 
 
->>>>>>> 7d8b9efe0e22cf6edc34979e9f00f6ea396b68cf
+
 discussion (body sizes in birds in general, what is special with penguins)
 references (literature)
