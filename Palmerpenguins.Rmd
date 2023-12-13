@@ -1342,3 +1342,15 @@ par(mfrow=c(1, 1), mar = c(5, 4, 4, 2) + 0.1, oma = c(2, 1, 2, 1))
 
 
 
+# Multivariate analysis using MANOVA
+
+```{r}
+head(chinstrapset)
+Sex = chinstrapset$Sex
+FlipperLength = chinstrapset$"Flipper Length (mm)"
+bodyMass = chinstrapset$"Body Mass (g)"
+BillDepth = chinstrapset$"Culmen Depth (mm)"
+BillLength = chinstrapset$"Culmen Length (mm)"
+
+manova(cbind(BillLength, FlipperLength, BillDepth, bodyMass) ~ Sex, data = chinstrapset)
+```
