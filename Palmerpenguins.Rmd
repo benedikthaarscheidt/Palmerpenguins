@@ -98,6 +98,9 @@ gentooSex=Sextable[,3]
 chinstrapSex=Sextable[,2]
 
 ```
+
+
+
 ```{r label = bird.data.preperation, echo=FALSE}
 pspc = c("Aegolius funereus"
         ,"Circus pygargus"
