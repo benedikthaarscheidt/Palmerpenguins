@@ -74,8 +74,12 @@ pengraw=head(df)
 knitr::kable(pengraw)
 ```
 
-# Data preparation
 
+
+
+# Statistical analysis
+
+## Data preparation
 To extract crucial insights from the penguins dataset and pursue our primary objective, which is to emphasize our hypothesis that there are distinctive physical characteristics between male and female penguins, we employ built-in R utilities and leverage specific functionalities offered by the "effsize" package accessible through the CRAN repository. All computations and tests are executed within the R Markdown environment. This approach allows us to thoroughly analyze the dataset, assess sex-based variations, and validate our underlying hypothesis with a comprehensive set of statistical tools.
 
 To accomplish this, certain key steps must be taken:
@@ -110,8 +114,6 @@ meanbilllengthchinstrap=mean(chinstrapset$"Culmen Length (mm)", na.rm=TRUE)
 meanbilldepthchinstrap=mean(chinstrapset$"Culmen Depth (mm)", na.rm=TRUE)
 meanflipperlengthchinstrap=mean(chinstrapset$"Flipper Length (mm)", na.rm=TRUE)
 ```
-
-# Statistical analysis
 
 ## Numeric parameters
 
@@ -390,8 +392,9 @@ chi.dat.bdep = data.frame(cat.f.bdep,cat.m.bdep)
 pval.chi.bdep = chisq.test(chi.dat.bdep)$p.value
 ```
 
-<<<<<<< HEAD
-# Multivariate analysis using MANOVA
+
+
+### Multivariate analysis using MANOVA
 
 ```{r}
 head(chinstrapset)
@@ -402,11 +405,10 @@ BillDepth = chinstrapset$"Culmen Depth (mm)"
 BillLength = chinstrapset$"Culmen Length (mm)"
 
 manova(cbind(BillLength, FlipperLength, BillDepth, bodyMass) ~ Sex, data = chinstrapset)
-#### Flipper length 
+
 ```
 
 ```{r label = chi.flipper.length}
-
 cat.f.flen = c(20,10,4)
 cat.m.flen = c(5,11,18)
 chi.dat.flen = data.frame(cat.f.flen,cat.m.flen)
