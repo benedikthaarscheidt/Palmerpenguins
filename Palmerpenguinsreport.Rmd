@@ -333,9 +333,9 @@ To meet the assumption of normal distribution, we identified and removed a outli
 
 Having conducted the Shapiro-Wilk tests to assess the normality of our dataset variables, we now turn our attention to the subsequent two-sample t-tests. 
 
-The one-sample t-test statistic (\(t\)) is given by:
+The two-sample t-test statistic (\(t\)) is given by:
 
-\[ t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{s_p^2 \left(\frac{1}{n_1} + \frac{1}{n_2}\right)}} \]
+\[ t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{s_p \left(\frac{1}{n_1} + \frac{1}{n_2}\right)}} \]
 
 
 where \(\bar{x}\) is the sample mean, \(\mu\) is the population mean, \(s\) is the sample standard deviation, and \(n\) is the sample size.
@@ -349,20 +349,21 @@ t.test(chinstrapfemale$"Flipper Length (mm)",chinstrapmale$"Flipper Length (mm)"
 t.test(chinstrapfemale$"Body Mass (g)",chinstrapmale$"Body Mass (g)")
 ```
 
-This maybe in discussion:
 The p-values obtained from the t-tests are remarkably low (close to zero), indicating strong evidence against the null hypothesis of no difference. Therefore, we reject the null hypothesis for each parameter, concluding that there are significant differences between male and female chinstrap penguins in terms of bill length, bill depth, flipper length, and body mass. This suggests distinct morphological characteristics associated with sex in this penguin population
 
 
 |categories|female|male|p-value|significant difference|
-|--|--:|--:|--:|:---:|
-|bill length in mm|46.23|51.09|1e-13|yes|
-|bill depth in mm|17.59|19.25|7e-13|yes|
-|flipper length in mm|191.7|199.9|3e-07|yes|
-|body mass in g|3527|3939|3e-07|yes|
+|--|:--:|:--:|:--:|:---:|
+|Culmen length (mm)|46.23|51.09|1e-13|yes|
+|Culmen depth (mm)|17.59|19.25|7e-13|yes|
+|Flipper length (mm)|191.7|199.9|3e-07|yes|
+|Body mass (g)|3527|3939|3e-07|yes|
   
 
 
-### Effectsize by cohens d
+### Effectsize 
+
+#### Cohen' d
 
 
 
@@ -395,6 +396,27 @@ tab = addmargins(table(chinstrapset$Sex, cWeight), FUN = sum)
 tab
 ```
 
+#### Cohen's H
+
+Continuing our in-depth analysis, we proceeded to assess the impact size of sex on specific physical characteristics using Cohen's H. 
+
+Cohen's h is calculated using the following formula:
+
+\[ h = \frac{2 \times \sin^{-1}\left(\sqrt{\frac{U}{n_1 \times n_2}}\right)}{\pi} \]
+
+where \(h\) is the effect size, \(U\) is the Mann-Whitney U statistic, \(n_1\) and \(n_2\) are the sample sizes for the two groups being compared.
+
+
+To facilitate this examination, the subsets of penguins based on sex were initially divided into distinct weight groups, as illustrated in the preceding code snippet. The resulting weight groups were then subjected to the Cohens H test, which is adept at capturing the effect size of the sex variable. Unlike commonly implemented functions for Cohens H in R, we have chosen to implement our own for precise control over the computation. The custom function is presented below:
+```{r}
+# Custom implementation of Cohen's H
+cohensH = function(tab) {
+  pt = prop.test(tab)
+  h = 2 * abs(asin(sqrt(pt$estimate[1])) - asin(sqrt(pt$estimate[2])))
+  return(h[[1]])}
+```
+
+This function enables the calculation of Cohen's H, a measure that gauges the strength of association between categorical variables. It offers insights into the practical significance of sex-related disparities in the measured physical attributes, complementing our statistical analyses for a comprehensive understanding of the dataset.
 
 ### Cramér's V
 To perform the Cramér's V test, penguins of one sex were grouped based on their weight, as demonstrated above. Subsequently, the analysis using the Cramér's V test aimed to determine the strength of association between the now categorical variables. 
@@ -416,28 +438,6 @@ return(sqrt(chisq.test(tab,correct=correct)$statistic/
 
 This function facilitates the calculation of Cramér's V, providing a standardized measure of association that aids in interpreting the impact of sex on specific physical characteristics.
 
-
-### Cohen's H
-
-Continuing our in-depth analysis, we proceeded to assess the impact size of sex on specific physical characteristics using Cohen's H. 
-
-Cohen's h is calculated using the following formula:
-
-\[ h = \frac{2 \times \sin^{-1}\left(\sqrt{\frac{U}{n_1 \times n_2}}\right)}{\pi} \]
-
-where \(h\) is the effect size, \(U\) is the Mann-Whitney U statistic, \(n_1\) and \(n_2\) are the sample sizes for the two groups being compared.
-
-
-To facilitate this examination, the subsets of penguins based on sex were initially divided into distinct weight groups, as illustrated in the preceding code snippet. The resulting weight groups were then subjected to the Cohens H test, which is adept at capturing the effect size of the sex variable. Unlike commonly implemented functions for Cohens H in R, we have chosen to implement our own for precise control over the computation. The custom function is presented below:
-```{r}
-# Custom implementation of Cohen's H
-cohensH = function(tab) {
-  pt = prop.test(tab)
-  h = 2 * abs(asin(sqrt(pt$estimate[1])) - asin(sqrt(pt$estimate[2])))
-  return(h[[1]])}
-```
-
-This function enables the calculation of Cohen's H, a measure that gauges the strength of association between categorical variables. It offers insights into the practical significance of sex-related disparities in the measured physical attributes, complementing our statistical analyses for a comprehensive understanding of the dataset.
 
 ### Chi-Square Test
 
@@ -1242,11 +1242,11 @@ knitr::kable(chinshapiro)
 Having conducted the Shapiro-Wilk tests to assess the normality of our dataset variables, we now turn our attention to the subsequent two-sample t-tests. These tests will allow us to investigate potential differences in specific physical characteristics between different groups, such as male and female penguins within each species. Before delving into the t-test results, it's imperative to consider the normality status of our variables, as the validity of t-tests relies on the assumption of normal distribution. The Shapiro-Wilk tests provided insights into the normality of our data, aiding in the informed selection of appropriate statistical analyses. With this foundation, we proceed to the t-tests, aiming to uncover nuanced distinctions in key attributes among penguin groups and species.
 
 |categories|female|male|p-value|significant difference|
-|--|--:|--:|--:|:---:|
-|bill length in mm|46.23|51.09|1e-13|yes|
-|bill depth in mm|17.59|19.25|7e-13|yes|
-|flipper length in mm|191.7|199.9|3e-07|yes|
-|body mass in g|3527|3939|3e-07|yes|
+|--|:--:|:--:|:--:|:---:|
+|Culmen length (mm)|46.23|51.09|1e-13|yes|
+|Culmen depth (mm)|17.59|19.25|7e-13|yes|
+|flipper length (mm)|191.7|199.9|3e-07|yes|
+|body mass (g)|3527|3939|3e-07|yes|
   
 ### Effect size
 
@@ -1381,9 +1381,4 @@ Another perspective argues that the smaller size of males contributes to their s
 
 
 # Literature
-
-
-
-
-
 
