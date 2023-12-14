@@ -396,6 +396,8 @@ tab = addmargins(table(chinstrapset$Sex, cWeight), FUN = sum)
 tab
 ```
 
+<span style="color:red"> **It seems better to express this by writing an actual table rather than expressing it in the form of code output.** </span>
+
 #### Cohen's H
 
 Continuing our in-depth analysis, we proceeded to assess the impact size of sex on specific physical characteristics using Cohen's H. 
@@ -429,6 +431,8 @@ where \(V\) is the effect size, \(\chi^2\) is the chi-squared test statistic, \(
 
 
 Given the absence of a pre-existing function for Cramér's V in R, we opted to implement our own, as shown in the following custom function:
+
+<span style="color:red">**The same goes for function implementation. There is a need to hide it from view. If you hide this, the description will also need to change. Detlef said he didn't want the R to look like a real paper report. Check Detlef's email. The same goes for your works after this.**</span>
 
 ```{r}
 dg.cramersV = function (tab,correct=TRUE) {t=min(dim(tab)) 
@@ -544,21 +548,21 @@ meanbodymassgentoofemale=mean(gentoofemale$"Body Mass (g)", na.rm=TRUE)
 
 
 ```{r label = bird.data.preperation, echo=FALSE}
-pspc = c("Aegolius funereus"
-        ,"Circus pygargus"
-        ,"Aquila heliaca"
-        ,"Buteo galapagoensis"
-        ,"Buteo ridgwayi"
-        ,"Haliaeetus albicilla"
-        ,"Falco columbarius"
-        ,"Falco naumanni"
-        ,"Falco sparverius"
-        ,"Falco tinnunculus"
-        ,"Accipiter cooperii"
-        ,"Accipiter nisus"
-        ,"Athene cunicularia"
-        ,"Tyto alba"
-        ,"Gyps fulvus")
+pspc = c("*Aegolius funereus*"
+        ,"*Circus pygargus*"
+        ,"*Aquila heliaca*"
+        ,"*Buteo galapagoensis*"
+        ,"*Buteo ridgwayi*"
+        ,"*Haliaeetus albicilla*"
+        ,"*Falco columbarius*"
+        ,"*Falco naumanni*"
+        ,"*Falco sparverius*"
+        ,"*Falco tinnunculus*"
+        ,"*Accipiter cooperii*"
+        ,"*Accipiter nisus*"
+        ,"*Athene cunicularia*"
+        ,"*Tyto alba*"
+        ,"*Gyps fulvus*")
 # C bmm D bmf E wlm F wlf J wlsdi K bmsdi
 pbmm = c(119.2051282
         ,261
@@ -661,19 +665,19 @@ pwlsdi = c(-0.02198085575
 )
 preybird = data.frame(pspc, pbmf,pbmm,pbmsdi,pwlf,pwlm,pwlsdi)
 
-sspc = c("Malurus amabilis"
-         ,"Malurus cyaneus"
-         ,"Phainopepla nitens"
-         ,"Hylocichla mustelina"
-         ,"Cinclus cinclus"
-         ,"Cercomacra tyrannina"
-         ,"Empidonax minimus"
-         ,"Erithacus rubecula"
-         ,"Ficedula hypoleuca"
-         ,"Oenanthe oenanthe"
-         ,"Phoenicurus ochruros"
-         ,"Sialia mexicana"
-         ,"Sitta europaea")
+sspc = c("*Malurus amabilis*"
+         ,"*Malurus cyaneus*"
+         ,"*Phainopepla nitens*"
+         ,"*Hylocichla mustelina*"
+         ,"*Cinclus cinclus*"
+         ,"*Cercomacra tyrannina*"
+         ,"*Empidonax minimus*"
+         ,"*Erithacus rubecula*"
+         ,"*Ficedula hypoleuca*"
+         ,"*Oenanthe oenanthe*"
+         ,"*Phoenicurus ochruros*"
+         ,"*Sialia mexicana*"
+         ,"*Sitta europaea*")
 
 sbmm = c(9.1
          ,11.3
@@ -836,7 +840,7 @@ sdi.table
 
 
 ```{r}
-penspc = c("Pygoscelis antarctica", "Pygoscelis adeliae", "Pygoscelis papua")
+penspc = c("*Pygoscelis antarctica*", "*Pygoscelis adeliae*", "*Pygoscelis papua*")
 bspc = c(penspc,pspc,sspc)
 bmf = c(bmass.f,pbmf,sbmf)
 bmm = c(bmass.m,pbmm,sbmm)
@@ -1338,32 +1342,55 @@ To derive meaningful insights from our analyzed data and validate our hypothesis
 
 ### SDI - Sexual Dimorphism Index
 
-To quantify the sexual dimorphism of each penguin species, a Sexual Dimorphism Index (SDI) was calculated for seven morphological measurements. The SDI is a widely utilized parameter across ecological and morphological studies to describe sexual dimorphism in species (Lovich & Gibbons, 1992).
+To quantify the sexual dimorphism of each penguin species, a Sexual Dimorphism Index (SDI) was calculated for seven morphological measurements. The SDI is a widely utilized parameter across ecological and morphological studies to describe sexual dimorphism in species (@lovich1992review).
 
 Subsequently, the Sexual Size Dimorphism (SSD) was estimated by calculating the SDI for all male-female pairs within each penguin species. This step allowed for the comprehensive assessment of sexual dimorphism across the entire dataset.
 
-The data for different avian species were sourced from the database provided by Valcu, M., Valcu, C., & Kempenaers, B. (2023). This dataset encompasses information on body mass, wing length, and Sexual Dimorphism Index (SDI) categorized by male and female specimens for various avian species.
+The data for different avian species were sourced from the database provided by @valcu_extrapair_2023. This dataset encompasses information on body mass, wing length, and Sexual Dimorphism Index (SDI) categorized by male and female specimens for various avian species.
 Given that the database includes statistical values for wing length and body mass, we can compare these metrics with the corresponding flipper length and body mass of the penguins in our dataset. This enables a meaningful assessment of the morphological sexual dimorphism of penguins in relation to the broader avian species data provided. Additionally we note, that form the fourth row of the table until the species Gyps fulvus, the listed species are all preybirds and starting from Malurus amabilis until the last row of the table the avian species are all songbirds.
 
 The results are displayed in the table below.
-BM, BL, BD and FL stand for body mass, bill length, bill depth and flipper length respectively.
+BM, BL, BD and FL stand for body mass, bill length, bill depth and flipper length respectively. In our data, SDI is positive when males are larger and negative when females are larger.
 
 
 ```{r label=comparison.bird.sdi,results='asis', echo=FALSE}
-knitr::kable(bird, col.names = c('Species','BM F', 'BM M', 'BM SDI', 'WL or FL F','WL or FL M','WL or FL SDI','Bias'),
+knitr::kable(bird, col.names = c('*Species*','BM F', 'BM M', 'BM SDI', 'WL or FL F','WL or FL M','WL or FL SDI','Bias'),
       digits = 3, valign='t')
 ```
 
 In line with the sexual dimorphism observed in Chinstrap penguins, where males tend to be larger and heavier, similar trends are apparent in other penguin species. Positive Sexual Dimorphism Index (SDI) values across various attributes, such as bill length, bill depth, flipper length, and body mass, affirm a male bias. Interestingly, a noteworthy reversal in the trend emerges when examining other avian species. Preybirds, in contrast to penguins, exhibit a reversed sexual dimorphism, with females generally being larger and heavier. This opposing pattern is particularly evident in attributes like bill length, bill depth, flipper length, and body mass. Conversely, songbirds align with the trend observed in penguins, maintaining a male bias in size and weight. 
 
 
-
+```{r,echo=FALSE}
+m.pbmsdi = mean(pbmsdi)
+m.sbmsdi = mean(sbmsdi)
+m.penbmsdi = mean(bmass.sdi)
+penps.bm = c(m.penbmsdi,m.pbmsdi,m.sbmsdi)
+m.pwlsdi = mean(pwlsdi)
+m.swlsdi = mean(swlsdi)
+m.penflsdi = mean(flen.sdi)
+penps.wl = c(m.penflsdi,m.pwlsdi,m.swlsdi)
+m.psdi = mean(c(m.pbmsdi,m.pwlsdi))
+m.ssdi = mean(c(m.sbmsdi,m.swlsdi))
+m.pensdi = mean(c(m.penbmsdi,m.penflsdi))
+penps.am = c(m.pensdi,m.psdi,m.ssdi)
+penps = c("Penguin","Prey bird","Song bird")
+comp.penps = data.frame(penps,penps.bm,penps.wl,penps.am)
+```
+```{r,echo=FALSE,results='asis'}
+knitr::kable(comp.penps, digits = 3,
+             col.names = c("","Mean BM SDI","Mean WL/FL SDI", "Mean SDI"))
+```
+We further categorized penguins, prey birds, and songbirds in the above table, calculating the mean SDI for body mass and wing/flipper length within each category. Additionally, an overall SDI was computed. Here it is shown what average SDI each bird classification has.
 
 
 # Discussion
 
-In the discussion we need to drive the colclusions and find the right words for proving our hypothesis. 
-Here include the comparison with the literture data of other birds.
+_In the discussion we need to drive the colclusions and find the right words for proving our hypothesis. Here include the comparison with the literture data of other birds._
+
+## Sexual dimorphism in Chinstrap penguin
+
+_Here, sexual dimorphism in our chinstrap penguins will be compared by size and conclusions and discussions will be presented._
 
 ## Comparison of sexual dimorphism within gentoo penguin genera
 
@@ -1375,10 +1402,10 @@ This observed high sexual dimorphism in Adelie and Gentoo penguins may be influe
 
 In contrast to the sexual dimorphism observed in the three penguin species, as well as in most songbirds compared, it is noteworthy that the majority of prey bird species used in the comparison exhibit female-biased sexual dimorphism, as depicted in the table. Various intriguing hypotheses have been proposed to explain this phenomenon. Some literature suggests that females, primarily responsible for incubating eggs and defending nests, exhibit female-biased sexual dimorphism. However, this hypothesis lacks generalizability, as it fails to explain cases observed in other bird species. Additionally, the hypothesis that prey birds introduce sexual dimorphism to broaden their prey spectrum has been postulated. @dekker2009hunting propose that smaller and faster males primarily hunt smaller prey, while larger females, due to their greater size, focus on larger prey, explaining reverse-size sexual dimorphism.
 
-Another perspective argues that the smaller size of males contributes to their success in hunting situations that demand complex maneuvers in mid-air. This is particularly relevant in species where the strength of sexual dimorphism is more pronounced. For instance, a study on owls suggests that larger, more agile prey is hunted by females with strong sexual dimorphism, implying that natural selection pressures have driven an increase in sexual dimorphism in such species @kruger_evolution_2005.
+Another perspective argues that the smaller size of males contributes to their success in hunting situations that demand complex maneuvers in mid-air. This is particularly relevant in species where the strength of sexual dimorphism is more pronounced. For instance, a study on owls suggests that larger, more agile prey is hunted by females with strong sexual dimorphism, implying that natural selection pressures have driven an increase in sexual dimorphism in such species (@kruger_evolution_2005).
 
+## Slight sexual size dimorphism in song birds
 
-
+_We illustrate here, using the small SDI averages table above, that compared to other bird species, songbirds exhibit relatively small SSD. This can also be explained by differences in sexual roles and courtship methods among penguins. Citing literature, we explain why songbirds exhibit such minor sexual dimorphism. These may include brain size, sexual roles, and the songbird's courtship behavior and song._
 
 # Literature
-
