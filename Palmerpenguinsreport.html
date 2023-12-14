@@ -1326,6 +1326,7 @@ if (window.hljs) {
 div.csl-bib-body { }
 div.csl-entry {
 clear: both;
+margin-bottom: 0em;
 }
 .hanging div.csl-entry {
 margin-left:2em;
@@ -2167,16 +2168,6 @@ evolutionary dynamics shaping the observed sexual dimorphism in these
 avian species. Furthermore we are going to compare the SDI of the
 penguin species in the dataset to other preybird and songbird species in
 the discussion section.</p>
-<p>The data for different avian species were sourced from the database
-provided by Valcu, M., Valcu, C., &amp; Kempenaers, B. (2023). This
-dataset encompasses information on body mass, wing length, and Sexual
-Dimorphism Index (SDI) categorized by male and female specimens for
-various avian species. Given that the database includes statistical
-values for wing length and body mass, we can compare these metrics with
-the corresponding flipper length and body mass of the penguins in our
-dataset. This enables a meaningful assessment of the morphological
-sexual dimorphism of penguins in relation to the broader avian species
-data provided.</p>
 <pre class="r"><code>sdi.chinstrap.blen = meanbilllengthchinstrapmale / meanbilllengthchinstrapfemale - 1
 sdi.chinstrap.bdep = meanbilldepthchinstrapmale / meanbilldepthchinstrapfemale - 1
 sdi.chinstrap.flen = meanflipperlengthchinstrapmale / meanflipperlengthchinstrapfemale - 1
@@ -2230,432 +2221,6 @@ bias = c(&quot;Male biased&quot;,&quot;Male biased&quot;,&quot;Male biased&quot;
          &quot;Male biased&quot;,&quot;Male biased&quot;,&quot;Male biased&quot;,&quot;Male biased&quot;,&quot;Male biased&quot;,&quot;Male biased&quot;,
          &quot;Male biased&quot;,&quot;Male biased&quot;,&quot;Male biased&quot;,&quot;Male biased&quot;,&quot;Male biased&quot;)
 bird = data.frame(bspc,bmf,bmm,bmsdi,wlf,wlm,wlsdi,bias)</code></pre>
-<pre class="r"><code>knitr::kable(sdi.table, col.names=c(&#39;Species&#39;,&quot;BM F&quot;,&quot;BM M&quot;,&quot;BM SDI&quot;,&quot;BL F&quot;,&quot;BL M&quot;,&quot;BL SDI&quot;, &quot;BD F&quot;,&quot;BD M&quot;, &quot;BD SDI&quot;, &quot;FL F&quot;,&quot;FL M&quot;,&quot;FL SDI&quot;),
-      digits = 3,valign=&#39;t&#39;,
-      caption=&quot;Table of measurements and SDI value of penguin species&quot;)</code></pre>
-<table style="width:100%;">
-<caption>Table of measurements and SDI value of penguin
-species</caption>
-<colgroup>
-<col width="9%" />
-<col width="8%" />
-<col width="8%" />
-<col width="6%" />
-<col width="6%" />
-<col width="6%" />
-<col width="6%" />
-<col width="6%" />
-<col width="6%" />
-<col width="6%" />
-<col width="7%" />
-<col width="7%" />
-<col width="6%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Species</th>
-<th align="right">BM F</th>
-<th align="right">BM M</th>
-<th align="right">BM SDI</th>
-<th align="right">BL F</th>
-<th align="right">BL M</th>
-<th align="right">BL SDI</th>
-<th align="right">BD F</th>
-<th align="right">BD M</th>
-<th align="right">BD SDI</th>
-<th align="right">FL F</th>
-<th align="right">FL M</th>
-<th align="right">FL SDI</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Chinstrap</td>
-<td align="right">3527.206</td>
-<td align="right">3938.971</td>
-<td align="right">0.117</td>
-<td align="right">46.574</td>
-<td align="right">51.094</td>
-<td align="right">0.097</td>
-<td align="right">17.588</td>
-<td align="right">19.253</td>
-<td align="right">0.095</td>
-<td align="right">191.735</td>
-<td align="right">199.912</td>
-<td align="right">0.043</td>
-</tr>
-<tr class="even">
-<td align="left">Adelie</td>
-<td align="right">3368.836</td>
-<td align="right">4043.493</td>
-<td align="right">0.200</td>
-<td align="right">37.258</td>
-<td align="right">40.390</td>
-<td align="right">0.084</td>
-<td align="right">17.622</td>
-<td align="right">19.073</td>
-<td align="right">0.082</td>
-<td align="right">187.795</td>
-<td align="right">192.411</td>
-<td align="right">0.025</td>
-</tr>
-<tr class="odd">
-<td align="left">Gentoo</td>
-<td align="right">4679.741</td>
-<td align="right">5484.836</td>
-<td align="right">0.172</td>
-<td align="right">45.564</td>
-<td align="right">49.474</td>
-<td align="right">0.086</td>
-<td align="right">45.564</td>
-<td align="right">15.718</td>
-<td align="right">0.104</td>
-<td align="right">212.707</td>
-<td align="right">221.541</td>
-<td align="right">0.042</td>
-</tr>
-</tbody>
-</table>
-<p>BM, BL, BD and FL stand for body mass, bill length, bill depth and
-filpper length respectively.</p>
-<pre class="r"><code>knitr::kable(bird, col.names = c(&#39;Species&#39;,&#39;BM F&#39;, &#39;BM M&#39;, &#39;BM SDI&#39;, &#39;WL or FL F&#39;,&#39;WL or FL M&#39;,&#39;WL or FL SDI&#39;,&#39;Bias&#39;),
-      digits = 3, valign=&#39;t&#39;)</code></pre>
-<table>
-<colgroup>
-<col width="22%" />
-<col width="9%" />
-<col width="9%" />
-<col width="7%" />
-<col width="11%" />
-<col width="11%" />
-<col width="13%" />
-<col width="14%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Species</th>
-<th align="right">BM F</th>
-<th align="right">BM M</th>
-<th align="right">BM SDI</th>
-<th align="right">WL or FL F</th>
-<th align="right">WL or FL M</th>
-<th align="right">WL or FL SDI</th>
-<th align="left">Bias</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Pygoscelis antarctica</td>
-<td align="right">3527.206</td>
-<td align="right">3938.971</td>
-<td align="right">0.117</td>
-<td align="right">191.735</td>
-<td align="right">199.912</td>
-<td align="right">0.043</td>
-<td align="left">Male biased</td>
-</tr>
-<tr class="even">
-<td align="left">Pygoscelis adeliae</td>
-<td align="right">3368.836</td>
-<td align="right">4043.493</td>
-<td align="right">0.200</td>
-<td align="right">187.795</td>
-<td align="right">192.411</td>
-<td align="right">0.025</td>
-<td align="left">Male biased</td>
-</tr>
-<tr class="odd">
-<td align="left">Pygoscelis papua</td>
-<td align="right">4679.741</td>
-<td align="right">5484.836</td>
-<td align="right">0.172</td>
-<td align="right">212.707</td>
-<td align="right">221.541</td>
-<td align="right">0.042</td>
-<td align="left">Male biased</td>
-</tr>
-<tr class="even">
-<td align="left">Aegolius funereus</td>
-<td align="right">137.580</td>
-<td align="right">119.205</td>
-<td align="right">-0.062</td>
-<td align="right">176.280</td>
-<td align="right">167.580</td>
-<td align="right">-0.022</td>
-<td align="left">Female biased</td>
-</tr>
-<tr class="odd">
-<td align="left">Circus pygargus</td>
-<td align="right">370.000</td>
-<td align="right">261.000</td>
-<td align="right">-0.152</td>
-<td align="right">367.230</td>
-<td align="right">360.000</td>
-<td align="right">-0.009</td>
-<td align="left">Female biased</td>
-</tr>
-<tr class="even">
-<td align="left">Aquila heliaca</td>
-<td align="right">3845.000</td>
-<td align="right">2585.000</td>
-<td align="right">-0.172</td>
-<td align="right">614.200</td>
-<td align="right">566.130</td>
-<td align="right">-0.035</td>
-<td align="left">Female biased</td>
-</tr>
-<tr class="odd">
-<td align="left">Buteo galapagoensis</td>
-<td align="right">1332.940</td>
-<td align="right">914.030</td>
-<td align="right">-0.164</td>
-<td align="right">433.966</td>
-<td align="right">393.427</td>
-<td align="right">-0.043</td>
-<td align="left">Female biased</td>
-</tr>
-<tr class="even">
-<td align="left">Buteo ridgwayi</td>
-<td align="right">414.000</td>
-<td align="right">315.000</td>
-<td align="right">-0.119</td>
-<td align="right">244.900</td>
-<td align="right">228.100</td>
-<td align="right">-0.031</td>
-<td align="left">Female biased</td>
-</tr>
-<tr class="odd">
-<td align="left">Haliaeetus albicilla</td>
-<td align="right">5572.000</td>
-<td align="right">4014.000</td>
-<td align="right">-0.142</td>
-<td align="right">667.670</td>
-<td align="right">612.600</td>
-<td align="right">-0.037</td>
-<td align="left">Female biased</td>
-</tr>
-<tr class="even">
-<td align="left">Falco columbarius</td>
-<td align="right">218.000</td>
-<td align="right">163.000</td>
-<td align="right">-0.126</td>
-<td align="right">219.360</td>
-<td align="right">197.990</td>
-<td align="right">-0.045</td>
-<td align="left">Female biased</td>
-</tr>
-<tr class="odd">
-<td align="left">Falco naumanni</td>
-<td align="right">164.000</td>
-<td align="right">141.000</td>
-<td align="right">-0.066</td>
-<td align="right">237.330</td>
-<td align="right">235.800</td>
-<td align="right">-0.003</td>
-<td align="left">Female biased</td>
-</tr>
-<tr class="even">
-<td align="left">Falco sparverius</td>
-<td align="right">120.401</td>
-<td align="right">106.152</td>
-<td align="right">-0.055</td>
-<td align="right">188.030</td>
-<td align="right">179.950</td>
-<td align="right">-0.019</td>
-<td align="left">Female biased</td>
-</tr>
-<tr class="odd">
-<td align="left">Falco tinnunculus</td>
-<td align="right">201.000</td>
-<td align="right">167.000</td>
-<td align="right">-0.080</td>
-<td align="right">249.130</td>
-<td align="right">237.410</td>
-<td align="right">-0.021</td>
-<td align="left">Female biased</td>
-</tr>
-<tr class="even">
-<td align="left">Accipiter cooperii</td>
-<td align="right">558.068</td>
-<td align="right">353.453</td>
-<td align="right">-0.198</td>
-<td align="right">258.000</td>
-<td align="right">232.600</td>
-<td align="right">-0.045</td>
-<td align="left">Female biased</td>
-</tr>
-<tr class="odd">
-<td align="left">Accipiter nisus</td>
-<td align="right">325.000</td>
-<td align="right">150.000</td>
-<td align="right">-0.336</td>
-<td align="right">243.240</td>
-<td align="right">206.160</td>
-<td align="right">-0.072</td>
-<td align="left">Female biased</td>
-</tr>
-<tr class="even">
-<td align="left">Athene cunicularia</td>
-<td align="right">162.750</td>
-<td align="right">151.170</td>
-<td align="right">-0.032</td>
-<td align="right">171.400</td>
-<td align="right">171.900</td>
-<td align="right">0.001</td>
-<td align="left">Male biased</td>
-</tr>
-<tr class="odd">
-<td align="left">Tyto alba</td>
-<td align="right">418.520</td>
-<td align="right">362.053</td>
-<td align="right">-0.063</td>
-<td align="right">303.010</td>
-<td align="right">301.240</td>
-<td align="right">-0.003</td>
-<td align="left">Female biased</td>
-</tr>
-<tr class="even">
-<td align="left">Gyps fulvus</td>
-<td align="right">8525.000</td>
-<td align="right">8132.000</td>
-<td align="right">-0.020</td>
-<td align="right">728.500</td>
-<td align="right">721.880</td>
-<td align="right">-0.004</td>
-<td align="left">Female biased</td>
-</tr>
-<tr class="odd">
-<td align="left">Malurus amabilis</td>
-<td align="right">8.200</td>
-<td align="right">9.100</td>
-<td align="right">0.045</td>
-<td align="right">49.730</td>
-<td align="right">51.300</td>
-<td align="right">0.013</td>
-<td align="left">Male biased</td>
-</tr>
-<tr class="even">
-<td align="left">Malurus cyaneus</td>
-<td align="right">10.500</td>
-<td align="right">11.300</td>
-<td align="right">0.032</td>
-<td align="right">51.170</td>
-<td align="right">52.740</td>
-<td align="right">0.013</td>
-<td align="left">Male biased</td>
-</tr>
-<tr class="odd">
-<td align="left">Phainopepla nitens</td>
-<td align="right">21.000</td>
-<td align="right">20.700</td>
-<td align="right">-0.006</td>
-<td align="right">90.415</td>
-<td align="right">92.926</td>
-<td align="right">0.012</td>
-<td align="left">Male biased</td>
-</tr>
-<tr class="even">
-<td align="left">Hylocichla mustelina</td>
-<td align="right">52.500</td>
-<td align="right">47.800</td>
-<td align="right">-0.041</td>
-<td align="right">104.800</td>
-<td align="right">108.500</td>
-<td align="right">0.015</td>
-<td align="left">Male biased</td>
-</tr>
-<tr class="odd">
-<td align="left">Cinclus cinclus</td>
-<td align="right">59.568</td>
-<td align="right">70.866</td>
-<td align="right">0.075</td>
-<td align="right">85.200</td>
-<td align="right">90.460</td>
-<td align="right">0.026</td>
-<td align="left">Male biased</td>
-</tr>
-<tr class="even">
-<td align="left">Cercomacra tyrannina</td>
-<td align="right">16.600</td>
-<td align="right">17.500</td>
-<td align="right">0.023</td>
-<td align="right">60.300</td>
-<td align="right">62.450</td>
-<td align="right">0.015</td>
-<td align="left">Male biased</td>
-</tr>
-<tr class="odd">
-<td align="left">Empidonax minimus</td>
-<td align="right">10.200</td>
-<td align="right">11.100</td>
-<td align="right">0.037</td>
-<td align="right">61.000</td>
-<td align="right">64.000</td>
-<td align="right">0.021</td>
-<td align="left">Male biased</td>
-</tr>
-<tr class="even">
-<td align="left">Erithacus rubecula</td>
-<td align="right">17.100</td>
-<td align="right">16.400</td>
-<td align="right">-0.018</td>
-<td align="right">70.750</td>
-<td align="right">72.420</td>
-<td align="right">0.010</td>
-<td align="left">Male biased</td>
-</tr>
-<tr class="odd">
-<td align="left">Ficedula hypoleuca</td>
-<td align="right">14.220</td>
-<td align="right">12.484</td>
-<td align="right">-0.057</td>
-<td align="right">77.500</td>
-<td align="right">78.550</td>
-<td align="right">0.006</td>
-<td align="left">Male biased</td>
-</tr>
-<tr class="even">
-<td align="left">Oenanthe oenanthe</td>
-<td align="right">22.719</td>
-<td align="right">23.441</td>
-<td align="right">0.014</td>
-<td align="right">95.010</td>
-<td align="right">99.020</td>
-<td align="right">0.018</td>
-<td align="left">Male biased</td>
-</tr>
-<tr class="odd">
-<td align="left">Phoenicurus ochruros</td>
-<td align="right">16.400</td>
-<td align="right">15.100</td>
-<td align="right">-0.036</td>
-<td align="right">80.870</td>
-<td align="right">83.260</td>
-<td align="right">0.013</td>
-<td align="left">Male biased</td>
-</tr>
-<tr class="even">
-<td align="left">Sialia mexicana</td>
-<td align="right">27.100</td>
-<td align="right">25.800</td>
-<td align="right">-0.021</td>
-<td align="right">100.500</td>
-<td align="right">104.500</td>
-<td align="right">0.017</td>
-<td align="left">Male biased</td>
-</tr>
-<tr class="odd">
-<td align="left">Sitta europaea</td>
-<td align="right">18.430</td>
-<td align="right">19.233</td>
-<td align="right">0.019</td>
-<td align="right">82.380</td>
-<td align="right">84.310</td>
-<td align="right">0.010</td>
-<td align="left">Male biased</td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 </div>
@@ -3135,34 +2700,397 @@ distinctions between male and female individuals within the population.
 The MANOVA results underscore the importance of considering these
 variables simultaneously in capturing the intricacies of sexual
 dimorphism in chinstrap penguins.</p>
-<p>put mean for each category in a table for male and female to
-visualize the difference. Do the same for the median and the SD Briefly
-describe what can be observed</p>
-<p>Underline this with the stripcharts for every category in which we
-can see the distribution of the values of female directly compared to
-male.</p>
-<p>Underline this with the histograms for each category. Either use the
-two plots per category separately or the combined plot(Id(Bene)suggest
-we use the two separate plots since there is also information about the
-median and mean of the other sex)</p>
-<p>show that there is a dignficant difference between the means of the
-two groups by using the t test (give results of the t test here)–&gt;
-BUT t test is parametric test and assumes, that the categories are
-normally distributed –&gt; therefor we performed the Shapiro wilke test
-(so give results of this test first (idk how this is going to look like)
-and then the results of the t test in a table)</p>
-<p>then build the bridge to effect sizes (quantitative measure of the
-magnitude of an observed effect or the strength of a relationship) and
-then start with the results of the cohens d in a table</p>
-<p>In the next part we cut the weight into the groups in order to be
-able to perform more tests. Show a table with the proportions of the
-groups and include the expected values</p>
-<p>then give results of CramersV and Cohens H</p>
-<p>??Maybe also include ChiSQ??</p>
-<p>?? WHat about the p-value??</p>
-<p>Then we need to advance to the results of the datanalysis of the
-other species –&gt; this doesnt need to be very long I think –&gt; also
-no conclusions!</p>
+</div>
+</div>
+<div id="interspecies-comparison" class="section level2">
+<h2>Interspecies comparison</h2>
+<p>To derive meaningful insights from our analyzed data and validate our
+hypothesis, it is essential to broaden our comparisons by including
+other species. To achieve this, we have chosen to include the Adelie
+penguin species, for which data is available in the Palmer penguins
+package. Additionally, we aim to extend our investigation of sexual
+dimorphism by comparing it to other avian species. The detailed
+comparison, based on the values derived from existing datasets, will be
+presented in the results section. To further enrich the scope and draw
+broader conclusions across different species, we plan to incorporate a
+dataset concerning possums in Australia, available in the MASS package.
+This comprehensive approach allows us to contextualize our findings
+within a broader biological context.</p>
+<div id="sdi---sexual-dimorphism-index-1" class="section level3">
+<h3>SDI - Sexual Dimorphism Index</h3>
+<p>To quantify the sexual dimorphism of each penguin species, a Sexual
+Dimorphism Index (SDI) was calculated for seven morphological
+measurements. The SDI is a widely utilized parameter across ecological
+and morphological studies to describe sexual dimorphism in species
+(Lovich &amp; Gibbons, 1992).</p>
+<p>Subsequently, the Sexual Size Dimorphism (SSD) was estimated by
+calculating the SDI for all male-female pairs within each penguin
+species. This step allowed for the comprehensive assessment of sexual
+dimorphism across the entire dataset.</p>
+<p>The data for different avian species were sourced from the database
+provided by Valcu, M., Valcu, C., &amp; Kempenaers, B. (2023). This
+dataset encompasses information on body mass, wing length, and Sexual
+Dimorphism Index (SDI) categorized by male and female specimens for
+various avian species. Given that the database includes statistical
+values for wing length and body mass, we can compare these metrics with
+the corresponding flipper length and body mass of the penguins in our
+dataset. This enables a meaningful assessment of the morphological
+sexual dimorphism of penguins in relation to the broader avian species
+data provided. Additionally we note, that form the fourth row of the
+table until the species Gyps fulvus, the listed species are all
+preybirds and starting from Malurus amabilis until the last row of the
+table the avian species are all songbirds.</p>
+<p>The results are displayed in the table below. BM, BL, BD and FL stand
+for body mass, bill length, bill depth and flipper length
+respectively.</p>
+<table>
+<colgroup>
+<col width="22%" />
+<col width="9%" />
+<col width="9%" />
+<col width="7%" />
+<col width="11%" />
+<col width="11%" />
+<col width="13%" />
+<col width="14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Species</th>
+<th align="right">BM F</th>
+<th align="right">BM M</th>
+<th align="right">BM SDI</th>
+<th align="right">WL or FL F</th>
+<th align="right">WL or FL M</th>
+<th align="right">WL or FL SDI</th>
+<th align="left">Bias</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Pygoscelis antarctica</td>
+<td align="right">3527.206</td>
+<td align="right">3938.971</td>
+<td align="right">0.117</td>
+<td align="right">191.735</td>
+<td align="right">199.912</td>
+<td align="right">0.043</td>
+<td align="left">Male biased</td>
+</tr>
+<tr class="even">
+<td align="left">Pygoscelis adeliae</td>
+<td align="right">3368.836</td>
+<td align="right">4043.493</td>
+<td align="right">0.200</td>
+<td align="right">187.795</td>
+<td align="right">192.411</td>
+<td align="right">0.025</td>
+<td align="left">Male biased</td>
+</tr>
+<tr class="odd">
+<td align="left">Pygoscelis papua</td>
+<td align="right">4679.741</td>
+<td align="right">5484.836</td>
+<td align="right">0.172</td>
+<td align="right">212.707</td>
+<td align="right">221.541</td>
+<td align="right">0.042</td>
+<td align="left">Male biased</td>
+</tr>
+<tr class="even">
+<td align="left">Aegolius funereus</td>
+<td align="right">137.580</td>
+<td align="right">119.205</td>
+<td align="right">-0.062</td>
+<td align="right">176.280</td>
+<td align="right">167.580</td>
+<td align="right">-0.022</td>
+<td align="left">Female biased</td>
+</tr>
+<tr class="odd">
+<td align="left">Circus pygargus</td>
+<td align="right">370.000</td>
+<td align="right">261.000</td>
+<td align="right">-0.152</td>
+<td align="right">367.230</td>
+<td align="right">360.000</td>
+<td align="right">-0.009</td>
+<td align="left">Female biased</td>
+</tr>
+<tr class="even">
+<td align="left">Aquila heliaca</td>
+<td align="right">3845.000</td>
+<td align="right">2585.000</td>
+<td align="right">-0.172</td>
+<td align="right">614.200</td>
+<td align="right">566.130</td>
+<td align="right">-0.035</td>
+<td align="left">Female biased</td>
+</tr>
+<tr class="odd">
+<td align="left">Buteo galapagoensis</td>
+<td align="right">1332.940</td>
+<td align="right">914.030</td>
+<td align="right">-0.164</td>
+<td align="right">433.966</td>
+<td align="right">393.427</td>
+<td align="right">-0.043</td>
+<td align="left">Female biased</td>
+</tr>
+<tr class="even">
+<td align="left">Buteo ridgwayi</td>
+<td align="right">414.000</td>
+<td align="right">315.000</td>
+<td align="right">-0.119</td>
+<td align="right">244.900</td>
+<td align="right">228.100</td>
+<td align="right">-0.031</td>
+<td align="left">Female biased</td>
+</tr>
+<tr class="odd">
+<td align="left">Haliaeetus albicilla</td>
+<td align="right">5572.000</td>
+<td align="right">4014.000</td>
+<td align="right">-0.142</td>
+<td align="right">667.670</td>
+<td align="right">612.600</td>
+<td align="right">-0.037</td>
+<td align="left">Female biased</td>
+</tr>
+<tr class="even">
+<td align="left">Falco columbarius</td>
+<td align="right">218.000</td>
+<td align="right">163.000</td>
+<td align="right">-0.126</td>
+<td align="right">219.360</td>
+<td align="right">197.990</td>
+<td align="right">-0.045</td>
+<td align="left">Female biased</td>
+</tr>
+<tr class="odd">
+<td align="left">Falco naumanni</td>
+<td align="right">164.000</td>
+<td align="right">141.000</td>
+<td align="right">-0.066</td>
+<td align="right">237.330</td>
+<td align="right">235.800</td>
+<td align="right">-0.003</td>
+<td align="left">Female biased</td>
+</tr>
+<tr class="even">
+<td align="left">Falco sparverius</td>
+<td align="right">120.401</td>
+<td align="right">106.152</td>
+<td align="right">-0.055</td>
+<td align="right">188.030</td>
+<td align="right">179.950</td>
+<td align="right">-0.019</td>
+<td align="left">Female biased</td>
+</tr>
+<tr class="odd">
+<td align="left">Falco tinnunculus</td>
+<td align="right">201.000</td>
+<td align="right">167.000</td>
+<td align="right">-0.080</td>
+<td align="right">249.130</td>
+<td align="right">237.410</td>
+<td align="right">-0.021</td>
+<td align="left">Female biased</td>
+</tr>
+<tr class="even">
+<td align="left">Accipiter cooperii</td>
+<td align="right">558.068</td>
+<td align="right">353.453</td>
+<td align="right">-0.198</td>
+<td align="right">258.000</td>
+<td align="right">232.600</td>
+<td align="right">-0.045</td>
+<td align="left">Female biased</td>
+</tr>
+<tr class="odd">
+<td align="left">Accipiter nisus</td>
+<td align="right">325.000</td>
+<td align="right">150.000</td>
+<td align="right">-0.336</td>
+<td align="right">243.240</td>
+<td align="right">206.160</td>
+<td align="right">-0.072</td>
+<td align="left">Female biased</td>
+</tr>
+<tr class="even">
+<td align="left">Athene cunicularia</td>
+<td align="right">162.750</td>
+<td align="right">151.170</td>
+<td align="right">-0.032</td>
+<td align="right">171.400</td>
+<td align="right">171.900</td>
+<td align="right">0.001</td>
+<td align="left">Male biased</td>
+</tr>
+<tr class="odd">
+<td align="left">Tyto alba</td>
+<td align="right">418.520</td>
+<td align="right">362.053</td>
+<td align="right">-0.063</td>
+<td align="right">303.010</td>
+<td align="right">301.240</td>
+<td align="right">-0.003</td>
+<td align="left">Female biased</td>
+</tr>
+<tr class="even">
+<td align="left">Gyps fulvus</td>
+<td align="right">8525.000</td>
+<td align="right">8132.000</td>
+<td align="right">-0.020</td>
+<td align="right">728.500</td>
+<td align="right">721.880</td>
+<td align="right">-0.004</td>
+<td align="left">Female biased</td>
+</tr>
+<tr class="odd">
+<td align="left">Malurus amabilis</td>
+<td align="right">8.200</td>
+<td align="right">9.100</td>
+<td align="right">0.045</td>
+<td align="right">49.730</td>
+<td align="right">51.300</td>
+<td align="right">0.013</td>
+<td align="left">Male biased</td>
+</tr>
+<tr class="even">
+<td align="left">Malurus cyaneus</td>
+<td align="right">10.500</td>
+<td align="right">11.300</td>
+<td align="right">0.032</td>
+<td align="right">51.170</td>
+<td align="right">52.740</td>
+<td align="right">0.013</td>
+<td align="left">Male biased</td>
+</tr>
+<tr class="odd">
+<td align="left">Phainopepla nitens</td>
+<td align="right">21.000</td>
+<td align="right">20.700</td>
+<td align="right">-0.006</td>
+<td align="right">90.415</td>
+<td align="right">92.926</td>
+<td align="right">0.012</td>
+<td align="left">Male biased</td>
+</tr>
+<tr class="even">
+<td align="left">Hylocichla mustelina</td>
+<td align="right">52.500</td>
+<td align="right">47.800</td>
+<td align="right">-0.041</td>
+<td align="right">104.800</td>
+<td align="right">108.500</td>
+<td align="right">0.015</td>
+<td align="left">Male biased</td>
+</tr>
+<tr class="odd">
+<td align="left">Cinclus cinclus</td>
+<td align="right">59.568</td>
+<td align="right">70.866</td>
+<td align="right">0.075</td>
+<td align="right">85.200</td>
+<td align="right">90.460</td>
+<td align="right">0.026</td>
+<td align="left">Male biased</td>
+</tr>
+<tr class="even">
+<td align="left">Cercomacra tyrannina</td>
+<td align="right">16.600</td>
+<td align="right">17.500</td>
+<td align="right">0.023</td>
+<td align="right">60.300</td>
+<td align="right">62.450</td>
+<td align="right">0.015</td>
+<td align="left">Male biased</td>
+</tr>
+<tr class="odd">
+<td align="left">Empidonax minimus</td>
+<td align="right">10.200</td>
+<td align="right">11.100</td>
+<td align="right">0.037</td>
+<td align="right">61.000</td>
+<td align="right">64.000</td>
+<td align="right">0.021</td>
+<td align="left">Male biased</td>
+</tr>
+<tr class="even">
+<td align="left">Erithacus rubecula</td>
+<td align="right">17.100</td>
+<td align="right">16.400</td>
+<td align="right">-0.018</td>
+<td align="right">70.750</td>
+<td align="right">72.420</td>
+<td align="right">0.010</td>
+<td align="left">Male biased</td>
+</tr>
+<tr class="odd">
+<td align="left">Ficedula hypoleuca</td>
+<td align="right">14.220</td>
+<td align="right">12.484</td>
+<td align="right">-0.057</td>
+<td align="right">77.500</td>
+<td align="right">78.550</td>
+<td align="right">0.006</td>
+<td align="left">Male biased</td>
+</tr>
+<tr class="even">
+<td align="left">Oenanthe oenanthe</td>
+<td align="right">22.719</td>
+<td align="right">23.441</td>
+<td align="right">0.014</td>
+<td align="right">95.010</td>
+<td align="right">99.020</td>
+<td align="right">0.018</td>
+<td align="left">Male biased</td>
+</tr>
+<tr class="odd">
+<td align="left">Phoenicurus ochruros</td>
+<td align="right">16.400</td>
+<td align="right">15.100</td>
+<td align="right">-0.036</td>
+<td align="right">80.870</td>
+<td align="right">83.260</td>
+<td align="right">0.013</td>
+<td align="left">Male biased</td>
+</tr>
+<tr class="even">
+<td align="left">Sialia mexicana</td>
+<td align="right">27.100</td>
+<td align="right">25.800</td>
+<td align="right">-0.021</td>
+<td align="right">100.500</td>
+<td align="right">104.500</td>
+<td align="right">0.017</td>
+<td align="left">Male biased</td>
+</tr>
+<tr class="odd">
+<td align="left">Sitta europaea</td>
+<td align="right">18.430</td>
+<td align="right">19.233</td>
+<td align="right">0.019</td>
+<td align="right">82.380</td>
+<td align="right">84.310</td>
+<td align="right">0.010</td>
+<td align="left">Male biased</td>
+</tr>
+</tbody>
+</table>
+<p>In line with the sexual dimorphism observed in Chinstrap penguins,
+where males tend to be larger and heavier, similar trends are apparent
+in other penguin species. Positive Sexual Dimorphism Index (SDI) values
+across various attributes, such as bill length, bill depth, flipper
+length, and body mass, affirm a male bias. Interestingly, a noteworthy
+reversal in the trend emerges when examining other avian species.
+Preybirds, in contrast to penguins, exhibit a reversed sexual
+dimorphism, with females generally being larger and heavier. This
+opposing pattern is particularly evident in attributes like bill length,
+bill depth, flipper length, and body mass. Conversely, songbirds align
+with the trend observed in penguins, maintaining a male bias in size and
+weight.</p>
 </div>
 </div>
 </div>
@@ -3226,7 +3154,7 @@ an increase in sexual dimorphism in such species <span class="citation">Krüger 
 </div>
 <div id="literature" class="section level1 unnumbered">
 <h1 class="unnumbered">Literature</h1>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-dekker2009hunting" class="csl-entry">
 Dekker, Dick. 2009. <em>Hunting Tactics of Peregrines and Other
 Falcons</em>. Wageningen University; Research.
