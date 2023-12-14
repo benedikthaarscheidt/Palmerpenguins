@@ -1354,7 +1354,7 @@ BM, BL, BD and FL stand for body mass, bill length, bill depth and flipper lengt
 
 
 ```{r label=comparison.bird.sdi,results='asis', echo=FALSE}
-knitr::kable(bird, col.names = c('*Species*','BM F', 'BM M', 'BM SDI', 'WL or FL F','WL or FL M','WL or FL SDI','Bias'),
+knitr::kable(bird, col.names = c('Species','BM F', 'BM M', 'BM SDI', 'WL or FL F','WL or FL M','WL or FL SDI','Bias'),
       digits = 3, valign='t')
 ```
 
