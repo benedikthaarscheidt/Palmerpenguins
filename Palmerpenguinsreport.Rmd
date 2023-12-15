@@ -1421,11 +1421,11 @@ We further categorized penguins, prey birds, and songbirds in the above table, c
 
 _In the discussion we need to drive the colclusions and find the right words for proving our hypothesis. Here include the comparison with the literture data of other birds._
 
-## Sexual dimorphism in Chinstrap penguin
-
-_Here, sexual dimorphism in our chinstrap penguins will be compared by size and conclusions and discussions will be presented._
-
 ## Comparison of sexual dimorphism within gentoo penguin genera
+
+As evident from the above histogram, there appears to be distinct sexual dimorphism within the Chinstrap penguin species. This observation was further substantiated through various tests conducted subsequently. Given the confirmed differences in body size between males and females through T-tests, we proceeded to calculate SDI (Sexual Dimorphism Index). The most pronounced disparity between male and female Chinstrap penguins was observed in culmen length, particularly when compared to Adélie and Gentoo penguins. In contrast, differences in culmen depth were not substantial across all three species.
+
+The role of beak size in the sexual dimorphism of penguins, whether it contributes to enhanced hunting abilities or serves as a means for intra-species male competition, remains ambiguous. Additional research is imperative to gain a deeper understanding of this aspect in the sexual differentiation of penguins.(@szara2023bill,@lee2015new)
 
 The investigation into sexual dimorphism among _Pygoscelis_ species (_antarctica, adeliae, papua_), which inhabit the Palmer Archipelago, reveals a predominantly male-biased sexual dimorphism, as observed in many bird species. Comparative analysis of the absolute values of SDI (Standardized Difference Index) for body mass and flipper length with those of prey birds and songbirds indicates relatively higher sexual dimorphism in penguin species. When comparing the three penguin species, Chinstrap penguins exhibit higher sexual dimorphism in culmen length, culmen depth, and flipper length compared to the other two species, while Adelie and Gentoo penguins display high overall sexual dimorphism, primarily attributed to their body mass. 
 
