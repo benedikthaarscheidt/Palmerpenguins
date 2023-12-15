@@ -82,15 +82,7 @@ knitr::kable(pengraw)
 
 ## Data preparation
 
-#OLD#
-To extract crucial insights from the penguins dataset and pursue our primary objective, which is to emphasize our hypothesis that there are distinctive physical characteristics between male and female penguins, we employ built-in R utilities and leverage specific functionalities offered by the "effsize" package accessible through the CRAN repository. All computations and tests are executed within the R Markdown environment. This approach allows us to thoroughly analyze the dataset, assess sex-based variations, and validate our underlying hypothesis with a comprehensive set of statistical tools.
-
-To accomplish this, certain key steps must be taken:
-The dataset needs preparation, requiring a split into the two sexes to facilitate individual comparisons.
-#OLD#
-
-#NEW#
-Statistical analyses were performed using R (version 4.3.1). Our primary objective is to emphasize our hypothesis - highlighting the significant sexual dimorphism with the Chinstrap penguins within our datasets. We compared morphological measurements (Body mass, Bill length, Bill depth, and Flipper length) between male and female penguins using various statistical approaches and tests to further buttress our hypothesis. Firstly, since our dataset was from the Palmerpenguins library containing 3 (three) different penguin species (Adelie, Chinstrap, and Gentoo), it was imperative to isolate the datasets for only the Chinstrap penguins since that is our focus for this report and to then further analyze the data.
+Statistical analysis were performed using R (version 4.3.1). Our primary objective is to emphasize our hypothesis - highlighting the significant sexual dimorphism with the Chinstrap penguins within our datasets. We compared morphological measurements (Body mass, Bill length, Bill depth, and Flipper length) between male and female penguins using various statistical approaches and tests to further buttress our hypothesis. Firstly, since our dataset was from the Palmerpenguins library containing 3 (three) different penguin species (Adelie, Chinstrap, and Gentoo), it was imperative to isolate the datasets for only the Chinstrap penguins since that is our focus for this report and to then further analyze the data.
 
 See below the distribution of sexes within the Palmerpenguins dataset:
 
@@ -102,10 +94,9 @@ knitr::kable(table(df$Sex,df$Species))
 
 Given our specific focus on the Chinstrap species within the Palmer penguins package, it is imperative to create subsets corresponding to each penguin species within the general dataset. While we currently require this subset specifically for the Chinstrap species, anticipating potential use for the other subsets later in this report prompts us to perform this subsetting procedure for all penguin species at this stage. By doing so, we ensure that the necessary datasets are readily available for subsequent analyses and facilitate a smoother progression in the later stages of our report.
 
-###
 
 Upon isolation of the Chinstrap datasets into a data frame, we went ahead to perform the Shapiro-wilke’s test to check if the datasets were gotten from a normal distribution, and then since the test confirmed that the data were from a normal distribution, we went ahead to perform the t.test and manova (multivariate analysis) for each of the morphological characteristics we are working with. The t.test return values including the p-value which indicates the degree or significance of differences between the sexes. Next, we conducted the effect size using the cohen’s W.
-#NEW#
+
 
 ```{r echo=FALSE}
 chinstrapset=df[df$Species =="Chinstrap penguin (Pygoscelis antarctica)",]
@@ -363,7 +354,8 @@ The p-values obtained from the t-tests are remarkably low (close to zero), indic
 
 ### Effectsize 
 
-#### Cohen' d
+
+#### Cohen's D
 
 
 
@@ -384,7 +376,7 @@ In our case, applying Cohen's d to differences in bill length, bill depth, flipp
 
 To conduct further analysis on the dataset, we segmented the subsets based on sex into distinct weight groups. This segmentation allowed for the application of tests such as Cramér's V and Cohen's H to shed light on the effect size of sex on specific physical characteristics.
 
-```{r echo=FALSE}
+```{r echo=FALSE, results='hide'}
 # Categorizing penguins based on weight groups
 cWeight = cut(chinstrapset$"Body Mass (g)", breaks = quantile(chinstrapset$"Body Mass (g)", c(0,1/3,2/3,1), na.rm = TRUE), include.lowest = TRUE)
 levels(cWeight) = c("light", "medium", "heavy")
@@ -395,6 +387,8 @@ tab = addmargins(table(chinstrapset$Sex, cWeight), FUN = sum)
 # Displaying the contingency table
 tab
 ```
+
+
 
 #### Cohen's H
 
@@ -407,8 +401,10 @@ Cohen's h is calculated using the following formula:
 where \(h\) is the effect size, \(U\) is the Mann-Whitney U statistic, \(n_1\) and \(n_2\) are the sample sizes for the two groups being compared.
 
 
-To facilitate this examination, the subsets of penguins based on sex were initially divided into distinct weight groups, as illustrated in the preceding code snippet. The resulting weight groups were then subjected to the Cohens H test, which is adept at capturing the effect size of the sex variable. Unlike commonly implemented functions for Cohens H in R, we have chosen to implement our own for precise control over the computation. The custom function is presented below:
-```{r}
+To facilitate this examination, the subsets of penguins based on sex were initially divided into distinct weight groups, as illustrated in the preceding code snippet. The resulting weight groups were then subjected to the Cohens H test, which is adept at capturing the effect size of the sex variable. Unlike commonly implemented functions for Cohen's H in R, we have chosen to implement our own for precise control over the computation. 
+
+
+```{r echo=FALSE, results='hide'}
 # Custom implementation of Cohen's H
 cohensH = function(tab) {
   pt = prop.test(tab)
@@ -419,6 +415,7 @@ cohensH = function(tab) {
 This function enables the calculation of Cohen's H, a measure that gauges the strength of association between categorical variables. It offers insights into the practical significance of sex-related disparities in the measured physical attributes, complementing our statistical analyses for a comprehensive understanding of the dataset.
 
 ### Cramér's V
+
 To perform the Cramér's V test, penguins of one sex were grouped based on their weight, as demonstrated above. Subsequently, the analysis using the Cramér's V test aimed to determine the strength of association between the now categorical variables. 
 
 Cramér’s V is calculated using the following formula:
@@ -428,9 +425,9 @@ Cramér’s V is calculated using the following formula:
 where \(V\) is the effect size, \(\chi^2\) is the chi-squared test statistic, \(n\) is the total number of observations, \(k\) is the number of categories in one variable, and \(r\) is the number of categories in the other variable.
 
 
-Given the absence of a pre-existing function for Cramér's V in R, we opted to implement our own, as shown in the following custom function:
+Given the absence of a pre-existing function for Cramér's V in R, we opted to implement our own function.
 
-```{r}
+```{r echo=FALSE, results='hide'}
 dg.cramersV = function (tab,correct=TRUE) {t=min(dim(tab)) 
 return(sqrt(chisq.test(tab,correct=correct)$statistic/
               (sum(tab)*(t-1)))[[1]])}
@@ -438,11 +435,28 @@ return(sqrt(chisq.test(tab,correct=correct)$statistic/
 
 This function facilitates the calculation of Cramér's V, providing a standardized measure of association that aids in interpreting the impact of sex on specific physical characteristics.
 
-
 ### Chi-Square Test
 
-#### Bodymass
+## Chi-Square Test of Independence Formula
+
+The chi-square test of independence is calculated using the formula:
+
+\[ \chi^2 = \sum \frac{(O_{ij} - E_{ij})^2}{E_{ij}} \]
+
+where \(\chi^2\) is the test statistic, \(O_{ij}\) is the observed frequency in cell \(ij\), and \(E_{ij}\) is the expected frequency in cell \(ij\).
+
+
+## Chi-Square Goodness-of-Fit Test Formula
+
+The chi-square goodness-of-fit test is calculated using the formula:
+
+\[ \chi^2 = \sum \frac{(O_i - E_i)^2}{E_i} \]
+
+where \(\chi^2\) is the test statistic, \(O_i\) is the observed frequency in category \(i\), and \(E_i\) is the expected frequency in category \(i\) under the assumed distribution.
+
+
 ```{r label = chi.bodymass, echo=FALSE}
+#### Bodymass
 
 cat.f.bodymass = c(18,12,4)
 cat.m.bodymass = c(5,10,19)
@@ -450,8 +464,9 @@ chi.dat.bodymass = data.frame(cat.f.bodymass,cat.m.bodymass)
 pval.chi.bodymass = chisq.test(chi.dat.bodymass)$p.value
 ```
 
-#### Bill length
+
 ```{r label = chi.bill.length, echo=FALSE}
+#### Bill length
 
 cat.f.blen = c(25,8,1)
 cat.m.blen = c(1,14,19)
@@ -459,8 +474,9 @@ chi.dat.blen = data.frame(cat.f.blen,cat.m.blen)
 pval.chi.blen = chisq.test(chi.dat.blen)$p.value
 ```
 
-#### Bill depth
+
 ```{r label = chi.bill.depth, echo=FALSE}
+#### Bill depth
 
 cat.f.bdep = c(25,8,1)
 cat.m.bdep = c(1,14,19)
@@ -468,8 +484,9 @@ chi.dat.bdep = data.frame(cat.f.bdep,cat.m.bdep)
 pval.chi.bdep = chisq.test(chi.dat.bdep)$p.value
 ```
 
-#### Flipper length 
+
 ```{r label = chi.flipper, echo=FALSE}
+#### Flipper length 
 
 cat.f.flen = c(20,10,4)
 cat.m.flen = c(5,11,18)
@@ -480,7 +497,7 @@ pval.chi.flen = chisq.test(chi.dat.flen)$p.value
 
 ### Multivariate analysis using MANOVA
 
-```{r}
+```{r echo=FALSE, results='hide'}
 head(chinstrapset)
 Sex = chinstrapset$Sex
 FlipperLength = chinstrapset$"Flipper Length (mm)"
@@ -488,11 +505,9 @@ bodyMass = chinstrapset$"Body Mass (g)"
 BillDepth = chinstrapset$"Culmen Depth (mm)"
 BillLength = chinstrapset$"Culmen Length (mm)"
 
-mano=manova(cbind(BillLength, FlipperLength, BillDepth, bodyMass) ~ Sex, data = chinstrapset)
+mano = manova(cbind(BillLength, FlipperLength, BillDepth, bodyMass) ~ Sex, data = chinstrapset)
 
 ```
-
-
 
 
 
@@ -503,10 +518,12 @@ mano=manova(cbind(BillLength, FlipperLength, BillDepth, bodyMass) ~ Sex, data = 
 To derive meaningful insights from our analyzed data and validate our hypothesis, it is essential to broaden our comparisons by including other species. To achieve this, we have chosen to include the Adelie penguin species, for which data is available in the Palmer penguins package. Additionally, we aim to extend our investigation of sexual dimorphism by comparing it to other avian species. The detailed comparison, based on the values derived from existing datasets, will be presented in the results section. To further enrich the scope and draw broader conclusions across different species, we plan to incorporate a dataset concerning possums in Australia, available in the MASS package. This comprehensive approach allows us to contextualize our findings within a broader biological context.
 
 
+
+
+```{r echo=FALSE, results='hide'}
+#Important to take arithmetic mean 
 ### Adelie penguins
 
-```{r}
-#Important to take arithmetic mean 
 meanbodymassadelie=mean(adelieset$"Body Mass (g)", na.rm=TRUE)
 meanbodymassadeliemale=mean(adeliemale$"Body Mass (g)", na.rm=TRUE)
 meanbodymassadeliefemale=mean(adeliefemale$"Body Mass (g)", na.rm=TRUE)
@@ -526,9 +543,10 @@ meanflipperlengthadeliefemale=mean(adeliefemale$"Flipper Length (mm)", na.rm=TRU
 ```
 
 
+
+```{r echo=FALSE, results='hide'}
 ### Gentoo Penguins
 
-```{r}
 meanbilllengthgentoomale = mean(gentoomale$"Culmen Length (mm)", na.rm=TRUE)
 meanbilllengthgentoofemale = mean(gentoofemale$"Culmen Length (mm)", na.rm=TRUE)
 meanbilldepthgentoomale = mean(gentoomale$"Culmen Depth (mm)", na.rm=TRUE)
@@ -794,26 +812,30 @@ The SDI methodology provides a robust framework for quantifying and comparing se
 
 
 
-```{r label = calculate.SDI.chinstrap}
+```{r label = calculate.SDI.chinstrap, echo=FALSE, results='hide'}
 sdi.chinstrap.blen = meanbilllengthchinstrapmale / meanbilllengthchinstrapfemale - 1
 sdi.chinstrap.bdep = meanbilldepthchinstrapmale / meanbilldepthchinstrapfemale - 1
 sdi.chinstrap.flen = meanflipperlengthchinstrapmale / meanflipperlengthchinstrapfemale - 1
 sdi.chinstrap.bmass = meanbodymasschinstrapmale / meanbodymasschinstrapfemale - 1
 ```
-```{r label = calculate.SDI.adelie}
+
+
+```{r label = calculate.SDI.adelie, echo=FALSE, results='hide'}
 sdi.adeli.blen = meanbilllengthadeliemale / meanbilllengthadeliefemale - 1
 sdi.adeli.bdep = meanbilldepthadeliemale / meanbilldepthadeliefemale - 1
 sdi.adeli.flen = meanflipperlengthadeliemale / meanflipperlengthadeliefemale -1
 sdi.adeli.bmass = meanbodymassadeliemale / meanbodymassadeliefemale-1
 ```
-```{r label = calculate.SDI.gentoo}
+
+
+```{r label = calculate.SDI.gentoo, echo=FALSE, results='hide'}
 sdi.gentoo.blen = meanbilllengthgentoomale / meanbilllengthgentoofemale - 1
 sdi.gentoo.bdep = meanbilldepthgentoomale / meanbilldepthgentoofemale - 1
 sdi.gentoo.flen = meanflipperlengthgentoomale / meanflipperlengthgentoofemale - 1
 sdi.gentoo.bmass = meanbodymassgentoomale / meanbodymassgentoofemale - 1
 ```
 
-```{r label = preparing.SDI.table}
+```{r label = preparing.SDI.table, echo=FALSE, results='hide'}
 spc=c("Chinstrap", "Adelie", "Gentoo")
 bmass.f = c(meanbodymasschinstrapfemale,meanbodymassadeliefemale,meanbodymassgentoofemale)
 bmass.m = c(meanbodymasschinstrapmale,meanbodymassadeliemale,meanbodymassgentoomale)
@@ -835,7 +857,7 @@ sdi.table
 ```
 
 
-```{r}
+```{r echo=FALSE, results='hide'}
 penspc = c("Pygoscelis antarctica", "Pygoscelis adeliae", "Pygoscelis papua")
 bspc = c(penspc,pspc,sspc)
 bmf = c(bmass.f,pbmf,sbmf)
