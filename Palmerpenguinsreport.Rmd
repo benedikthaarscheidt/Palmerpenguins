@@ -1416,8 +1416,6 @@ We further categorized penguins, prey birds, and songbirds in the above table, c
 
 # Discussion
 
-_In the discussion we need to drive the colclusions and find the right words for proving our hypothesis. Here include the comparison with the literture data of other birds._
-
 ## Comparison of sexual dimorphism within gentoo penguin genera
 
 As evident from the above histogram, there appears to be distinct sexual dimorphism within the Chinstrap penguin species. This observation was further substantiated through various tests conducted subsequently. Given the confirmed differences in body size between males and females through T-tests, we proceeded to calculate SDI (Sexual Dimorphism Index). The most pronounced disparity between male and female Chinstrap penguins was observed in culmen length, particularly when compared to Adélie and Gentoo penguins. In contrast, differences in culmen depth were not substantial across all three species.
@@ -1436,6 +1434,13 @@ Another perspective argues that the smaller size of males contributes to their s
 
 ## Slight sexual size dimorphism in song birds
 
-_We illustrate here, using the small SDI averages table above, that compared to other bird species, songbirds exhibit relatively small SSD. This can also be explained by differences in sexual roles and courtship methods among penguins. Citing literature, we explain why songbirds exhibit such minor sexual dimorphism. These may include brain size, sexual roles, and the songbird's courtship behavior and song._
+The sexual dimorphism observed in Songbirds diverges from the conspicuous sexual size differences found in other avian species, such as Preybirds and Penguins. As can be seen in the table above, the songbirds have a relatively small SDI. In songbirds, as in other avian species, sexual and natural selection clearly placed different evolutionary pressures on each sex, but songbirds appear to have assimilated evolutionary pressures in different directions. (@shultz2017role) This can be explained by the differences in sexual roles and courtship methods of songbirds and other bird species. Instead of relying on overt physical characteristics, Songbirds have evolved a unique courtship strategy centered around song selection. This distinctive approach to mate attraction involves complex internal differences rather than external size dimorphism.
+
+Notably, the research by @nottebohm1976sexual underscores the brain development in male Songbirds, with larger and more developed vocal control regions compared to females. This correlates with the observation that females, with less developed or indistinguishable vocal control areas, generally do not engage in singing behavior. For these reasons , investigations into sexual dimorphism in Songbirds predominantly focused on the intricacies of male vocalization behaviors and the development of male brains and central nervous systems.
+
+
+Research by @brenowitz1992hormone and @arnold1986sexual further supports the notion that sexual dimorphism in the neural song system is correlated with vocalization abilities. They suggest that hormonal differences between males and females trigger these disparities, emphasizing the role of hormonal control in shaping the sexual dimorphism observed in Songbirds.
+
+As such, the differences between Songbird's SDI and Penguin's SDI appear to be due to different courtship strategies, and while Songbirds rely on intricate courtship behaviors and internal neural differences, Penguins demonstrate a more straightforward approach through traditional  external size dimorphism. 
 
 # Literature
