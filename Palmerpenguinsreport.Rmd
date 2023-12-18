@@ -47,6 +47,9 @@ summaryadeliemale=summary(adeliemale[,3:6])
 
 # Abstract
 
+In this report, we present a comprehensive analysis of sexual dimorphism in Chinstrap penguins (_Pygoscelis antarctica_) through rigorous statistical examination of key morphological characteristics, including body mass, flipper length, bill length, and bill depth. Utilizing population parameters such as means, medians, confidence intervals, and standard deviations, we conducted detailed comparisons. Statistical tests, including Shapiro-Wilk tests, t-tests, effect sizes and chi-square tests, were employed to reinforce our observations.
+
+In order to place our discoveries within a broader avian context, we introduced the Sexual Dimorphism Index (SDI) as a widely acknowledged metric. Our investigation transcends the realm of Chinstrap penguins, encompassing comprehensive comparisons among various penguin species and a diverse array of prey and songbirds. The results consistently reveal a marked degree of sexual dimorphism across all examined penguin species, characterized by males displaying positive dimorphism relative to females. Intriguingly, our findings in prey birds suggest a positive dimorphism in female individuals. When extending this hypothesis to songbirds, it becomes evident that sexual dimorphism is expressed not only in measurable physical attributes but also in distinct behavioral patterns. This study contributes invaluable insights into the pervasive nature of sexual dimorphism within avian populations.
 
 # Introduction
 
@@ -56,14 +59,14 @@ From the majestic mane of a male lion to the vibrant plumage of a male peacock, 
 
 This report is dedicated to the comprehensive examination of sexual dimorphism in the context of penguins, and highlight the ecological and reproductive significance of these differences. By undertaking this investigation, we endeavor to acquire a deeper understanding of the intricate dynamics between males and females within various species, elucidating how evolutionary pressures have contributed to the development of these distinctive relationships.
 
-In Chinstrap penguins (Pygoscelis antarcticus), one of the most recognizable and widely studied penguin species, sexual dimorphism manifests notably in aspects such as body mass, flipper length, and bill size. This report aims to explore and quantify the differences between male and female Chinstrap penguins, shedding light on how these disparities play a crucial role in their breeding behavior, survival strategies, and overall ecology.
+In Chinstrap penguins (_Pygoscelis antarcticus_), one of the most recognizable and widely studied penguin species, sexual dimorphism manifests notably in aspects such as body mass, flipper length, and bill size. This report aims to explore and quantify the differences between male and female Chinstrap penguins, shedding light on how these disparities play a crucial role in their breeding behavior, survival strategies, and overall ecology.
 
 Chinstrap penguins, known for their distinctive black band under their heads, inhabit several islands and shores in the Southern Pacific and the Antarctic Ocean. These regions' harsh and competitive environments necessitate various adaptations, potentially influencing the development of sexual dimorphism. Previous studies have indicated that differences in body size and features between males and females could be attributed to factors like mating competition, foraging efficiency, and parental roles in nurturing the young. 
 
 
 <br>
 <center>
-![Chinstrap Penguin](Chinstrap-penguin.jpg.webp){width=35%}
+![Chinstrap Penguin](https://cdn.britannica.com/08/152708-050-23B255B3/Chinstrap-penguin.jpg?w=400&h=300&c=crop){width=45%}
 </center>
 
 
@@ -481,7 +484,7 @@ pval.chi.flen = chisq.test(chi.dat.flen)$p.value
 
 ## Interspecies comparison
 
-To derive meaningful insights from our analyzed data and validate our hypothesis, it is essential to broaden our comparisons by including other species. To achieve this, we have chosen to include the Adelie penguin species, for which data is available in the Palmer penguins package. Additionally, we aim to extend our investigation of sexual dimorphism by comparing it to other avian species. The detailed comparison, based on the values derived from existing datasets, will be presented in the results section. To further enrich the scope and draw broader conclusions across different species, we plan to incorporate a dataset concerning possums in Australia, available in the MASS package. This comprehensive approach allows us to contextualize our findings within a broader biological context.
+To derive meaningful insights from our analyzed data and validate our hypothesis, it is essential to broaden our comparisons by including other species. To achieve this, we have chosen to include the Adelie penguin species, for which data is available in the Palmer penguins package. Additionally, we aim to extend our investigation of sexual dimorphism by comparing it to other avian species. The detailed comparison, based on the values derived from existing datasets, will be presented in the results section. To further enrich the scope and draw broader conclusions across different species, we plan to incorporate a dataset concerning song bird and prey bird, available in the external database. The database of song bird and preybird is provided by @valcu_extrapair_2023. This comprehensive approach allows us to contextualize our findings within a broader biological context.
 
 
 
@@ -765,7 +768,7 @@ The SDI for each measurement was computed using the formula:
 
 $$ SDI = \left( \frac{{\text{larger sex}}}{{\text{smaller sex}}} - 1 \right) $$
 
-The index was arbitrarily set to be positive when males were larger and negative when females were larger, following the convention established by Lovich and Gibbons (1992).
+The index was arbitrarily set to be positive when males were larger and negative when females were larger, following the convention established by @lovich1992review.
 
 Subsequently, the Sexual Size Dimorphism (SSD) was estimated by calculating the SDI for all male-female pairs within each penguin species. This step allowed for the comprehensive assessment of sexual dimorphism across the entire dataset.
 
