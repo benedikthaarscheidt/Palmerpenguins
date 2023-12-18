@@ -418,7 +418,6 @@ Given the absence of a pre-existing function for Cramér's V in R, we opted to i
 
 
 
-
 ```{r echo=FALSE, results='hide'}
 
 dg.cramersV = function (tab,correct=TRUE) {t=min(dim(tab)) 
@@ -432,7 +431,7 @@ This function facilitates the calculation of Cramér's V, providing a standardiz
 
 ## Chi-Square Test of Independence Formula
 
-we did chi sq test to investigate if there is a certain relationship between sex and Body mass, Flipper length, Bill length and Bill depth of Chinstrap penguins.
+We did chi sq test to investigate if there is a certain relationship between sex and Body mass, Flipper length, Bill length and Bill depth of Chinstrap penguins.
 
 The chi-square test of independence is calculated using the formula:
 
@@ -487,7 +486,6 @@ pval.chi.flen = chisq.test(chi.dat.flen)$p.value
 
 In our methodology, we strategically expand our comparisons to encompass a broader range of species, seeking to validate our hypotheses and derive meaningful insights. To achieve this, we include the Adelie penguin species, utilizing available data from the Palmer penguins package. This addition enhances the diversity of our dataset and contributes to a more comprehensive understanding of sexual dimorphism. Our methodology involves a detailed comparison based on values derived from existing datasets, and the results of these comparisons will be presented in the subsequent Results section.
 Moreover, to enrich the scope of our study and facilitate broader conclusions across different avian species, we plan to incorporate datasets related to songbirds and prey birds. These datasets, provided by @valcu_extrapair_2023, extend our comparative analysis to include a wider biological context. This meticulous approach aligns with the methodological rigor necessary for our investigation into sexual dimorphism in penguins.
-
 
 
 ```{r echo=FALSE, results='hide'}
@@ -1304,8 +1302,6 @@ pval.chi.flen
 
 
 ## Interspecies comparison
-
-To derive meaningful insights from our analyzed data and validate our hypothesis, it is essential to broaden our comparisons by including other species. To achieve this, we have chosen to include the Adelie penguin species, for which data is available in the Palmer penguins package. Additionally, we aim to extend our investigation of sexual dimorphism by comparing it to other avian species. The detailed comparison, based on the values derived from existing datasets, will be presented in the results section. To further enrich the scope and draw broader conclusions across different species, we plan to incorporate a dataset concerning possums in Australia, available in the MASS package. This comprehensive approach allows us to contextualize our findings within a broader biological context.
 
 ### SDI - Sexual Dimorphism Index
 
