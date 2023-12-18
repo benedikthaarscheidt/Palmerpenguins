@@ -755,11 +755,6 @@ songbird = data.frame(sspc,sbmf,sbmm,sbmsdi,swlf,swlm,swlsdi)
 
 
 
-statistical analyis (which software, R, which packages, which tests)
-results
-
-
-
 ### SDI - Sexual Dimorphism Index
 
 To quantify the sexual dimorphism of each penguin species, a Sexual Dimorphism Index (SDI) was calculated for seven morphological measurements. The SDI is a widely utilized parameter across ecological and morphological studies to describe sexual dimorphism in species (Lovich & Gibbons, 1992).
