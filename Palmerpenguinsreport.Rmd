@@ -47,9 +47,9 @@ summaryadeliemale=summary(adeliemale[,3:6])
 
 # Abstract
 
-In this report, we present a comprehensive analysis of sexual dimorphism in Chinstrap penguins (_Pygoscelis antarctica_) through rigorous statistical examination of key morphological characteristics, including body mass, flipper length, bill length, and bill depth. Utilizing population parameters such as means, medians, confidence intervals, and standard deviations, we conducted detailed comparisons. Statistical tests, including Shapiro-Wilk tests, t-tests, and chi-square tests, were employed to reinforce our observations.
+In this report, we present a comprehensive analysis of sexual dimorphism in Chinstrap penguins (_Pygoscelis antarctica_) through rigorous statistical examination of key morphological characteristics, including body mass, flipper length, bill length, and bill depth. Utilizing population parameters such as means, medians, confidence intervals, and standard deviations, we conducted detailed comparisons. Statistical tests, including Shapiro-Wilk tests, t-tests, effect sizes and chi-square tests, were employed to reinforce our observations.
 
-To contextualize our findings within a broader avian perspective, we introduced the Sexual Dimorphism Index (SDI) as a widely accepted metric. Our study extends beyond Chinstrap penguins, encompassing comparisons with various penguin species and a diverse collection of prey and songbirds. The results indicate a consistent degree of sexual dimorphism across all analyzed penguin species and songbirds, with males exhibiting positive dimorphism relative to females. Conversely, in prey birds, our findings suggest a positive dimorphism in female individuals. This study contributes valuable insights into the universal nature of sexual dimorphism in avian populations. 
+In order to place our discoveries within a broader avian context, we introduced the Sexual Dimorphism Index (SDI) as a widely acknowledged metric. Our investigation transcends the realm of Chinstrap penguins, encompassing comprehensive comparisons among various penguin species and a diverse array of prey and songbirds. The results consistently reveal a marked degree of sexual dimorphism across all examined penguin species, characterized by males displaying positive dimorphism relative to females. Intriguingly, our findings in prey birds suggest a positive dimorphism in female individuals. When extending this hypothesis to songbirds, it becomes evident that sexual dimorphism is expressed not only in measurable physical attributes but also in distinct behavioral patterns. This study contributes invaluable insights into the pervasive nature of sexual dimorphism within avian populations.
 
 # Introduction
 
@@ -66,7 +66,7 @@ Chinstrap penguins, known for their distinctive black band under their heads, in
 
 <br>
 <center>
-![Chinstrap Penguin](Chinstrap-penguin.jpg.webp){width=35%}
+![Chinstrap Penguin](https://cdn.britannica.com/08/152708-050-23B255B3/Chinstrap-penguin.jpg?w=400&h=300&c=crop){width=45%}
 </center>
 
 
