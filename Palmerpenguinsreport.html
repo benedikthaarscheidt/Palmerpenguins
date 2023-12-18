@@ -11,7 +11,7 @@
 
 <meta name="author" content="Benedikt Haarscheidt, Jaesub Kim, Ahmed Tijani Akinfalabi" />
 
-<meta name="date" content="2023-12-14" />
+<meta name="date" content="2023-12-18" />
 
 <title>Sexual dimorphism in Chinstrap penguins</title>
 
@@ -1505,13 +1505,13 @@ border-radius: 0px;
 penguins</h1>
 <h4 class="author">Benedikt Haarscheidt, Jaesub Kim, Ahmed Tijani
 Akinfalabi</h4>
-<h4 class="date">2023-12-14</h4>
+<h4 class="date">2023-12-18</h4>
 
 </div>
 
 
-<div id="abstract-short-summary" class="section level1">
-<h1>abstract (short summary)</h1>
+<div id="abstract" class="section level1">
+<h1>Abstract</h1>
 </div>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
@@ -1973,6 +1973,9 @@ characteristics.</p>
 based on sex into distinct weight groups. This segmentation allowed for
 the application of tests such as Cramér’s V and Cohen’s H to shed light
 on the effect size of sex on specific physical characteristics.</p>
+<p><span style="color:red"> <strong>It seems better to express this by
+writing an actual table rather than expressing it in the form of code
+output.</strong> </span></p>
 </div>
 <div id="cohens-h" class="section level4">
 <h4>Cohen’s H</h4>
@@ -2028,6 +2031,9 @@ of sex on specific physical characteristics.</p>
 </div>
 <div id="chi-square-test-of-independence-formula" class="section level2">
 <h2>Chi-Square Test of Independence Formula</h2>
+<p>we did chi sq test to investigate if there is a certain relationship
+between sex and Body mass, Flipper length, Bill length and Bill depth of
+Chinstrap penguins.</p>
 <p>The chi-square test of independence is calculated using the
 formula:</p>
 <p><span class="math display">\[ \chi^2 = \sum \frac{(O_{ij} -
@@ -2036,18 +2042,6 @@ E_{ij})^2}{E_{ij}} \]</span></p>
 statistic, <span class="math inline">\(O_{ij}\)</span> is the observed
 frequency in cell <span class="math inline">\(ij\)</span>, and <span class="math inline">\(E_{ij}\)</span> is the expected frequency in cell
 <span class="math inline">\(ij\)</span>.</p>
-</div>
-<div id="chi-square-goodness-of-fit-test-formula" class="section level2">
-<h2>Chi-Square Goodness-of-Fit Test Formula</h2>
-<p>The chi-square goodness-of-fit test is calculated using the
-formula:</p>
-<p><span class="math display">\[ \chi^2 = \sum \frac{(O_i - E_i)^2}{E_i}
-\]</span></p>
-<p>where <span class="math inline">\(\chi^2\)</span> is the test
-statistic, <span class="math inline">\(O_i\)</span> is the observed
-frequency in category <span class="math inline">\(i\)</span>, and <span class="math inline">\(E_i\)</span> is the expected frequency in category
-<span class="math inline">\(i\)</span> under the assumed
-distribution.</p>
 <div id="multivariate-analysis-using-manova" class="section level3">
 <h3>Multivariate analysis using MANOVA</h3>
 <p>##WE ALSO STILL HAVE THE PROPORTIONS AND EXPECTED VALUES IN THE OTHER
@@ -2065,9 +2059,6 @@ broader conclusions across different species, we plan to incorporate a
 dataset concerning possums in Australia, available in the MASS package.
 This comprehensive approach allows us to contextualize our findings
 within a broader biological context.</p>
-</div>
-<div id="preybirds-and-songbirds" class="section level3">
-<h3>Preybirds and Songbirds</h3>
 <p>statistical analyis (which software, R, which packages, which tests)
 results</p>
 </div>
@@ -2597,30 +2588,31 @@ within a broader biological context.</p>
 Dimorphism Index (SDI) was calculated for seven morphological
 measurements. The SDI is a widely utilized parameter across ecological
 and morphological studies to describe sexual dimorphism in species
-(Lovich &amp; Gibbons, 1992).</p>
+(<span class="citation">Lovich and Gibbons (1992)</span>).</p>
 <p>Subsequently, the Sexual Size Dimorphism (SSD) was estimated by
 calculating the SDI for all male-female pairs within each penguin
 species. This step allowed for the comprehensive assessment of sexual
 dimorphism across the entire dataset.</p>
 <p>The data for different avian species were sourced from the database
-provided by Valcu, M., Valcu, C., &amp; Kempenaers, B. (2023). This
-dataset encompasses information on body mass, wing length, and Sexual
-Dimorphism Index (SDI) categorized by male and female specimens for
-various avian species. Given that the database includes statistical
-values for wing length and body mass, we can compare these metrics with
-the corresponding flipper length and body mass of the penguins in our
-dataset. This enables a meaningful assessment of the morphological
-sexual dimorphism of penguins in relation to the broader avian species
-data provided. Additionally we note, that form the fourth row of the
-table until the species Gyps fulvus, the listed species are all
-preybirds and starting from Malurus amabilis until the last row of the
-table the avian species are all songbirds.</p>
+provided by <span class="citation">Valcu, Valcu, and Kempenaers
+(2023)</span>. This dataset encompasses information on body mass, wing
+length, and Sexual Dimorphism Index (SDI) categorized by male and female
+specimens for various avian species. Given that the database includes
+statistical values for wing length and body mass, we can compare these
+metrics with the corresponding flipper length and body mass of the
+penguins in our dataset. This enables a meaningful assessment of the
+morphological sexual dimorphism of penguins in relation to the broader
+avian species data provided. Additionally we note, that form the fourth
+row of the table until the species Gyps fulvus, the listed species are
+all preybirds and starting from Malurus amabilis until the last row of
+the table the avian species are all songbirds.</p>
 <p>The results are displayed in the table below. BM, BL, BD and FL stand
-for body mass, bill length, bill depth and flipper length
-respectively.</p>
+for body mass, bill length, bill depth and flipper length respectively.
+In our data, SDI is positive when males are larger and negative when
+females are larger.</p>
 <table>
 <colgroup>
-<col width="22%" />
+<col width="24%" />
 <col width="9%" />
 <col width="9%" />
 <col width="7%" />
@@ -2643,7 +2635,7 @@ respectively.</p>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Pygoscelis antarctica</td>
+<td align="left"><em>Pygoscelis antarctica</em></td>
 <td align="right">3527.206</td>
 <td align="right">3938.971</td>
 <td align="right">0.117</td>
@@ -2653,7 +2645,7 @@ respectively.</p>
 <td align="left">Male biased</td>
 </tr>
 <tr class="even">
-<td align="left">Pygoscelis adeliae</td>
+<td align="left"><em>Pygoscelis adeliae</em></td>
 <td align="right">3368.836</td>
 <td align="right">4043.493</td>
 <td align="right">0.200</td>
@@ -2663,7 +2655,7 @@ respectively.</p>
 <td align="left">Male biased</td>
 </tr>
 <tr class="odd">
-<td align="left">Pygoscelis papua</td>
+<td align="left"><em>Pygoscelis papua</em></td>
 <td align="right">4679.741</td>
 <td align="right">5484.836</td>
 <td align="right">0.172</td>
@@ -2673,7 +2665,7 @@ respectively.</p>
 <td align="left">Male biased</td>
 </tr>
 <tr class="even">
-<td align="left">Aegolius funereus</td>
+<td align="left"><em>Aegolius funereus</em></td>
 <td align="right">137.580</td>
 <td align="right">119.205</td>
 <td align="right">-0.062</td>
@@ -2683,7 +2675,7 @@ respectively.</p>
 <td align="left">Female biased</td>
 </tr>
 <tr class="odd">
-<td align="left">Circus pygargus</td>
+<td align="left"><em>Circus pygargus</em></td>
 <td align="right">370.000</td>
 <td align="right">261.000</td>
 <td align="right">-0.152</td>
@@ -2693,7 +2685,7 @@ respectively.</p>
 <td align="left">Female biased</td>
 </tr>
 <tr class="even">
-<td align="left">Aquila heliaca</td>
+<td align="left"><em>Aquila heliaca</em></td>
 <td align="right">3845.000</td>
 <td align="right">2585.000</td>
 <td align="right">-0.172</td>
@@ -2703,7 +2695,7 @@ respectively.</p>
 <td align="left">Female biased</td>
 </tr>
 <tr class="odd">
-<td align="left">Buteo galapagoensis</td>
+<td align="left"><em>Buteo galapagoensis</em></td>
 <td align="right">1332.940</td>
 <td align="right">914.030</td>
 <td align="right">-0.164</td>
@@ -2713,7 +2705,7 @@ respectively.</p>
 <td align="left">Female biased</td>
 </tr>
 <tr class="even">
-<td align="left">Buteo ridgwayi</td>
+<td align="left"><em>Buteo ridgwayi</em></td>
 <td align="right">414.000</td>
 <td align="right">315.000</td>
 <td align="right">-0.119</td>
@@ -2723,7 +2715,7 @@ respectively.</p>
 <td align="left">Female biased</td>
 </tr>
 <tr class="odd">
-<td align="left">Haliaeetus albicilla</td>
+<td align="left"><em>Haliaeetus albicilla</em></td>
 <td align="right">5572.000</td>
 <td align="right">4014.000</td>
 <td align="right">-0.142</td>
@@ -2733,7 +2725,7 @@ respectively.</p>
 <td align="left">Female biased</td>
 </tr>
 <tr class="even">
-<td align="left">Falco columbarius</td>
+<td align="left"><em>Falco columbarius</em></td>
 <td align="right">218.000</td>
 <td align="right">163.000</td>
 <td align="right">-0.126</td>
@@ -2743,7 +2735,7 @@ respectively.</p>
 <td align="left">Female biased</td>
 </tr>
 <tr class="odd">
-<td align="left">Falco naumanni</td>
+<td align="left"><em>Falco naumanni</em></td>
 <td align="right">164.000</td>
 <td align="right">141.000</td>
 <td align="right">-0.066</td>
@@ -2753,7 +2745,7 @@ respectively.</p>
 <td align="left">Female biased</td>
 </tr>
 <tr class="even">
-<td align="left">Falco sparverius</td>
+<td align="left"><em>Falco sparverius</em></td>
 <td align="right">120.401</td>
 <td align="right">106.152</td>
 <td align="right">-0.055</td>
@@ -2763,7 +2755,7 @@ respectively.</p>
 <td align="left">Female biased</td>
 </tr>
 <tr class="odd">
-<td align="left">Falco tinnunculus</td>
+<td align="left"><em>Falco tinnunculus</em></td>
 <td align="right">201.000</td>
 <td align="right">167.000</td>
 <td align="right">-0.080</td>
@@ -2773,7 +2765,7 @@ respectively.</p>
 <td align="left">Female biased</td>
 </tr>
 <tr class="even">
-<td align="left">Accipiter cooperii</td>
+<td align="left"><em>Accipiter cooperii</em></td>
 <td align="right">558.068</td>
 <td align="right">353.453</td>
 <td align="right">-0.198</td>
@@ -2783,7 +2775,7 @@ respectively.</p>
 <td align="left">Female biased</td>
 </tr>
 <tr class="odd">
-<td align="left">Accipiter nisus</td>
+<td align="left"><em>Accipiter nisus</em></td>
 <td align="right">325.000</td>
 <td align="right">150.000</td>
 <td align="right">-0.336</td>
@@ -2793,7 +2785,7 @@ respectively.</p>
 <td align="left">Female biased</td>
 </tr>
 <tr class="even">
-<td align="left">Athene cunicularia</td>
+<td align="left"><em>Athene cunicularia</em></td>
 <td align="right">162.750</td>
 <td align="right">151.170</td>
 <td align="right">-0.032</td>
@@ -2803,7 +2795,7 @@ respectively.</p>
 <td align="left">Male biased</td>
 </tr>
 <tr class="odd">
-<td align="left">Tyto alba</td>
+<td align="left"><em>Tyto alba</em></td>
 <td align="right">418.520</td>
 <td align="right">362.053</td>
 <td align="right">-0.063</td>
@@ -2813,7 +2805,7 @@ respectively.</p>
 <td align="left">Female biased</td>
 </tr>
 <tr class="even">
-<td align="left">Gyps fulvus</td>
+<td align="left"><em>Gyps fulvus</em></td>
 <td align="right">8525.000</td>
 <td align="right">8132.000</td>
 <td align="right">-0.020</td>
@@ -2823,7 +2815,7 @@ respectively.</p>
 <td align="left">Female biased</td>
 </tr>
 <tr class="odd">
-<td align="left">Malurus amabilis</td>
+<td align="left"><em>Malurus amabilis</em></td>
 <td align="right">8.200</td>
 <td align="right">9.100</td>
 <td align="right">0.045</td>
@@ -2833,7 +2825,7 @@ respectively.</p>
 <td align="left">Male biased</td>
 </tr>
 <tr class="even">
-<td align="left">Malurus cyaneus</td>
+<td align="left"><em>Malurus cyaneus</em></td>
 <td align="right">10.500</td>
 <td align="right">11.300</td>
 <td align="right">0.032</td>
@@ -2843,7 +2835,7 @@ respectively.</p>
 <td align="left">Male biased</td>
 </tr>
 <tr class="odd">
-<td align="left">Phainopepla nitens</td>
+<td align="left"><em>Phainopepla nitens</em></td>
 <td align="right">21.000</td>
 <td align="right">20.700</td>
 <td align="right">-0.006</td>
@@ -2853,7 +2845,7 @@ respectively.</p>
 <td align="left">Male biased</td>
 </tr>
 <tr class="even">
-<td align="left">Hylocichla mustelina</td>
+<td align="left"><em>Hylocichla mustelina</em></td>
 <td align="right">52.500</td>
 <td align="right">47.800</td>
 <td align="right">-0.041</td>
@@ -2863,7 +2855,7 @@ respectively.</p>
 <td align="left">Male biased</td>
 </tr>
 <tr class="odd">
-<td align="left">Cinclus cinclus</td>
+<td align="left"><em>Cinclus cinclus</em></td>
 <td align="right">59.568</td>
 <td align="right">70.866</td>
 <td align="right">0.075</td>
@@ -2873,7 +2865,7 @@ respectively.</p>
 <td align="left">Male biased</td>
 </tr>
 <tr class="even">
-<td align="left">Cercomacra tyrannina</td>
+<td align="left"><em>Cercomacra tyrannina</em></td>
 <td align="right">16.600</td>
 <td align="right">17.500</td>
 <td align="right">0.023</td>
@@ -2883,7 +2875,7 @@ respectively.</p>
 <td align="left">Male biased</td>
 </tr>
 <tr class="odd">
-<td align="left">Empidonax minimus</td>
+<td align="left"><em>Empidonax minimus</em></td>
 <td align="right">10.200</td>
 <td align="right">11.100</td>
 <td align="right">0.037</td>
@@ -2893,7 +2885,7 @@ respectively.</p>
 <td align="left">Male biased</td>
 </tr>
 <tr class="even">
-<td align="left">Erithacus rubecula</td>
+<td align="left"><em>Erithacus rubecula</em></td>
 <td align="right">17.100</td>
 <td align="right">16.400</td>
 <td align="right">-0.018</td>
@@ -2903,7 +2895,7 @@ respectively.</p>
 <td align="left">Male biased</td>
 </tr>
 <tr class="odd">
-<td align="left">Ficedula hypoleuca</td>
+<td align="left"><em>Ficedula hypoleuca</em></td>
 <td align="right">14.220</td>
 <td align="right">12.484</td>
 <td align="right">-0.057</td>
@@ -2913,7 +2905,7 @@ respectively.</p>
 <td align="left">Male biased</td>
 </tr>
 <tr class="even">
-<td align="left">Oenanthe oenanthe</td>
+<td align="left"><em>Oenanthe oenanthe</em></td>
 <td align="right">22.719</td>
 <td align="right">23.441</td>
 <td align="right">0.014</td>
@@ -2923,7 +2915,7 @@ respectively.</p>
 <td align="left">Male biased</td>
 </tr>
 <tr class="odd">
-<td align="left">Phoenicurus ochruros</td>
+<td align="left"><em>Phoenicurus ochruros</em></td>
 <td align="right">16.400</td>
 <td align="right">15.100</td>
 <td align="right">-0.036</td>
@@ -2933,7 +2925,7 @@ respectively.</p>
 <td align="left">Male biased</td>
 </tr>
 <tr class="even">
-<td align="left">Sialia mexicana</td>
+<td align="left"><em>Sialia mexicana</em></td>
 <td align="right">27.100</td>
 <td align="right">25.800</td>
 <td align="right">-0.021</td>
@@ -2943,7 +2935,7 @@ respectively.</p>
 <td align="left">Male biased</td>
 </tr>
 <tr class="odd">
-<td align="left">Sitta europaea</td>
+<td align="left"><em>Sitta europaea</em></td>
 <td align="right">18.430</td>
 <td align="right">19.233</td>
 <td align="right">0.019</td>
@@ -2966,16 +2958,62 @@ opposing pattern is particularly evident in attributes like bill length,
 bill depth, flipper length, and body mass. Conversely, songbirds align
 with the trend observed in penguins, maintaining a male bias in size and
 weight.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Mean BM SDI</th>
+<th align="right">Mean WL/FL SDI</th>
+<th align="right">Mean SDI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Penguin</td>
+<td align="right">0.163</td>
+<td align="right">0.036</td>
+<td align="right">0.100</td>
+</tr>
+<tr class="even">
+<td align="left">Prey bird</td>
+<td align="right">-0.119</td>
+<td align="right">-0.026</td>
+<td align="right">-0.072</td>
+</tr>
+<tr class="odd">
+<td align="left">Song bird</td>
+<td align="right">0.005</td>
+<td align="right">0.015</td>
+<td align="right">0.010</td>
+</tr>
+</tbody>
+</table>
+<p>We further categorized penguins, prey birds, and songbirds in the
+above table, calculating the mean SDI for body mass and wing/flipper
+length within each category. Additionally, an overall SDI was computed.
+Here it is shown what average SDI each bird classification has.</p>
 </div>
 </div>
 </div>
 <div id="discussion" class="section level1">
 <h1>Discussion</h1>
-<p>In the discussion we need to drive the colclusions and find the right
-words for proving our hypothesis. Here include the comparison with the
-literture data of other birds.</p>
 <div id="comparison-of-sexual-dimorphism-within-gentoo-penguin-genera" class="section level2">
 <h2>Comparison of sexual dimorphism within gentoo penguin genera</h2>
+<p>As evident from the above histogram, there appears to be distinct
+sexual dimorphism within the Chinstrap penguin species. This observation
+was further substantiated through various tests conducted subsequently.
+Given the confirmed differences in body size between males and females
+through T-tests, we proceeded to calculate SDI (Sexual Dimorphism
+Index). The most pronounced disparity between male and female Chinstrap
+penguins was observed in culmen length, particularly when compared to
+Adélie and Gentoo penguins. In contrast, differences in culmen depth
+were not substantial across all three species.</p>
+<p>The role of beak size in the sexual dimorphism of penguins, whether
+it contributes to enhanced hunting abilities or serves as a means for
+intra-species male competition, remains ambiguous. Additional research
+is imperative to gain a deeper understanding of this aspect in the
+sexual differentiation of penguins.(<span class="citation">Szara et al.
+(2023)</span>,<span class="citation">Lee et al. (2015)</span>)</p>
 <p>The investigation into sexual dimorphism among <em>Pygoscelis</em>
 species (<em>antarctica, adeliae, papua</em>), which inhabit the Palmer
 Archipelago, reveals a predominantly male-biased sexual dimorphism, as
@@ -3024,12 +3062,60 @@ mid-air. This is particularly relevant in species where the strength of
 sexual dimorphism is more pronounced. For instance, a study on owls
 suggests that larger, more agile prey is hunted by females with strong
 sexual dimorphism, implying that natural selection pressures have driven
-an increase in sexual dimorphism in such species <span class="citation">Krüger (2005)</span>.</p>
+an increase in sexual dimorphism in such species (<span class="citation">Krüger (2005)</span>).</p>
+</div>
+<div id="slight-sexual-size-dimorphism-in-song-birds" class="section level2">
+<h2>Slight sexual size dimorphism in song birds</h2>
+<p>The sexual dimorphism observed in Songbirds diverges from the
+conspicuous sexual size differences found in other avian species, such
+as Preybirds and Penguins. As can be seen in the table above, the
+songbirds have a relatively small SDI. In songbirds, as in other avian
+species, sexual and natural selection clearly placed different
+evolutionary pressures on each sex, but songbirds appear to have
+assimilated evolutionary pressures in different directions. (<span class="citation">Shultz and Burns (2017)</span>) This can be explained
+by the differences in sexual roles and courtship methods of songbirds
+and other bird species. Instead of relying on overt physical
+characteristics, Songbirds have evolved a unique courtship strategy
+centered around song selection. This distinctive approach to mate
+attraction involves complex internal differences rather than external
+size dimorphism.</p>
+<p>Notably, the research by <span class="citation">Nottebohm and Arnold
+(1976)</span> underscores the brain development in male Songbirds, with
+larger and more developed vocal control regions compared to females.
+This correlates with the observation that females, with less developed
+or indistinguishable vocal control areas, generally do not engage in
+singing behavior. For these reasons , investigations into sexual
+dimorphism in Songbirds predominantly focused on the intricacies of male
+vocalization behaviors and the development of male brains and central
+nervous systems.</p>
+<p>Research by <span class="citation">Brenowitz and Arnold (1992)</span>
+and <span class="citation">Arnold et al. (1986)</span> further supports
+the notion that sexual dimorphism in the neural song system is
+correlated with vocalization abilities. They suggest that hormonal
+differences between males and females trigger these disparities,
+emphasizing the role of hormonal control in shaping the sexual
+dimorphism observed in Songbirds.</p>
+<p>As such, the differences between Songbird’s SDI and Penguin’s SDI
+appear to be due to different courtship strategies, and while Songbirds
+rely on intricate courtship behaviors and internal neural differences,
+Penguins demonstrate a more straightforward approach through traditional
+external size dimorphism.</p>
 </div>
 </div>
 <div id="literature" class="section level1 unnumbered">
 <h1 class="unnumbered">Literature</h1>
 <div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-arnold1986sexual" class="csl-entry">
+Arnold, Arthur P, Sarah W Bottjer, Eliot A Brenowitz, Ernest J Nordeen,
+and Kathy W Nordeen. 1986. <span>“Sexual Dimorphisms in the Neural Vocal
+Control System in Song Birds: Ontogeny and Phylogeny.”</span> <em>Brain,
+Behavior and Evolution</em> 28 (1-3): 22–31.
+</div>
+<div id="ref-brenowitz1992hormone" class="csl-entry">
+Brenowitz, Eliot A, and Arthur P Arnold. 1992. <span>“Hormone
+Accumulation in Song Regions of the Canary Brain.”</span> <em>Journal of
+Neurobiology</em> 23 (7): 871–80.
+</div>
 <div id="ref-dekker2009hunting" class="csl-entry">
 Dekker, Dick. 2009. <em>Hunting Tactics of Peregrines and Other
 Falcons</em>. Wageningen University; Research.
@@ -3048,6 +3134,40 @@ Krüger, Oliver. 2005. <span>“The <span>Evolution</span> of
 <span>Owls</span>: <span>A</span> <span>Comparative</span>
 <span>Study</span>.”</span> <em>Evolutionary Ecology</em> 19 (5):
 467–86. <a href="https://doi.org/10.1007/s10682-005-0293-9">https://doi.org/10.1007/s10682-005-0293-9</a>.
+</div>
+<div id="ref-lee2015new" class="csl-entry">
+Lee, Won Young, Jin-Woo Jung, Yeong-Deok Han, Hosung Chung, and
+Jeong-Hoon Kim. 2015. <span>“A New Sex Determination Method Using
+Morphological Traits in Adult Chinstrap and Gentoo Penguins on King
+George Island, Antarctica.”</span> <em>Animal Cells and Systems</em> 19
+(2): 156–59.
+</div>
+<div id="ref-lovich1992review" class="csl-entry">
+Lovich, Jeffrey E, and J Whitfield Gibbons. 1992. <span>“A Review of
+Techniques for Quantifying Sexual Size Dimorphism.”</span> <em>Growth
+Development and Aging</em> 56: 269–69.
+</div>
+<div id="ref-nottebohm1976sexual" class="csl-entry">
+Nottebohm, Fernando, and Arthur P Arnold. 1976. <span>“Sexual Dimorphism
+in Vocal Control Areas of the Songbird Brain.”</span> <em>Science</em>
+194 (4261): 211–13.
+</div>
+<div id="ref-shultz2017role" class="csl-entry">
+Shultz, Allison J, and Kevin J Burns. 2017. <span>“The Role of Sexual
+and Natural Selection in Shaping Patterns of Sexual Dichromatism in the
+Largest Family of Songbirds (Aves: Thraupidae).”</span>
+<em>Evolution</em> 71 (4): 1061–74.
+</div>
+<div id="ref-szara2023bill" class="csl-entry">
+Szara, Tomasz, Ebuderda Günay, İlayda Boz, Berke Batmankaya, Hilal
+Gencer, Gökhan Gün, Ezgi Can Vatansever Çelik, and Ozan Gündemir. 2023.
+<span>“Bill Shape Variation in African Penguin (Spheniscus Demersus)
+Held Captive in Two Zoos.”</span> <em>Diversity</em> 15 (8): 945.
+</div>
+<div id="ref-valcu_extrapair_2023" class="csl-entry">
+Valcu, Mihai, Cristina Valcu, and Bart Kempenaers. 2023.
+<span>“Extra‐pair Paternity and Sexual Dimorphism in Birds.”</span>
+<em>Journal of Evolutionary Biology</em> 36 (5): 764–79. <a href="https://doi.org/10.1111/jeb.14172">https://doi.org/10.1111/jeb.14172</a>.
 </div>
 </div>
 </div>

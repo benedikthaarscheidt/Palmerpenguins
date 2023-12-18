@@ -45,7 +45,7 @@ summaryadeliemale=summary(adeliemale[,3:6])
 ```
 
 
-# abstract (short summary)
+# Abstract
 
 
 # Introduction
@@ -389,9 +389,6 @@ tab
 ```
 
 
-<span style="color:red"> **It seems better to express this by writing an actual table rather than expressing it in the form of code output.** </span>
-
-
 #### Cohen's H
 
 Continuing our in-depth analysis, we proceeded to assess the impact size of sex on specific physical characteristics using Cohen's H. 
@@ -432,9 +429,7 @@ Given the absence of a pre-existing function for Cramér's V in R, we opted to i
 
 
 
-<span style="color:red">**The same goes for function implementation. There is a need to hide it from view. If you hide this, the description will also need to change. Detlef said he didn't want the R to look like a real paper report. Check Detlef's email. The same goes for your works after this.**</span>
-
-```{r}
+```{r echo=FALSE, results='hide'}
 
 dg.cramersV = function (tab,correct=TRUE) {t=min(dim(tab)) 
 return(sqrt(chisq.test(tab,correct=correct)$statistic/
@@ -447,20 +442,14 @@ This function facilitates the calculation of Cramér's V, providing a standardiz
 
 ## Chi-Square Test of Independence Formula
 
+we did chi sq test to investigate if there is a certain relationship between sex and Body mass, Flipper length, Bill length and Bill depth of Chinstrap penguins.
+
 The chi-square test of independence is calculated using the formula:
 
 \[ \chi^2 = \sum \frac{(O_{ij} - E_{ij})^2}{E_{ij}} \]
 
 where \(\chi^2\) is the test statistic, \(O_{ij}\) is the observed frequency in cell \(ij\), and \(E_{ij}\) is the expected frequency in cell \(ij\).
 
-
-## Chi-Square Goodness-of-Fit Test Formula
-
-The chi-square goodness-of-fit test is calculated using the formula:
-
-\[ \chi^2 = \sum \frac{(O_i - E_i)^2}{E_i} \]
-
-where \(\chi^2\) is the test statistic, \(O_i\) is the observed frequency in category \(i\), and \(E_i\) is the expected frequency in category \(i\) under the assumed distribution.
 
 
 ```{r label = chi.bodymass, echo=FALSE}
@@ -566,8 +555,6 @@ meanbodymassgentoofemale=mean(gentoofemale$"Body Mass (g)", na.rm=TRUE)
 ```
 
 
-### Preybirds and Songbirds 
-<span style="color:red"> **we don't have statistical analysis for this. all data for this are from literature** </span>
 
 ```{r label = bird.data.preperation, echo=FALSE}
 pspc = c("*Aegolius funereus*"
