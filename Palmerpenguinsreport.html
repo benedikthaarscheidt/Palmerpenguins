@@ -1326,7 +1326,6 @@ if (window.hljs) {
 div.csl-bib-body { }
 div.csl-entry {
 clear: both;
-margin-bottom: 0em;
 }
 .hanging div.csl-entry {
 margin-left:2em;
@@ -1926,9 +1925,6 @@ characteristics.</p>
 based on sex into distinct weight groups. This segmentation allowed for
 the application of tests such as Cramér’s V and Cohen’s H to shed light
 on the effect size of sex on specific physical characteristics.</p>
-<p><span style="color:red"> <strong>It seems better to express this by
-writing an actual table rather than expressing it in the form of code
-output.</strong> </span></p>
 </div>
 <div id="cohens-h" class="section level4">
 <h4>Cohen’s H</h4>
@@ -1974,14 +1970,6 @@ categories in one variable, and <span class="math inline">\(r\)</span>
 is the number of categories in the other variable.</p>
 <p>Given the absence of a pre-existing function for Cramér’s V in R, we
 opted to implement our own function.</p>
-<p><span style="color:red"><strong>The same goes for function
-implementation. There is a need to hide it from view. If you hide this,
-the description will also need to change. Detlef said he didn’t want the
-R to look like a real paper report. Check Detlef’s email. The same goes
-for your works after this.</strong></span></p>
-<pre class="r"><code>dg.cramersV = function (tab,correct=TRUE) {t=min(dim(tab)) 
-return(sqrt(chisq.test(tab,correct=correct)$statistic/
-              (sum(tab)*(t-1)))[[1]])}</code></pre>
 <p>This function facilitates the calculation of Cramér’s V, providing a
 standardized measure of association that aids in interpreting the impact
 of sex on specific physical characteristics.</p>
@@ -1992,7 +1980,7 @@ of sex on specific physical characteristics.</p>
 </div>
 <div id="chi-square-test-of-independence-formula" class="section level2">
 <h2>Chi-Square Test of Independence Formula</h2>
-<p>we did chi sq test to investigate if there is a certain relationship
+<p>We did chi sq test to investigate if there is a certain relationship
 between sex and Body mass, Flipper length, Bill length and Bill depth of
 Chinstrap penguins.</p>
 <p>The chi-square test of independence is calculated using the
@@ -2003,29 +1991,9 @@ E_{ij})^2}{E_{ij}} \]</span></p>
 statistic, <span class="math inline">\(O_{ij}\)</span> is the observed
 frequency in cell <span class="math inline">\(ij\)</span>, and <span class="math inline">\(E_{ij}\)</span> is the expected frequency in cell
 <span class="math inline">\(ij\)</span>.</p>
-<<<<<<< HEAD
-<div id="multivariate-analysis-using-manova" class="section level3">
-<h3>Multivariate analysis using MANOVA</h3>
-<p>##WE ALSO STILL HAVE THE PROPORTIONS AND EXPECTED VALUES IN THE OTHER
-DOC –&gt; THINK HOW TO IMPLEMENT THIS HERE ## Interspecies
-comparison</p>
-=======
-</div>
-<div id="chi-square-goodness-of-fit-test-formula" class="section level2">
-<h2>Chi-Square Goodness-of-Fit Test Formula</h2>
-<p>The chi-square goodness-of-fit test is calculated using the
-formula:</p>
-<p><span class="math display">\[ \chi^2 = \sum \frac{(O_i - E_i)^2}{E_i}
-\]</span></p>
-<p>where <span class="math inline">\(\chi^2\)</span> is the test
-statistic, <span class="math inline">\(O_i\)</span> is the observed
-frequency in category <span class="math inline">\(i\)</span>, and <span class="math inline">\(E_i\)</span> is the expected frequency in category
-<span class="math inline">\(i\)</span> under the assumed
-distribution.</p>
 </div>
 <div id="interspecies-comparison" class="section level2">
 <h2>Interspecies comparison</h2>
->>>>>>> 25b8556a619d74635279d6145c2750c9d9083261
 <p>To derive meaningful insights from our analyzed data and validate our
 hypothesis, it is essential to broaden our comparisons by including
 other species. To achieve this, we have chosen to include the Adelie
@@ -2038,16 +2006,8 @@ broader conclusions across different species, we plan to incorporate a
 dataset concerning possums in Australia, available in the MASS package.
 This comprehensive approach allows us to contextualize our findings
 within a broader biological context.</p>
-<<<<<<< HEAD
-=======
-<div id="preybirds-and-songbirds" class="section level3">
-<h3>Preybirds and Songbirds</h3>
-<p><span style="color:red"> <strong>we don’t have statistical analysis
-for this. all data for this are from literature</strong> </span></p>
->>>>>>> 25b8556a619d74635279d6145c2750c9d9083261
 <p>statistical analyis (which software, R, which packages, which tests)
 results</p>
-</div>
 <div id="sdi---sexual-dimorphism-index" class="section level3">
 <h3>SDI - Sexual Dimorphism Index</h3>
 <p>To quantify the sexual dimorphism of each penguin species, a Sexual
@@ -3001,11 +2961,7 @@ external size dimorphism.</p>
 </div>
 <div id="literature" class="section level1 unnumbered">
 <h1 class="unnumbered">Literature</h1>
-<<<<<<< HEAD
 <div id="refs" class="references csl-bib-body hanging-indent">
-=======
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
->>>>>>> 25b8556a619d74635279d6145c2750c9d9083261
 <div id="ref-arnold1986sexual" class="csl-entry">
 Arnold, Arthur P, Sarah W Bottjer, Eliot A Brenowitz, Ernest J Nordeen,
 and Kathy W Nordeen. 1986. <span>“Sexual Dimorphisms in the Neural Vocal
