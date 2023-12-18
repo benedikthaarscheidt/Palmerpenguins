@@ -62,13 +62,15 @@ Chinstrap penguins, known for their distinctive black band under their heads, in
 
 
 <br>
-
+<center>
 ![Chinstrap Penguin](Chinstrap-penguin.jpg.webp){width=35%}
+</center>
+
 
 # Data
 The data employed to substantiate the previously posited hypothesis was sourced from the Palmerpenguins package of the CRAN R library. This package encapsulates an extensive dataset named penguins_raw featuring dimensions such as body mass, size measurements, clutch observations, and blood isotope ratios for adult Adélie, Chinstrap, and Gentoo penguins in the Palmer Archipelago near Palmer Station, Antarctica. Dr. Kristen Gorman and the Palmer Station Long Term Ecological Research (LTER) Program curated and generously shared this dataset, showcasing the collaborative nature of scientific endeavors. Spanning 344 penguins across three distinct species (Adélie, Chinstrap, and Gentoo ), the dataset originates from three islands within the Palmer Archipelago, providing a rich tapestry of geographical diversity. Notably, the dataset includes morphological measurements, with culmen (bill) length and depth thoughtfully renamed as bill_length_mm and bill_depth_mm for clarity, contributing to a nuanced comprehension of penguin ecology. Complementing the morphological data are clutch observations shedding light on the reproductive behavior of the penguins and blood isotope ratios offering insights into their dietary habits and foraging strategies. Furthermore the dataset extends to other sample information such as individual ID of the observed penguin, the sample number, the study name and some comments. Since were interested in performing a descriptive analysis and use the information to abstract and generalize, we simply ignore those datapoints and focus on the described relevant ones.
 
-In the pursuit of substantiating the stated hypothesis, our focus is on comparing key characteristics such as bill/culmen length and depth, body mass, delta 13C, delta 15N, and flipper size between male and female penguins. The objective is to discern potential sexual dimorphism and its implications in the context of the penguin species under study. Moreover, we intend to extend our analysis by comparing the obtained results with a dataset concerning possums in Australia and potentially other species. This comparative approach aims to abstract the underlying hypothesis and draw inferences that transcend the confines of the penguin dataset, contributing to a broader understanding of sexual dimorphism and ecological dynamics across diverse species. In our exploration of the palmerpenguins dataset, we focused on pertinent dimensions to substantiate our hypothesis, selectively disregarding columns not integral to our investigation. 
+In the pursuit of substantiating the stated hypothesis, our focus is on comparing key characteristics such as bill/culmen length and depth, body mass and flipper size between male and female penguins. The objective is to discern potential sexual dimorphism and its implications in the context of the penguin species under study. Moreover, we intend to extend our analysis by comparing the obtained results with a dataset concerning possums in Australia and potentially other species. This comparative approach aims to abstract the underlying hypothesis and draw inferences that transcend the confines of the penguin dataset, contributing to a broader understanding of sexual dimorphism and ecological dynamics across diverse species. In our exploration of the palmerpenguins dataset, we focused on pertinent dimensions to substantiate our hypothesis, selectively disregarding columns not integral to our investigation. 
 Below one can see the head of the penguins_raw dataframe.
 ```{r echo=FALSE}
 pengraw=head(df)
@@ -85,17 +87,17 @@ knitr::kable(pengraw)
 Statistical analysis were performed using R (version 4.3.1). Our primary objective is to emphasize our hypothesis - highlighting the significant sexual dimorphism with the Chinstrap penguins within our datasets. We compared morphological measurements (Body mass, Bill length, Bill depth, and Flipper length) between male and female penguins using various statistical approaches and tests to further buttress our hypothesis. Firstly, since our dataset was from the Palmerpenguins library containing 3 (three) different penguin species (Adelie, Chinstrap, and Gentoo), it was imperative to isolate the datasets for only the Chinstrap penguins since that is our focus for this report and to then further analyze the data.
 
 See below the distribution of sexes within the Palmerpenguins dataset:
-
+<center>
 ```{r echo=FALSE}
 knitr::kable(table(df$Sex,df$Species))
 ```
-
+</center>
 
 
 Given our specific focus on the Chinstrap species within the Palmer penguins package, it is imperative to create subsets corresponding to each penguin species within the general dataset. While we currently require this subset specifically for the Chinstrap species, anticipating potential use for the other subsets later in this report prompts us to perform this subsetting procedure for all penguin species at this stage. By doing so, we ensure that the necessary datasets are readily available for subsequent analyses and facilitate a smoother progression in the later stages of our report.
 
 
-Upon isolation of the Chinstrap datasets into a data frame, we went ahead to perform the Shapiro-wilke’s test to check if the datasets were gotten from a normal distribution, and then since the test confirmed that the data were from a normal distribution, we went ahead to perform the t.test and manova (multivariate analysis) for each of the morphological characteristics we are working with. The t.test return values including the p-value which indicates the degree or significance of differences between the sexes. Next, we conducted the effect size using the cohen’s W.
+Upon isolation of the Chinstrap datasets into a data frame, we went ahead to perform the Shapiro-wilke’s test to check if the datasets were gotten from a normal distribution, and then since the test confirmed that the data were from a normal distribution, we went ahead to perform the t.test for each of the morphological characteristics we are working with. The t.test return values including the p-value which indicates the degree or significance of differences between the sexes. Next, we conducted the effect size using the cohen’s W.
 
 
 ```{r echo=FALSE}
@@ -332,24 +334,9 @@ The two-sample t-test statistic (\(t\)) is given by:
 where \(\bar{x}\) is the sample mean, \(\mu\) is the population mean, \(s\) is the sample standard deviation, and \(n\) is the sample size.
 
 
-These tests will allow us to investigate potential differences in specific physical characteristics between different groups, such as male and female penguins within each species. Before delving into the t-test results, it's imperative to consider the normality status of our variables, as the validity of t-tests relies on the assumption of normal distribution. The Shapiro-Wilk tests provided insights into the normality of our data, aiding in the informed selection of appropriate statistical analyses. We conducted two-sample t-tests to explore potential differences in specific physical characteristics between male and female chinstrap penguins. The results, presented in the table below, reveal statistically significant differences in all examined parameters.
-```{r echo = FALSE, results='hide', label=t-test}
-t.test(c_bill_length_female_fit,chinstrapmale$"Culmen Length (mm)")
-t.test(chinstrapfemale$"Culmen Depth (mm)",chinstrapmale$"Culmen Depth (mm)")
-t.test(chinstrapfemale$"Flipper Length (mm)",chinstrapmale$"Flipper Length (mm)")
-t.test(chinstrapfemale$"Body Mass (g)",chinstrapmale$"Body Mass (g)")
-```
-
-The p-values obtained from the t-tests are remarkably low (close to zero), indicating strong evidence against the null hypothesis of no difference. Therefore, we reject the null hypothesis for each parameter, concluding that there are significant differences between male and female chinstrap penguins in terms of bill length, bill depth, flipper length, and body mass. This suggests distinct morphological characteristics associated with sex in this penguin population
+These tests will allow us to investigate potential differences in specific physical characteristics between different groups, such as male and female penguins within each species. Before delving into the t-test results, it's imperative to consider the normality status of our variables, as the validity of t-tests relies on the assumption of normal distribution. The Shapiro-Wilk tests provided insights into the normality of our data, aiding in the informed selection of appropriate statistical analyses. We conducted two-sample t-tests to explore potential differences in specific physical characteristics between male and female chinstrap penguins. 
 
 
-|categories|female|male|p-value|significant difference|
-|--|:--:|:--:|:--:|:---:|
-|Culmen length (mm)|46.23|51.09|1e-13|yes|
-|Culmen depth (mm)|17.59|19.25|7e-13|yes|
-|Flipper length (mm)|191.7|199.9|3e-07|yes|
-|Body mass (g)|3527|3939|3e-07|yes|
-  
 
 
 ### Effectsize 
@@ -492,24 +479,7 @@ pval.chi.flen = chisq.test(chi.dat.flen)$p.value
 ```
 
 
-### Multivariate analysis using MANOVA
 
-```{r echo=FALSE, results='hide'}
-head(chinstrapset)
-Sex = chinstrapset$Sex
-FlipperLength = chinstrapset$"Flipper Length (mm)"
-bodyMass = chinstrapset$"Body Mass (g)"
-BillDepth = chinstrapset$"Culmen Depth (mm)"
-BillLength = chinstrapset$"Culmen Length (mm)"
-
-mano = manova(cbind(BillLength, FlipperLength, BillDepth, bodyMass) ~ Sex, data = chinstrapset)
-
-```
-
-
-
-
-##WE ALSO STILL HAVE THE PROPORTIONS AND EXPECTED VALUES IN THE OTHER DOC --> THINK HOW TO IMPLEMENT THIS HERE
 ## Interspecies comparison
 
 To derive meaningful insights from our analyzed data and validate our hypothesis, it is essential to broaden our comparisons by including other species. To achieve this, we have chosen to include the Adelie penguin species, for which data is available in the Palmer penguins package. Additionally, we aim to extend our investigation of sexual dimorphism by comparing it to other avian species. The detailed comparison, based on the values derived from existing datasets, will be presented in the results section. To further enrich the scope and draw broader conclusions across different species, we plan to incorporate a dataset concerning possums in Australia, available in the MASS package. This comprehensive approach allows us to contextualize our findings within a broader biological context.
@@ -1328,29 +1298,6 @@ pval.chi.bdep
 ```{r echo=FALSE}
 pval.chi.flen
 ```
-
-
-
-### MANOVA - multivariant ANOVA test
-
-Following the individual t-tests, we extended our analysis to a more comprehensive approach by employing a Multivariate Analysis of Variance (MANOVA) test. This multivariate test allowed us to simultaneously assess the impact of sex on multiple physical characteristics of chinstrap penguins, namely bill length, bill depth, flipper length, and body mass. MANOVA is advantageous in considering the collective effect of these variables, providing a more holistic understanding of how sex influences the overall morphological profile of the chinstrap penguin population. This approach enhances the robustness of our investigation and contributes valuable insights into potential multivariate differences between male and female penguins.
-```{r echo=FALSE}
-mano
-# Create a table for MANOVA results
-manova_results <- data.frame(
-  Variable = c("Bill Length", "Flipper Length", "Bill Depth", "Body Mass"),
-  Sex = c(347, 1137, 47, 2882353),
-  Residuals = c(400, 2271, 39, 7014449),
-  `Deg. of Freedom` = c(1, 66),
-  `Residual Std Errors` = c(2.46086, 5.866382, 0.7712642, 326.0054)
-)
-
-# Print the table using kable
-knitr::kable(manova_results)
-```
-
-
-The results of the Multivariate Analysis of Variance (MANOVA) test revealed significant differences in the morphological characteristics between male and female chinstrap penguins. The MANOVA test considered four variables: Bill Length, Flipper Length, Bill Depth, and Body Mass. The obtained p-values for each variable were all below the conventional threshold of 0.05, indicating a statistically significant impact of sex on these morphological features. This collective approach provides a more nuanced understanding of how sex influences multiple aspects of chinstrap penguin anatomy, shedding light on the broader morphological distinctions between male and female individuals within the population. The MANOVA results underscore the importance of considering these variables simultaneously in capturing the intricacies of sexual dimorphism in chinstrap penguins.
 
 
 ## Interspecies comparison
