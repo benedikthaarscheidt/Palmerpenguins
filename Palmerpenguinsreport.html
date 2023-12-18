@@ -1513,6 +1513,24 @@ Akinfalabi</h4>
 
 <div id="abstract" class="section level1">
 <h1>Abstract</h1>
+<p>In this report, we present a comprehensive analysis of sexual
+dimorphism in Chinstrap penguins (<em>Pygoscelis antarctica</em>)
+through rigorous statistical examination of key morphological
+characteristics, including body mass, flipper length, bill length, and
+bill depth. Utilizing population parameters such as means, medians,
+confidence intervals, and standard deviations, we conducted detailed
+comparisons. Statistical tests, including Shapiro-Wilk tests, t-tests,
+and chi-square tests, were employed to reinforce our observations.</p>
+<p>To contextualize our findings within a broader avian perspective, we
+introduced the Sexual Dimorphism Index (SDI) as a widely accepted
+metric. Our study extends beyond Chinstrap penguins, encompassing
+comparisons with various penguin species and a diverse collection of
+prey and songbirds. The results indicate a consistent degree of sexual
+dimorphism across all analyzed penguin species and songbirds, with males
+exhibiting positive dimorphism relative to females. Conversely, in prey
+birds, our findings suggest a positive dimorphism in female individuals.
+This study contributes valuable insights into the universal nature of
+sexual dimorphism in avian populations.</p>
 </div>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
@@ -1541,8 +1559,8 @@ investigation, we endeavor to acquire a deeper understanding of the
 intricate dynamics between males and females within various species,
 elucidating how evolutionary pressures have contributed to the
 development of these distinctive relationships.</p>
-<p>In Chinstrap penguins (Pygoscelis antarcticus), one of the most
-recognizable and widely studied penguin species, sexual dimorphism
+<p>In Chinstrap penguins (<em>Pygoscelis antarcticus</em>), one of the
+most recognizable and widely studied penguin species, sexual dimorphism
 manifests notably in aspects such as body mass, flipper length, and bill
 size. This report aims to explore and quantify the differences between
 male and female Chinstrap penguins, shedding light on how these
@@ -1926,9 +1944,6 @@ characteristics.</p>
 based on sex into distinct weight groups. This segmentation allowed for
 the application of tests such as Cramér’s V and Cohen’s H to shed light
 on the effect size of sex on specific physical characteristics.</p>
-<p><span style="color:red"> <strong>It seems better to express this by
-writing an actual table rather than expressing it in the form of code
-output.</strong> </span></p>
 </div>
 <div id="cohens-h" class="section level4">
 <h4>Cohen’s H</h4>
@@ -1974,14 +1989,6 @@ categories in one variable, and <span class="math inline">\(r\)</span>
 is the number of categories in the other variable.</p>
 <p>Given the absence of a pre-existing function for Cramér’s V in R, we
 opted to implement our own function.</p>
-<p><span style="color:red"><strong>The same goes for function
-implementation. There is a need to hide it from view. If you hide this,
-the description will also need to change. Detlef said he didn’t want the
-R to look like a real paper report. Check Detlef’s email. The same goes
-for your works after this.</strong></span></p>
-<pre class="r"><code>dg.cramersV = function (tab,correct=TRUE) {t=min(dim(tab)) 
-return(sqrt(chisq.test(tab,correct=correct)$statistic/
-              (sum(tab)*(t-1)))[[1]])}</code></pre>
 <p>This function facilitates the calculation of Cramér’s V, providing a
 standardized measure of association that aids in interpreting the impact
 of sex on specific physical characteristics.</p>
@@ -2003,29 +2010,9 @@ E_{ij})^2}{E_{ij}} \]</span></p>
 statistic, <span class="math inline">\(O_{ij}\)</span> is the observed
 frequency in cell <span class="math inline">\(ij\)</span>, and <span class="math inline">\(E_{ij}\)</span> is the expected frequency in cell
 <span class="math inline">\(ij\)</span>.</p>
-<<<<<<< HEAD
-<div id="multivariate-analysis-using-manova" class="section level3">
-<h3>Multivariate analysis using MANOVA</h3>
-<p>##WE ALSO STILL HAVE THE PROPORTIONS AND EXPECTED VALUES IN THE OTHER
-DOC –&gt; THINK HOW TO IMPLEMENT THIS HERE ## Interspecies
-comparison</p>
-=======
-</div>
-<div id="chi-square-goodness-of-fit-test-formula" class="section level2">
-<h2>Chi-Square Goodness-of-Fit Test Formula</h2>
-<p>The chi-square goodness-of-fit test is calculated using the
-formula:</p>
-<p><span class="math display">\[ \chi^2 = \sum \frac{(O_i - E_i)^2}{E_i}
-\]</span></p>
-<p>where <span class="math inline">\(\chi^2\)</span> is the test
-statistic, <span class="math inline">\(O_i\)</span> is the observed
-frequency in category <span class="math inline">\(i\)</span>, and <span class="math inline">\(E_i\)</span> is the expected frequency in category
-<span class="math inline">\(i\)</span> under the assumed
-distribution.</p>
 </div>
 <div id="interspecies-comparison" class="section level2">
 <h2>Interspecies comparison</h2>
->>>>>>> 25b8556a619d74635279d6145c2750c9d9083261
 <p>To derive meaningful insights from our analyzed data and validate our
 hypothesis, it is essential to broaden our comparisons by including
 other species. To achieve this, we have chosen to include the Adelie
@@ -2038,16 +2025,8 @@ broader conclusions across different species, we plan to incorporate a
 dataset concerning possums in Australia, available in the MASS package.
 This comprehensive approach allows us to contextualize our findings
 within a broader biological context.</p>
-<<<<<<< HEAD
-=======
-<div id="preybirds-and-songbirds" class="section level3">
-<h3>Preybirds and Songbirds</h3>
-<p><span style="color:red"> <strong>we don’t have statistical analysis
-for this. all data for this are from literature</strong> </span></p>
->>>>>>> 25b8556a619d74635279d6145c2750c9d9083261
 <p>statistical analyis (which software, R, which packages, which tests)
 results</p>
-</div>
 <div id="sdi---sexual-dimorphism-index" class="section level3">
 <h3>SDI - Sexual Dimorphism Index</h3>
 <p>To quantify the sexual dimorphism of each penguin species, a Sexual
@@ -3001,11 +2980,7 @@ external size dimorphism.</p>
 </div>
 <div id="literature" class="section level1 unnumbered">
 <h1 class="unnumbered">Literature</h1>
-<<<<<<< HEAD
-<div id="refs" class="references csl-bib-body hanging-indent">
-=======
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
->>>>>>> 25b8556a619d74635279d6145c2750c9d9083261
 <div id="ref-arnold1986sexual" class="csl-entry">
 Arnold, Arthur P, Sarah W Bottjer, Eliot A Brenowitz, Ernest J Nordeen,
 and Kathy W Nordeen. 1986. <span>“Sexual Dimorphisms in the Neural Vocal
