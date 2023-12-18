@@ -3,13 +3,13 @@ title: "Sexual dimorphism in Chinstrap penguins"
 author: "Benedikt Haarscheidt, Jaesub Kim, Ahmed Tijani Akinfalabi "
 date: "`r Sys.Date()`"
 output:
+  pdf_document:
+    toc: yes
+    toc_depth: '5'
   html_document:
     toc: yes
     toc_depth: 5
     toc_float: yes
-  pdf_document:
-    toc: yes
-    toc_depth: '5'
 bibliography: references.bib
 ---
 ```{r echo=FALSE, include=FALSE}
@@ -347,10 +347,10 @@ We apply these t-tests specifically to explore potential differences in physical
 
 By employing these robust statistical techniques, we aim to uncover nuanced variations in physical attributes, contributing to a comprehensive understanding of sexual dimorphism within penguin species.
 
-### Quantile splitting
 
 
-```{r echo=FALSE}
+
+```{r echo=FALSE,results='hide'}
 cWeight = cut(chinstrapset$"Body Mass (g)",breaks=quantile(chinstrapset$"Body Mass (g)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
 
 levels(cWeight) = c("light", "medium", "heavy")
@@ -360,7 +360,7 @@ tab=addmargins(table(chinstrapset$Sex,cWeight),# specifiy the table
            ) 
 
 ```
-```{r echo=FALSE}
+```{r echo=FALSE,results='hide'}
 cblen = cut(chinstrapset$"Culmen Depth (mm)",breaks=quantile(chinstrapset$"Culmen Depth (mm)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
 
 levels(cblen) = c("short", "medium", "long")
@@ -368,7 +368,7 @@ levels(cblen) = c("short", "medium", "long")
 tab.blen=addmargins(table(chinstrapset$Sex,cblen),FUN = sum) 
 
 ```
-```{r echo=FALSE}
+```{r echo=FALSE,results='hide'}
 cbdep = cut(chinstrapset$"Culmen Depth (mm)",breaks=quantile(chinstrapset$"Culmen Depth (mm)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
 
 levels(cbdep) = c("deep", "medium", "shallow")
@@ -376,7 +376,7 @@ levels(cbdep) = c("deep", "medium", "shallow")
 tab.bdep=addmargins(table(chinstrapset$Sex,cbdep),FUN = sum) 
 
 ```
-```{r echo=FALSE}
+```{r echo=FALSE,results='hide'}
 cflen = cut(chinstrapset$"Flipper Length (mm)",breaks=quantile(chinstrapset$"Flipper Length (mm)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
 
 levels(cflen) = c("short", "medium", "long")
@@ -424,7 +424,7 @@ tab
 
 ### Chi-Square Test
 
-## Chi-Square Test of Independence Formula
+#### Chi-Square Test of Independence Formula
 
 In order to explore the potential relationship between sex and various physical characteristics of Chinstrap penguins, namely Body Mass, Flipper Length, Bill Length, and Bill Depth, we employed the chi-square test.
 
@@ -854,7 +854,7 @@ bird = data.frame(bspc,bmf,bmm,bmsdi,wlf,wlm,wlsdi,bias)
 
 ### Mean
 The presented table outlines the arithmetic means of key physical characteristics for male and female penguins. These characteristics, encompassing body mass, flipper length, bill length, and bill depth, offer a comprehensive overview of the average measurements within each gender. Notably, male penguins exhibit a higher mean body mass, flipper length, bill length, and bill depth compared to their female counterparts. These distinctions may reflect inherent biological differences between male and female individuals within the studied penguin population.
-```{r echo=FALSE}
+```{r echo=FALSE,results='hide'}
 # Create data frames for male and female parameters with custom column names
 male_parameters <- data.frame(
   "mean body mass (g)" = meanbodymasschinstrapmale,
@@ -881,13 +881,18 @@ rownames(female_parameters) <- "FEMALE"
 # Combine the data frames into a single table
 table_data <- rbind(male_parameters, female_parameters)
 cat("Table: Arithmetic Means of Physical Characteristics (Male vs Female)\n\n")
-knitr::kable(table_data)
+```
+
+**Table: Arithmetic Means of Physical Characteristics (Male vs Female)**
+
+```{r echo=FALSE,results='asis'}
+knitr::kable(table_data,col.names = c("Body mass (g)","Flipper length (mm)","Culmen length (mm)","Culmen depth (mm)"),digits = 3,align = c("c","c","c","c"))
 ```
 
 ### Standard deviation
 
 In the table depicting standard deviations from the mean, we observe the degree of variability inherent within each gender's physical characteristics. These standard deviations provide insights into the spread or dispersion of individual measurements around the respective gender means. Notably, male penguins display higher standard deviations across body mass, flipper length, and bill length, indicating greater individual variation within the male population. This variance might be attributed to diverse factors, including age, reproductive status, or environmental influences.
-```{r echo=FALSE}
+```{r echo=FALSE,results='hide'}
 # Create data frames for male and female parameters with custom column names
 sdmale_parameters <- data.frame(
   "SD body mass (g)" = male_std_dev_body_mass,
@@ -914,7 +919,12 @@ rownames(sdfemale_parameters) <- "FEMALE"
 # Combine the data frames into a single table
 sdtable_data <- rbind(sdmale_parameters, sdfemale_parameters)
 cat("Table: SD (standard deviation from mean) of Physical Characteristics (Male vs Female)\n\n")
-knitr::kable(sdtable_data)
+```
+
+**Table: SD (standard deviation from Mean) of Physical Characteristics (Male vs Female)**
+
+```{r echo=FALSE,results='asis'}
+knitr::kable(sdtable_data,col.names = c("Body mass (g)","Flipper length (mm)","Culmen length (mm)","Culmen depth (mm)"),digits = 3,align = c("c","c","c","c"))
 
 ```
 
@@ -1223,7 +1233,7 @@ The outcomes of the Shapiro-Wilk test are presented below. P-values exceeding 0.
 
 ```{r echo=FALSE}
 
-knitr::kable(chinshapiro)
+knitr::kable(chinshapiro,col.names = c("Culmen length (mm)","Culmen depth (mm)","Flipper length (mm)","Body mass (g)"),align = c("c","c","c","c"),digits = 3)
 
 ```
 
@@ -1237,12 +1247,12 @@ Before delving into the t-test results, it is crucial to acknowledge the normali
 Summary of Findings:
 The results of the two-sample t-tests are presented below, highlighting the mean values for female and male penguins within each species, along with the associated p-values. The p-value is a critical metric that indicates the probability of obtaining observed differences if there were no actual differences in the population. A smaller p-value suggests stronger evidence against the null hypothesis of no difference.
 
-|categories|female|male|p-value|significant difference|
+|Categories|Female|Male|p-value|Significant Difference|
 |--|:--:|:--:|:--:|:---:|
 |Culmen length (mm)|46.23|51.09|1e-13|yes|
 |Culmen depth (mm)|17.59|19.25|7e-13|yes|
-|flipper length (mm)|191.7|199.9|3e-07|yes|
-|body mass (g)|3527|3939|3e-07|yes|
+|Flipper length (mm)|191.7|199.9|3e-07|yes|
+|Body mass (g)|3527|3939|3e-07|yes|
 
 The p-values obtained for all categories are significantly small (all less than 0.05), indicating strong evidence to reject the null hypothesis. Therefore, we conclude that there are statistically significant differences in Culmen Length, Culmen Depth, Flipper Length, and Body Mass between female and male penguins within each species.
  ecology.
@@ -1318,7 +1328,7 @@ cohen_d_table$Effect_Size <- cut(
 
 
 # Print the table
-knitr::kable(cohen_d_table)
+knitr::kable(cohen_d_table,align = c("l","c","c"),col.names = c("","Cohen's d","Effect Size"))
 ```
 
 Interpretation:
@@ -1332,27 +1342,19 @@ This move beyond statistical significance enables us to assess the real-world im
 
 In our meticulous analysis of chinstrap penguin data, our focus was to discern the intricate association between sex and body size, specifically categorized into three groups: small, medium, and large. The parameters of interest encompassed bill length, bill depth, flipper length, and body mass. To ensure a balanced representation, we leveraged quantiles for the categorization process.
 
-#### Bodymass
 
-```{r echo=FALSE}
-pval.chi.bodymass 
+
+```{r echo=FALSE,results='hide'}
+bodypart = c("Body mass","Bill length","Bill depth","Flipper length")
+pval.bodypart = c("1.74e-04","2.07e-09","2.07e-09","1.26e-09")
+stsig= c("yes","yes","yes","yes")
+dbodypart = data.frame(bodypart,pval.bodypart,stsig)
+
 ```
-
-#### Bill length
-```{r echo=FALSE}
-
-pval.chi.blen 
-```
-
-#### Bill depth
-```{r echo=FALSE}
-pval.chi.bdep 
-```
-
-
-#### Flipper length 
-```{r echo=FALSE}
-pval.chi.flen
+```{r echo=FALSE,results='asis'}
+knitr::kable(dbodypart,digits = 10
+             ,col.names = c("","p-value","Statistical Significance")
+             ,align = c("l","c","c"))
 ```
 
 The chi-square independence test results reveal compelling evidence of a statistically significant association between sex and the categorized size groups for all measured attributes. Notably, the p-values across all parameters are exceptionally low (all less than 0.001), indicating a high level of statistical significance.
@@ -1389,7 +1391,7 @@ BM, BL, BD and FL stand for body mass, bill length, bill depth and flipper lengt
 
 ```{r label=comparison.bird.sdi,results='asis', echo=FALSE}
 knitr::kable(bird, col.names = c('Species','BM F', 'BM M', 'BM SDI', 'WL or FL F','WL or FL M','WL or FL SDI','Bias'),
-      digits = 3, valign='t')
+      digits = 3, valign='t',align = c("l","r","r","r","r","r","c","l"))
 ```
 
 In line with the sexual dimorphism observed in Chinstrap penguins, where males tend to be larger and heavier, similar trends are apparent in other penguin species. Positive Sexual Dimorphism Index (SDI) values across various attributes, such as bill length, bill depth, flipper length, and body mass, affirm a male bias. Interestingly, a noteworthy reversal in the trend emerges when examining other avian species. Preybirds, in contrast to penguins, exhibit a reversed sexual dimorphism, with females generally being larger and heavier. This opposing pattern is particularly evident in attributes like bill length, bill depth, flipper length, and body mass. Conversely, songbirds align with the trend observed in penguins, maintaining a male bias in size and weight. 
@@ -1426,7 +1428,7 @@ Notably, the mean Sexual Dimorphism Index (SDI) for songbirds appears considerab
 
 As evident from the above histogram, there appears to be distinct sexual dimorphism within the Chinstrap penguin species. This observation was further substantiated through various tests conducted subsequently. Given the confirmed differences in body size between males and females through T-tests, we proceeded to calculate SDI (Sexual Dimorphism Index). The most pronounced disparity between male and female Chinstrap penguins was observed in culmen length, particularly when compared to Adélie and Gentoo penguins. In contrast, differences in culmen depth were not substantial across all three species.
 
-The role of beak size in the sexual dimorphism of penguins, whether it contributes to enhanced hunting abilities or serves as a means for intra-species male competition, remains ambiguous. Additional research is imperative to gain a deeper understanding of this aspect in the sexual differentiation of penguins.(@szara2023bill,@lee2015new)
+The role of beak size in the sexual dimorphism of penguins, whether it contributes to enhanced hunting abilities or serves as a means for intra-species male competition, remains ambiguous. Additional research is imperative to gain a deeper understanding of this aspect in the sexual differentiation of penguins.(@szara2023bill and @lee2015new)
 
 The investigation into sexual dimorphism among _Pygoscelis_ species (_antarctica, adeliae, papua_), which inhabit the Palmer Archipelago, reveals a predominantly male-biased sexual dimorphism, as observed in many bird species. Comparative analysis of the absolute values of SDI (Standardized Difference Index) for body mass and flipper length with those of prey birds and songbirds indicates relatively higher sexual dimorphism in penguin species. When comparing the three penguin species, Chinstrap penguins exhibit higher sexual dimorphism in culmen length, culmen depth, and flipper length compared to the other two species, while Adelie and Gentoo penguins display high overall sexual dimorphism, primarily attributed to their body mass. 
 
