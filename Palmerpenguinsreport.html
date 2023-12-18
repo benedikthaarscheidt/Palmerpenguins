@@ -1924,13 +1924,29 @@ nuanced variations in physical attributes, contributing to a
 comprehensive understanding of sexual dimorphism within penguin
 species.</p>
 </div>
+<div id="quantile-splitting" class="section level3">
+<h3>Quantile splitting</h3>
+<pre><code>## Margins computed over dimensions
+## in the following order:
+## 1: 
+## 2: cWeight</code></pre>
+<pre><code>## Margins computed over dimensions
+## in the following order:
+## 1: 
+## 2: cblen</code></pre>
+<pre><code>## Margins computed over dimensions
+## in the following order:
+## 1: 
+## 2: cbdep</code></pre>
+<pre><code>## Margins computed over dimensions
+## in the following order:
+## 1: 
+## 2: cflen</code></pre>
+</div>
 <div id="effectsize" class="section level3">
 <h3>Effectsize</h3>
 <div id="cohens-d" class="section level4">
 <h4>Cohen’s D</h4>
-<p>To conduct further analysis on the dataset, we segmented the subsets
-based on sex into distinct weight groups. This segmentation allowed for
-the application the Cohen’s d test.</p>
 <p>Effect size, exemplified by metrics like Cohen’s d in our two-sample
 t-tests, is crucial in statistical analyses for its role in providing a
 standardized measure of observed differences. Going beyond statistical
@@ -2352,6 +2368,182 @@ significant differences in Culmen Length, Culmen Depth, Flipper Length,
 and Body Mass between female and male penguins within each species.
 ecology.</p>
 </div>
+<div id="quantile-splitting-1" class="section level3">
+<h3>Quantile splitting</h3>
+<p>In the analysis of the penguin dataset, we employed segmentation
+based on quantiles for key morphological characteristics, specifically
+body weight, bill length, bill depth, and flipper length. This
+segmentation strategy aimed to categorize individuals into distinct
+groups, allowing for a more detailed examination of the distribution of
+features within the population.</p>
+<p>The tables below illustrate the distribution of penguins across
+different quantiles for each morphological trait, categorized by gender.
+Subsequently, this segmentation facilitated the application of further
+statistical tests, such as the Chi-Square test and the Cohen’s d test,
+to explore potential associations and differences between groups.</p>
+<p>Table for the quantiles of the bodymass:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">light</th>
+<th align="right">medium</th>
+<th align="right">heavy</th>
+<th align="right">sum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">FEMALE</td>
+<td align="right">18</td>
+<td align="right">12</td>
+<td align="right">4</td>
+<td align="right">34</td>
+</tr>
+<tr class="even">
+<td align="left">MALE</td>
+<td align="right">5</td>
+<td align="right">10</td>
+<td align="right">19</td>
+<td align="right">34</td>
+</tr>
+<tr class="odd">
+<td align="left">sum</td>
+<td align="right">23</td>
+<td align="right">22</td>
+<td align="right">23</td>
+<td align="right">68</td>
+</tr>
+</tbody>
+</table>
+<p>Observation: The table reveals clear sexual dimorphism in body
+weight, with male penguins tending to be heavier on average compared to
+females.</p>
+<p><br></p>
+<p>Table for the quantiles of the bill length:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">short</th>
+<th align="right">medium</th>
+<th align="right">long</th>
+<th align="right">sum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">FEMALE</td>
+<td align="right">25</td>
+<td align="right">8</td>
+<td align="right">1</td>
+<td align="right">34</td>
+</tr>
+<tr class="even">
+<td align="left">MALE</td>
+<td align="right">1</td>
+<td align="right">14</td>
+<td align="right">19</td>
+<td align="right">34</td>
+</tr>
+<tr class="odd">
+<td align="left">sum</td>
+<td align="right">26</td>
+<td align="right">22</td>
+<td align="right">20</td>
+<td align="right">68</td>
+</tr>
+</tbody>
+</table>
+<p>Observation: Sexual dimorphism is evident in bill length, with males
+generally exhibiting longer bills compared to females, as indicated by
+the higher counts in the “long” category for males.</p>
+<p><br></p>
+<p>Table for the quantiles of the bill depth:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">deep</th>
+<th align="right">medium</th>
+<th align="right">shallow</th>
+<th align="right">sum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">FEMALE</td>
+<td align="right">25</td>
+<td align="right">8</td>
+<td align="right">1</td>
+<td align="right">34</td>
+</tr>
+<tr class="even">
+<td align="left">MALE</td>
+<td align="right">1</td>
+<td align="right">14</td>
+<td align="right">19</td>
+<td align="right">34</td>
+</tr>
+<tr class="odd">
+<td align="left">sum</td>
+<td align="right">26</td>
+<td align="right">22</td>
+<td align="right">20</td>
+<td align="right">68</td>
+</tr>
+</tbody>
+</table>
+<p>Observation: The table highlights sexual dimorphism in bill depth,
+with males showing a preference for deeper bills compared to females, as
+evidenced by the higher counts in the “deep” category for males.
+<br></p>
+<p>Table for the quantiles of the flipper length:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">short</th>
+<th align="right">medium</th>
+<th align="right">long</th>
+<th align="right">sum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">FEMALE</td>
+<td align="right">20</td>
+<td align="right">10</td>
+<td align="right">4</td>
+<td align="right">34</td>
+</tr>
+<tr class="even">
+<td align="left">MALE</td>
+<td align="right">5</td>
+<td align="right">11</td>
+<td align="right">18</td>
+<td align="right">34</td>
+</tr>
+<tr class="odd">
+<td align="left">sum</td>
+<td align="right">25</td>
+<td align="right">21</td>
+<td align="right">22</td>
+<td align="right">68</td>
+</tr>
+</tbody>
+</table>
+<p>Observation: Sexual dimorphism is observable in flipper length, with
+males generally having longer flippers than females, as indicated by the
+higher counts in the “long” category for males.</p>
+<p>These segmented tables provide a foundation for the subsequent
+application of statistical tests, allowing for a more in-depth
+exploration of the relationships and differences in penguin
+morphological traits across different quantiles. The Chi-Square test
+will help assess the independence of categorical variables, while the
+Cohen’s d test will quantify the effect size of observed
+differences.</p>
+</div>
 <div id="effect-size" class="section level3">
 <h3>Effect size</h3>
 <p>In our pursuit of a comprehensive understanding of observed
@@ -2445,15 +2637,18 @@ of a statistically significant association between sex and the
 categorized size groups for all measured attributes. Notably, the
 p-values across all parameters are exceptionally low (all less than
 0.001), indicating a high level of statistical significance.</p>
-<p>Body Mass: The observed association between sex and body mass
-categories is highly significant, suggesting that the distribution of
-penguins across small, medium, and large size groups significantly
-differs between males and females.</p>
-<p>Bill Length: The chi-square test underscores a highly significant
-relationship between sex and bill length categories. This finding
-implies a distinct distribution pattern of penguins based on bill length
-among male and female populations. Bill Depth:</p>
-<p>Similarly, the significant association between sex and bill depth
+<p>Body Mass:<br />
+The observed association between sex and body mass categories is highly
+significant, suggesting that the distribution of penguins across small,
+medium, and large size groups significantly differs between males and
+females.</p>
+<p>Bill Length:<br />
+The chi-square test underscores a highly significant relationship
+between sex and bill length categories. This finding implies a distinct
+distribution pattern of penguins based on bill length among male and
+female populations.</p>
+<p>Bill Depth:<br />
+Similarly, the significant association between sex and bill depth
 categories implies a meaningful divergence in the distribution of
 penguins with varying bill depths between male and female groups.
 Flipper Length:</p>
@@ -2461,9 +2656,10 @@ Flipper Length:</p>
 between sex and flipper length categories. This suggests a notable
 disparity in the distribution of penguins across small, medium, and
 large flipper length categories based on sex.</p>
-<p>Conclusion: These results robustly support the hypothesis that there
-exists a compelling association between sex and body size categories
-among chinstrap penguins. The highly significant p-values underscore the
+<p>Conclusion:<br />
+These results robustly support the hypothesis that there exists a
+compelling association between sex and body size categories among
+chinstrap penguins. The highly significant p-values underscore the
 practical importance of these findings, indicating substantial
 differences in the distribution of penguins across categorized size
 groups based on sex for the measured attributes. ## Interspecies
@@ -2846,6 +3042,10 @@ opposing pattern is particularly evident in attributes like bill length,
 bill depth, flipper length, and body mass. Conversely, songbirds align
 with the trend observed in penguins, maintaining a male bias in size and
 weight.</p>
+<p>We further categorized penguins, prey birds, and songbirds in the
+above table, calculating the mean SDI for body mass and wing/flipper
+length within each category. Additionally, an overall SDI was computed.
+Here it is shown what average SDI each bird classification has.</p>
 <table>
 <thead>
 <tr class="header">
@@ -2876,10 +3076,10 @@ weight.</p>
 </tr>
 </tbody>
 </table>
-<p>We further categorized penguins, prey birds, and songbirds in the
-above table, calculating the mean SDI for body mass and wing/flipper
-length within each category. Additionally, an overall SDI was computed.
-Here it is shown what average SDI each bird classification has.</p>
+<p>Notably, the mean Sexual Dimorphism Index (SDI) for songbirds appears
+considerably lower when compared to other avian categories. This
+underscores the fact that the manifestation of sexual dimorphism extends
+beyond physical attributes alone.</p>
 </div>
 </div>
 </div>

@@ -347,13 +347,50 @@ We apply these t-tests specifically to explore potential differences in physical
 
 By employing these robust statistical techniques, we aim to uncover nuanced variations in physical attributes, contributing to a comprehensive understanding of sexual dimorphism within penguin species.
 
+### Quantile splitting
+
+
+```{r echo=FALSE}
+cWeight = cut(chinstrapset$"Body Mass (g)",breaks=quantile(chinstrapset$"Body Mass (g)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
+
+levels(cWeight) = c("light", "medium", "heavy")
+
+tab=addmargins(table(chinstrapset$Sex,cWeight),# specifiy the table
+           FUN = sum # can also use all the other functions of Data Summary
+           ) 
+
+```
+```{r echo=FALSE}
+cblen = cut(chinstrapset$"Culmen Depth (mm)",breaks=quantile(chinstrapset$"Culmen Depth (mm)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
+
+levels(cblen) = c("short", "medium", "long")
+
+tab.blen=addmargins(table(chinstrapset$Sex,cblen),FUN = sum) 
+
+```
+```{r echo=FALSE}
+cbdep = cut(chinstrapset$"Culmen Depth (mm)",breaks=quantile(chinstrapset$"Culmen Depth (mm)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
+
+levels(cbdep) = c("deep", "medium", "shallow")
+
+tab.bdep=addmargins(table(chinstrapset$Sex,cbdep),FUN = sum) 
+
+```
+```{r echo=FALSE}
+cflen = cut(chinstrapset$"Flipper Length (mm)",breaks=quantile(chinstrapset$"Flipper Length (mm)",c(0,1/3,2/3,1),na.rm=TRUE),include.lowest=TRUE)
+
+levels(cflen) = c("short", "medium", "long")
+
+tab.flen=addmargins(table(chinstrapset$Sex,cflen),FUN = sum) 
+
+```
+
+
 
 ### Effectsize 
 
 
 #### Cohen's D
-
-To conduct further analysis on the dataset, we segmented the subsets based on sex into distinct weight groups. This segmentation allowed for the application the Cohen's d test.
 
 Effect size, exemplified by metrics like Cohen's d in our two-sample t-tests, is crucial in statistical analyses for its role in providing a standardized measure of observed differences. Going beyond statistical significance, Cohen's d is calculated by dividing the difference between group means by the pooled standard deviation, expressing the extent of group differences in standard deviations.
 
@@ -1210,6 +1247,48 @@ The results of the two-sample t-tests are presented below, highlighting the mean
 The p-values obtained for all categories are significantly small (all less than 0.05), indicating strong evidence to reject the null hypothesis. Therefore, we conclude that there are statistically significant differences in Culmen Length, Culmen Depth, Flipper Length, and Body Mass between female and male penguins within each species.
  ecology.
  
+### Quantile splitting
+
+In the analysis of the penguin dataset, we employed segmentation based on quantiles for key morphological characteristics, specifically body weight, bill length, bill depth, and flipper length. This segmentation strategy aimed to categorize individuals into distinct groups, allowing for a more detailed examination of the distribution of features within the population.
+
+The tables below illustrate the distribution of penguins across different quantiles for each morphological trait, categorized by gender. Subsequently, this segmentation facilitated the application of further statistical tests, such as the Chi-Square test and the Cohen’s d test, to explore potential associations and differences between groups.
+
+
+Table for the quantiles of the bodymass:
+```{r echo=FALSE}
+knitr::kable(tab)
+```
+Observation: The table reveals clear sexual dimorphism in body weight, with male penguins tending to be heavier on average compared to females.
+
+<br>
+
+Table for the quantiles of the bill length:
+```{r echo=FALSE}
+knitr::kable(tab.blen)
+```
+Observation: Sexual dimorphism is evident in bill length, with males generally exhibiting longer bills compared to females, as indicated by the higher counts in the "long" category for males.
+
+<br>
+
+
+Table for the quantiles of the bill depth:
+```{r echo=FALSE}
+knitr::kable(tab.bdep)
+```
+Observation: The table highlights sexual dimorphism in bill depth, with males showing a preference for deeper bills compared to females, as evidenced by the higher counts in the "deep" category for males.
+<br>
+
+
+
+Table for the quantiles of the flipper length:
+```{r echo=FALSE}
+knitr::kable(tab.flen)
+```
+Observation: Sexual dimorphism is observable in flipper length, with males generally having longer flippers than females, as indicated by the higher counts in the "long" category for males.
+
+These segmented tables provide a foundation for the subsequent application of statistical tests, allowing for a more in-depth exploration of the relationships and differences in penguin morphological traits across different quantiles. The Chi-Square test will help assess the independence of categorical variables, while the Cohen’s d test will quantify the effect size of observed differences.
+
+
  
 ### Effect size
 
@@ -1278,19 +1357,20 @@ pval.chi.flen
 
 The chi-square independence test results reveal compelling evidence of a statistically significant association between sex and the categorized size groups for all measured attributes. Notably, the p-values across all parameters are exceptionally low (all less than 0.001), indicating a high level of statistical significance.
 
-Body Mass:
+Body Mass:    
 The observed association between sex and body mass categories is highly significant, suggesting that the distribution of penguins across small, medium, and large size groups significantly differs between males and females.
 
-Bill Length:
+Bill Length:    
 The chi-square test underscores a highly significant relationship between sex and bill length categories. This finding implies a distinct distribution pattern of penguins based on bill length among male and female populations.
-Bill Depth:
 
+
+Bill Depth:    
 Similarly, the significant association between sex and bill depth categories implies a meaningful divergence in the distribution of penguins with varying bill depths between male and female groups.
 Flipper Length:
 
 The chi-square test establishes a highly significant connection between sex and flipper length categories. This suggests a notable disparity in the distribution of penguins across small, medium, and large flipper length categories based on sex.
 
-Conclusion:
+Conclusion:    
 These results robustly support the hypothesis that there exists a compelling association between sex and body size categories among chinstrap penguins. The highly significant p-values underscore the practical importance of these findings, indicating substantial differences in the distribution of penguins across categorized size groups based on sex for the measured attributes.
 ## Interspecies comparison
 
@@ -1314,6 +1394,8 @@ knitr::kable(bird, col.names = c('Species','BM F', 'BM M', 'BM SDI', 'WL or FL F
 
 In line with the sexual dimorphism observed in Chinstrap penguins, where males tend to be larger and heavier, similar trends are apparent in other penguin species. Positive Sexual Dimorphism Index (SDI) values across various attributes, such as bill length, bill depth, flipper length, and body mass, affirm a male bias. Interestingly, a noteworthy reversal in the trend emerges when examining other avian species. Preybirds, in contrast to penguins, exhibit a reversed sexual dimorphism, with females generally being larger and heavier. This opposing pattern is particularly evident in attributes like bill length, bill depth, flipper length, and body mass. Conversely, songbirds align with the trend observed in penguins, maintaining a male bias in size and weight. 
 
+We further categorized penguins, prey birds, and songbirds in the above table, calculating the mean SDI for body mass and wing/flipper length within each category. Additionally, an overall SDI was computed. Here it is shown what average SDI each bird classification has.
+
 
 ```{r,echo=FALSE}
 m.pbmsdi = mean(pbmsdi)
@@ -1335,8 +1417,8 @@ comp.penps = data.frame(penps,penps.bm,penps.wl,penps.am)
 knitr::kable(comp.penps, digits = 3,
              col.names = c("","Mean BM SDI","Mean WL/FL SDI", "Mean SDI"))
 ```
-We further categorized penguins, prey birds, and songbirds in the above table, calculating the mean SDI for body mass and wing/flipper length within each category. Additionally, an overall SDI was computed. Here it is shown what average SDI each bird classification has.
 
+Notably, the mean Sexual Dimorphism Index (SDI) for songbirds appears considerably lower when compared to other avian categories. This underscores the fact that the manifestation of sexual dimorphism extends beyond physical attributes alone.
 
 # Discussion
 
