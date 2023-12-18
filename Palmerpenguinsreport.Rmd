@@ -1303,8 +1303,6 @@ pval.chi.flen
 
 ## Interspecies comparison
 
-To derive meaningful insights from our analyzed data and validate our hypothesis, it is essential to broaden our comparisons by including other species. To achieve this, we have chosen to include the Adelie penguin species, for which data is available in the Palmer penguins package. Additionally, we aim to extend our investigation of sexual dimorphism by comparing it to other avian species. The detailed comparison, based on the values derived from existing datasets, will be presented in the results section. To further enrich the scope and draw broader conclusions across different species, we plan to incorporate a dataset concerning possums in Australia, available in the MASS package. This comprehensive approach allows us to contextualize our findings within a broader biological context.
-
 ### SDI - Sexual Dimorphism Index
 
 To quantify the sexual dimorphism of each penguin species, a Sexual Dimorphism Index (SDI) was calculated for seven morphological measurements. The SDI is a widely utilized parameter across ecological and morphological studies to describe sexual dimorphism in species (@lovich1992review).
