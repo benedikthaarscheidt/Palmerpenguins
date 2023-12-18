@@ -770,7 +770,7 @@ The SDI for each measurement was computed using the formula:
 
 $$ SDI = \left( \frac{{\text{larger sex}}}{{\text{smaller sex}}} - 1 \right) $$
 
-The index was arbitrarily set to be positive when males were larger and negative when females were larger, following the convention established by Lovich and Gibbons (1992).
+The index was arbitrarily set to be positive when males were larger and negative when females were larger, following the convention established by @lovich1992review.
 
 Subsequently, the Sexual Size Dimorphism (SSD) was estimated by calculating the SDI for all male-female pairs within each penguin species. This step allowed for the comprehensive assessment of sexual dimorphism across the entire dataset.
 
