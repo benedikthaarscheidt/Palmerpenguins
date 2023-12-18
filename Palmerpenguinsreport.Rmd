@@ -53,7 +53,7 @@ In order to place our discoveries within a broader avian context, we introduced 
 
 # Introduction
 
-In the intricate web of the natural world, the phenomenon of sexual dimorphism stands out as a captivating manifestation of evolutionary diversity. Just like in the species homo sapiens, the animal kingdom showcases a myriad of fascinating adaptations that highlight the distinct physical and behavioral differences between males and females of the same species. Sexual dimorphism, rooted in the forces of natural selection and reproductive strategies, offers a window into the adaptive mechanisms that have shaped countless species over millennia.  
+In the intricate web of the natural world, the phenomenon of sexual dimorphism stands out as a captivating manifestation of evolutionary diversity. Just like in the species _homo sapiens_, the animal kingdom showcases a myriad of fascinating adaptations that highlight the distinct physical and behavioral differences between males and females of the same species. Sexual dimorphism, rooted in the forces of natural selection and reproductive strategies, offers a window into the adaptive mechanisms that have shaped countless species over millennia.  
 
 From the majestic mane of a male lion to the vibrant plumage of a male peacock, sexual dimorphism is often prominently displayed in the external characteristics of animals. This manifests as differences in size, coloration, behavior, or reproductive anatomy between the sexes of a species. Beyond mere aesthetics, these differences often serve crucial roles in the survival and reproductive success of individuals within a species. A fundamental understanding of the various forms of sexual dimorphism in a variety of species will be an important step toward understanding the evolutionary pressures that have shaped these unique traits and behaviors.
 
@@ -63,6 +63,7 @@ In Chinstrap penguins (_Pygoscelis antarcticus_), one of the most recognizable a
 
 Chinstrap penguins, known for their distinctive black band under their heads, inhabit several islands and shores in the Southern Pacific and the Antarctic Ocean. These regions' harsh and competitive environments necessitate various adaptations, potentially influencing the development of sexual dimorphism. Previous studies have indicated that differences in body size and features between males and females could be attributed to factors like mating competition, foraging efficiency, and parental roles in nurturing the young. 
 
+Based on the distinctive traits observed in Chinstrap penguins and the evolutionary pressures associated with their challenging environments, we hypothesize that there exists a significant degree of sexual dimorphism in this species. We anticipate that our investigation will reveal measurable differences in body mass, flipper length, and bill size, providing insights into the ecological and reproductive roles played by male and female Chinstrap penguins.
 
 <br>
 <center>
@@ -73,8 +74,9 @@ Chinstrap penguins, known for their distinctive black band under their heads, in
 # Data
 The data employed to substantiate the previously posited hypothesis was sourced from the Palmerpenguins package of the CRAN R library. This package encapsulates an extensive dataset named penguins_raw featuring dimensions such as body mass, size measurements, clutch observations, and blood isotope ratios for adult Adélie, Chinstrap, and Gentoo penguins in the Palmer Archipelago near Palmer Station, Antarctica. Dr. Kristen Gorman and the Palmer Station Long Term Ecological Research (LTER) Program curated and generously shared this dataset, showcasing the collaborative nature of scientific endeavors. Spanning 344 penguins across three distinct species (Adélie, Chinstrap, and Gentoo ), the dataset originates from three islands within the Palmer Archipelago, providing a rich tapestry of geographical diversity. Notably, the dataset includes morphological measurements, with culmen (bill) length and depth thoughtfully renamed as bill_length_mm and bill_depth_mm for clarity, contributing to a nuanced comprehension of penguin ecology. Complementing the morphological data are clutch observations shedding light on the reproductive behavior of the penguins and blood isotope ratios offering insights into their dietary habits and foraging strategies. Furthermore the dataset extends to other sample information such as individual ID of the observed penguin, the sample number, the study name and some comments. Since were interested in performing a descriptive analysis and use the information to abstract and generalize, we simply ignore those datapoints and focus on the described relevant ones.
 
-In the pursuit of substantiating the stated hypothesis, our focus is on comparing key characteristics such as bill/culmen length and depth, body mass and flipper size between male and female penguins. The objective is to discern potential sexual dimorphism and its implications in the context of the penguin species under study. Moreover, we intend to extend our analysis by comparing the obtained results with a dataset concerning possums in Australia and potentially other species. This comparative approach aims to abstract the underlying hypothesis and draw inferences that transcend the confines of the penguin dataset, contributing to a broader understanding of sexual dimorphism and ecological dynamics across diverse species. In our exploration of the palmerpenguins dataset, we focused on pertinent dimensions to substantiate our hypothesis, selectively disregarding columns not integral to our investigation. 
+In the pursuit of substantiating the stated hypothesis, our focus is on comparing key characteristics such as bill/culmen length and depth, body mass and flipper size between male and female penguins. The objective is to discern potential sexual dimorphism and its implications in the context of the penguin species under study. Moreover, we intend to extend our analysis by comparing the obtained results with a datasets concerning other avian species. This comparative approach aims to abstract the underlying hypothesis and draw inferences that transcend the confines of the penguin dataset, contributing to a broader understanding of sexual dimorphism and ecological dynamics across diverse species. In our exploration of the palmerpenguins dataset, we focused on pertinent dimensions to substantiate our hypothesis, selectively disregarding columns not integral to our investigation. 
 Below one can see the head of the penguins_raw dataframe.
+
 ```{r echo=FALSE}
 pengraw=head(df)
 knitr::kable(pengraw)
@@ -98,9 +100,6 @@ knitr::kable(table(df$Sex,df$Species))
 
 
 Given our specific focus on the Chinstrap species within the Palmer penguins package, it is imperative to create subsets corresponding to each penguin species within the general dataset. While we currently require this subset specifically for the Chinstrap species, anticipating potential use for the other subsets later in this report prompts us to perform this subsetting procedure for all penguin species at this stage. By doing so, we ensure that the necessary datasets are readily available for subsequent analyses and facilitate a smoother progression in the later stages of our report.
-
-
-Upon isolation of the Chinstrap datasets into a data frame, we went ahead to perform the Shapiro-wilke’s test to check if the datasets were gotten from a normal distribution, and then since the test confirmed that the data were from a normal distribution, we went ahead to perform the t.test for each of the morphological characteristics we are working with. The t.test return values including the p-value which indicates the degree or significance of differences between the sexes. Next, we conducted the effect size using the cohen’s W.
 
 
 ```{r echo=FALSE}
@@ -129,7 +128,7 @@ meanflipperlengthchinstrap=mean(chinstrapset$"Flipper Length (mm)", na.rm=TRUE)
 
 ## Numeric parameters
 
-In the following section, a series of statistical analyses were undertaken to investigate sexual dimorphism in chinstrap penguins. These analyses encompassed the computation of various statistical parameters for bill length and depth, body mass, and flipper length. Parameters such as means, medians, and comprehensive summaries were derived, and these will be subsequently utilized in additional statistical analyses or tests. The interpretation of these parameters, along with measured values, will be presented in the results section, contributing to our understanding of sexual dimorphism in chinstrap penguins.
+In the following section, a series of statistical analyses were undertaken to investigate sexual dimorphism in chinstrap penguins. These analyses encompassed the computation of various statistical parameters for bill length and depth, body mass, and flipper length. Parameters such as arithmetic means, medians, and comprehensive summaries were derived, and these will be subsequently utilized in additional statistical analyses or tests. These parameters, will be presented in the results section, contributing to our understanding of sexual dimorphism in chinstrap penguins.
 
 ```{r label = calculating.mean.and.median, echo=FALSE,results='hide'}
 ### Mean Chinstrap population
@@ -323,11 +322,12 @@ chinshapirofemale <- data.frame(
 chinshapiro <- rbind(chinshapiromale, chinshapirofemale)
 chinshapiro=rbind(chinshapiromale,chinshapirofemale)
 ```
-To meet the assumption of normal distribution, we identified and removed a outlier from bill length of female chinstrap penguins dataset. This step was taken to enhance the normality of the data and ensure the validity of subsequent statistical analyses.
+To meet the assumption of normal distribution, we identified and removed an outlier from bill length of female chinstrap penguins dataset. This step was taken to enhance the normality of the data and ensure the validity of subsequent statistical analyses.
 
 ### T-test
 
-Having conducted the Shapiro-Wilk tests to assess the normality of our dataset variables, we now turn our attention to the subsequent two-sample t-tests. 
+Having rigorously assessed the normality of our dataset variables through Shapiro-Wilk tests, our analytical focus now shifts to conducting two-sample t-tests. This statistical method enables us to explore potential differences in specific physical characteristics between distinct groups, such as male and female penguins within each species.
+
 
 The two-sample t-test statistic (\(t\)) is given by:
 
@@ -336,10 +336,16 @@ The two-sample t-test statistic (\(t\)) is given by:
 
 where \(\bar{x}\) is the sample mean, \(\mu\) is the population mean, \(s\) is the sample standard deviation, and \(n\) is the sample size.
 
+Hypotheses:
+To frame our analysis, we establish clear hypotheses. The null hypothesis posits no significant difference between male and female penguins, while the alternative hypothesis anticipates a significant distinction.
 
-These tests will allow us to investigate potential differences in specific physical characteristics between different groups, such as male and female penguins within each species. Before delving into the t-test results, it's imperative to consider the normality status of our variables, as the validity of t-tests relies on the assumption of normal distribution. The Shapiro-Wilk tests provided insights into the normality of our data, aiding in the informed selection of appropriate statistical analyses. We conducted two-sample t-tests to explore potential differences in specific physical characteristics between male and female chinstrap penguins. 
+Significance Level:
+Our statistical inferences will be based on a predetermined alpha level (0.05), and p-values resulting from the t-tests will guide our determination of statistical significance.
 
+Application:
+We apply these t-tests specifically to explore potential differences in physical characteristics between male and female Chinstrap penguins. Considering the normality status of our variables is crucial, as the validity of t-tests relies on the assumption of normal distribution. Insights gained from the Shapiro-Wilk tests inform the selection of appropriate statistical analyses.
 
+By employing these robust statistical techniques, we aim to uncover nuanced variations in physical attributes, contributing to a comprehensive understanding of sexual dimorphism within penguin species.
 
 
 ### Effectsize 
@@ -347,7 +353,7 @@ These tests will allow us to investigate potential differences in specific physi
 
 #### Cohen's D
 
-
+To conduct further analysis on the dataset, we segmented the subsets based on sex into distinct weight groups. This segmentation allowed for the application the Cohen's d test.
 
 Effect size, exemplified by metrics like Cohen's d in our two-sample t-tests, is crucial in statistical analyses for its role in providing a standardized measure of observed differences. Going beyond statistical significance, Cohen's d is calculated by dividing the difference between group means by the pooled standard deviation, expressing the extent of group differences in standard deviations.
 
@@ -364,7 +370,7 @@ This standardized unit of measurement is independent of variable scales, enablin
 In our case, applying Cohen's d to differences in bill length, bill depth, flipper length, and body mass among male and female penguins provides nuanced insights, moving beyond statistical significance to assess the practical impact of these variations in physical characteristics.
 
 
-To conduct further analysis on the dataset, we segmented the subsets based on sex into distinct weight groups. This segmentation allowed for the application of tests such as Cramér's V and Cohen's H to shed light on the effect size of sex on specific physical characteristics.
+
 
 ```{r echo=FALSE, results='hide'}
 # Categorizing penguins based on weight groups
@@ -379,59 +385,11 @@ tab
 ```
 
 
-#### Cohen's H
-
-Continuing our in-depth analysis, we proceeded to assess the impact size of sex on specific physical characteristics using Cohen's H. 
-
-Cohen's h is calculated using the following formula:
-
-\[ h = \frac{2 \times \sin^{-1}\left(\sqrt{\frac{U}{n_1 \times n_2}}\right)}{\pi} \]
-
-where \(h\) is the effect size, \(U\) is the Mann-Whitney U statistic, \(n_1\) and \(n_2\) are the sample sizes for the two groups being compared.
-
-
-To facilitate this examination, the subsets of penguins based on sex were initially divided into distinct weight groups, as illustrated in the preceding code snippet. The resulting weight groups were then subjected to the Cohens H test, which is adept at capturing the effect size of the sex variable. Unlike commonly implemented functions for Cohen's H in R, we have chosen to implement our own for precise control over the computation. 
-
-
-```{r echo=FALSE, results='hide'}
-# Custom implementation of Cohen's H
-cohensH = function(tab) {
-  pt = prop.test(tab)
-  h = 2 * abs(asin(sqrt(pt$estimate[1])) - asin(sqrt(pt$estimate[2])))
-  return(h[[1]])}
-```
-
-This function enables the calculation of Cohen's H, a measure that gauges the strength of association between categorical variables. It offers insights into the practical significance of sex-related disparities in the measured physical attributes, complementing our statistical analyses for a comprehensive understanding of the dataset.
-
-### Cramér's V
-
-To perform the Cramér's V test, penguins of one sex were grouped based on their weight, as demonstrated above. Subsequently, the analysis using the Cramér's V test aimed to determine the strength of association between the now categorical variables. 
-
-Cramér’s V is calculated using the following formula:
-
-\[ V = \sqrt{\frac{\chi^2}{n \cdot \min(k-1, r-1)}} \]
-
-where \(V\) is the effect size, \(\chi^2\) is the chi-squared test statistic, \(n\) is the total number of observations, \(k\) is the number of categories in one variable, and \(r\) is the number of categories in the other variable.
-
-
-Given the absence of a pre-existing function for Cramér's V in R, we opted to implement our own function.
-
-
-
-```{r echo=FALSE, results='hide'}
-
-dg.cramersV = function (tab,correct=TRUE) {t=min(dim(tab)) 
-return(sqrt(chisq.test(tab,correct=correct)$statistic/
-              (sum(tab)*(t-1)))[[1]])}
-```
-
-This function facilitates the calculation of Cramér's V, providing a standardized measure of association that aids in interpreting the impact of sex on specific physical characteristics.
-
 ### Chi-Square Test
 
 ## Chi-Square Test of Independence Formula
 
-We did chi sq test to investigate if there is a certain relationship between sex and Body mass, Flipper length, Bill length and Bill depth of Chinstrap penguins.
+In order to explore the potential relationship between sex and various physical characteristics of Chinstrap penguins, namely Body Mass, Flipper Length, Bill Length, and Bill Depth, we employed the chi-square test.
 
 The chi-square test of independence is calculated using the formula:
 
@@ -439,7 +397,16 @@ The chi-square test of independence is calculated using the formula:
 
 where \(\chi^2\) is the test statistic, \(O_{ij}\) is the observed frequency in cell \(ij\), and \(E_{ij}\) is the expected frequency in cell \(ij\).
 
+Hypothesis:
+Our investigation aims to determine if there is a significant association between the sex of Chinstrap penguins and their respective Body Mass, Flipper Length, Bill Length, and Bill Depth.
 
+Application:
+We apply the chi-square test to assess the independence of the observed frequencies within the specified categories. By comparing observed and expected frequencies, we aim to unveil any significant patterns or deviations that may indicate a relationship between sex and the selected physical characteristics.
+
+Interpretation:
+The resulting chi-square statistic will be evaluated against critical values to determine statistical significance. Any observed differences between the expected and observed frequencies will guide our understanding of the potential dependence between sex and the physical attributes of Chinstrap penguins.
+
+This statistical approach enhances our analysis by providing insights into the interplay between sex and various characteristics, contributing to a comprehensive exploration of sexual dimorphism within the Chinstrap penguin population.
 
 ```{r label = chi.bodymass, echo=FALSE}
 #### Bodymass
@@ -845,7 +812,6 @@ bird = data.frame(bspc,bmf,bmm,bmsdi,wlf,wlm,wlsdi,bias)
 
 # Results
 
-This is just an outline idea we could follow, please include your own ideas and improvements
 
 ## Comparison of the descriptive parameters 
 
@@ -1212,7 +1178,7 @@ par(mfrow=c(1, 1), mar = c(5, 4, 4, 2) + 0.1, oma = c(2, 1, 2, 1))
 
 ### Shapiro-Wilke test
 
-or each pertinent variable, we executed a Shapiro-Wilk test, wherein the null hypothesis (H0) posits that the data follows a normal distribution, while the alternative hypothesis (H1) suggests a significant departure from normality.
+For each pertinent variable, we executed a Shapiro-Wilk test, wherein the null hypothesis (H0) posits that the data follows a normal distribution, while the alternative hypothesis (H1) suggests a significant departure from normality.
 
 Ensuring the normality assumption is particularly critical in our analysis, especially given the upcoming application of two-sample t-tests. This rigorous evaluation was exclusively applied to relevant variables concerning sexual dimorphism in Chinstrap penguins, aligning with the specific focus of our investigation.
 
@@ -1226,7 +1192,13 @@ knitr::kable(chinshapiro)
 
 ### T Test
 
-Having conducted the Shapiro-Wilk tests to assess the normality of our dataset variables, we now turn our attention to the subsequent two-sample t-tests. These tests will allow us to investigate potential differences in specific physical characteristics between different groups, such as male and female penguins within each species. Before delving into the t-test results, it's imperative to consider the normality status of our variables, as the validity of t-tests relies on the assumption of normal distribution. The Shapiro-Wilk tests provided insights into the normality of our data, aiding in the informed selection of appropriate statistical analyses. With this foundation, we proceed to the t-tests, aiming to uncover nuanced distinctions in key attributes among penguin groups and species.
+Following the comprehensive assessment of normality using Shapiro-Wilk tests, our attention shifts to the outcomes of two-sample t-tests, aimed at unraveling potential differences in specific physical characteristics between different penguin groups, specifically between males and females within each species.
+
+Consideration of Normality:
+Before delving into the t-test results, it is crucial to acknowledge the normality status of our variables. The validity of t-tests relies on the assumption of normal distribution, and the insights gained from the Shapiro-Wilk tests informed our selection of appropriate statistical analyses.
+
+Summary of Findings:
+The results of the two-sample t-tests are presented below, highlighting the mean values for female and male penguins within each species, along with the associated p-values. The p-value is a critical metric that indicates the probability of obtaining observed differences if there were no actual differences in the population. A smaller p-value suggests stronger evidence against the null hypothesis of no difference.
 
 |categories|female|male|p-value|significant difference|
 |--|:--:|:--:|:--:|:---:|
@@ -1234,12 +1206,17 @@ Having conducted the Shapiro-Wilk tests to assess the normality of our dataset v
 |Culmen depth (mm)|17.59|19.25|7e-13|yes|
 |flipper length (mm)|191.7|199.9|3e-07|yes|
 |body mass (g)|3527|3939|3e-07|yes|
-  
+
+The p-values obtained for all categories are significantly small (all less than 0.05), indicating strong evidence to reject the null hypothesis. Therefore, we conclude that there are statistically significant differences in Culmen Length, Culmen Depth, Flipper Length, and Body Mass between female and male penguins within each species.
+ ecology.
+ 
+ 
 ### Effect size
 
-The concept of effect size, exemplified by metrics like Cohen's d in our two-sample t-tests, is crucial in statistical analyses for providing a standardized measure of observed differences. Going beyond statistical significance, Cohen's d is calculated by dividing the difference between group means by the pooled standard deviation, expressing the extent of group differences in standard deviations. This standardized unit of measurement is independent of variable scales, enabling comparisons across studies.
+In our pursuit of a comprehensive understanding of observed differences, we turn our attention to the concept of effect size, exemplified by metrics such as Cohen’s d in our two-sample t-tests. Effect size is a pivotal component in statistical analyses, offering a standardized measure that transcends the boundaries of statistical significance. In the realm of Cohen’s d, this metric is calculated by dividing the difference between group means by the pooled standard deviation, expressing the extent of group differences in terms of standard deviations. Importantly, this standardized unit of measurement is independent of variable scales, facilitating meaningful comparisons across studies.
 
-Guidelines for interpreting Cohen's d suggest that a small effect size is around 0.2, a medium size is approximately 0.5, and a large size is about 0.8 or higher. The sign of Cohen's d indicates the effect's direction: positive values imply a higher mean in the first group, and negative values suggest the opposite. In our case, applying Cohen's d to differences in bill length, bill depth, flipper length, and body mass among male and female penguins provides nuanced insights. This move beyond statistical significance allows us to assess the practical impact of these variations in physical characteristics, offering a deeper understanding of their real-world significance.
+Interpreting Cohen’s d:
+Guidelines for interpreting Cohen’s d provide a qualitative assessment of effect size. A small effect size hovers around 0.2, a medium size is approximately 0.5, and a large size is considered 0.8 or higher. The sign of Cohen’s d conveys the direction of the effect: positive values imply a higher mean in the first group, while negative values suggest the opposite.
 
 ```{r echo=FALSE}
 # Create a data frame with variables and their corresponding Cohen's d estimates
@@ -1265,12 +1242,16 @@ cohen_d_table$Effect_Size <- cut(
 knitr::kable(cohen_d_table)
 ```
 
-The resulting Cohen's d values, computed using the cohen.d function from the effsize library, provide insights into the standardized differences between male and female Chinstrap penguins for each physical characteristic. This effect size analysis complements our inferential statistics and aids in interpreting the practical significance of observed disparities in the measured attributes.
+Interpretation:
+The resulting Cohen’s d values, computed using the cohen.d function from the effsize library, offer profound insights into the standardized differences between male and female Chinstrap penguins for each physical characteristic. In our context, the consistently large effect sizes across Body Mass, Culmen Length, Culmen Depth, and Flipper Length suggest substantial and practically significant distinctions between male and female penguins within each species.
+
+Significance Beyond Statistical Tests:
+This move beyond statistical significance enables us to assess the real-world impact of these variations in physical characteristics. By considering effect sizes, we gain a deeper understanding of the practical significance of observed disparities, complementing our inferential statistics and enriching the interpretation of the nuanced differences among the studied attributes.
 
 
 ### Chi-Square test
 
-In our analysis of chinstrap penguin data, we sought to explore the association between sex and body size or body mass. To achieve this, we categorized the penguins' bill length, bill depth, flipper length, and body mass into three groups based on their respective sizes: small, medium, and large. This categorization was done using quantiles to ensure a balanced representation. Subsequently, we conducted a chi-square independence test to examine whether sex is statistically associated with these size categories.
+In our meticulous analysis of chinstrap penguin data, our focus was to discern the intricate association between sex and body size, specifically categorized into three groups: small, medium, and large. The parameters of interest encompassed bill length, bill depth, flipper length, and body mass. To ensure a balanced representation, we leveraged quantiles for the categorization process.
 
 #### Bodymass
 
@@ -1295,7 +1276,22 @@ pval.chi.bdep
 pval.chi.flen
 ```
 
+The chi-square independence test results reveal compelling evidence of a statistically significant association between sex and the categorized size groups for all measured attributes. Notably, the p-values across all parameters are exceptionally low (all less than 0.001), indicating a high level of statistical significance.
 
+Body Mass:
+The observed association between sex and body mass categories is highly significant, suggesting that the distribution of penguins across small, medium, and large size groups significantly differs between males and females.
+
+Bill Length:
+The chi-square test underscores a highly significant relationship between sex and bill length categories. This finding implies a distinct distribution pattern of penguins based on bill length among male and female populations.
+Bill Depth:
+
+Similarly, the significant association between sex and bill depth categories implies a meaningful divergence in the distribution of penguins with varying bill depths between male and female groups.
+Flipper Length:
+
+The chi-square test establishes a highly significant connection between sex and flipper length categories. This suggests a notable disparity in the distribution of penguins across small, medium, and large flipper length categories based on sex.
+
+Conclusion:
+These results robustly support the hypothesis that there exists a compelling association between sex and body size categories among chinstrap penguins. The highly significant p-values underscore the practical importance of these findings, indicating substantial differences in the distribution of penguins across categorized size groups based on sex for the measured attributes.
 ## Interspecies comparison
 
 ### SDI - Sexual Dimorphism Index
